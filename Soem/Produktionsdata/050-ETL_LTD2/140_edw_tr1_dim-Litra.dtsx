@@ -1,0 +1,2236 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/22/2008 10:20:24 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB073986"
+  DTS:CreatorName="DSB\pama2610"
+  DTS:DTSID="{AD5160FF-4B19-4FE3-A82D-ACF4018BACD9}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="140_edw_tr1_dim-Litra"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="430"
+  DTS:VersionGUID="{BF9BF7CF-5405-401C-AA24-439261CEDFFA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BEB5879B-D046-4162-A553-0865BEA75764}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{151D2442-F583-474C-BFD8-4865F479770D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Email_To">
+      <DTS:VariableValue
+        DTS:DataType="8">pama@dsb.dk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C2DB139-551B-4B6D-8101-186BF29722B6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumNewRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B6A98CA-507C-4544-9B04-43B430461796}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows_bef_upd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6CD1737-D0B5-40F2-ABEE-9F4CA34B1F3B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3E73D8DD-8257-466F-BCBF-2A822F43C1F7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TabRefLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b93a3c03-a814-4d3e-9e67-d680d11616cb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{85cb3749-7345-4ec0-b267-aca2edf6b3d8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare to refresh dimension DI_Litra"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{046d88c9-3ad7-4ef5-a4ed-8e1f83c17377}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare to refresh dimension DI_Litra">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh dimension DI_Litra\EXEC Loader Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{acd670f8-c6bb-42da-8123-ec286b23f483}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC Loader Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_InitTabRefLog ?, 'edw.DI_litra', 'INS', ?, null, null, null"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_PackageLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_CurrPeriod"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh dimension DI_Litra\GET Email_To variable"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b6ad6fee-66c1-4a75-b7f1-89057eedfeb7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Email_To variable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}"
+              SQLTask:SqlStatementSource="select [value] v_Email_To&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'LTD2' and [Variable] = 'Email_To'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_Email_To"
+                SQLTask:DtsVariableName="User::v_Email_To" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh dimension DI_Litra\GET num rows Di_litra"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{43717fe9-c068-4be1-8775-43122b13a5d4}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET num rows Di_litra"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}"
+              SQLTask:SqlStatementSource="select count(*) v_NumRows_bef_upd&#xA;from edw.di_litra"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_NumRows_bef_upd"
+                SQLTask:DtsVariableName="User::v_NumRows_bef_upd" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Prepare to refresh dimension DI_Litra.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{05f6a855-abd1-4ce5-a67f-dbd1bcbfe134}"
+          DTS:From="Package\Prepare to refresh dimension DI_Litra\GET Email_To variable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Prepare to refresh dimension DI_Litra\GET num rows Di_litra" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Prepare to refresh dimension DI_Litra.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{36bb0967-3f4a-4f31-9037-d0a2dc434351}"
+          DTS:From="Package\Prepare to refresh dimension DI_Litra\GET num rows Di_litra"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Prepare to refresh dimension DI_Litra\EXEC Loader Log" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Refresh DI_Litratype table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{36283382-AA63-4C2B-9448-6811A1C3B5E5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Refresh DI_Litratype table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Refresh DI_Litratype table\LOAD DI_Litra"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8CFE6F94-8448-4D27-BCCA-EBABDF4E0859}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="900"
+          DTS:ObjectName="LOAD DI_Litra"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              defaultBufferMaxRows="50000"
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="ADD rest of columns"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Output].Columns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Output].Columns[Timestamp]"
+                          name="Timestamp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1"
+                  componentClassID="{5B201335-B360-485C-BB93-75C34E09B3D3}"
+                  contactInfo="Aggregate;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+                  description="Aggregates and groups values in a dataset."
+                  name="Aggregate 1"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                      name="CountDistinctScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                      name="CountDistinctKeys" />
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                      name="AutoExtendFactor">25</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Inputs[Aggregate Input 1]"
+                      name="Aggregate Input 1">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Inputs[Aggregate Input 1].Columns[Litra_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Litra_type"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Output].Columns[Litra_type]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Outputs[Aggregate Output 1]"
+                      name="Aggregate Output 1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                          name="KeyScale"
+                          typeConverter="KeyScaleType">0</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                          name="Keys" />
+                      </properties>
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Outputs[Aggregate Output 1].Columns[Litra_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Outputs[Aggregate Output 1].Columns[Litra_type]"
+                          name="Litra_type">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Output].Columns[Litra_type]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="CONV Litratype"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Inputs[Derived Column Input].Columns[Litra]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Litra"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Litra]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Output].Columns[Litra_type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="10"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Output].Columns[Litra_type]"
+                          name="Litra_type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[UPPER]([TRIM]([SUBSTRING](#{Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Litra]},1,10)))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">UPPER(TRIM(SUBSTRING(Litra,1,10)))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DI_Litra"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[DI_Litra]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Connections[OleDbConnection]"
+                      connectionManagerID="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].Columns[Litra_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Litra_type"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Kode]"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Outputs[Sort Output].Columns[Litra_type]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].Columns[Timestamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Timestamp"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Output].Columns[Timestamp]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Kode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="Kode" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Navn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].ExternalColumns[MaterielTypel]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="MaterielTypel" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Data_kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Data_kilde" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows"
+                  componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="FILT valid rows"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Inputs[Conditional Split Input].Columns[Litra]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Litra"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Litra]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Valid Litra]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Valid Litra"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[ISNULL](#{Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Litra]}) ==  FALSE  &amp;&amp; #{Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Litra]} != "0"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(Litra) ==  FALSE  &amp;&amp; Litra != "0"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="RD_LTD_Lokopersonale"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[RD_LTD2_Lokopersonale]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Connections[OleDbConnection]"
+                      connectionManagerID="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Tjenestested]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Tjenestested]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Tjenestested]"
+                          name="Tjenestested"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                          name="Togsystem"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Litra]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Litra]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Litra]"
+                          name="Litra"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[AntalMin]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[AntalMin]"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[AntalMin]"
+                          name="AntalMin"
+                          precision="24"
+                          scale="6"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[CprNr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[CprNr]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[CprNr]"
+                          name="CprNr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Elementkode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Elementkode]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Elementkode]"
+                          name="Elementkode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Afgangsstation]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Afgangsstation]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Afgangsstation]"
+                          name="Afgangsstation"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Ankomststation]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Ankomststation]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Ankomststation]"
+                          name="Ankomststation"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Elementkodetekst]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Elementkodetekst]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Elementkodetekst]"
+                          name="Elementkodetekst"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Praktik]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Praktik]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Praktik]"
+                          name="Praktik"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Status]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Turnr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Turnr]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Turnr]"
+                          name="Turnr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Turdag]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Turdag]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Turdag]"
+                          name="Turdag"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Antalture]"
+                          dataType="i2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Antalture]"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Antalture]"
+                          name="Antalture"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[DsbId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[DsbId]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[DsbId]"
+                          name="DsbId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Fravaer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Fravaer]"
+                          length="1"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Fravaer]"
+                          name="Fravaer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Periode]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Periode]"
+                          name="Periode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Pernr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Pernr]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Pernr]"
+                          name="Pernr"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Tognr]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].Columns[Tognr]"
+                          name="Tognr"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[CprNr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CprNr" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Tjenestested]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Tjenestested" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Elementkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Elementkode" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Elementkodetekst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Elementkodetekst" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Afgangsstation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Afgangsstation" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Ankomststation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Ankomststation" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Praktik]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Praktik" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Litra]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Litra" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[AntalMin]"
+                          dataType="numeric"
+                          name="AntalMin"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kilde" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Turnr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Turnr" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Turdag]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Turdag" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Antalture]"
+                          dataType="i2"
+                          name="Antalture" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[DsbId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DsbId" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Fravaer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Fravaer" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Periode" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Pernr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Pernr" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Tognr" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Tjenestested]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Tjenestested]"
+                          name="Tjenestested" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Pernr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Pernr]"
+                          name="Pernr" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                          name="Togsystem" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Litra]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Litra]"
+                          name="Litra" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[AntalMin]"
+                          dataType="numeric"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[AntalMin]"
+                          name="AntalMin"
+                          precision="24"
+                          scale="6" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Turnr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Turnr]"
+                          name="Turnr" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Turdag]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Turdag]"
+                          name="Turdag" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[CprNr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[CprNr]"
+                          name="CprNr" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Elementkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Elementkode]"
+                          name="Elementkode" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                          name="Tognr" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Afgangsstation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Afgangsstation]"
+                          name="Afgangsstation" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Antalture]"
+                          dataType="i2"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Antalture]"
+                          name="Antalture" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Ankomststation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Ankomststation]"
+                          name="Ankomststation" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Elementkodetekst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Elementkodetekst]"
+                          name="Elementkodetekst" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Periode]"
+                          name="Periode" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Praktik]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Praktik]"
+                          name="Praktik" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[DsbId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[DsbId]"
+                          name="DsbId" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Fravaer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Error Output].Columns[Fravaer]"
+                          name="Fravaer" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension"
+                  componentClassID="{25BBB0C5-369B-4303-B3DF-D0DC741DEE58}"
+                  contactInfo="Slowly Changing Dimension;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+                  description="Updates a slowly changing dimension."
+                  name="Slowly Changing Dimension"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SELECT statement used to create a schema rowset."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [Kode], [Timestamp] FROM [edw].[DI_Litra]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                      name="CurrentRowWhere"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                      name="UpdateChangingAttributeHistory">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                      name="FailOnFixedAttributeChange">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the column name for the inferred member."
+                      name="InferredMemberIndicator"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether inferred member updates are detected."
+                      name="EnableInferredMember">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                      name="FailOnLookupFailure">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies that all rows in the input are new or the transformation detects the change type."
+                      name="IncomingRowChangeType"
+                      typeConverter="IncomingRowChangeType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Connections[LookupConnection]"
+                      connectionManagerID="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="Defines the connection to use for lookups in the dimension table"
+                      name="LookupConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                      name="Slowly Changing Dimension Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Litra_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Litra_type"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Kode]"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Outputs[Sort Output].Columns[Litra_type]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Timestamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Timestamp"
+                          externalMetadataColumnId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Timestamp]"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Output].Columns[Timestamp]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">4</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Kode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Kode" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                      description="Unchanged rows"
+                      exclusionGroup="1"
+                      name="Unchanged Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Outputs[New Output]"
+                      description="New rows"
+                      exclusionGroup="1"
+                      name="New Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                      description="Rows with changes in columns tagged FixedAttribute"
+                      exclusionGroup="1"
+                      name="Fixed Attribute Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                      description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                      exclusionGroup="1"
+                      name="Changing Attribute Updates Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                      description="HistoricalAttribute (Type 2) changes result in these new rows"
+                      exclusionGroup="2"
+                      name="Historical Attribute Inserts Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                      description="Information to update unpopulated initial dimension row"
+                      exclusionGroup="1"
+                      name="Inferred Member Updates Output"
+                      synchronousInputId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  contactInfo="Sort;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts data."
+                  name="Sort 1"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Inputs[Sort Input].Columns[Litra_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Litra_type"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Outputs[Aggregate Output 1].Columns[Litra_type]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Outputs[Sort Output].Columns[Litra_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Outputs[Sort Output].Columns[Litra_type]"
+                          name="Litra_type"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Outputs[Aggregate Output 1].Columns[Litra_type]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Aggregate Output 1]"
+                  endId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Inputs[Sort Input]"
+                  name="Aggregate Output 1"
+                  startId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Outputs[Aggregate Output 1]" />
+                <path
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Derived Column Output]"
+                  endId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Inputs[Conditional Split Input]"
+                  name="Derived Column Output"
+                  startId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Derived Column Output1]"
+                  endId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Derived Column Output"
+                  startId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[New Output]"
+                  endId="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra.Inputs[OLE DB Destination Input]"
+                  name="New Output"
+                  startId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension.Outputs[New Output]" />
+                <path
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[OLE DB Source Output]"
+                  endId="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Sort Output]"
+                  endId="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns.Inputs[Derived Column Input]"
+                  name="Sort Output"
+                  startId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1.Outputs[Sort Output]" />
+                <path
+                  refId="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Valid Turdepot]"
+                  endId="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1.Inputs[Aggregate Input 1]"
+                  name="Valid Turdepot"
+                  startId="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows.Outputs[Valid Litra]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update logs"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{389942d4-9d81-4ad6-a9dc-7b54f4ab3268}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update logs">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\EXEC End TabRef Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{bcd94295-221d-4fde-bff3-c98259629acd}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC End TabRef Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9FC7C4B1-814A-4D71-B1E6-48DDAA463CF3}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_EndTabRefLog ?, ?, null, null, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_NumNewRows"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\GET Totals rows at DI_Litra"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a44beec3-ebec-49d8-b37c-b3a81e72f3f2}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Totals rows at DI_Litra"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B4F13AA6-F507-4FD3-BED4-3C0293B4BF53}"
+              SQLTask:SqlStatementSource="select cast(count(*) as integer)  - cast(@v_NumRows_bef_upd as integer) v_NumNewRows from edw.DI_Litra&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_NumNewRows" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_NumRows_bef_upd"
+                SQLTask:DtsVariableName="User::v_NumRows_bef_upd"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\Send Mail Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{1b160aef-938a-4b9d-8b95-519c72fa82d5}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">"Data fra rå data tabel RD_LTD2_Lokopersonale blev indlæst til at opdatere edw.DI_Litra dimension\n\n" + (DT_STR, 50, 1252) @[User::v_NumNewRows] + " ny/nye litra kode(r) har været tilføjt til  dimensionen"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">"Kørsel af " +  @[System::PackageName] + " for periode " + @[User::v_CurrPeriod]  + " er afsluttet og " + (DT_STR, 50, 1252) @[User::v_NumNewRows]  + " ny/nye række(r) blev tilføjt til Turdepot dimensionen"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@v_Email_To</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{AC1FEFF5-B3C2-4873-8A6D-66B3A2D785E3}"
+              SendMailTask:From="datawarehouse@dsb.dk"
+              SendMailTask:To="pama@dsb.dk"
+              SendMailTask:Subject="Kørsel af 140_edw_tr1_dim-Litra for periode 0 er afsluttet og 0 ny/nye række(r) blev tilføjt til Turdepot dimensionen"
+              SendMailTask:MessageSource="Data fra rå data tabel RD_LTD2_Lokopersonale blev indlæst til at opdatere edw.DI_Litra dimension&#xA;&#xA;0 ny/nye litra kode(r) har været tilføjt til  dimensionen" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{f6502679-bfcb-47b4-a16e-3dc9bbb539ed}"
+          DTS:From="Package\Update logs\GET Totals rows at DI_Litra"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Update logs\EXEC End TabRef Log" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{a4e09515-037f-48f4-a445-501a6239774d}"
+          DTS:EvalOp="1"
+          DTS:Expression="@v_NumNewRows &gt; 0"
+          DTS:From="Package\Update logs\EXEC End TabRef Log"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Update logs\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{94F1E388-30BF-4B2F-8FF4-A813C65A036D}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Prepare to refresh dimension DI_Litra" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{95947E8F-DAD3-419B-8479-B736B031BE22}"
+      DTS:From="Package\Prepare to refresh dimension DI_Litra"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Refresh DI_Litratype table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{92368721-CCDA-42A8-9B1F-E86B8C569396}"
+      DTS:From="Package\Refresh DI_Litratype table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update logs" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{DA6491EF-3495-49CE-A2D2-263FC1EF4BAB}"
+      DTS:From="Package\Update logs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EXEC End Package Log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="109,44"
+          Id="Package\EXEC End Package Log"
+          TopLeft="546.066037735849,676.028301886793" />
+        <NodeLayout
+          Size="109,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="157.952830188679,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh dimension DI_Litra\EXEC Loader Log"
+          TopLeft="215.924528301887,159.641509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh dimension DI_Litra\GET Email_To variable"
+          TopLeft="117.88679245283,28.3584905660377" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh dimension DI_Litra\GET num rows Di_litra"
+          TopLeft="215.471698113207,94.2452830188679" />
+        <EdgeLayout
+          Id="Package\Prepare to refresh dimension DI_Litra.PrecedenceConstraints[Constraint 2]"
+          TopLeft="185.77358490566,72.2830188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="97.5849056603773,21.9622641509434"
+              Start="0,0"
+              End="97.5849056603773,14.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.9811320754717" />
+                  <mssgle:LineSegment
+                    End="97.5849056603773,10.9811320754717" />
+                  <mssgle:LineSegment
+                    End="97.5849056603773,14.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Prepare to refresh dimension DI_Litra.PrecedenceConstraints[Constraint 3]"
+          TopLeft="262.603773584906,138.169811320755">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="21.2075471698113,21.4716981132075"
+              Start="0,0"
+              End="21.2075471698113,13.9716981132075">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.1132075471698" />
+                  <mssgle:LineSegment
+                    End="21.2075471698113,16.1132075471698" />
+                  <mssgle:LineSegment
+                    End="21.2075471698113,13.9716981132075" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="478,224"
+          Size="478,268"
+          Id="Package\Prepare to refresh dimension DI_Litra"
+          TopLeft="7.5,93.311320754717" />
+        <NodeLayout
+          Size="123,49"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra"
+          TopLeft="198.377358490566,35.4905660377358" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="477,152"
+          Size="477,196"
+          Id="Package\Refresh DI_Litratype table"
+          TopLeft="5.5,385.462264150943" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\EXEC End TabRef Log"
+          TopLeft="86.9622641509434,117.830188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\GET Totals rows at DI_Litra"
+          TopLeft="88.9433962264151,38.811320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\Send Mail Task"
+          TopLeft="297.094339622641,122.547169811321" />
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint]"
+          TopLeft="155.952830188679,82.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,35.0188679245283"
+              Start="0,0"
+              End="0,27.5188679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5188679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          TopLeft="222.962264150943,142.188679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="74.132075471698,0"
+              Start="0,0"
+              End="66.632075471698,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="66.632075471698,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="25.316037735849,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="478,222"
+          Size="478,266"
+          Id="Package\Update logs"
+          TopLeft="5.5,612.518867924528" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="212.254716981132,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="34.1886792452831,43.8867924528302"
+              Start="0,0"
+              End="34.1886792452831,36.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="34.1886792452831,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="34.1886792452831,36.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="246.443396226415,361.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-2.64150943396226,24"
+              Start="0,0"
+              End="-2.64150943396226,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:LineSegment
+                    End="-2.64150943396226,12" />
+                  <mssgle:LineSegment
+                    End="-2.64150943396226,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="244.25,581.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,31.0566037735849"
+              Start="0,0"
+              End="0,23.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="483.5,745.518867924528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="62.566037735849,-47.4905660377358"
+              Start="0,0"
+              End="55.066037735849,-47.4905660377358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27.2830188679245,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.2830188679245,0"
+                    Point2="31.2830188679245,0"
+                    Point3="31.2830188679245,-4" />
+                  <mssgle:LineSegment
+                    End="31.2830188679245,-43.4905660377358" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31.2830188679245,-43.4905660377358"
+                    Point2="31.2830188679245,-47.4905660377358"
+                    Point3="35.2830188679245,-47.4905660377358" />
+                  <mssgle:LineSegment
+                    End="55.066037735849,-47.4905660377358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Refresh DI_Litratype table\LOAD DI_Litra">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="110,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\Aggregate 1"
+          TopLeft="7.12264150943406,215.5" />
+        <NodeLayout
+          Size="110,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\FILT valid rows"
+          TopLeft="6.70754716981151,150.330188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\Slowly Changing Dimension"
+          TopLeft="184.198113207547,420.216981132075" />
+        <NodeLayout
+          Size="114,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\DI_Litra"
+          TopLeft="185.198113207547,501.877358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\ADD rest of columns"
+          TopLeft="179.877358490566,352.405660377359" />
+        <NodeLayout
+          Size="109,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\CONV Litratype"
+          TopLeft="6.48113207547181,81.2358490566038" />
+        <NodeLayout
+          Size="109,44"
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra\Sort 1"
+          TopLeft="9.16037735849068,282.405660377359" />
+        <EdgeLayout
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Sort Output]"
+          TopLeft="63.5377358490566,326.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="184.22641509434,26.0754716981132"
+              Start="0,0"
+              End="184.22641509434,18.5754716981132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.0188679245283" />
+                  <mssgle:LineSegment
+                    End="184.22641509434,13.0188679245283" />
+                  <mssgle:LineSegment
+                    End="184.22641509434,18.5754716981132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[OLE DB Source Output]"
+          TopLeft="62.4056603773586,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.62264150943383,31.811320754717"
+              Start="0,0"
+              End="-1.62264150943383,24.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-1.62264150943383,15.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-1.62264150943383,24.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[New Output]"
+          TopLeft="252.698113207547,464.216981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.6603773584906"
+              Start="0,0"
+              End="0,30.1603773584906">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.1603773584906" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.09138671875,9.36339180424528,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Derived Column Output1]"
+          TopLeft="250.037735849057,396.405660377359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.811320754717"
+              Start="0,0"
+              End="0,16.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Derived Column Output]"
+          TopLeft="60.7830188679247,125.160377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.830188679245111,25.1698113207547"
+              Start="0,0"
+              End="0.830188679245111,17.6698113207547">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5660377358491" />
+                  <mssgle:LineSegment
+                    End="0.830188679245111,12.5660377358491" />
+                  <mssgle:LineSegment
+                    End="0.830188679245111,17.6698113207547" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Aggregate Output 1]"
+          TopLeft="62.0283018867926,259.424528301887">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.50943396226398,22.9811320754717"
+              Start="0,0"
+              End="1.50943396226398,15.4811320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.4716981132076" />
+                  <mssgle:LineSegment
+                    End="1.50943396226398,11.4716981132076" />
+                  <mssgle:LineSegment
+                    End="1.50943396226398,15.4811320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Litratype table\LOAD DI_Litra.Paths[Valid Turdepot]"
+          TopLeft="61.6132075471699,194.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.415094339622783,21.2452830188679"
+              Start="0,0"
+              End="0.415094339622783,13.7452830188679">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.6037735849057" />
+                  <mssgle:LineSegment
+                    End="0.415094339622783,10.6037735849057" />
+                  <mssgle:LineSegment
+                    End="0.415094339622783,13.7452830188679" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-22.4589957989386,15.6037735849057,45.3330859375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Refresh DI_Litratype table\LOAD DI_Litra\RD_LTD_Lokopersonale">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

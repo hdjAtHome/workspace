@@ -1,0 +1,1954 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/24/2014 10:01:17 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="PC001244"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{50D57344-0817-4CA1-964E-21A77F623EE4}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="145_EDW_TR5_FT_Togproduktion_S_Tog_Litra"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{EA012D78-2AB7-409C-9D7A-47DC096053BE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6D9B36D8-0490-407B-BFD5-8D013D69216A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadPeriode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B8D526EF-AE7B-471C-BBAC-99256D52A2B4}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs data\Beregninger"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Beregninger"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\Beregninger.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\Beregninger.Inputs[Derived Column Input].Columns[Togkm]"
+                      cachedDataType="numeric"
+                      cachedName="Togkm"
+                      cachedPrecision="24"
+                      cachedScale="6"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Togkm]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Beregninger.Inputs[Derived Column Input].Columns[Pladser]"
+                      cachedDataType="i4"
+                      cachedName="Pladser"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Pladser]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Beregninger.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Indlæs data\Beregninger.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Beregninger.Outputs[Derived Column Output].Columns[Pladskm]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs data\Beregninger.Outputs[Derived Column Output].Columns[Pladskm]"
+                      name="Pladskm"
+                      precision="24"
+                      scale="6"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,24,6)(#{Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Togkm]} * #{Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Pladser]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,24,6)(Togkm * Pladser)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data\Beregninger.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Indlæs data\Beregninger.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FT_Togproduktion_S_Tog_Litra"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[edw].[FT_Togproduktion_S_Tog_Litra]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Connections[OleDbConnection]"
+                  connectionManagerID="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[DI_Tid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DI_Tid"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_Tid]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[DI_S_Station_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Station_Straekning"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Station_Straekning]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Station_Straekning]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[DI_S_Materiel]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Materiel"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Materiel]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Materiel]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[DI_S_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Straekning"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Straekning]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Straekning]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[DI_S_Doegn_Inddeling]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Doegn_Inddeling"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Doegn_Inddeling]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[Afgang]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Afgang"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Afgang]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Afgang]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[Ankomst]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Ankomst"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Ankomst]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Ankomst]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[Tognr]"
+                      cachedDataType="i4"
+                      cachedName="Tognr"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Tognr]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Tognr]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[DI_Tidsintervaller]"
+                      cachedDataType="i4"
+                      cachedName="DI_Tidsintervaller"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_Tidsintervaller]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[Pladskm]"
+                      cachedDataType="numeric"
+                      cachedName="Pladskm"
+                      cachedPrecision="24"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Pladskm]"
+                      lineageId="Package\Indlæs data\Beregninger.Outputs[Derived Column Output].Columns[Pladskm]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[DI_Materiel_Litra]"
+                      cachedDataType="i4"
+                      cachedName="DI_Materiel_Litra"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Materiel_Litra]"
+                      lineageId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Match Output].Columns[DI_Materiel_Litra]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[litra_sekvens]"
+                      cachedDataType="i4"
+                      cachedName="litra_sekvens"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[litra_løbenr]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[litra_sekvens]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].Columns[Togkm]"
+                      cachedDataType="numeric"
+                      cachedName="Togkm"
+                      cachedPrecision="24"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Litrakm]"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Togkm]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DI_Tid" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Station_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Station_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Materiel]"
+                      dataType="i4"
+                      name="DI_S_Materiel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Materiel_Litra]"
+                      dataType="i4"
+                      name="DI_S_Materiel_Litra" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      name="DI_S_Doegn_Inddeling" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Afgang]"
+                      dataType="dbTimeStamp"
+                      name="Afgang" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      name="Ankomst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Tognr]"
+                      dataType="i4"
+                      name="Tognr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[litra_løbenr]"
+                      dataType="i4"
+                      name="litra_løbenr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Pladskm]"
+                      dataType="numeric"
+                      name="Pladskm"
+                      precision="24"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      name="DI_Tidsintervaller" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input].ExternalColumns[Litrakm]"
+                      dataType="numeric"
+                      name="Litrakm"
+                      precision="24"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\Litra mapping"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Litra mapping"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select litra_type, litra_sekvens, Pladser, Materielkategori
+from [etl].[TD_S_materiale_til_Litra_mapping]
+order by litra_type, litra_sekvens</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\Litra mapping.Connections[OleDbConnection]"
+                  connectionManagerID="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[litra_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[litra_type]"
+                      length="50"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[litra_type]"
+                      name="litra_type"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[litra_sekvens]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[litra_sekvens]"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[litra_sekvens]"
+                      name="litra_sekvens"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[Pladser]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[Pladser]"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[Pladser]"
+                      name="Pladser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[Materielkategori]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[Materielkategori]"
+                      length="50"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[Materielkategori]"
+                      name="Materielkategori"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[litra_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="litra_type" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[litra_sekvens]"
+                      dataType="i4"
+                      name="litra_sekvens" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[Pladser]"
+                      dataType="i4"
+                      name="Pladser" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].ExternalColumns[Materielkategori]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Materielkategori" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[litra_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[litra_type]"
+                      name="litra_type" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[litra_sekvens]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[litra_sekvens]"
+                      name="litra_sekvens" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[Pladser]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[Pladser]"
+                      name="Pladser" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[Materielkategori]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[Materielkategori]"
+                      name="Materielkategori" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\Lookup DI_Materiel_Litra"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Lookup DI_Materiel_Litra"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select pk_id, Siddepladser, Materielkategori from [edw].[DI_S_Materiel]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select pk_id, Siddepladser, Materielkategori from [edw].[DI_S_Materiel]) [refTable]
+where [refTable].[Siddepladser] = ? and [refTable].[Materielkategori] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="pk_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Siddepladser" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Materielkategori" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Pladser]};#{Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Materielkategori]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Connections[OleDbConnection]"
+                  connectionManagerID="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Inputs[Lookup Input].Columns[Pladser]"
+                      cachedDataType="i4"
+                      cachedName="Pladser"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Pladser]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Siddepladser</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Inputs[Lookup Input].Columns[Materielkategori]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Materielkategori"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Materielkategori]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Materielkategori</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Indlæs data\Lookup DI_Materiel_Litra.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Match Output].Columns[DI_Materiel_Litra]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Match Output].Columns[DI_Materiel_Litra]"
+                      name="DI_Materiel_Litra"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">pk_id</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Indlæs data\Lookup DI_Materiel_Litra.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Indlæs data\Lookup DI_Materiel_Litra.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\Merge Join"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Litra_typer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Litra_typer"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Litra_typer]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_Tid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DI_Tid"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tid]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Station_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Station_Straekning"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Station_Straekning]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Materiel]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Materiel"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Materiel]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Straekning"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Doegn_Inddeling]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Doegn_Inddeling"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Afgang]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Afgang"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Afgang]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Ankomst]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Ankomst"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Ankomst]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Tognr]"
+                      cachedDataType="i4"
+                      cachedName="Tognr"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Tognr]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Togkm]"
+                      cachedDataType="numeric"
+                      cachedName="Togkm"
+                      cachedPrecision="24"
+                      cachedScale="6"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Togkm]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_Tidsintervaller]"
+                      cachedDataType="i4"
+                      cachedName="DI_Tidsintervaller"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input].Columns[litra_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="litra_type"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[litra_type]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input].Columns[litra_sekvens]"
+                      cachedDataType="i4"
+                      cachedName="litra_sekvens"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[litra_sekvens]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input].Columns[Pladser]"
+                      cachedDataType="i4"
+                      cachedName="Pladser"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[Pladser]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input].Columns[Materielkategori]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Materielkategori"
+                      lineageId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output].Columns[Materielkategori]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output]"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_Tid]"
+                      name="DI_Tid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_Tid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Station_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Station_Straekning]"
+                      name="DI_S_Station_Straekning">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Station_Straekning]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Materiel]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Materiel]"
+                      name="DI_S_Materiel">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Materiel]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Straekning]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_S_Doegn_Inddeling]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Afgang]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Afgang]"
+                      name="Afgang">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Afgang]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Ankomst]"
+                      name="Ankomst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Ankomst]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Tognr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Tognr]"
+                      name="Tognr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Tognr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Togkm]"
+                      dataType="numeric"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Togkm]"
+                      name="Togkm"
+                      precision="24"
+                      scale="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[Togkm]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input].Columns[DI_Tidsintervaller]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[litra_sekvens]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[litra_sekvens]"
+                      name="litra_sekvens">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input].Columns[litra_sekvens]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Pladser]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Pladser]"
+                      name="Pladser">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input].Columns[Pladser]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Materielkategori]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output].Columns[Materielkategori]"
+                      name="Materielkategori">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input].Columns[Materielkategori]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\Togproduktion S-tog"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Togproduktion S-tog"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT p.[DI_Tid], p.[DI_S_Station_Straekning], p.[DI_S_Materiel], p.[DI_S_Straekning],
+  p.[DI_S_Doegn_Inddeling], p.[Afgang], p.[Ankomst], p.[Tognr], p.[Togkm], 
+  p.[DI_Tidsintervaller], m.Litra_typer  
+FROM [edw].[FT_Togproduktion_S_Tog] AS p
+INNER JOIN [edw].[DI_Tid] t on (t.reference = p.DI_Tid)
+INNER JOIN [edw].[DI_S_Materiel] m on (m.PK_ID = p.[DI_S_Materiel])
+WHERE t.parentreference = ?
+ORDER BY m.Litra_typer</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0",{6D9B36D8-0490-407B-BFD5-8D013D69216A};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\Togproduktion S-tog.Connections[OleDbConnection]"
+                  connectionManagerID="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                      length="50"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                      name="DI_Tid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Station_Straekning]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Station_Straekning]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Station_Straekning]"
+                      name="DI_S_Station_Straekning"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Materiel]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Materiel]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Materiel]"
+                      name="DI_S_Materiel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Straekning]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Afgang]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Afgang]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Afgang]"
+                      name="Afgang"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Ankomst]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Ankomst]"
+                      name="Ankomst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Tognr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Tognr]"
+                      name="Tognr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Togkm]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Togkm]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Togkm]"
+                      name="Togkm"
+                      precision="24"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Litra_typer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Litra_typer]"
+                      length="50"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].Columns[Litra_typer]"
+                      name="Litra_typer"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DI_Tid" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Station_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Station_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Materiel]"
+                      dataType="i4"
+                      name="DI_S_Materiel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      name="DI_S_Doegn_Inddeling" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Afgang]"
+                      dataType="dbTimeStamp"
+                      name="Afgang" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      name="Ankomst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                      dataType="i4"
+                      name="Tognr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Togkm]"
+                      dataType="numeric"
+                      name="Togkm"
+                      precision="24"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      name="DI_Tidsintervaller" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Litra_typer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Litra_typer" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                      name="DI_Tid" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Station_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Station_Straekning]"
+                      name="DI_S_Station_Straekning" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Materiel]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Materiel]"
+                      name="DI_S_Materiel" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Afgang]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Afgang]"
+                      name="Afgang" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Ankomst]"
+                      name="Ankomst" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                      name="Tognr" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Togkm]"
+                      dataType="numeric"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Togkm]"
+                      name="Togkm"
+                      precision="24"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Litra_typer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[Litra_typer]"
+                      name="Litra_typer" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs data.Paths[Derived Column Output]"
+              endId="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Indlæs data\Beregninger.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Indlæs data.Paths[Lookup Match Output]"
+              endId="Package\Indlæs data\Beregninger.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Indlæs data\Lookup DI_Materiel_Litra.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Indlæs data.Paths[Merge Join Output]"
+              endId="Package\Indlæs data\Lookup DI_Materiel_Litra.Inputs[Lookup Input]"
+              name="Merge Join Output"
+              startId="Package\Indlæs data\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Indlæs data.Paths[OLE DB Source Output]"
+              endId="Package\Indlæs data\Merge Join.Inputs[Merge Join Left Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæs data\Togproduktion S-tog.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Indlæs data.Paths[OLE DB Source Output1]"
+              endId="Package\Indlæs data\Merge Join.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæs data\Litra mapping.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Initielle processer"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{03DD4891-877E-4D39-89F8-3B4D4344D3EE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Initielle processer">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Initielle processer\Find load periode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8F81B5D9-E07C-4439-948E-3F50D2249D9F}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find load periode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="Select Value as Periode&#xA;from ods.ctl_dataload&#xA;Where kilde_system = 'S-tog'&#xA;and variable = 'Load_Period'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::LoadPeriode" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initielle processer\Fjern periode som loades"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{eb710f03-f2b2-421c-a850-6d282d55c9e9}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fjern periode som loades"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="delete&#xA;from edw.FT_Togproduktion_S_Tog_Litra&#xA;where DI_Tid in (&#xA;  SELECT reference&#xA;  from edw.di_tid &#xA;  where parentreference = ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initielle processer\Refresh Mapping tabel"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{708DF680-7209-4BCC-963E-E1C386673167}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Refresh Mapping tabel"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="EXEC [etl].[edw_TD_S_materiale_til_Litra_mapping]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initielle processer.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{BCECBAC1-2803-44EC-B2C6-BA10D502C14E}"
+          DTS:From="Package\Initielle processer\Refresh Mapping tabel"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Initielle processer\Find load periode" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initielle processer.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{58EEF42B-13A7-4FF1-8540-F91F722D7EB5}"
+          DTS:From="Package\Initielle processer\Find load periode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Initielle processer\Fjern periode som loades" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Post processer"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{854DD393-164F-4F7C-BE52-9CB01C13F5C0}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Post processer">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{B1E08791-9170-4E07-B13D-FBEDE547D76A}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="Pladskm_Total">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Post processer\Find totaler"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2AB29C6C-C083-4CD0-987D-1C34CF1E570B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find totaler"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="select CONVERT(Float,SUM(p.Pladskm)) as Pladskm_Total&#xA;from edw.ft_togproduktion_s_tog_Litra p&#xA;join edw.di_tid t on (t.reference = p.DI_Tid) &#xA;where t.parentreference = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::Pladskm_Total" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post processer\Gem pladskm"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{209dd808-9929-4ff3-98af-4fd890cf7e11}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem pladskm"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 124, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::Pladskm_Total"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="4"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post processer.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{4AC15D47-C367-4504-B7F6-C1FC790C9BF6}"
+          DTS:From="Package\Post processer\Find totaler"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Post processer\Gem pladskm" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7F254201-9116-46C2-BD9E-57BA8A4D4E79}"
+      DTS:From="Package\Initielle processer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Indlæs data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{42B76BAC-1041-4C9B-94F2-5B083D518B91}"
+      DTS:From="Package\Indlæs data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Post processer" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data"
+          TopLeft="99.7641509433962,401.047169811321" />
+        <NodeLayout
+          Size="196,44"
+          Id="Package\Initielle processer\Find load periode"
+          TopLeft="57.1320754716981,111.792452830189" />
+        <NodeLayout
+          Size="196,44"
+          Id="Package\Initielle processer\Fjern periode som loades"
+          TopLeft="58.754716981132,191.867924528302" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Initielle processer\Refresh Mapping tabel"
+          TopLeft="49.0566037735849,32.8867924528302" />
+        <EdgeLayout
+          Id="Package\Initielle processer.PrecedenceConstraints[Constraint]"
+          TopLeft="142.056603773585,74.8867924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.0754716981132,36.9056603773585"
+              Start="0,0"
+              End="13.0754716981132,29.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4528301886792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4528301886792"
+                    Point2="0,18.4528301886792"
+                    Point3="4,18.4528301886792" />
+                  <mssgle:LineSegment
+                    End="9.07547169811323,18.4528301886792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.07547169811323,18.4528301886792"
+                    Point2="13.0754716981132,18.4528301886792"
+                    Point3="13.0754716981132,22.4528301886792" />
+                  <mssgle:LineSegment
+                    End="13.0754716981132,29.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Initielle processer.PrecedenceConstraints[Constraint 1]"
+          TopLeft="113.433962264151,155.716981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.1320754716981,36.1509433962264"
+              Start="0,0"
+              End="43.1320754716981,28.6509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.0943396226415" />
+                  <mssgle:LineSegment
+                    End="43.1320754716981,27.0943396226415" />
+                  <mssgle:LineSegment
+                    End="43.1320754716981,28.6509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="322,291"
+          Size="322,335"
+          Id="Package\Initielle processer"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Post processer\Find totaler"
+          TopLeft="81.9622641509434,44.5471698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Post processer\Gem pladskm"
+          TopLeft="84.4528301886792,135.075471698113" />
+        <EdgeLayout
+          Id="Package\Post processer.PrecedenceConstraints[Constraint]"
+          TopLeft="149.849056603774,88.4716981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.49056603773585,46.6037735849056"
+              Start="0,0"
+              End="2.49056603773585,39.1037735849056">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2830188679245" />
+                  <mssgle:LineSegment
+                    End="2.49056603773585,23.2830188679245" />
+                  <mssgle:LineSegment
+                    End="2.49056603773585,39.1037735849056" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="294,189"
+          Size="294,233"
+          Id="Package\Post processer"
+          TopLeft="36.7075471698113,492.254716981132" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="166.405660377358,331.311320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.24528301886792,69.7358490566037"
+              Start="0,0"
+              End="1.24528301886792,62.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.8679245283018" />
+                  <mssgle:LineSegment
+                    End="1.24528301886792,34.8679245283018" />
+                  <mssgle:LineSegment
+                    End="1.24528301886792,62.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="167.650943396226,444.971698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.1132075471698,47.2830188679245"
+              Start="0,0"
+              End="16.1132075471698,39.7830188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.6226415094339" />
+                  <mssgle:LineSegment
+                    End="16.1132075471698,23.6226415094339" />
+                  <mssgle:LineSegment
+                    End="16.1132075471698,39.7830188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="265,44"
+          Id="Package\Indlæs data\Lookup DI_Materiel_Litra"
+          TopLeft="105.349056603774,276.066037735849" />
+        <NodeLayout
+          Size="245,44"
+          Id="Package\Indlæs data\FT_Togproduktion_S_Tog_Litra"
+          TopLeft="115.311320754717,497.72641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data\Merge Join"
+          TopLeft="168.216981132075,164.254716981132" />
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Indlæs data\Togproduktion S-tog"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="160,44"
+          Id="Package\Indlæs data\Litra mapping"
+          TopLeft="313.990566037736,13.4622641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data\Beregninger"
+          TopLeft="169.235849056604,383.877358490566" />
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[OLE DB Source Output1]"
+          TopLeft="393.839622641509,57.3867924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-136.981132075472,106.867924528302"
+              Start="0,0"
+              End="-136.981132075472,99.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-136.981132075472,53.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-136.981132075472,99.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[OLE DB Source Output]"
+          TopLeft="101.349056603774,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114,114.830188679245"
+              Start="0,0"
+              End="114,107.330188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.3962264150943" />
+                  <mssgle:LineSegment
+                    End="114,57.3962264150943" />
+                  <mssgle:LineSegment
+                    End="114,107.330188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Merge Join Output]"
+          TopLeft="236.103773584906,208.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.50943396226415,67.8867924528302"
+              Start="0,0"
+              End="1.50943396226415,60.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.9245283018868" />
+                  <mssgle:LineSegment
+                    End="1.50943396226415,33.9245283018868" />
+                  <mssgle:LineSegment
+                    End="1.50943396226415,60.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Lookup Match Output]"
+          TopLeft="237.61320754717,319.990566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735846,63.8867924528302"
+              Start="0,0"
+              End="-0.490566037735846,56.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,31.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,56.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.4366697376179,36.9245283018868,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Derived Column Output]"
+          TopLeft="237.122641509434,427.801886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.490566037735846,69.9245283018868"
+              Start="0,0"
+              End="0.490566037735846,62.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9433962264151" />
+                  <mssgle:LineSegment
+                    End="0.490566037735846,34.9433962264151" />
+                  <mssgle:LineSegment
+                    End="0.490566037735846,62.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

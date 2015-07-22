@@ -1,0 +1,1107 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/23/2013 2:44:45 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{4199EEFF-2490-4354-91B3-A63CEF24D01B}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="060_EX_MD_G_STAM_Togsystem"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{0D7333D0-7AEF-48B1-9676-146F5321D2CD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{95BAA5DF-5BE8-4C00-A666-6F357920527C}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">"\\\\"+@[$Project::MDWSERVER] +"\\files\\"+ @[$Project::MDWDATABASE]+"\\Stamdata\\EX_MD_G_STAM_Togsystem.xls"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\oesmsqlt01\soem\files\MDW_udv4\Stamdata\EX_MD_G_STAM_Togsystem.xls;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D706D26F-CED9-45DA-AF2B-91913CC23F90}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs data\Konverter Kolonner"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Konverter Kolonner"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[Togsystemnummer]"
+                      cachedDataType="r8"
+                      cachedName="Togsystemnummer"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnummer]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[Togsystemnavn]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Togsystemnavn"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[Togsystemnavn_Kort]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Togsystemnavn_Kort"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn_Kort]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[Kontraktoperatør]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Kontraktoperatør"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Kontraktoperatør]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[Produkt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Produkt"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Produkt]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[Costobjekt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Costobjekt"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Costobjekt]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[Beskrivelse]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Beskrivelse"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Beskrivelse]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input].Columns[StogTogsystem]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="StogTogsystem"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[StogTogsystem]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnummer_conv]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnummer_conv]"
+                      name="Togsystemnummer_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnummer]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)Togsystemnummer</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnavn_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnavn_conv]"
+                      name="Togsystemnavn_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Togsystemnavn,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnavn_Kort_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnavn_Kort_conv]"
+                      name="Togsystemnavn_Kort_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn_Kort]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Togsystemnavn_Kort,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Kontraktoperatør_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Kontraktoperatør_conv]"
+                      name="Kontraktoperatør_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Kontraktoperatør]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING([Kontraktoperatør],1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Produkt_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Produkt_conv]"
+                      name="Produkt_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Produkt]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Produkt,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Costobjekt_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Costobjekt_conv]"
+                      name="Costobjekt_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Costobjekt]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Costobjekt,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Beskrivelse_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Beskrivelse_conv]"
+                      name="Beskrivelse_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Beskrivelse]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Beskrivelse,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[StogTogSystem_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[StogTogSystem_conv]"
+                      name="StogTogSystem_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[StogTogsystem]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(StogTogsystem,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\MD_G_STAM_Togsystem"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="MD_G_STAM_Togsystem"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">MD_G_STAM_Togsystem$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\MD_G_STAM_Togsystem.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnummer]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Togsystemnummer]"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnummer]"
+                      name="Togsystemnummer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Togsystemnavn]"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn]"
+                      name="Togsystemnavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn_Kort]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Togsystemnavn_Kort]"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Togsystemnavn_Kort]"
+                      name="Togsystemnavn_Kort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Kontraktoperatør]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Kontraktoperatør]"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Kontraktoperatør]"
+                      name="Kontraktoperatør"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Produkt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Produkt]"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Produkt]"
+                      name="Produkt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Costobjekt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Costobjekt]"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Costobjekt]"
+                      name="Costobjekt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Beskrivelse]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Beskrivelse]"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Beskrivelse]"
+                      name="Beskrivelse"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Aktiv]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Aktiv]"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Aktiv]"
+                      name="Aktiv"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[StogTogsystem]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[StogTogsystem]"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[StogTogsystem]"
+                      name="StogTogsystem"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Togsystemnummer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Togsystemnummer" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Togsystemnavn]"
+                      dataType="wstr"
+                      length="255"
+                      name="Togsystemnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Togsystemnavn_Kort]"
+                      dataType="wstr"
+                      length="255"
+                      name="Togsystemnavn_Kort" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Kontraktoperatør]"
+                      dataType="wstr"
+                      length="255"
+                      name="Kontraktoperatør" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Produkt]"
+                      dataType="wstr"
+                      length="255"
+                      name="Produkt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Costobjekt]"
+                      dataType="wstr"
+                      length="255"
+                      name="Costobjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Beskrivelse]"
+                      dataType="wstr"
+                      length="255"
+                      name="Beskrivelse" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[Aktiv]"
+                      dataType="bool"
+                      name="Aktiv" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].ExternalColumns[StogTogsystem]"
+                      dataType="wstr"
+                      length="255"
+                      name="StogTogsystem" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Togsystemnummer]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Togsystemnummer]"
+                      name="Togsystemnummer" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[StogTogsystem]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[StogTogsystem]"
+                      name="StogTogsystem" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Togsystemnavn]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Togsystemnavn]"
+                      name="Togsystemnavn" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Togsystemnavn_Kort]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Togsystemnavn_Kort]"
+                      name="Togsystemnavn_Kort" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Kontraktoperatør]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Kontraktoperatør]"
+                      name="Kontraktoperatør" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Produkt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Produkt]"
+                      name="Produkt" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Costobjekt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Costobjekt]"
+                      name="Costobjekt" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Beskrivelse]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Beskrivelse]"
+                      name="Beskrivelse" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Aktiv]"
+                      dataType="bool"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[Aktiv]"
+                      name="Aktiv" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ODS MD_G_STAM_Togsystem"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[MD_G_STAM_Togsystem]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Connections[OleDbConnection]"
+                  connectionManagerID="{DD1DE3AE-CE0B-4B30-A83C-0B9011997F07}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[Togsystemnummer_conv]"
+                      cachedDataType="i4"
+                      cachedName="Togsystemnummer_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnummer]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnummer_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[Togsystemnavn_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystemnavn_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnavn]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnavn_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[Togsystemnavn_Kort_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystemnavn_Kort_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnavn_Kort]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Togsystemnavn_Kort_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[Kontraktoperatør_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Kontraktoperatør_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Kontraktoperatør]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Kontraktoperatør_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[Produkt_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Produkt_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Produkt_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[Costobjekt_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Costobjekt_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Costobjekt]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Costobjekt_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[Beskrivelse_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Beskrivelse_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Beskrivelse]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[Beskrivelse_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].Columns[StogTogSystem_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="StogTogSystem_conv"
+                      externalMetadataColumnId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[StogTogsystem]"
+                      lineageId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output].Columns[StogTogSystem_conv]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnummer]"
+                      dataType="i4"
+                      name="Togsystemnummer" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystemnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnavn_Kort]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystemnavn_Kort" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Kontraktoperatør]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Kontraktoperatør" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Produkt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Costobjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[Beskrivelse]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Beskrivelse" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input].ExternalColumns[StogTogsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="StogTogsystem" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\Vælg aktive"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Evaluates and directs rows in a dataset."
+              name="Vælg aktive"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\Vælg aktive.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\Vælg aktive.Inputs[Conditional Split Input].Columns[Aktiv]"
+                      cachedDataType="bool"
+                      cachedName="Aktiv"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Aktiv]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Vælg aktive.Outputs[Aktive]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Aktive"
+                  synchronousInputId="Package\Indlæs data\Vælg aktive.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output].Columns[Aktiv]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Aktiv</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data\Vælg aktive.Outputs[Inaktive]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Inaktive"
+                  synchronousInputId="Package\Indlæs data\Vælg aktive.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data\Vælg aktive.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Indlæs data\Vælg aktive.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Vælg aktive.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Vælg aktive.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Vælg aktive.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Vælg aktive.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs data.Paths[Aktive]"
+              endId="Package\Indlæs data\ODS MD_G_STAM_Togsystem.Inputs[OLE DB Destination Input]"
+              name="Aktive"
+              startId="Package\Indlæs data\Vælg aktive.Outputs[Aktive]" />
+            <path
+              refId="Package\Indlæs data.Paths[Derived Column Output]"
+              endId="Package\Indlæs data\Vælg aktive.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Indlæs data\Konverter Kolonner.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Indlæs data.Paths[Excel Source Output]"
+              endId="Package\Indlæs data\Konverter Kolonner.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Indlæs data\MD_G_STAM_Togsystem.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate tabel MD_G_STAM_Togsystem"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DB614CB7-F00C-4518-A05E-B462B42BFE10}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate tabel MD_G_STAM_Togsystem"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DD1DE3AE-CE0B-4B30-A83C-0B9011997F07}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].[MD_G_STAM_Togsystem]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F0687C8B-B883-4DCA-9B26-D874EA5A0E09}"
+      DTS:From="Package\Truncate tabel MD_G_STAM_Togsystem"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Indlæs data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="258,44"
+          Id="Package\Indlæs data"
+          TopLeft="36,129.27358490566" />
+        <NodeLayout
+          Size="258,44"
+          Id="Package\Truncate tabel MD_G_STAM_Togsystem"
+          TopLeft="36,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="165,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79.7735849056604"
+              Start="0,0"
+              End="0,72.2735849056604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.2735849056604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="229,44"
+          Id="Package\Indlæs data\MD_G_STAM_Togsystem"
+          TopLeft="56.9292452830189,5.5" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\Indlæs data\ODS MD_G_STAM_Togsystem"
+          TopLeft="56.9292452830189,345.915094339623" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\Indlæs data\Konverter Kolonner"
+          TopLeft="56.9292452830189,118.292452830189" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\Indlæs data\Vælg aktive"
+          TopLeft="56.9292452830189,241.084905660377" />
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Aktive]"
+          TopLeft="171.429245283019,285.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.8301886792453"
+              Start="0,0"
+              End="0,53.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.3194140625,21.8027896521226,28.638828125,9.724609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Excel Source Output]"
+          TopLeft="171.429245283019,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.7924528301887"
+              Start="0,0"
+              End="0,61.2924528301887">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.2924528301887" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Derived Column Output]"
+          TopLeft="171.429245283019,162.292452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78.7924528301887"
+              Start="0,0"
+              End="0,71.2924528301887">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.2924528301887" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Indlæs data\ODS MD_G_STAM_Togsystem">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

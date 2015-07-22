@@ -1,0 +1,1291 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/14/2013 3:26:26 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{DB8F35D6-30A5-47D0-9398-2FC5A9C8F2B4}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="10_ODS_RD_Loensum"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{C7247BCD-8D22-4D34-85CF-B65D1A73A9AF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RD_R_LønsumAnsættelsetype_yyyymm_csv]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{2C8E915D-35F8-43E8-91DA-C311EA337C9B}"
+      DTS:ObjectName="RD_R_LønsumAnsættelsetype_yyyymm_csv">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"\\\\"+@[$Project::MDWSERVER] +"\\Files\\"+ @[$Project::MDWDATABASE]+ "\\FPC_Lønsum\\CSV\\"+ @[User::v_fil_navn]+ @[User::v_Periode]+".csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1030"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\oesmsqlt01\soem\Files\mdw_udv4\FPC_Lønsum\CSV\RD_R_LønsumAnsættelsetype_201401.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Profitcenter"
+              DTS:DTSID="{F4AEA9F9-0604-4AA4-BE5C-69D0C31A8015}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 1"
+              DTS:DTSID="{B5575483-B4C7-45BB-A152-96DFD31F175B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Kontonummer"
+              DTS:DTSID="{E28D6F1E-B56A-414F-BABF-677FEE657996}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 3"
+              DTS:DTSID="{AD09883D-4D4E-4736-9DEA-4D613594838E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Medarb gruppe"
+              DTS:DTSID="{AE656A09-5674-4FB7-BB25-B73DA6EEF4C1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 5"
+              DTS:DTSID="{E6D1F1F9-36F0-4B2C-9055-BFC810CEFB4E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Regnskabsperiode år"
+              DTS:DTSID="{E22699A7-7916-4EE4-8DF3-71ECC2973460}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DKK"
+              DTS:DTSID="{CC23D9D3-4E59-4300-AC1C-566459A15122}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 8"
+              DTS:DTSID="{29A074C0-020F-4921-B3D8-AF863A7AFBD2}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9C51371-7609-4C72-8961-A66757B7168B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_fil_navn">
+      <DTS:VariableValue
+        DTS:DataType="8">RD_R_LønsumAnsættelsetype_</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{13B607AB-D852-411B-BEDA-35E5F105C2E0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Folder_path">
+      <DTS:VariableValue
+        DTS:DataType="8">\\gbdfs1\DSBDFS\Økonomi\KONC-POEM\70_BI\Projects\Files\FPC_Lønsum\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{31063C82-4ADD-4BEB-98ED-8309FC5E0EE6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8">201401</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load RD data"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C20D1234-C871-4CE2-A0CF-7280292D8C13}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load RD data">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load RD data\Data Flow Task"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{B879AC97-2BCE-4A6F-A35B-A8EBFA2CAD53}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load RD data\Data Flow Task\Konverter"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Konverter"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[Profitcenter]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Profitcenter]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[ProfitcenterNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProfitcenterNavn"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ProfitcenterNavn]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[Art]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Art"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Art]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[ArtNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ArtNavn"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ArtNavn]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[Medarb_Grp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_Grp"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_Grp]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[Medarb_GrpNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_GrpNavn"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_GrpNavn]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[PeriodeIndlæst]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PeriodeIndlæst"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[PeriodeIndlæst]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[Lønsum]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Lønsum"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Lønsum]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input].Columns[FTE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FTE"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[FTE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Profitcenter_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Profitcenter_konv]"
+                          name="Profitcenter_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Profitcenter]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Profitcenter,1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[ProfitcenterNavn_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[ProfitcenterNavn_konv]"
+                          name="ProfitcenterNavn_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ProfitcenterNavn]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(ProfitcenterNavn,1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Art_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Art_konv]"
+                          name="Art_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Art]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Art,1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[ArtNavn_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[ArtNavn_konv]"
+                          name="ArtNavn_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ArtNavn]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(ArtNavn,1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Medarb_grp_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Medarb_grp_konv]"
+                          name="Medarb_grp_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_Grp]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Medarb_Grp,1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Medarb_grpNavn_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Medarb_grpNavn_konv]"
+                          name="Medarb_grpNavn_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_GrpNavn]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Medarb_GrpNavn,1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[PeriodeIndlæst_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[PeriodeIndlæst_konv]"
+                          name="PeriodeIndlæst_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[PeriodeIndlæst]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING([PeriodeIndlæst],1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Lønsum_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Lønsum_konv]"
+                          name="Lønsum_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Lønsum]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING([Lønsum],1,50))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[FTE_konv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[FTE_konv]"
+                          name="FTE_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[FTE]},1,50))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(FTE,1,50))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="RD_FPC_Lønsum"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[RD_FPC_Lønsum]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Connections[OleDbConnection]"
+                      connectionManagerID="{5771DD25-0F50-48E7-AFCA-84180D38E2A7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[Profitcenter_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Profitcenter_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[ProfitcenterNavn_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProfitcenterNavn_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[ProfitcenterNavn]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[ProfitcenterNavn_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[Art_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Art_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Art]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Art_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[ArtNavn_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ArtNavn_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[ArtNavn]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[ArtNavn_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[Medarb_grp_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_grp_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_Grp]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Medarb_grp_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[Medarb_grpNavn_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_grpNavn_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_GrpNavn]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Medarb_grpNavn_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[PeriodeIndlæst_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PeriodeIndlæst_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[PeriodeIndlæst_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[Lønsum_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Lønsum_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Lønsum]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[Lønsum_konv]" />
+                        <inputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].Columns[FTE_konv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FTE_konv"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          lineageId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output].Columns[FTE_konv]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ProfitcenterNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Art" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ArtNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarb_Grp" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarb_GrpNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PeriodeIndlæst" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[Lønsum]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Lønsum" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FTE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv"
+                  componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1030"
+                  name="RD_R_LønsumAnsættelsetype_yyyymm csv"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[RD_R_LønsumAnsættelsetype_yyyymm_csv]"
+                      connectionManagerRefId="Package.ConnectionManagers[RD_R_LønsumAnsættelsetype_yyyymm_csv]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Profitcenter]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Profitcenter]"
+                          name="Profitcenter"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ProfitcenterNavn]"
+                          name="ProfitcenterNavn"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Kontonummer]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Art]"
+                          name="Art"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[ArtNavn]"
+                          name="ArtNavn"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Medarb gruppe]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_Grp]"
+                          name="Medarb_Grp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 5]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Medarb_GrpNavn]"
+                          name="Medarb_GrpNavn"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[PeriodeIndlæst]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Regnskabsperiode år]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[PeriodeIndlæst]"
+                          name="PeriodeIndlæst"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Lønsum]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[DKK]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[Lønsum]"
+                          name="Lønsum"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 8]"
+                          length="50"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].Columns[FTE]"
+                          name="FTE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 1" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Kontonummer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kontonummer" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 3" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Medarb gruppe]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarb gruppe" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 5" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Regnskabsperiode år]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Regnskabsperiode år" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[DKK]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DKK" />
+                        <externalMetadataColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output].ExternalColumns[Column 8]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 8" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load RD data\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load RD data\Data Flow Task\Konverter.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load RD data\Data Flow Task.Paths[Flat File Source Output]"
+                  endId="Package\Load RD data\Data Flow Task\Konverter.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load RD data\Find periode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{78351DF4-21C7-4C3B-9AB0-CBCC3F3DF94A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find periode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5771DD25-0F50-48E7-AFCA-84180D38E2A7}"
+              SQLTask:SqlStatementSource="Select Value As periode from ods.ctl_dataload&#xA;Where kilde_system = 'alle'&#xA;and Variable = 'Model_Periode'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Periode" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load RD data\Fjern Eksisterende data"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Truncate tabel RD_FPC_Lønsum"
+          DTS:DTSID="{2CFA0962-EB47-49F9-9C21-D6834B861DB6}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fjern Eksisterende data"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5771DD25-0F50-48E7-AFCA-84180D38E2A7}"
+              SQLTask:SqlStatementSource="Truncate table [ods].[RD_FPC_Lønsum]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load RD data.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E9E1B546-FF62-458E-82B0-1A55D48B0274}"
+          DTS:From="Package\Load RD data\Fjern Eksisterende data"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load RD data\Data Flow Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load RD data.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{B7AC90F3-A4CE-46E3-9E0C-7AF15AF4AF52}"
+          DTS:From="Package\Load RD data\Find periode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load RD data\Fjern Eksisterende data" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load RD data\Data Flow Task"
+          TopLeft="37.5471698113208,223.415094339623" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load RD data\Find periode"
+          TopLeft="37.5471698113208,8.9622641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load RD data\Fjern Eksisterende data"
+          TopLeft="37.5471698113208,116.169811320755" />
+        <EdgeLayout
+          Id="Package\Load RD data.PrecedenceConstraints[Constraint]"
+          TopLeft="105.433962264151,160.094339622642">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.3207547169811"
+              Start="0,0"
+              End="0,55.8207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.8207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load RD data.PrecedenceConstraints[Constraint 1]"
+          TopLeft="105.433962264151,52.8867924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.2830188679245"
+              Start="0,0"
+              End="0,55.7830188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.7830188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="231,317"
+          Size="231,361"
+          Id="Package\Load RD data"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load RD data\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,44"
+          Id="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum"
+          TopLeft="72.8962264150943,182.707547169811" />
+        <NodeLayout
+          Size="286,44"
+          Id="Package\Load RD data\Data Flow Task\RD_R_LønsumAnsættelsetype_yyyymm csv"
+          TopLeft="5.5,5.49999999999999" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load RD data\Data Flow Task\Konverter"
+          TopLeft="80.3679245283019,94.1037735849057" />
+        <EdgeLayout
+          Id="Package\Load RD data\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="148.254716981132,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.6792452830189"
+              Start="0,0"
+              End="0,37.1792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.1792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load RD data\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="148.254716981132,138.028301886792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.6792452830189"
+              Start="0,0"
+              End="0,37.1792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.1792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load RD data\Data Flow Task\RD_FPC_Lønsum">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2013 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/22/2008 10:20:24 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB073986"
+  DTS:CreatorName="DSB\pama2610"
+  DTS:DTSID="{BDDAB50F-C93B-464D-9075-91AC2C26081B}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="061_edw_tr1_dim_Opgave_from_Stamdata"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="583"
+  DTS:VersionGUID="{6833F18B-6932-4D81-8B79-20D48F7DC379}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8DF3720B-57E5-4323-B9C2-283C57669F0C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod">
+      <DTS:VariableValue
+        DTS:DataType="7">10/1/2009</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56787C2B-95BF-4C8C-A806-CE959A49151F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod_char">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0115EEDE-7E56-44A6-8F2E-68400D6597CB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrYear">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C9730E3-E943-476B-96F2-8D2B81271518}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Email_To">
+      <DTS:VariableValue
+        DTS:DataType="8">pama@dsb.dk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8DAA069-FEA0-4DE1-BEB0-360C8A334A59}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Personalniveau</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C4F632C-F6CA-4871-85D9-558CD3721A05}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Filepath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\gbsqlfi\konc-poem\70_BI\Projects\tempfiles\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0075DA89-8DBE-484B-A7DE-BE9FB0809589}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_LoaderLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8179476D-B4AB-42B3-99E7-BF43AE6E1996}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumNewRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{885915FB-7D28-4B04-8A93-3B480C7D8B6B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows_bef_upd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6CD1737-D0B5-40F2-ABEE-9F4CA34B1F3B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6D129A81-3B2B-4517-8B4F-065A088EE61B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PrevPeriod">
+      <DTS:VariableValue
+        DTS:DataType="7">1/6/2010</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{100711B1-4623-4427-B37B-99B130E95648}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_afteragg">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8EB8B951-7567-46B5-9109-3C76967FC797}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_file">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{32426BE4-360D-45AF-9F34-F816CEE62719}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_fileRDH">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{860E3EB0-1D83-4C12-97F8-F6AAECB1EFDB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_table">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D1A8D167-ECEA-4A44-BF9F-B7B26A02D6C2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TabRefLogId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b93a3c03-a814-4d3e-9e67-d680d11616cb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{85cb3749-7345-4ec0-b267-aca2edf6b3d8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare to refresh DI_Lokation table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{36283382-AA63-4C2B-9448-6811A1C3B5E5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare to refresh DI_Lokation table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh DI_Lokation table\EXEC Loader Log GET TabRefLogId"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{e7c19ea6-b0f2-4aca-a405-57e150360190}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC Loader Log GET TabRefLogId"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_InitTabRefLog ?, 'edw.DI_Opgave', 'INS', ?, null, null, null"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogId" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_PackageLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_CurrPeriod_char"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh DI_Lokation table\GET current period"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{57D6972A-97D2-441C-AB74-76826071F097}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET current period"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select  cast(substring([Value], 1, 4) + '-' + substring([Value], 5, 2) + '-01' as datetime) v_CurrPeriod, substring([Value], 1, 4) + '-' + substring([Value], 5, 2) + '-01' v_CurrPeriod_char&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'PDS'&#xA;and [Variable] = 'Last_Period_Load'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_CurrPeriod"
+                SQLTask:DtsVariableName="User::v_CurrPeriod" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_CurrPeriod_char"
+                SQLTask:DtsVariableName="User::v_CurrPeriod_char" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh DI_Lokation table\GET Email_To variable"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8516e633-4145-4a72-b7b4-7b91d7cde579}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Email_To variable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select [value] v_Email_To&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'PDS' and [Variable] = 'Email_To'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_Email_To"
+                SQLTask:DtsVariableName="User::v_Email_To" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh DI_Lokation table\GET num rows Di_Opgave"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{65d1a32d-8842-4c13-bc1f-020049de5651}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET num rows Di_Opgave"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select count(*) v_NumRows_bef_upd&#xA;from edw.di_opgave"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_NumRows_bef_upd"
+                SQLTask:DtsVariableName="User::v_NumRows_bef_upd" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Prepare to refresh DI_Lokation table\GET previous period"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A49013FF-D961-465A-84C7-8A61EFC19F7B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET previous period"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select cast(CASE WHEN convert(integer, substring([value], 5, 2)) = 12 &#xA;            THEN substring([value], 1, 4) + '-11-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 11&#xA;            THEN substring([value], 1, 4) + '-10-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 10&#xA;            THEN substring([value], 1, 4) + '-09-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 9&#xA;            THEN substring([value], 1, 4) + '-08-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 8&#xA;            THEN substring([value], 1, 4) + '-07-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 7&#xA;            THEN substring([value], 1, 4) + '-06-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 6&#xA;            THEN substring([value], 1, 4) + '-05-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 5&#xA;            THEN substring([value], 1, 4) + '-04-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 4&#xA;            THEN substring([value], 1, 4) + '-03-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 3&#xA;            THEN substring([value], 1, 4) + '-02-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 2&#xA;            THEN substring([value], 1, 4) + '-01-01'&#xA;            WHEN convert(integer, substring([value], 5, 2)) = 1&#xA;            THEN convert(varchar (4), convert(integer, substring([value], 1, 4)) - 1) + '-12-01' &#xA;            ELSE 'fejl i dato' &#xA;            END as datetime) v_PrevPeriod&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'PDS'&#xA;and [Variable] = 'Last_Period_Load'&#xA;&#xA;&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_PrevPeriod"
+                SQLTask:DtsVariableName="User::v_PrevPeriod" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A0868F44-6647-4FE3-AAA9-12F44E615075}"
+          DTS:From="Package\Prepare to refresh DI_Lokation table\GET previous period"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Prepare to refresh DI_Lokation table\GET num rows Di_Opgave" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{8A6C9619-CBB6-412A-BB50-9E07D05942A0}"
+          DTS:From="Package\Prepare to refresh DI_Lokation table\GET current period"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Prepare to refresh DI_Lokation table\GET previous period" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint 11]"
+          DTS:CreationName=""
+          DTS:DTSID="{30C3621C-740A-4A93-810C-4DEF2E488298}"
+          DTS:From="Package\Prepare to refresh DI_Lokation table\GET Email_To variable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Prepare to refresh DI_Lokation table\EXEC Loader Log GET TabRefLogId" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{F2907FDF-ACF8-4463-B116-5694AB6C1DC4}"
+          DTS:From="Package\Prepare to refresh DI_Lokation table\GET num rows Di_Opgave"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Prepare to refresh DI_Lokation table\GET Email_To variable" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Refresh DI_Opgave table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{a391fb6b-f93a-41cb-b646-804a974eb6cc}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Refresh DI_Opgave table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Refresh DI_Opgave table\LOAD Opgave dim"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0251e5b0-2e5f-445d-9ef4-2c248bc3d760}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD Opgave dim"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Insert Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[DI_Opgave]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[ElementKode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ElementKode"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveKode]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKode]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[ElementKodeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ElementKodeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveNavn]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[Beskrivelse]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="300"
+                          cachedName="Beskrivelse"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveBeskrivelse]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Beskrivelse]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[Gruppe]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Gruppe"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppe]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Gruppe]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[GruppeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="GruppeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppeNavn]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[GruppeNavn]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Type"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveType]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[TypeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TypeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveTypeNavn]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[TypeNavn]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[PK_ID]"
+                          dataType="i4"
+                          name="PK_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveKode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="OpgaveKode" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveBeskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="OpgaveBeskrivelse" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppe]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveGruppe" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveGruppeNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="OpgaveType" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveTypeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveTypeNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[GyldigFradato]"
+                          dataType="dbTimeStamp"
+                          name="GyldigFradato" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[GyldigTildato]"
+                          dataType="dbTimeStamp"
+                          name="GyldigTildato" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Aktiv]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Aktiv" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="MD_G_STAM_Timer_Grp_Togførertid"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select s.ElementKode, s.ElementKodeNavn, s.Beskrivelse, s.Gruppe, s.GruppeNavn, s.Type, s.TypeNavn
+from ods.MD_G_STAM_Timer_Grp_Togførertid s
+where EXISTS (select o.OpgaveKode from edw.DI_Opgave o
+              where o.OpgaveKode = s.ElementKode)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[ElementKode]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKode]"
+                          name="ElementKode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[ElementKodeNavn]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]"
+                          name="ElementKodeNavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Beskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[Beskrivelse]"
+                          length="300"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Beskrivelse]"
+                          name="Beskrivelse"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Gruppe]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[Gruppe]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Gruppe]"
+                          name="Gruppe"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[GruppeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[GruppeNavn]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[GruppeNavn]"
+                          name="GruppeNavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Type]"
+                          name="Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[TypeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[TypeNavn]"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[TypeNavn]"
+                          name="TypeNavn"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[ElementKode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ElementKode" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[ElementKodeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ElementKodeNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[Beskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          length="300"
+                          name="Beskrivelse" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[Gruppe]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Gruppe" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[GruppeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="GruppeNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].ExternalColumns[TypeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TypeNavn" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ElementKode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ElementKode]"
+                          name="ElementKode" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ElementKodeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ElementKodeNavn]"
+                          name="ElementKodeNavn" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[Beskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          length="300"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[Beskrivelse]"
+                          name="Beskrivelse" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[Gruppe]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[Gruppe]"
+                          name="Gruppe" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[GruppeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[GruppeNavn]"
+                          name="GruppeNavn" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          name="Type" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[TypeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[TypeNavn]"
+                          name="TypeNavn" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command"
+                  componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Executes an SQL command for each row in a dataset."
+                  name="OLE DB Command"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [edw].[DI_Opgave] SET [OpgaveBeskrivelse] = ?,[OpgaveGruppe] = ?,[OpgaveGruppeNavn] = ?,[OpgaveNavn] = ?,[OpgaveType] = ?,[OpgaveTypeNavn] = ? WHERE [OpgaveKode] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[Beskrivelse]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="300"
+                          cachedName="Beskrivelse"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Beskrivelse]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[Gruppe]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Gruppe"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Gruppe]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[GruppeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="GruppeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[GruppeNavn]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[ElementKode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ElementKode"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKode]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[ElementKodeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ElementKodeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Type"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[TypeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TypeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[TypeNavn]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Param_2">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Param_3">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Param_4">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Param_5">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="Param_6">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">1</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension"
+                  componentClassID="{25BBB0C5-369B-4303-B3DF-D0DC741DEE58}"
+                  contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+                  description="Updates a slowly changing dimension."
+                  name="Slowly Changing Dimension"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SELECT statement used to create a schema rowset."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [OpgaveBeskrivelse], [OpgaveGruppe], [OpgaveGruppeNavn], [OpgaveKode], [OpgaveNavn], [OpgaveType], [OpgaveTypeNavn] FROM [edw].[DI_Opgave]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                      name="CurrentRowWhere"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                      name="UpdateChangingAttributeHistory">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                      name="FailOnFixedAttributeChange">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the column name for the inferred member."
+                      name="InferredMemberIndicator"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether inferred member updates are detected."
+                      name="EnableInferredMember">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                      name="FailOnLookupFailure">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies that all rows in the input are new or the transformation detects the change type."
+                      name="IncomingRowChangeType"
+                      typeConverter="IncomingRowChangeType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Connections[LookupConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="Defines the connection to use for lookups in the dimension table"
+                      name="LookupConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                      name="Slowly Changing Dimension Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Beskrivelse]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="300"
+                          cachedName="Beskrivelse"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveBeskrivelse]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Beskrivelse]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Gruppe]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Gruppe"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveGruppe]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Gruppe]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[GruppeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="GruppeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveGruppeNavn]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[GruppeNavn]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[ElementKode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ElementKode"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveKode]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKode]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[ElementKodeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ElementKodeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveNavn]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Type"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveType]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[Type]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TypeNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TypeNavn"
+                          externalMetadataColumnId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveTypeNavn]"
+                          lineageId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output].Columns[TypeNavn]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveBeskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="OpgaveBeskrivelse" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveGruppe]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveGruppe" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveGruppeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveGruppeNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveKode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="OpgaveKode" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="OpgaveType" />
+                        <externalMetadataColumn
+                          refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OpgaveTypeNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OpgaveTypeNavn" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                      description="Unchanged rows"
+                      exclusionGroup="1"
+                      name="Unchanged Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[New Output]"
+                      description="New rows"
+                      exclusionGroup="1"
+                      name="New Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                      description="Rows with changes in columns tagged FixedAttribute"
+                      exclusionGroup="1"
+                      name="Fixed Attribute Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                      description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                      exclusionGroup="1"
+                      name="Changing Attribute Updates Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                      description="HistoricalAttribute (Type 2) changes result in these new rows"
+                      exclusionGroup="2"
+                      name="Historical Attribute Inserts Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                      description="Information to update unpopulated initial dimension row"
+                      exclusionGroup="1"
+                      name="Inferred Member Updates Output"
+                      synchronousInputId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Refresh DI_Opgave table\LOAD Opgave dim.Paths[Changing Attribute Updates Output]"
+                  endId="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command.Inputs[OLE DB Command Input]"
+                  name="Changing Attribute Updates Output"
+                  startId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+                <path
+                  refId="Package\Refresh DI_Opgave table\LOAD Opgave dim.Paths[New Output]"
+                  endId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination.Inputs[OLE DB Destination Input]"
+                  name="New Output"
+                  startId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Outputs[New Output]" />
+                <path
+                  refId="Package\Refresh DI_Opgave table\LOAD Opgave dim.Paths[OLE DB Source Output]"
+                  endId="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update logs"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{94ad171a-f4de-4b16-bc92-9a36f05936b2}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update logs">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\EXEC End TabRef Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4738bfec-afc9-43db-9aeb-29fa39a8d3c7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC End TabRef Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_EndTabRefLog ?, ?, null, null, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_NumNewRows"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\GET Total rows at DI_Opgave"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{db7cb37c-a123-4952-aff7-a3aad18a642a}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Total rows at DI_Opgave"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BA34F513-7196-49B6-AF00-C14E76C6D2F7}"
+              SQLTask:SqlStatementSource="select cast(count(*) as integer)  - cast(@v_NumRows_bef_upd as integer) v_NumNewRows from edw.DI_Opgave"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_NumNewRows" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_NumRows_bef_upd"
+                SQLTask:DtsVariableName="User::v_NumRows_bef_upd"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\Send Mail Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{dfd84f66-6e39-4026-828a-afa9bf823592}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">"Data er indlæst fra rå data tabel RD_PDS_Workdone til edw.DI_Opgave \n\n" + (DT_STR, 50, 1252) @[User::v_NumNewRows] + " ny/nye opgave/opgaver har været tilføjt i dimensionen\n\n"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">"Kørsel af " +  @[System::PackageName] + " for periode " + @[User::v_CurrPeriod_char]  + " er afsluttet og nye rækker blev tilføjt til Opgave dimensionen"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@v_Email_To</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{32850507-B501-4886-ACE2-C81DD9D289B4}"
+              SendMailTask:From="datawarehouse@dsb.dk"
+              SendMailTask:To="pama@dsb.dk"
+              SendMailTask:Subject="Kørsel af 061_edw_tr1_dim_Opgave_from_Stamdata for periode  er afsluttet og nye rækker blev tilføjt til Opgave dimensionen"
+              SendMailTask:MessageSource="Data er indlæst fra rå data tabel RD_PDS_Workdone til edw.DI_Opgave &#xA;&#xA;0 ny/nye opgave/opgaver har været tilføjt i dimensionen&#xA;&#xA;" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{80fa7da0-fe6c-4cd1-a845-3c40deb3a881}"
+          DTS:From="Package\Update logs\GET Total rows at DI_Opgave"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Update logs\EXEC End TabRef Log" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{14f8c91d-0985-405d-9d82-11e0fdce97bb}"
+          DTS:EvalOp="1"
+          DTS:Expression="@v_NumNewRows &gt; 0"
+          DTS:From="Package\Update logs\EXEC End TabRef Log"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Update logs\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1EFBD3BD-F0E3-409E-9E5C-82DE88D64D85}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Prepare to refresh DI_Lokation table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8E9A4B7C-4618-4719-9845-08278D4ED0C1}"
+      DTS:From="Package\Update logs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EXEC End Package Log" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{985D4B7B-DF1C-43DA-B9D9-07F89D8AC1BE}"
+      DTS:From="Package\Prepare to refresh DI_Lokation table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Refresh DI_Opgave table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{37EC7DA8-6B82-48EA-80E7-810B2D988ECB}"
+      DTS:From="Package\Refresh DI_Opgave table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update logs" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="123,44"
+          Id="Package\EXEC End Package Log"
+          TopLeft="541.084905660377,601.72641509434" />
+        <NodeLayout
+          Size="109,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="148.594339622641,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh DI_Lokation table\EXEC Loader Log GET TabRefLogId"
+          TopLeft="95.1698113207547,168.245283018868" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh DI_Lokation table\GET current period"
+          TopLeft="87.2452830188679,19.7547169811321" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh DI_Lokation table\GET Email_To variable"
+          TopLeft="284.679245283019,110.849056603774" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh DI_Lokation table\GET num rows Di_Opgave"
+          TopLeft="285.094339622641,47.8301886792453" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare to refresh DI_Lokation table\GET previous period"
+          TopLeft="85.5471698113207,82.7735849056604" />
+        <EdgeLayout
+          Id="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint]"
+          TopLeft="221.320754716981,104.735849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63.7735849056604,-34.9433962264151"
+              Start="0,0"
+              End="56.2735849056604,-34.9433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.8867924528302,0" />
+                  <mssgle:LineSegment
+                    End="31.8867924528302,-34.9433962264151" />
+                  <mssgle:LineSegment
+                    End="56.2735849056604,-34.9433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint 1]"
+          TopLeft="155.132075471698,63.6792452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.69811320754718,19.0943396226415"
+              Start="0,0"
+              End="-1.69811320754718,11.5943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.54716981132076" />
+                  <mssgle:LineSegment
+                    End="-1.69811320754718,9.54716981132076" />
+                  <mssgle:LineSegment
+                    End="-1.69811320754718,11.5943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint 11]"
+          TopLeft="352.566037735849,154.77358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-189.509433962264,13.4716981132075"
+              Start="0,0"
+              End="-189.509433962264,5.97169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.75471698113208" />
+                  <mssgle:LineSegment
+                    End="-189.509433962264,6.75471698113208" />
+                  <mssgle:LineSegment
+                    End="-189.509433962264,5.97169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Prepare to refresh DI_Lokation table.PrecedenceConstraints[Constraint 2]"
+          TopLeft="352.981132075472,91.7547169811321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.415094339622641,19.0943396226415"
+              Start="0,0"
+              End="-0.415094339622641,11.5943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.54716981132076" />
+                  <mssgle:LineSegment
+                    End="-0.415094339622641,9.54716981132076" />
+                  <mssgle:LineSegment
+                    End="-0.415094339622641,11.5943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="486,223"
+          Size="486,267"
+          Id="Package\Prepare to refresh DI_Lokation table"
+          TopLeft="5.5,81.4245283018868" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim"
+          TopLeft="164.377358490566,43.8301886792453" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="475,124"
+          Size="475,168"
+          Id="Package\Refresh DI_Opgave table"
+          TopLeft="13.1603773584906,380.103773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\EXEC End TabRef Log"
+          TopLeft="120.377358490566,104.471698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\GET Total rows at DI_Opgave"
+          TopLeft="121.358490566038,25.4528301886793" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\Send Mail Task"
+          TopLeft="293.77358490566,106.283018867925" />
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint]"
+          TopLeft="189.245283018868,69.3773584905661">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.981132075471692,35.0943396226415"
+              Start="0,0"
+              End="-0.981132075471692,27.5943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5471698113208" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,17.5471698113208" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,27.5943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          TopLeft="256.150943396226,126.433962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37.622641509434,1.81132075471697"
+              Start="0,0"
+              End="30.122641509434,1.81132075471697">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.8301886792453,0" />
+                  <mssgle:LineSegment
+                    End="18.8301886792453,1.81132075471697" />
+                  <mssgle:LineSegment
+                    End="30.122641509434,1.81132075471697" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="10.8301886792453,-26,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="457,189"
+          Size="457,233"
+          Id="Package\Update logs"
+          TopLeft="15.1603773584906,593.009433962264" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="202.896226415094,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.5849056603774,32"
+              Start="0,0"
+              End="45.5849056603774,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:LineSegment
+                    End="45.5849056603774,16" />
+                  <mssgle:LineSegment
+                    End="45.5849056603774,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="472.292452830189,709.650943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="68.7924528301887,-85.9622641509434"
+              Start="0,0"
+              End="61.2924528301887,-85.9622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34.377358490566,0" />
+                  <mssgle:LineSegment
+                    End="34.377358490566,-85.9622641509434" />
+                  <mssgle:LineSegment
+                    End="61.2924528301887,-85.9622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="248.481132075472,348.632075471698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.15094339622641,31.4716981132075"
+              Start="0,0"
+              End="2.15094339622641,23.9716981132075">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7358490566038" />
+                  <mssgle:LineSegment
+                    End="2.15094339622641,15.7358490566038" />
+                  <mssgle:LineSegment
+                    End="2.15094339622641,23.9716981132075" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="250.632075471698,548.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-6.90566037735849,44.8301886792453"
+              Start="0,0"
+              End="-6.90566037735849,37.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4150943396227" />
+                  <mssgle:LineSegment
+                    End="-6.90566037735849,22.4150943396227" />
+                  <mssgle:LineSegment
+                    End="-6.90566037735849,37.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Refresh DI_Opgave table\LOAD Opgave dim">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim\OLE DB Command"
+          TopLeft="5.5,219.952830188679" />
+        <NodeLayout
+          Size="257,44"
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim\MD_G_STAM_Timer_Grp_Togførertid"
+          TopLeft="22.9339622641509,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim\Insert Destination"
+          TopLeft="160.141509433962,219.952830188679" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim\Slowly Changing Dimension"
+          TopLeft="82.8207547169811,138.292452830189" />
+        <EdgeLayout
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim.Paths[OLE DB Source Output]"
+          TopLeft="151.198113207547,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735853,88.8679245283019"
+              Start="0,0"
+              End="-0.490566037735853,81.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735853,44.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735853,81.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim.Paths[New Output]"
+          TopLeft="171.462264150943,182.216981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.5660377358491,37.7358490566038"
+              Start="0,0"
+              End="56.5660377358491,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="56.5660377358491,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="56.5660377358491,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="1.19163214917453,23.8679245283019,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Refresh DI_Opgave table\LOAD Opgave dim.Paths[Changing Attribute Updates Output]"
+          TopLeft="129.952830188679,182.216981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56.5660377358491,37.7358490566038"
+              Start="0,0"
+              End="-56.5660377358491,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-56.5660377358491,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-56.5660377358491,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-106.816925117925,23.8679245283019,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

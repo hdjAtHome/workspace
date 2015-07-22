@@ -1,0 +1,753 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/5/2013 12:47:15 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{9ABD7B4C-1E5A-4343-9170-3E8B24109CDD}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="15_ODS_Straekning_Mapping"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{2DB133E6-11AA-474F-B3C8-08CA8666EA76}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Fjern eksisterende data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Truncate tabel TD_Strækning_Mapping"
+      DTS:DTSID="{14DCD0A6-E14D-4A42-BD58-D03264E063D4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern eksisterende data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ods.TD_Strækning_Mapping" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load mapping data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{127EA9D5-A3A3-4D23-9B43-6864A34D49F2}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load mapping data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Load mapping data\TD_Strækning_Mapping"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TD_Strækning_Mapping"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[TD_Strækning_Mapping]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load mapping data\TD_Strækning_Mapping.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[DI_Tid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DI_Tid"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tid]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[DI_S_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Straekning"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Straekning]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[Afgang]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Afgang"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Afgang]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Afgang]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[Ankomst]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Ankomst"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Ankomst]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Ankomst]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[Tognr]"
+                      cachedDataType="i4"
+                      cachedName="Tognr"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Tognr]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Tognr]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[Frastation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Frastation"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Frastation]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Frastation]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[Tilstation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Tilstation"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Tilstation]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Tilstation]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[kilde]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="kilde"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[kilde]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[DI_Tidsintervaller]"
+                      cachedDataType="i4"
+                      cachedName="DI_Tidsintervaller"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]" />
+                    <inputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].Columns[DI_S_Doegn_Inddeling]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Doegn_Inddeling"
+                      externalMetadataColumnId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DI_Tid" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Afgang]"
+                      dataType="dbTimeStamp"
+                      name="Afgang" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      name="Ankomst" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Tognr]"
+                      dataType="i4"
+                      name="Tognr" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Frastation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Frastation" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Tilstation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Tilstation" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Kilde" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      name="DI_Tidsintervaller" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[Aflyst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Aflyst" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      name="DI_S_Doegn_Inddeling" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load mapping data\TD_Strækning_Mapping.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\TD_Strækning_Mapping.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load mapping data\TD_Strækning_Mapping.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\TD_Strækning_Mapping.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load mapping data\Tog produktion S-tog"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Tog produktion S-tog"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select p.DI_Tid, p.DI_S_Straekning, p.DI_Tidsintervaller, p.DI_S_Doegn_Inddeling,
+  p.Afgang, p.Ankomst, p.Tognr, s.Frastation, s.Tilstation, 'Produktion' As kilde
+    from edw.ft_togproduktion_s_tog p
+    left join edw.DI_S_Station_Straekning s on (s.pk_id = p.DI_S_Station_Straekning)
+    left join edw.DI_Tid t on (p.DI_Tid = t.Reference)
+    where t.ParentReference in (
+        Select value
+        from ods.ctl_dataload
+        where kilde_system = 'S-tog PDS')
+    and s.Frastation != s.Tilstation</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load mapping data\Tog produktion S-tog.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                      length="50"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                      name="DI_Tid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Straekning]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Afgang]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Afgang]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Afgang]"
+                      name="Afgang"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Ankomst]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Ankomst]"
+                      name="Ankomst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Tognr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Tognr]"
+                      name="Tognr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Frastation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Frastation]"
+                      length="10"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Frastation]"
+                      name="Frastation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Tilstation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Tilstation]"
+                      length="10"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[Tilstation]"
+                      name="Tilstation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[kilde]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[kilde]"
+                      length="10"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[kilde]"
+                      name="kilde"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DI_Tid" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Afgang]"
+                      dataType="dbTimeStamp"
+                      name="Afgang" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      name="Ankomst" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                      dataType="i4"
+                      name="Tognr" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Frastation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Frastation" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[Tilstation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Tilstation" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[kilde]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="kilde" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      name="DI_Tidsintervaller" />
+                    <externalMetadataColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      name="DI_S_Doegn_Inddeling" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                      name="DI_Tid" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Afgang]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Afgang]"
+                      name="Afgang" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Ankomst]"
+                      name="Ankomst" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                      name="Tognr" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Frastation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Frastation]"
+                      name="Frastation" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Tilstation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[Tilstation]"
+                      name="Tilstation" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[kilde]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[kilde]"
+                      name="kilde" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load mapping data.Paths[OLE DB Source Output]"
+              endId="Package\Load mapping data\TD_Strækning_Mapping.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load mapping data\Tog produktion S-tog.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tilføj standsninger"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7A9DF76C-F337-4EA1-B8E7-F3964A236DA7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tilføj standsninger"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}"
+          SQLTask:SqlStatementSource="exec [etl].[ods_TD_Strækning_Mapping_Standsninger]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CB4D6958-E4F2-4BA1-8D9A-E7DF88F9BD6A}"
+      DTS:From="Package\Fjern eksisterende data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load mapping data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{504E7FD6-5001-4A7E-98AF-3693C3332DD7}"
+      DTS:From="Package\Load mapping data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Tilføj standsninger" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,44"
+          Id="Package\Fjern eksisterende data"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="181,44"
+          Id="Package\Load mapping data"
+          TopLeft="101.349056603774,104.330188679245" />
+        <NodeLayout
+          Size="174,44"
+          Id="Package\Tilføj standsninger"
+          TopLeft="196.216981132075,220.367924528302" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="90.8584905660377,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100.830188679245,54.9056603773585"
+              Start="0,0"
+              End="100.830188679245,47.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.4339622641509" />
+                  <mssgle:LineSegment
+                    End="100.830188679245,27.4339622641509" />
+                  <mssgle:LineSegment
+                    End="100.830188679245,47.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="191.688679245283,148.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.3962264150943,72.1132075471698"
+              Start="0,0"
+              End="91.3962264150943,64.6132075471698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.0377358490566" />
+                  <mssgle:LineSegment
+                    End="91.3962264150943,36.0377358490566" />
+                  <mssgle:LineSegment
+                    End="91.3962264150943,64.6132075471698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load mapping data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="198,44"
+          Id="Package\Load mapping data\Tog produktion S-tog"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="216,44"
+          Id="Package\Load mapping data\TD_Strækning_Mapping"
+          TopLeft="77.3867924528302,132.292452830189" />
+        <EdgeLayout
+          Id="Package\Load mapping data.Paths[OLE DB Source Output]"
+          TopLeft="104.330188679245,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.8679245283019,82.8679245283019"
+              Start="0,0"
+              End="80.8679245283019,75.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4339622641509" />
+                  <mssgle:LineSegment
+                    End="80.8679245283019,41.4339622641509" />
+                  <mssgle:LineSegment
+                    End="80.8679245283019,75.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2995 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/22/2008 10:20:24 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB073986"
+  DTS:CreatorName="DSB\pama2610"
+  DTS:DTSID="{ABB6693C-9BDD-48F9-AF8C-B8CC9A0B7C09}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="110_ods_dl_FTE-HR"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="569"
+  DTS:VersionGUID="{AAB00598-FB19-4B0E-A0B3-D5E4E6B5E9E1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FTE HR definition]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="FTE HR definition"
+      DTS:DTSID="{31D741C1-4AEE-4962-AE34-D7121C057348}"
+      DTS:ObjectName="FTE HR definition">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"\\\\"+ @[$Project::MDWSERVER]+"\\files\\"+ @[$Project::MDWDATABASE]+"\\hr_fte\\fpc\\"+ @[User::v_FileName]+ @[User::v_CurrPeriod_char] +".csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1030"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\oesmsqlt01\soem\files\mdw_udv4\hr_fte\fpc\HR_FTE_.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RegnskPeriode"
+              DTS:DTSID="{062E7F96-4AE8-4069-8441-8808927A6B89}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Firmakode"
+              DTS:DTSID="{2E74248F-142D-4580-B633-9B5017E64263}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Profitcenter"
+              DTS:DTSID="{63E5E7DC-2888-40D7-8ACF-FFD7BC6A3B10}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Omkostningssted"
+              DTS:DTSID="{21041A41-0F04-4CAA-9429-7E84143A24CA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Kontonummer"
+              DTS:DTSID="{CBAA3A2F-5259-407A-9ED4-44A8CB74AA3F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Medarbejder"
+              DTS:DTSID="{3E05B59A-EC23-4542-9ED6-36BE5C210E56}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MedarbejderNavn"
+              DTS:DTSID="{43DC42E0-A098-46E1-A0B4-BEDB7F0A6E9E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BrugerID"
+              DTS:DTSID="{701F1E3B-B321-4611-A3C9-7D1F56BBDEED}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FaktiskFTE"
+              DTS:DTSID="{0C820B94-1E7E-41FC-B2AB-A8D9906C1CAD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BudgetFTE"
+              DTS:DTSID="{E565E9B9-FA0B-4FCF-ABE6-4534B27DF386}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8DF3720B-57E5-4323-B9C2-283C57669F0C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod">
+      <DTS:VariableValue
+        DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56787C2B-95BF-4C8C-A806-CE959A49151F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod_char">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0115EEDE-7E56-44A6-8F2E-68400D6597CB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrYear">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C9730E3-E943-476B-96F2-8D2B81271518}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_EmailAdresse">
+      <DTS:VariableValue
+        DTS:DataType="8">hbre@dsb.dk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8DAA069-FEA0-4DE1-BEB0-360C8A334A59}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">HR_FTE_</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C4F632C-F6CA-4871-85D9-558CD3721A05}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Filepath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\gbdfs1\DSBDFS\Økonomi\KONC-POEM\70_BI\Projects\Files\FPC\csv\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0075DA89-8DBE-484B-A7DE-BE9FB0809589}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_LoaderLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{94865265-8E01-427D-B4CD-F90FDD442A9F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows_Cd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AF17303A-9669-47F6-A00B-5BB4AA773497}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows_Rd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6CD1737-D0B5-40F2-ABEE-9F4CA34B1F3B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{100711B1-4623-4427-B37B-99B130E95648}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_afteragg">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8EB8B951-7567-46B5-9109-3C76967FC797}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_file">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{860E3EB0-1D83-4C12-97F8-F6AAECB1EFDB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_table">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8179476D-B4AB-42B3-99E7-BF43AE6E1996}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Sum_Arbejdstimer">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3CCD8B2C-55A6-4C20-A17B-97BA392A4AA4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Sum_FTE">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7FA85C99-765C-43F6-AF4C-1C343BF45920}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Tot_table">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b93a3c03-a814-4d3e-9e67-d680d11616cb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{85cb3749-7345-4ec0-b267-aca2edf6b3d8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load data from FPC file to ODS RD FPC raw tabel"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{A765DAC7-EC33-4B96-B1DF-CCBF2FDC9446}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load data from FPC file to ODS RD FPC raw tabel">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8741865E-62E7-4FF5-A0FC-F26B6B0362DA}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD RD FPC Forbrug"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="ADD Kommentar"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Output].Columns[Kommentar]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="35"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Output].Columns[Kommentar]"
+                          name="Kommentar"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"Omksted not found at DI_Omksted dim"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"Omksted not found at DI_Omksted dim"</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="ADD timestamp"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Output].Columns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Output].Columns[Timestamp]"
+                          name="Timestamp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="CD_FPC_FTE"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[CD_FPC_FTE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Timestamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Timestamp"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Output].Columns[Timestamp]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Kommentar]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="35"
+                          cachedName="Kommentar"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Kommentar]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Output].Columns[Kommentar]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Medarbejder_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarbejder_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[MedarbejderId]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Medarbejder_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[RegnskPeriode_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="RegnskPeriode_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[RegnPeriode]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[RegnskPeriode_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Firmakode_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Firmakode_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Firmakode]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Profitcenter_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Omkostningssted_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Omkostningssted_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[OmkSted]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Omkostningssted_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Kontonummer_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Kontonummer_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[LoanArt]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Kontonummer_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[MedarbejderNavn_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MedarbejderNavn_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderNavn_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[BrugerID_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="BrugerID_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[BrugerId]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[BrugerID_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Faktisk_FTE_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Faktisk_FTE_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Faktisk_FTE_conv]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MedarbejderId" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Navn" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BrugerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OmkSted" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RegnPeriode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LoanArt" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FTE" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Kommentar]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kommentar" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="CONV columns format"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[Medarbejder]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarbejder"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Medarbejder]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[RegnskPeriode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RegnskPeriode"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[RegnskPeriode]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[Firmakode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Firmakode"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Firmakode]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[Profitcenter]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Profitcenter]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[Omkostningssted]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Omkostningssted"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Omkostningssted]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[Kontonummer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Kontonummer"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Kontonummer]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[MedarbejderNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MedarbejderNavn"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[MedarbejderNavn]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[BrugerID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="BrugerID"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[BrugerID]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input].Columns[FaktiskFTE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FaktiskFTE"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[FaktiskFTE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Medarbejder_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Medarbejder_conv]"
+                          name="Medarbejder_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Medarbejder]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(Medarbejder)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[RegnskPeriode_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="6"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[RegnskPeriode_conv]"
+                          name="RegnskPeriode_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[RIGHT](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[RegnskPeriode]},4) + [SUBSTRING](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[RegnskPeriode]},2,2)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">RIGHT(RegnskPeriode,4) + SUBSTRING(RegnskPeriode,2,2)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_conv]"
+                          name="Firmakode_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Firmakode]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(Firmakode)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_conv]"
+                          name="Profitcenter_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Profitcenter]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(Profitcenter)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Omkostningssted_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Omkostningssted_conv]"
+                          name="Omkostningssted_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Omkostningssted]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(Omkostningssted)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Kontonummer_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Kontonummer_conv]"
+                          name="Kontonummer_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Kontonummer]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(Kontonummer)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderNavn_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderNavn_conv]"
+                          name="MedarbejderNavn_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[MedarbejderNavn]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(MedarbejderNavn)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[BrugerID_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[BrugerID_conv]"
+                          name="BrugerID_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[BrugerID]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(BrugerID)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Faktisk_FTE_conv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Faktisk_FTE_conv]"
+                          name="Faktisk_FTE_conv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[FaktiskFTE]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM(FaktiskFTE)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition"
+                  componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                  contactInfo="Flat File Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1030"
+                  name="FTE HR definition"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[FTE HR definition]"
+                      connectionManagerRefId="Package.ConnectionManagers[FTE HR definition]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Medarbejder]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Medarbejder]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Medarbejder]"
+                          name="Medarbejder"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[RegnskPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[RegnskPeriode]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[RegnskPeriode]"
+                          name="RegnskPeriode"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Firmakode]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Firmakode]"
+                          name="Firmakode"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Profitcenter]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Profitcenter]"
+                          name="Profitcenter"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Omkostningssted]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Omkostningssted]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Omkostningssted]"
+                          name="Omkostningssted"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Kontonummer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Kontonummer]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Kontonummer]"
+                          name="Kontonummer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[MedarbejderNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[MedarbejderNavn]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[MedarbejderNavn]"
+                          name="MedarbejderNavn"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[BrugerID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[BrugerID]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[BrugerID]"
+                          name="BrugerID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[FaktiskFTE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[FaktiskFTE]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[FaktiskFTE]"
+                          name="FaktiskFTE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[BudgetFTE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[BudgetFTE]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[BudgetFTE]"
+                          name="BudgetFTE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Medarbejder]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarbejder" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[RegnskPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RegnskPeriode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Omkostningssted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Omkostningssted" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[Kontonummer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kontonummer" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[MedarbejderNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MedarbejderNavn" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[BrugerID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BrugerID" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[FaktiskFTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FaktiskFTE" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].ExternalColumns[BudgetFTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BudgetFTE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted"
+                  componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+                  contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="Lookup Omksted"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [edw].[DI_Omksted]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OmkSted" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OmkStedNavn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OmkStedAnsvarlig" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OmkStedBeskrivelse" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Profitcenter" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FK_Profitcenter_PKID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GyldigFradato" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GyldigTildato" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Aktiv" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Omkostningssted]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Inputs[Lookup Input].Columns[Omkostningssted]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Omkostningssted"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output].Columns[Omkostningssted]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">OmkSted</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Match Output].Columns[PK_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Match Output].Columns[PK_ID]"
+                          name="PK_ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">PK_ID</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast"
+                  componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+                  contactInfo="Multicast;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates copies of a dataset."
+                  name="Multicast">
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Inputs[Multicast Input 1]"
+                      name="Multicast Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Outputs[Multicast Output 2]"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 2"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Outputs[Multicast Output 3]"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 3"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Outputs[Multicast Output 1]"
+                      dangling="true"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 1"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found"
+                  componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="Omksted not found"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Inputs[Conditional Split Input].Columns[PK_ID]"
+                          cachedDataType="i4"
+                          cachedName="PK_ID"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Match Output].Columns[PK_ID]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Omksted not found]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Omksted not found"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[ISNULL](#{Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Match Output].Columns[PK_ID]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(PK_ID)</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="RD_FPC_FTE"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[RD_FPC_FTE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Timestamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Timestamp"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Output].Columns[Timestamp]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Medarbejder_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarbejder_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[MedarbejderId]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Medarbejder_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[RegnskPeriode_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="RegnskPeriode_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[RegnPeriode]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[RegnskPeriode_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Firmakode_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Firmakode_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Firmakode]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Profitcenter_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Omkostningssted_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Omkostningssted_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[OmkSted]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Omkostningssted_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Kontonummer_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Kontonummer_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[LoanArt]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Kontonummer_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[MedarbejderNavn_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MedarbejderNavn_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderNavn_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[BrugerID_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="BrugerID_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[BrugerId]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[BrugerID_conv]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].Columns[Faktisk_FTE_conv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Faktisk_FTE_conv"
+                          externalMetadataColumnId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output].Columns[Faktisk_FTE_conv]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MedarbejderId" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Navn" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BrugerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OmkSted" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RegnPeriode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LoanArt" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FTE" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Row Count"
+                  componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+                  contactInfo="Row Count;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts the rows in a dataset."
+                  name="Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::v_Rows_file</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Derived Column Output]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Inputs[Multicast Input 1]"
+                  name="Derived Column Output"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Derived Column Output1]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Derived Column Output2]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp.Inputs[Derived Column Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Flat File Source Output]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Row Count.Inputs[Row Count Input 1]"
+                  name="Flat File Source Output"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition.Outputs[Flat File Source Output]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Lookup Output]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Inputs[Conditional Split Input]"
+                  name="Lookup Output"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Multicast Output 2]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted.Inputs[Lookup Input]"
+                  name="Multicast Output 2"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Outputs[Multicast Output 2]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Multicast Output 3]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE.Inputs[OLE DB Destination Input]"
+                  name="Multicast Output 3"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast.Outputs[Multicast Output 3]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Omksted not found]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar.Inputs[Derived Column Input]"
+                  name="Omksted not found"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found.Outputs[Omksted not found]" />
+                <path
+                  refId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Row Count Output 1]"
+                  endId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format.Inputs[Derived Column Input]"
+                  name="Row Count Output 1"
+                  startId="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Row Count.Outputs[Row Count Output 1]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation to load data to raw tabel"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{36283382-AA63-4C2B-9448-6811A1C3B5E5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation to load data to raw tabel">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load data to raw tabel\DLT rows at Rd table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{82E9772B-C292-4349-A318-DC45C90A1B4F}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DLT rows at Rd table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="truncate table [ods].[RD_FPC_FTE]&#xA;GO&#xA;&#xA;truncate table ods.CD_FPC_FTE&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load data to raw tabel\EXEC Init Loader Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{52e1516d-4418-4519-8605-1b5b2791051e}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC Init Loader Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="EXEC etl.ods_InitLoaderLog ?,'ods.RD_FPC_Forbrug', 'FPC'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_LoaderLogID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_PackageLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load data to raw tabel\GET current year and Period to load file"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A49013FF-D961-465A-84C7-8A61EFC19F7B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET current year and Period to load file"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select substring([value], 1, 4) v_CurrYear, &#xA; substring([value], 1, 6) v_CurrPeriod_char&#xA;from ods.ctl_dataload&#xA;where [variable] = 'Last_Period_Load'&#xA;and kilde_system = 'FPC'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_CurrYear"
+                SQLTask:DtsVariableName="User::v_CurrYear" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_CurrPeriod_char"
+                SQLTask:DtsVariableName="User::v_CurrPeriod_char" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load data to raw tabel\GET email adresse"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d4eb941c-19a6-4425-a2c6-8a314efc5942}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET email adresse"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select [Value] v_EmailAdresse&#xA;from ods.CTL_Dataload&#xA;where [Variable] = 'Email_To'&#xA;and [Kilde_System] = 'FPC'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_EmailAdresse"
+                SQLTask:DtsVariableName="User::v_EmailAdresse" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load data to raw tabel.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1552A682-9DDF-40DF-90C6-33817CA8972E}"
+          DTS:From="Package\Preparation to load data to raw tabel\EXEC Init Loader Log"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Preparation to load data to raw tabel\GET current year and Period to load file" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load data to raw tabel.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{02DDBF8B-9068-43E6-990F-110109AEFC0B}"
+          DTS:From="Package\Preparation to load data to raw tabel\GET current year and Period to load file"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Preparation to load data to raw tabel\DLT rows at Rd table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load data to raw tabel.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{B67A8AFD-8D75-4E76-99E8-2A1DEC6743A8}"
+          DTS:From="Package\Preparation to load data to raw tabel\DLT rows at Rd table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Preparation to load data to raw tabel\GET email adresse" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Record control totals"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{35114425-18c2-4c00-8bf7-e77cf22e2017}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Record control totals">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Record control totals\EXEC End Loader Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0f6a9d16-2dcb-4b7f-accb-a5e184837d67}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC End Loader Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="EXEC etl.ods_EndLoaderLog ?, ?, ?, 'Arbejdstimer', ?, NULL, NULL, NULL, NULL, NULL, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoaderLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_CurrPeriod_char"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::v_NumRows_Rd"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::v_Sum_FTE"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Record control totals\GET Total rows at CD table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{336050C7-DE6B-4453-B1B6-789601D07881}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Total rows at CD table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select cast(count(*) as integer) v_NumRows_Cd&#xA;from ods.CD_FPC_FTE&#xA;where regnperiode = (select substring([Value], 6, 2) + '.' + substring([Value], 1, 4)&#xA;                     from ods.ctl_dataload&#xA;                     where kilde_system = 'FPC'&#xA;                     and [Variable] = 'Last_Period_Load')&#xA;&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_NumRows_Cd"
+                SQLTask:DtsVariableName="User::v_NumRows_Cd" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Record control totals\GET Total rows at Rd_FPC_FTE for loading period"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f292896c-0230-4be9-bf42-119db0f6a964}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Total rows at Rd_FPC_FTE for loading period"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select round(sum(cast(replace(FTE, ',', '.') as float)) , 3) v_Sum_FTE, cast(count(*) as integer) v_NumRows_Rd&#xA;from ods.RD_FPC_FTE"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_Sum_FTE"
+                SQLTask:DtsVariableName="User::v_Sum_FTE" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_NumRows_Rd"
+                SQLTask:DtsVariableName="User::v_NumRows_Rd" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Record control totals\SEND mail afslutning"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{34ae7f99-f74d-4686-ac32-65d17de81a0e}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEND mail afslutning"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">"Data er indlæst fra kilde:\n" + @[User::v_Filepath] + " \n\n" + "Fil navn og periode: " + @[User::v_FileName] + @[User::v_CurrPeriod_char] + "\n\n" + "Det blev indlæst fra filen:\n" +  (DT_STR, 50, 1252) @[User::v_Rows_file] + " Antal rækker \n\n" + "Det blev insert til ods.Rd_FPC_FTE:\n" + (DT_STR, 50, 1252) @[User::v_NumRows_Rd] + " Antal rækker\n" + (DT_STR, 50, 1252) @[User::v_Sum_FTE] + " Total FTE'er \n\n" + "Det blev insert til ods.CD_FPC_FTE:\n" + (DT_STR, 50, 1252) @[User::v_NumRows_Cd] + " Antal rækker ... disse rækker skulle tjekkes og evt. rettes!!!"
+
+</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">"Kørsel af " + @[System::PackageName] + " pakke, for periode " + @[User::v_CurrPeriod_char] + " er afslut"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::v_EmailAdresse]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{FBEE9253-4ED8-4134-874E-BE13D3EC5B09}"
+              SendMailTask:From="pama@dsb.dk"
+              SendMailTask:To="hbre@dsb.dk"
+              SendMailTask:Subject="Kørsel af 110_ods_dl_FTE-HR pakke, for periode  er afslut"
+              SendMailTask:MessageSource="Data er indlæst fra kilde:&#xA;\\gbdfs1\DSBDFS\Økonomi\KONC-POEM\70_BI\Projects\Files\FPC\csv\ &#xA;&#xA;Fil navn og periode: HR_FTE_&#xA;&#xA;Det blev indlæst fra filen:&#xA;0 Antal rækker &#xA;&#xA;Det blev insert til ods.Rd_FPC_FTE:&#xA;0 Antal rækker&#xA;0 Total FTE'er &#xA;&#xA;Det blev insert til ods.CD_FPC_FTE:&#xA;0 Antal rækker ... disse rækker skulle tjekkes og evt. rettes!!!" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Record control totals.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{47BE1D63-4087-4D4B-88F1-8D7E1933160C}"
+          DTS:From="Package\Record control totals\GET Total rows at Rd_FPC_FTE for loading period"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Record control totals\GET Total rows at CD table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Record control totals.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{3E603302-359C-4D80-ABB2-0A7D12EF9C53}"
+          DTS:From="Package\Record control totals\GET Total rows at CD table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Record control totals\EXEC End Loader Log" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Record control totals.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{51CFAA60-5C7D-42B2-83ED-44CAFF3B9A7B}"
+          DTS:From="Package\Record control totals\EXEC End Loader Log"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Record control totals\SEND mail afslutning" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1EFBD3BD-F0E3-409E-9E5C-82DE88D64D85}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Preparation to load data to raw tabel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0936FEF2-59CC-42A4-8602-A61D123F671C}"
+      DTS:From="Package\Load data from FPC file to ODS RD FPC raw tabel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Record control totals" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F5A50BC3-369B-4D05-A036-CFEB9219ECF5}"
+      DTS:From="Package\Preparation to load data to raw tabel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load data from FPC file to ODS RD FPC raw tabel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{524119EB-2B57-416C-AC13-5F54D7FB7080}"
+      DTS:From="Package\Record control totals"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EXEC End Package Log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="109,44"
+          Id="Package\EXEC End Package Log"
+          TopLeft="554.896226415094,680.556603773585" />
+        <NodeLayout
+          Size="109,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="143.424528301887,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug"
+          TopLeft="49.1320754716982,37.0377358490566" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="478,176"
+          Size="478,220"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel"
+          TopLeft="8.06603773584902,397.009433962264" />
+        <NodeLayout
+          Size="109,47"
+          Id="Package\Preparation to load data to raw tabel\DLT rows at Rd table"
+          TopLeft="80.6415094339623,146.169811320755" />
+        <NodeLayout
+          Size="121,44"
+          Id="Package\Preparation to load data to raw tabel\EXEC Init Loader Log"
+          TopLeft="78.6037735849056,21.1509433962264" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load data to raw tabel\GET current year and Period to load file"
+          TopLeft="69.3584905660377,85.4528301886792" />
+        <NodeLayout
+          Size="109,44"
+          Id="Package\Preparation to load data to raw tabel\GET email adresse"
+          TopLeft="250.377358490566,139.377358490566" />
+        <EdgeLayout
+          Id="Package\Preparation to load data to raw tabel.PrecedenceConstraints[Constraint]"
+          TopLeft="138.905660377358,65.0754716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.66037735849056,20.377358490566"
+              Start="0,0"
+              End="-1.66037735849056,12.877358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.188679245283" />
+                  <mssgle:LineSegment
+                    End="-1.66037735849056,10.188679245283" />
+                  <mssgle:LineSegment
+                    End="-1.66037735849056,12.877358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Preparation to load data to raw tabel.PrecedenceConstraints[Constraint 1]"
+          TopLeft="137.245283018868,129.377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.30188679245282,16.7924528301887"
+              Start="0,0"
+              End="-2.30188679245282,9.29245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.41509433962264" />
+                  <mssgle:LineSegment
+                    End="-2.30188679245282,8.41509433962264" />
+                  <mssgle:LineSegment
+                    End="-2.30188679245282,9.29245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Preparation to load data to raw tabel.PrecedenceConstraints[Constraint 2]"
+          TopLeft="189.283018867925,169.716981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61.0943396226415,-8.37735849056604"
+              Start="0,0"
+              End="53.5943396226415,-8.37735849056604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.5660377358491,0" />
+                  <mssgle:LineSegment
+                    End="30.5660377358491,-8.37735849056604" />
+                  <mssgle:LineSegment
+                    End="53.5943396226415,-8.37735849056604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="476,244"
+          Size="476,288"
+          Id="Package\Preparation to load data to raw tabel"
+          TopLeft="7.83962264150944,80.745283018868" />
+        <NodeLayout
+          Size="131,44"
+          Id="Package\Record control totals\EXEC End Loader Log"
+          TopLeft="227.169811320755,129.490566037736" />
+        <NodeLayout
+          Size="131,49"
+          Id="Package\Record control totals\GET Total rows at CD table"
+          TopLeft="225.698113207547,42.4339622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Record control totals\GET Total rows at Rd_FPC_FTE for loading period"
+          TopLeft="25.0943396226415,42.1698113207547" />
+        <NodeLayout
+          Size="128,44"
+          Id="Package\Record control totals\SEND mail afslutning"
+          TopLeft="222.188679245283,201.264150943396" />
+        <EdgeLayout
+          Id="Package\Record control totals.PrecedenceConstraints[Constraint]"
+          TopLeft="160.867924528302,64.1320754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.8301886792453,2.75471698113211"
+              Start="0,0"
+              End="57.3301886792453,2.75471698113211">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.4150943396227,0" />
+                  <mssgle:LineSegment
+                    End="32.4150943396227,2.75471698113211" />
+                  <mssgle:LineSegment
+                    End="57.3301886792453,2.75471698113211" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Record control totals.PrecedenceConstraints[Constraint 1]"
+          TopLeft="291.056603773585,91.377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.3962264150943,38.1132075471699"
+              Start="0,0"
+              End="1.3962264150943,30.6132075471699">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0566037735849" />
+                  <mssgle:LineSegment
+                    End="1.3962264150943,19.0566037735849" />
+                  <mssgle:LineSegment
+                    End="1.3962264150943,30.6132075471699" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Record control totals.PrecedenceConstraints[Constraint 2]"
+          TopLeft="292.452830188679,173.415094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-6.377358490566,27.8490566037736"
+              Start="0,0"
+              End="-6.377358490566,20.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-6.377358490566,13.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-6.377358490566,20.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="477,262"
+          Size="477,306"
+          Id="Package\Record control totals"
+          TopLeft="5.5,672.896226415094" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="197.72641509434,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.2641509433963,31.3207547169811"
+              Start="0,0"
+              End="48.2641509433963,23.8207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.6603773584906" />
+                  <mssgle:LineSegment
+                    End="48.2641509433963,15.6603773584906" />
+                  <mssgle:LineSegment
+                    End="48.2641509433963,23.8207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="246.820754716981,616.669811320755">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-3.01886792452831,56.2264150943396"
+              Start="0,0"
+              End="-3.01886792452831,48.7264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.1132075471699" />
+                  <mssgle:LineSegment
+                    End="-3.01886792452831,28.1132075471699" />
+                  <mssgle:LineSegment
+                    End="-3.01886792452831,48.7264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="245.990566037736,369.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.830188679245225,27.8867924528302"
+              Start="0,0"
+              End="0.830188679245225,20.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.9245283018868" />
+                  <mssgle:LineSegment
+                    End="0.830188679245225,13.9245283018868" />
+                  <mssgle:LineSegment
+                    End="0.830188679245225,20.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="482.141509433962,826.028301886792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.7547169811321,-123.509433962264"
+              Start="0,0"
+              End="65.2547169811321,-123.509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.3773584905661,0" />
+                  <mssgle:LineSegment
+                    End="36.3773584905661,-123.509433962264" />
+                  <mssgle:LineSegment
+                    End="65.2547169811321,-123.509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\FTE HR definition"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Lookup Omksted"
+          TopLeft="224.330188679245,413.047169811321" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD timestamp"
+          TopLeft="9.5,235.38679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Omksted not found"
+          TopLeft="226.330188679245,488.632075471698" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CONV columns format"
+          TopLeft="7.65094339622641,151.462264150943" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\RD_FPC_FTE"
+          TopLeft="5.68867924528302,418.066037735849" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Multicast"
+          TopLeft="8.66981132075472,305.235849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\CD_FPC_FTE"
+          TopLeft="220.330188679245,644.367924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\ADD Kommentar"
+          TopLeft="222.330188679245,565.877358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug\Row Count"
+          TopLeft="6.66981132075472,79.1981132075472" />
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Lookup Output]"
+          TopLeft="292.216981132075,456.971698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2,31.6603773584905"
+              Start="0,0"
+              End="2,24.1603773584905">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.811320754717" />
+                  <mssgle:LineSegment
+                    End="2,15.811320754717" />
+                  <mssgle:LineSegment
+                    End="2,24.1603773584905" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-47.19138671875,20.811320754717,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Flat File Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.16981132075472,29.7735849056604"
+              Start="0,0"
+              End="1.16981132075472,22.2735849056604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.9056603773585" />
+                  <mssgle:LineSegment
+                    End="1.16981132075472,14.9056603773585" />
+                  <mssgle:LineSegment
+                    End="1.16981132075472,22.2735849056604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Derived Column Output2]"
+          TopLeft="75.5377358490566,195.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.84905660377359,40"
+              Start="0,0"
+              End="1.84905660377359,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:LineSegment
+                    End="1.84905660377359,20" />
+                  <mssgle:LineSegment
+                    End="1.84905660377359,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Derived Column Output1]"
+          TopLeft="290.216981132075,609.801886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2,34.566037735849"
+              Start="0,0"
+              End="-2,27.066037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2830188679245" />
+                  <mssgle:LineSegment
+                    End="-2,17.2830188679245" />
+                  <mssgle:LineSegment
+                    End="-2,27.066037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Derived Column Output]"
+          TopLeft="77.3867924528302,279.311320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.830188679245282,25.9245283018868"
+              Start="0,0"
+              End="-0.830188679245282,18.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.830188679245282,12.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.830188679245282,18.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Row Count Output 1]"
+          TopLeft="74.5566037735849,123.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.981132075471692,28.3396226415094"
+              Start="0,0"
+              End="0.981132075471692,20.8396226415094">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.188679245283" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,14.188679245283" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,20.8396226415094" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Omksted not found]"
+          TopLeft="294.216981132075,532.556603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4,33.3207547169811"
+              Start="0,0"
+              End="-4,25.8207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6415094339623" />
+                  <mssgle:LineSegment
+                    End="-4,16.6415094339623" />
+                  <mssgle:LineSegment
+                    End="-4,25.8207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-44.9855078125,21.6415094339623,85.971015625,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Multicast Output 3]"
+          TopLeft="55.8018867924528,349.160377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.7735849056604,68.9056603773585"
+              Start="0,0"
+              End="17.7735849056604,61.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.6603773584906" />
+                  <mssgle:LineSegment
+                    End="17.7735849056604,51.6603773584906" />
+                  <mssgle:LineSegment
+                    End="17.7735849056604,61.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to ODS RD FPC raw tabel\LOAD RD FPC Forbrug.Paths[Multicast Output 2]"
+          TopLeft="97.311320754717,349.160377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="194.905660377358,63.8867924528302"
+              Start="0,0"
+              End="194.905660377358,56.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.9245283018868" />
+                  <mssgle:LineSegment
+                    End="194.905660377358,31.9245283018868" />
+                  <mssgle:LineSegment
+                    End="194.905660377358,56.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

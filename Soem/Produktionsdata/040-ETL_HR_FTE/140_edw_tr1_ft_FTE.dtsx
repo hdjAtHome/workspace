@@ -1,0 +1,3014 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/22/2012 2:28:31 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB073913"
+  DTS:CreatorName="DSB\pama2610"
+  DTS:DTSID="{C5253ABE-EE5E-4EDB-9027-4DE11E404D7F}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="140_edw_tr1_ft_FTE"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{6D9F4C52-471A-4FBF-8D7B-344ED787EE9D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3FA07524-4995-4026-8207-1A28BE88F826}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod_char">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B143F344-55B4-4AC3-8C0F-0FB2100AD089}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Email_To">
+      <DTS:VariableValue
+        DTS:DataType="8">datawarehouse@dsb.dk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6CE732CB-D661-4887-9E09-3C5CC62EE351}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{418CADFC-CFA2-4488-98D8-C21AF69AE93E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows_Cd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D5ECCCF6-37F3-4363-ACC4-8004F7E6B64A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows_Rd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6E2BCFAF-F0DF-4944-9C33-ED8C8925CB85}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E5838F5C-CDD0-4165-B08A-5625F232824C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TabRefLogId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{38FECDB5-A6C7-4041-B5A8-2E6974ECC5FF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_total">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3F16F76A-48C8-40A3-80FD-A5B008810151}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Total_Cd">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{21C9D134-BF33-4795-A01C-061384A6685A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_total_Rd">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{48817B64-1A3B-4588-B695-8F3C90B94AB7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Tot_FTE_HR">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2317cf5b-e6d2-4eba-b945-fd2f52acd94d}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8ff7fd95-2e78-4b29-9b60-0838a388084f}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FTE fakta tabel"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{0B577C4F-7EC9-4C1F-90D1-57E017F7C003}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FTE fakta tabel">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load FTE fakta tabel\LOAD Fact table FPC"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3A854552-EBD9-43AF-A343-58CFC9580545}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD Fact table FPC"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  localeId="1030"
+                  name="CD-FT_FTE"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[CD_FT-FTE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].Columns[MedarbejderId_num]"
+                          cachedDataType="i4"
+                          cachedName="MedarbejderId_num"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejde]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderId_num]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].Columns[RegnPeriode_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="RegnPeriode_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid_Maaned]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[RegnPeriode_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].Columns[Firmakode_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Firmakode_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Firmakode]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].Columns[Profitcenter_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Profitcenter_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].Columns[Loanart_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Loanart_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Loanart]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Loanart_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].Columns[FTE_num]"
+                          cachedDataType="decimal"
+                          cachedName="FTE_num"
+                          cachedScale="3"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[FTE_num]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].Columns[Omksted_PK_ID]"
+                          cachedDataType="i4"
+                          cachedName="Omksted_PK_ID"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Omksted]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejde]"
+                          dataType="i4"
+                          name="DI_Medarbejde" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid_Maaned]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="DI_Tid_Maaned" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="DI_Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Omksted]"
+                          dataType="i4"
+                          name="DI_Omksted" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[Loanart]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Loanart" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          dataType="numeric"
+                          name="FTE"
+                          precision="10"
+                          scale="3" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  localeId="1030"
+                  name="CONV columns format"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input].Columns[MedarbejderId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MedarbejderId"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]"
+                          name="MedarbejderId"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]}) ? "0" : #{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(MedarbejderId) ? "0" : MedarbejderId</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input].Columns[Firmakode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Firmakode"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]"
+                          name="Firmakode"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]}) ? "0" : #{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(Firmakode) ? "0" : Firmakode</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input].Columns[OmkSted]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="OmkSted"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[OmkSted]"
+                          name="OmkSted" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input].Columns[RegnPeriode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RegnPeriode"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[RegnPeriode]"
+                          name="RegnPeriode" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input].Columns[Profitcenter]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input].Columns[LoanArt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LoanArt"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[LoanArt]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input].Columns[FTE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FTE"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[FTE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderId_num]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderId_num]"
+                          name="MedarbejderId_num"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_I4)(#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_I4)(MedarbejderId)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_kort]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="15"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_kort]"
+                          name="Firmakode_kort"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]}) ? "0" : [SUBSTRING](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]},1,15)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(Firmakode) ? "0" : SUBSTRING(Firmakode,1,15)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Omksted_kort]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="15"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Omksted_kort]"
+                          name="Omksted_kort"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[OmkSted]}) ? "0" : [SUBSTRING](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[OmkSted]},1,15)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(OmkSted) ? "0" : SUBSTRING(OmkSted,1,15)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_kort]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="15"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_kort]"
+                          name="Profitcenter_kort"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]}) ? "0" : [SUBSTRING](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]},1,15)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(Profitcenter) ? "0" : SUBSTRING(Profitcenter,1,15)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Loanart_kort]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="15"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Loanart_kort]"
+                          name="Loanart_kort"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[SUBSTRING](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[LoanArt]},1,15)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(LoanArt,1,15)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[FTE_num]"
+                          dataType="decimal"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[FTE_num]"
+                          name="FTE_num"
+                          scale="3"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_DECIMAL,3)#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[FTE]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_DECIMAL,3)FTE</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[RegnPeriode_kort]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="6"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[RegnPeriode_kort]"
+                          name="RegnPeriode_kort"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[SUBSTRING](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[RegnPeriode]},1,6)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(RegnPeriode,1,6)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder"
+                  componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  localeId="1030"
+                  name="FILTER invalid Omksted koder"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Inputs[Conditional Split Input].Columns[Omksted_PK_ID]"
+                          cachedDataType="i4"
+                          cachedName="Omksted_PK_ID"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]"
+                          name="Omksted_PK_ID" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Inputs[Conditional Split Input].Columns[Profitcenter_PK_ID]"
+                          cachedDataType="i4"
+                          cachedName="Profitcenter_PK_ID"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output].Columns[Profitcenter_PK_ID]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Invalid Omksted or Profitcenter kode]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Invalid Omksted or Profitcenter kode"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]} == -1 || #{Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output].Columns[Profitcenter_PK_ID]} == -1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">Omksted_PK_ID == -1 || Profitcenter_PK_ID == -1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows"
+                  componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="FILTER valid rows"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Inputs[Conditional Split Input].Columns[MedarbejderId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="MedarbejderId"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[valid rows]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="valid rows"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[SUBSTRING](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]},1,1) != "#"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(MedarbejderId,1,1) != "#"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  localeId="1030"
+                  name="FT FTE"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[FT_FTE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[MedarbejderId_num]"
+                          cachedDataType="i4"
+                          cachedName="MedarbejderId_num"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejde]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[MedarbejderId_num]"
+                          name="MedarbejderId_num" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[Firmakode_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Firmakode_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Firmakode]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Firmakode_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[Omksted_PK_ID]"
+                          cachedDataType="i4"
+                          cachedName="Omksted_PK_ID"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Omksted]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[Omksted_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Omksted_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[Omksted]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Omksted_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[Profitcenter_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Profitcenter_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[Loanart_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Loanart_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[Loanart]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Loanart_kort]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[FTE_num]"
+                          cachedDataType="decimal"
+                          cachedName="FTE_num"
+                          cachedScale="3"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[FTE_num]" />
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].Columns[RegnPeriode_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="6"
+                          cachedName="RegnPeriode_kort"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid_Maaned]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[RegnPeriode_kort]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejde]"
+                          dataType="i4"
+                          name="DI_Medarbejde" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid_Maaned]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="DI_Tid_Maaned" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="DI_Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[DI_Omksted]"
+                          dataType="i4"
+                          name="DI_Omksted" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[Loanart]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Loanart" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[FTE]"
+                          dataType="numeric"
+                          name="FTE"
+                          precision="10"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input].ExternalColumns[Omksted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="Omksted" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID"
+                  componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+                  contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  localeId="1030"
+                  name="Lookup Omksted PKID"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [edw].[DI_Omksted]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam">select * from
+	(select * from [edw].[DI_Omksted]) as refTable
+where [refTable].[OmkSted] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OmkSted" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OmkStedNavn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OmkStedAnsvarlig" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OmkStedBeskrivelse" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Profitcenter" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FK_Profitcenter_PKID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GyldigFradato" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GyldigTildato" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Aktiv" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Omksted_kort]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Inputs[Lookup Input].Columns[Omksted_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Omksted_kort"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Omksted_kort]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">OmkSted</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]"
+                          name="Omksted_PK_ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">PK_ID</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter"
+                  componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+                  contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="Lookup Profitcenter"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [edw].[DI_Profitcenter]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Profitcenter" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProfitcenterNavn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProfitcenterParent_FH" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProfitcenterAnsvarlig" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProfitcenterBeskrivelse" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Enhed" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="GyldigFradato" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GyldigTildato" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Aktiv" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_kort]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Inputs[Lookup Input].Columns[Profitcenter_kort]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="Profitcenter_kort"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output].Columns[Profitcenter_kort]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">Profitcenter</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output].Columns[Profitcenter_PK_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output].Columns[Profitcenter_PK_ID]"
+                          name="Profitcenter_PK_ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">PK_ID</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast"
+                  componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+                  contactInfo="Multicast;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates copies of a dataset."
+                  localeId="1030"
+                  name="Multicast">
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Inputs[Multicast Input 1]"
+                      name="Multicast Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Outputs[Multicast Output 1]"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 1"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Outputs[Multicast Output 2]"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 2"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Outputs[Multicast Output 3]"
+                      dangling="true"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 3"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  localeId="1030"
+                  name="RD_FPC_FTE"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[RD_FPC_FTE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[MedarbejderId]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]"
+                          name="MedarbejderId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Navn]"
+                          name="Navn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[BrugerId]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[BrugerId]"
+                          name="BrugerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Firmakode]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]"
+                          name="Firmakode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                          name="Profitcenter"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[OmkSted]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[OmkSted]"
+                          name="OmkSted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[RegnPeriode]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[RegnPeriode]"
+                          name="RegnPeriode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[LoanArt]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[LoanArt]"
+                          name="LoanArt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[FTE]"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[FTE]"
+                          name="FTE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Timestamp]"
+                          name="Timestamp"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MedarbejderId" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Navn" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BrugerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OmkSted" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RegnPeriode" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LoanArt" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FTE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[MedarbejderId]"
+                          name="MedarbejderId" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                          name="Navn" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[BrugerId]"
+                          name="BrugerId" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Firmakode]"
+                          name="Firmakode" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                          name="Profitcenter" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[OmkSted]"
+                          name="OmkSted" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[RegnPeriode]"
+                          name="RegnPeriode" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[LoanArt]"
+                          name="LoanArt" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[FTE]"
+                          name="FTE" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Timestamp]"
+                          name="Timestamp" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  localeId="1030"
+                  name="Tjekk Omksted-Profitcenter kode"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Inputs[Derived Column Input].Columns[Omksted_PK_ID]"
+                          cachedDataType="i4"
+                          cachedName="Omksted_PK_ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]"
+                          name="Omksted_PK_ID"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]}) ? -1 : #{Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output].Columns[Omksted_PK_ID]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(Omksted_PK_ID) ? -1 : Omksted_PK_ID</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Inputs[Derived Column Input].Columns[Profitcenter_PK_ID]"
+                          cachedDataType="i4"
+                          cachedName="Profitcenter_PK_ID"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output].Columns[Profitcenter_PK_ID]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output].Columns[Profitcenter_PK_ID]}) ? -1 : #{Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output].Columns[Profitcenter_PK_ID]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(Profitcenter_PK_ID) ? -1 : Profitcenter_PK_ID</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Derived Column Output]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Inputs[Multicast Input 1]"
+                  name="Derived Column Output"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Derived Column Output1]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Inputs[Lookup Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Invalid Omksted kode]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE.Inputs[OLE DB Destination Input]"
+                  name="Invalid Omksted kode"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Outputs[Invalid Omksted or Profitcenter kode]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Lookup Output]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Inputs[Lookup Input]"
+                  name="Lookup Output"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Lookup Output1]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode.Inputs[Derived Column Input]"
+                  name="Lookup Output"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Multicast Output 1]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder.Inputs[Conditional Split Input]"
+                  name="Multicast Output 1"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Outputs[Multicast Output 1]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Multicast Output 2]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE.Inputs[OLE DB Destination Input]"
+                  name="Multicast Output 2"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast.Outputs[Multicast Output 2]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[OLE DB Source Output]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Inputs[Conditional Split Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[valid rows]"
+                  endId="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format.Inputs[Derived Column Input]"
+                  name="valid rows"
+                  startId="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows.Outputs[valid rows]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{8d1be490-93ac-473d-9326-f061621b1339}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation to load Arbejdstimer fakta tabel">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel\DLT rows at FT_FTE and CD with samme period as current loading period"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f224a20b-aa98-4552-8291-32c13ff17f39}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DLT rows at FT_FTE and CD with samme period as current loading period"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="delete from edw.[ft_FTE]&#xA;where di_tid_maaned = (&#xA;select substring([Value], 1, 6) &#xA;from ods.CTL_Dataload&#xA;where kilde_system = 'FPC'&#xA;and [Variable] = 'Last_Period_Load' )&#xA;&#xA;&#xA;delete from [edw].[CD_FT-FTE]&#xA;WHERE DI_Tid_maaned = ( select substring([Value], 1, 6) &#xA;from ods.CTL_Dataload&#xA;where kilde_system = 'FPC'&#xA;and [Variable] = 'Last_Period_Load' )&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel\EXEC Loader Log for FT_FTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ffb075f3-5e20-465b-9180-7b4b550d1307}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC Loader Log for FT_FTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_InitTabRefLog ?, 'edw.FT_FTE', 'INS', ?, ?, 'FTE', ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogId" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_PackageLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_CurrPeriod_char"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::v_NumRows"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::v_total"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="4"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel\GET current period"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2f51bf5e-1b5c-4055-8102-0023d9572c02}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET current period"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select substring([Value], 1, 6) v_CurrPeriod_char&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'FPC'&#xA;and [Variable] = 'Last_Period_Load'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_CurrPeriod_char"
+                SQLTask:DtsVariableName="User::v_CurrPeriod_char" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel\GET email adress"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ab50b4df-9131-465f-aa9f-0ffe6fb1e8c1}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET email adress"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select [value] v_Email_To&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'FPC'&#xA;and [variable] = 'Email_to'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_Email_To"
+                SQLTask:DtsVariableName="User::v_Email_To" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel\GET num rows and Totals FT_FTE'er to delete"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4b764d54-ce3f-4a98-9cf5-215abf22ba92}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET num rows and Totals FT_FTE'er to delete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select cast(count(*) as integer) v_NumRows, cast(sum(FTE) as float) v_total&#xA;from edw.FT_FTE&#xA;where di_tid_maaned = (select substring([Value], 1, 6)&#xA;                                 from ods.ctl_dataload&#xA;                                 where kilde_system = 'FPC'&#xA;                                 and [Variable] = 'Last_Period_Load')&#xA;GO"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_NumRows" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::v_total" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{9eccf127-7fec-4b01-b8e4-347f09e3ba1c}"
+          DTS:From="Package\Preparation to load Arbejdstimer fakta tabel\GET current period"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Preparation to load Arbejdstimer fakta tabel\GET num rows and Totals FT_FTE'er to delete" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{cda81bbe-7566-49b2-bd5a-91fcd6b52dc4}"
+          DTS:From="Package\Preparation to load Arbejdstimer fakta tabel\GET num rows and Totals FT_FTE'er to delete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Preparation to load Arbejdstimer fakta tabel\GET email adress" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{69e4ab7d-3a51-4729-bec1-ec841ee248fc}"
+          DTS:From="Package\Preparation to load Arbejdstimer fakta tabel\GET email adress"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Preparation to load Arbejdstimer fakta tabel\EXEC Loader Log for FT_FTE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{1d00dde3-9adf-487c-afaa-2f512625064a}"
+          DTS:From="Package\Preparation to load Arbejdstimer fakta tabel\EXEC Loader Log for FT_FTE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Preparation to load Arbejdstimer fakta tabel\DLT rows at FT_FTE and CD with samme period as current loading period" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update logs"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{bec95f3d-391c-4997-8f74-0b97768a166c}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update logs">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\EXEC End TabRef Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b5244768-f6c9-4e6c-bb97-da420bd899cb}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC End TabRef Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_EndTabRefLog ?, ?, 'Arbejdstimer', ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_NumRows"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::v_total"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\GET total rows at Cd_FT-FTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{813404ea-b737-4427-a99e-41223a216ac3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET total rows at Cd_FT-FTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select cast(count(*) as integer) v_NumRows_Cd, cast(isnull(sum(FTE), 0) as float) v_Total_Cd&#xA;from edw.[cd_ft-fte]&#xA;where di_tid_maaned = (select substring([Value], 1, 6)&#xA;                                 from ods.ctl_dataload&#xA;                                 where kilde_system = 'FPC'&#xA;                                 and [Variable] = 'Last_Period_Load')&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_NumRows_Cd" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::v_Total_Cd" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\GET Total rows at FT_FTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{69c6867e-417b-4dda-9c95-f8fee1f03c2a}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Total rows at FT_FTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select cast(count(*) as integer) v_NumRows, cast(sum(FTE) as float) v_total&#xA;from edw.ft_FTE&#xA;where di_tid_maaned = (select substring([Value], 1, 6)&#xA;                                 from ods.ctl_dataload&#xA;                                 where kilde_system = 'FPC'&#xA;                                 and [Variable] = 'Last_Period_Load')&#xA;GO&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_NumRows" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::v_total" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\GET Total rows at Rd_FPC_Forbrug for loading period"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1d464de8-2b83-4102-96a1-74c4daa98f2f}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Total rows at Rd_FPC_Forbrug for loading period"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select count(*) v_NumRows_Rd, sum(cast(replace(FTE, ',', '.') as float)) v_total_Rd&#xA;from ods.RD_FPC_FTE&#xA;&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_NumRows_Rd" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::v_total_Rd" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\Send Mail afslutning"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{B7000DE3-0A2C-4CDD-BB68-5609D834C24E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail afslutning"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">"Data indlæst fra rå data tabel ods.RD_FPC_FTE:\n" + (DT_STR, 50, 1252) @[User::v_NumRows_Rd] + " Antal rækker\n" + (DT_STR, 50, 1252) @[User::v_total_Rd] + " Total FTE'er \n\nData tilføjt til edw.FT_FTE tabel:\n" +  (DT_STR, 50, 1252) @[User::v_NumRows] + " Antal rækker\n" +  (DT_STR, 50, 1252)  @[User::v_total] + " Total FTE'er \n\nData tilføjt til edw.CD_FT-FTE tabel:\n" + (DT_STR, 50, 1252)  @[User::v_NumRows_Cd] + " Antal række\n" + (DT_STR, 50, 1252)  @[User::v_Total_Cd]  + " Total FTE'er med ugyldig omksted eller profitcenter... disse rækker skulle tjekkes og evt. rettes manuelt på FT_FTE, eller med at genloade FTE data efter opdatering af Omksted og Profitcenter dimensioner."</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">"Kørsel af ods_dl_FTE-HR pakke, for periode "  + @[User::v_CurrPeriod_char] + " er afslutet"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::v_Email_To]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{FBEE9253-4ED8-4134-874E-BE13D3EC5B09}"
+              SendMailTask:From="datawarehouse@dsb.dk"
+              SendMailTask:To="datawarehouse@dsb.dk"
+              SendMailTask:Subject="Kørsel af ods_dl_FTE-HR pakke, for periode  er afslutet"
+              SendMailTask:MessageSource="Data indlæst fra rå data tabel ods.RD_FPC_FTE:&#xA;0 Antal rækker&#xA;0 Total FTE'er &#xA;&#xA;Data tilføjt til edw.FT_FTE tabel:&#xA;0 Antal rækker&#xA;0 Total FTE'er &#xA;&#xA;Data tilføjt til edw.CD_FT-FTE tabel:&#xA;0 Antal række&#xA;0 Total FTE'er med ugyldig omksted eller profitcenter... disse rækker skulle tjekkes og evt. rettes manuelt på FT_FTE, eller med at genloade FTE data efter opdatering af Omksted og Profitcenter dimensioner." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{f4ad92a4-317d-4780-bd13-6f3b76749a8a}"
+          DTS:From="Package\Update logs\GET Total rows at FT_FTE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Update logs\EXEC End TabRef Log" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{c4b4e08d-8061-4fbf-841d-e548a54370bc}"
+          DTS:From="Package\Update logs\EXEC End TabRef Log"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Update logs\GET Total rows at Rd_FPC_Forbrug for loading period" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{2068ce91-bb63-425d-9f7e-38a86df5e88f}"
+          DTS:From="Package\Update logs\GET Total rows at Rd_FPC_Forbrug for loading period"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Update logs\GET total rows at Cd_FT-FTE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{2F6AAD19-109B-40D8-9821-41384CF8DDE8}"
+          DTS:From="Package\Update logs\GET total rows at Cd_FT-FTE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Update logs\Send Mail afslutning" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{87EC6ED7-7FEC-4A10-8C1F-B6CA603989E1}"
+      DTS:From="Package\Preparation to load Arbejdstimer fakta tabel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load FTE fakta tabel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{67bb5d07-e6e1-4365-9e1c-150c5b3bc9d5}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Preparation to load Arbejdstimer fakta tabel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F230B134-E874-4367-BC96-DD9AB0887662}"
+      DTS:From="Package\Load FTE fakta tabel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update logs" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{CF895047-51FC-4B18-93DE-F6DA405C14D3}"
+      DTS:From="Package\Update logs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EXEC End Package Log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC End Package Log"
+          TopLeft="509.764150943396,884.179245283019" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="12.1037735849056,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC"
+          TopLeft="99.8490566037736,51.7547169811321" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="362,176"
+          Size="362,220"
+          Id="Package\Load FTE fakta tabel"
+          TopLeft="8.82075471698113,603.688679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load Arbejdstimer fakta tabel\DLT rows at FT_FTE and CD with samme period as current loading period"
+          TopLeft="100.11320754717,330.962264150943" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load Arbejdstimer fakta tabel\EXEC Loader Log for FT_FTE"
+          TopLeft="104.132075471698,252.566037735849" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load Arbejdstimer fakta tabel\GET current period"
+          TopLeft="98.1509433962264,28.9245283018868" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load Arbejdstimer fakta tabel\GET email adress"
+          TopLeft="104.11320754717,183.188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load Arbejdstimer fakta tabel\GET num rows and Totals FT_FTE'er to delete"
+          TopLeft="104.566037735849,106.320754716981" />
+        <EdgeLayout
+          Id="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint]"
+          TopLeft="166.037735849057,72.8490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="6.41509433962264,33.4716981132076"
+              Start="0,0"
+              End="6.41509433962264,25.9716981132076">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7169811320755" />
+                  <mssgle:LineSegment
+                    End="6.41509433962264,16.7169811320755" />
+                  <mssgle:LineSegment
+                    End="6.41509433962264,25.9716981132076" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint 1]"
+          TopLeft="151.698113207547,150.245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.3018867924528,32.9433962264151"
+              Start="0,0"
+              End="20.3018867924528,25.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.6792452830189" />
+                  <mssgle:LineSegment
+                    End="20.3018867924528,24.6792452830189" />
+                  <mssgle:LineSegment
+                    End="20.3018867924528,25.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint 2]"
+          TopLeft="172.122641509434,227.188679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.377358490566"
+              Start="0,0"
+              End="0,17.877358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.877358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Preparation to load Arbejdstimer fakta tabel.PrecedenceConstraints[Constraint 3]"
+          TopLeft="170.122641509434,296.566037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.3962264150944"
+              Start="0,0"
+              End="0,26.8962264150944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8962264150944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="367,430"
+          Size="367,474"
+          Id="Package\Preparation to load Arbejdstimer fakta tabel"
+          TopLeft="5.5,102.707547169811" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\EXEC End TabRef Log"
+          TopLeft="110.075471698113,111.150943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\GET total rows at Cd_FT-FTE"
+          TopLeft="108.377358490566,281.037735849057" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\GET Total rows at FT_FTE"
+          TopLeft="112.641509433962,38.7735849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\GET Total rows at Rd_FPC_Forbrug for loading period"
+          TopLeft="107.056603773585,201.528301886793" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\Send Mail afslutning"
+          TopLeft="108.830188679245,372.056603773585" />
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint]"
+          TopLeft="180.528301886792,82.6981132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.56603773584906,28.4528301886793"
+              Start="0,0"
+              End="-2.56603773584906,20.9528301886793">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-2.56603773584906,14.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-2.56603773584906,20.9528301886793" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          TopLeft="157.207547169811,155.075471698113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.7358490566038,46.4528301886794"
+              Start="0,0"
+              End="17.7358490566038,38.9528301886794">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.8301886792453" />
+                  <mssgle:LineSegment
+                    End="17.7358490566038,34.8301886792453" />
+                  <mssgle:LineSegment
+                    End="17.7358490566038,38.9528301886794" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint 2]"
+          TopLeft="154.188679245283,245.452830188679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.0754716981132,35.5849056603772"
+              Start="0,0"
+              End="22.0754716981132,28.0849056603772">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.6792452830189" />
+                  <mssgle:LineSegment
+                    End="22.0754716981132,26.6792452830189" />
+                  <mssgle:LineSegment
+                    End="22.0754716981132,28.0849056603772" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint 3]"
+          TopLeft="155.509433962264,324.962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.2075471698113,47.0943396226414"
+              Start="0,0"
+              End="21.2075471698113,39.5943396226414">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.3207547169811" />
+                  <mssgle:LineSegment
+                    End="21.2075471698113,35.3207547169811" />
+                  <mssgle:LineSegment
+                    End="21.2075471698113,39.5943396226414" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="359,460"
+          Size="359,504"
+          Id="Package\Update logs"
+          TopLeft="11.2735849056604,860.481132075472" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="189.410377358491,576.707547169811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.9811320754717"
+              Start="0,0"
+              End="0,19.4811320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.4811320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="80.1037735849056,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.896226415094,53.2075471698113"
+              Start="0,0"
+              End="108.896226415094,45.7075471698113">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.6037735849057" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.6037735849057"
+                    Point2="0,26.6037735849057"
+                    Point3="4,26.6037735849057" />
+                  <mssgle:LineSegment
+                    End="104.896226415094,26.6037735849057" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.896226415094,26.6037735849057"
+                    Point2="108.896226415094,26.6037735849057"
+                    Point3="108.896226415094,30.6037735849057" />
+                  <mssgle:LineSegment
+                    End="108.896226415094,45.7075471698113" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="190.028301886792,823.349056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.867924528301884,37.1320754716982"
+              Start="0,0"
+              End="0.867924528301884,29.6320754716982">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5660377358491" />
+                  <mssgle:LineSegment
+                    End="0.867924528301884,18.5660377358491" />
+                  <mssgle:LineSegment
+                    End="0.867924528301884,29.6320754716982" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="370.518867924528,1029.53773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="139.245283018868,-123.396226415094"
+              Start="0,0"
+              End="131.745283018868,-123.396226415094">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69.622641509434,0" />
+                  <mssgle:LineSegment
+                    End="69.622641509434,-123.396226415094" />
+                  <mssgle:LineSegment
+                    End="131.745283018868,-123.396226415094" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load FTE fakta tabel\LOAD Fact table FPC">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER valid rows"
+          TopLeft="331.009433962264,88.5566037735849" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\RD_FPC_FTE"
+          TopLeft="122.330188679245,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\FT FTE"
+          TopLeft="5.5,507.72641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Omksted PKID"
+          TopLeft="120.820754716981,156.594339622642" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\Multicast"
+          TopLeft="116.933962264151,398.669811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\Tjekk Omksted-Profitcenter kode"
+          TopLeft="119.311320754717,322.028301886792" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\CONV columns format"
+          TopLeft="123.311320754717,78.4056603773585" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\FILTER invalid Omksted koder"
+          TopLeft="210.669811320755,501.72641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\CD-FT_FTE"
+          TopLeft="214.707547169811,580.594339622642" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC\Lookup Profitcenter"
+          TopLeft="118.518867924528,236.933962264151" />
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[valid rows]"
+          TopLeft="331.009433962264,110.518867924528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71.9245283018868,-10.1509433962264"
+              Start="0,0"
+              End="-64.4245283018868,-10.1509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-35.9622641509434,0" />
+                  <mssgle:LineSegment
+                    End="-35.9622641509434,-10.1509433962264" />
+                  <mssgle:LineSegment
+                    End="-64.4245283018868,-10.1509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-59.0438461821934,5,46.1631640625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[OLE DB Source Output]"
+          TopLeft="190.216981132075,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="208.679245283019,39.1320754716981"
+              Start="0,0"
+              End="208.679245283019,31.6320754716981">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5471698113208" />
+                  <mssgle:LineSegment
+                    End="208.679245283019,19.5471698113208" />
+                  <mssgle:LineSegment
+                    End="208.679245283019,31.6320754716981" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Multicast Output 2]"
+          TopLeft="184.820754716981,442.594339622642">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-111.433962264151,65.1320754716981"
+              Start="0,0"
+              End="-111.433962264151,57.6320754716981">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5660377358491" />
+                  <mssgle:LineSegment
+                    End="-111.433962264151,32.5660377358491" />
+                  <mssgle:LineSegment
+                    End="-111.433962264151,57.6320754716981" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Multicast Output 1]"
+          TopLeft="205.575471698113,442.594339622642">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.2264150943396,59.1320754716981"
+              Start="0,0"
+              End="52.2264150943396,51.6320754716981">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5471698113207" />
+                  <mssgle:LineSegment
+                    End="52.2264150943396,29.5471698113207" />
+                  <mssgle:LineSegment
+                    End="52.2264150943396,51.6320754716981" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Lookup Output1]"
+          TopLeft="186.405660377358,280.858490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.792452830188694,41.1698113207547"
+              Start="0,0"
+              End="0.792452830188694,33.6698113207547">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5660377358491" />
+                  <mssgle:LineSegment
+                    End="0.792452830188694,20.5660377358491" />
+                  <mssgle:LineSegment
+                    End="0.792452830188694,33.6698113207547" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-47.7951603036557,25.5660377358491,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Lookup Output]"
+          TopLeft="188.707547169811,200.518867924528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.30188679245282,36.4150943396226"
+              Start="0,0"
+              End="-2.30188679245282,28.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.188679245283" />
+                  <mssgle:LineSegment
+                    End="-2.30188679245282,18.188679245283" />
+                  <mssgle:LineSegment
+                    End="-2.30188679245282,28.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-49.3423301149764,23.188679245283,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Invalid Omksted kode]"
+          TopLeft="278.556603773585,545.650943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="4.03773584905662,34.9433962264151"
+              Start="0,0"
+              End="4.03773584905662,27.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4716981132075" />
+                  <mssgle:LineSegment
+                    End="4.03773584905662,17.4716981132075" />
+                  <mssgle:LineSegment
+                    End="4.03773584905662,27.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-79.8490812942217,22.4716981132075,163.7358984375,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Derived Column Output1]"
+          TopLeft="191.198113207547,122.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.49056603773587,34.2641509433962"
+              Start="0,0"
+              End="-2.49056603773587,26.7641509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.1320754716981" />
+                  <mssgle:LineSegment
+                    End="-2.49056603773587,17.1320754716981" />
+                  <mssgle:LineSegment
+                    End="-2.49056603773587,26.7641509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FTE fakta tabel\LOAD Fact table FPC.Paths[Derived Column Output]"
+          TopLeft="187.198113207547,365.952830188679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-43.8867924528302,32.7169811320755"
+              Start="0,0"
+              End="-43.8867924528302,25.2169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.3396226415094" />
+                  <mssgle:LineSegment
+                    End="-43.8867924528302,16.3396226415094" />
+                  <mssgle:LineSegment
+                    End="-43.8867924528302,25.2169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1265 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/28/2014 12:42:19 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB075473"
+  DTS:CreatorName="DSB\KM2406"
+  DTS:DTSID="{C0435527-B14A-4FCC-89DA-8C5EAF02A699}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="ods_dl_SAP_MaterialeStamdata"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{451A940F-8DED-4C90-9332-564F5049B9B6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection MARA]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{FDD39CA7-7D46-47A0-8E49-C1FB70E921F6}"
+      DTS:ObjectName="Excel Connection MARA">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\12_Ukurans\10_Data\01_SAP_Input\Aktuel_periode\Mara.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83027E5F-AF4A-44AB-8E92-28678F4BD0EB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATABASE">
+      <DTS:VariableValue
+        DTS:DataType="8">Ukurans</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{653149AC-5433-4DF8-8810-E98035854653}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SERVER">
+      <DTS:VariableValue
+        DTS:DataType="8">mssqlp01\alpha</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7572C905-C9B5-4919-9455-47A6521E51A2}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs data fra MARA til RD_SAP_MaterialeStamdata"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Materiale]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Materiale"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materiale]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Oprettet]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Oprettet"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Ændret af]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ændret af"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Ændret af]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[MArt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MArt"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[MArt]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Varegrp#]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Varegrp#"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Varegrp#]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Enhed]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Enhed"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Enhed]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[BME]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BME"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[BME]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[IKVNgl#]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="IKVNgl#"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[IKVNgl#]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Materialekorttekst]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Materialekorttekst"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materialekorttekst]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Oprettet1]"
+                      cachedDataType="date"
+                      cachedName="Oprettet1"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet1]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input].Columns[Sen# ændr#]"
+                      cachedDataType="date"
+                      cachedName="Sen# ændr#"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Sen# ændr#]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[Materiale]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="18"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[Materiale]"
+                      name="Materiale"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materiale]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[OprettetAf]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="12"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[OprettetAf]"
+                      name="OprettetAf"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[AendretAf]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="12"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[AendretAf]"
+                      name="AendretAf"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Ændret af]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[MArt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[MArt]"
+                      name="MArt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[MArt]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[VareGrp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[VareGrp]"
+                      name="VareGrp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Varegrp#]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[Enhed]"
+                      name="Enhed"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Enhed]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[BME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[BME]"
+                      name="BME"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[BME]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[IKVNgl]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[IKVNgl]"
+                      name="IKVNgl"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[IKVNgl#]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[MaterialeTekst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[MaterialeTekst]"
+                      name="MaterialeTekst"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materialekorttekst]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[OprettetDato]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[OprettetDato]"
+                      name="OprettetDato"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet1]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[SenAendring]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[SenAendring]"
+                      name="SenAendring"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Sen# ændr#]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Hent data fra MARA"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Ark1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection MARA]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection MARA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materiale]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Materiale]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materiale]"
+                      name="Materiale"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Oprettet]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet]"
+                      name="Oprettet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[MArt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[MArt]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[MArt]"
+                      name="MArt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Varegrp#]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Varegrp#]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Varegrp#]"
+                      name="Varegrp#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Mat#nr#]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Mat#nr#]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Mat#nr#]"
+                      name="Mat#nr#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Enhed]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Enhed]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Enhed]"
+                      name="Enhed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[BME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[BME]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[BME]"
+                      name="BME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[IKVNgl#]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[IKVNgl#]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[IKVNgl#]"
+                      name="IKVNgl#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materialekorttekst]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Materialekorttekst]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materialekorttekst]"
+                      name="Materialekorttekst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materialekorttekst1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Materialekorttekst1]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Materialekorttekst1]"
+                      name="Materialekorttekst1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet1]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Oprettet1]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Oprettet1]"
+                      name="Oprettet1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Sen# ændr#]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Sen# ændr#]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Sen# ændr#]"
+                      name="Sen# ændr#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Ændret af]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Af]"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].Columns[Ændret af]"
+                      name="Ændret af"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Materiale]"
+                      dataType="wstr"
+                      length="255"
+                      name="Materiale" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Oprettet]"
+                      dataType="wstr"
+                      length="255"
+                      name="Oprettet" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[MArt]"
+                      dataType="wstr"
+                      length="255"
+                      name="MArt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Varegrp#]"
+                      dataType="wstr"
+                      length="255"
+                      name="Varegrp#" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Mat#nr#]"
+                      dataType="wstr"
+                      length="255"
+                      name="Mat#nr#" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Enhed]"
+                      dataType="wstr"
+                      length="255"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[BME]"
+                      dataType="wstr"
+                      length="255"
+                      name="BME" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[IKVNgl#]"
+                      dataType="wstr"
+                      length="255"
+                      name="IKVNgl#" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Materialekorttekst]"
+                      dataType="wstr"
+                      length="255"
+                      name="Materialekorttekst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Materialekorttekst1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Materialekorttekst1" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Oprettet1]"
+                      dataType="date"
+                      name="Oprettet1" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Sen# ændr#]"
+                      dataType="date"
+                      name="Sen# ændr#" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output].ExternalColumns[Af]"
+                      dataType="wstr"
+                      length="255"
+                      name="Af" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Materiale]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Materiale]"
+                      name="Materiale" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Oprettet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Oprettet]"
+                      name="Oprettet" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Af]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Af]"
+                      name="Af" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[MArt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[MArt]"
+                      name="MArt" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Varegrp#]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Varegrp#]"
+                      name="Varegrp#" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Mat#nr#]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Mat#nr#]"
+                      name="Mat#nr#" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Enhed]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Enhed]"
+                      name="Enhed" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[BME]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[BME]"
+                      name="BME" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[IKVNgl#]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[IKVNgl#]"
+                      name="IKVNgl#" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Materialekorttekst]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Materialekorttekst]"
+                      name="Materialekorttekst" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Materialekorttekst1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Materialekorttekst1]"
+                      name="Materialekorttekst1" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Oprettet1]"
+                      dataType="date"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Oprettet1]"
+                      name="Oprettet1" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Sen# ændr#]"
+                      dataType="date"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[Sen# ændr#]"
+                      name="Sen# ændr#" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="RD_SAP_Materialestamdata"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[RD_SAP_MaterialeStamdata]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Connections[OleDbConnection]"
+                  connectionManagerID="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Ukurans]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[OprettetAf]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="OprettetAf"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[OprettetAf]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[OprettetAf]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[AendretAf]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="AendretAf"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[AendretAf]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[AendretAf]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[VareGrp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="VareGrp"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[VareGrp]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[VareGrp]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[IKVNgl]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="IKVNgl"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[IKVNgl]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[IKVNgl]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[MaterialeTekst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MaterialeTekst"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[MaterialeTekst]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[MaterialeTekst]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[SenAendring]"
+                      cachedDataType="date"
+                      cachedName="SenAendring"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[SenAendring]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[SenAendring]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[Enhed]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Enhed"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[Enhed]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[BME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="BME"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[BME]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[BME]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[Materiale]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Materiale"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[Materiale]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[Materiale]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[MArt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MArt"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[MatArt]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[MArt]" />
+                    <inputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].Columns[OprettetDato]"
+                      cachedDataType="date"
+                      cachedName="OprettetDato"
+                      externalMetadataColumnId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[OprettetDato]"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output].Columns[OprettetDato]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[Materiale]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="Materiale" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[MaterialeTekst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MaterialeTekst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[OmlVare]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="OmlVare" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[BME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="BME" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[MatArt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MatArt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[VareGrp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="VareGrp" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[IKVNgl]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="IKVNgl" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[OprettetAf]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="OprettetAf" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[SenAendring]"
+                      dataType="dbTimeStamp"
+                      name="SenAendring" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[AendretAf]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="AendretAf" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input].ExternalColumns[OprettetDato]"
+                      dataType="dbTimeStamp"
+                      name="OprettetDato" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata.Paths[Data Conversion Output]"
+              endId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata.Paths[Excel Source Output]"
+              endId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Påsæt status for OmlVare"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2ea167e6-25db-43eb-8dbd-b11b24a6f4a2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Påsæt status for OmlVare"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="-- Påsætter status for omløbsvarer&#xA;&#xA;  Update a&#xA;  Set [OmlVare] = 'J'&#xA;  From ods.[RD_SAP_MaterialeStamdata] a&#xA;  Left join ods.RD_SAP_MatDUF b on a.Materiale = b.Materiale&#xA;  Where substring(a.MatArt,1,3) = 'REP'&#xA;&#x9;or b.OmlVare = 'J'&#xA;&#x9;or substring(a.Materialetekst,1,1) = '¤'&#xA; or b.OmlVare = 'J'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tømmer tabellen RD_SAP_MaterialeStamdata"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{007EFE3F-F6DA-4230-824B-B53CCCB1B85F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tømmer tabellen RD_SAP_MaterialeStamdata"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="-- Tømmer tabellen RD_SAP_MaterialeStamdata&#xA;Truncate table [ods].[RD_SAP_MaterialeStamdata]&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{471F4F9E-D9C1-4939-989A-187CC2EC9CAA}"
+      DTS:From="Package\Tømmer tabellen RD_SAP_MaterialeStamdata"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CC317C3E-0442-4924-B999-717773DB4CCE}"
+      DTS:From="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Påsæt status for OmlVare" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="337,44"
+          Id="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata"
+          TopLeft="157.487421383648,115.462264150943" />
+        <NodeLayout
+          Size="337,44"
+          Id="Package\Påsæt status for OmlVare"
+          TopLeft="157.487421383648,214.424528301887" />
+        <NodeLayout
+          Size="337,42"
+          Id="Package\Tømmer tabellen RD_SAP_MaterialeStamdata"
+          TopLeft="157.487421383648,18.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="325.987421383648,60.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.9622641509434"
+              Start="0,0"
+              End="0,47.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="325.987421383648,159.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.9622641509434"
+              Start="0,0"
+              End="0,47.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="299,44"
+          Id="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata"
+          TopLeft="7.46226415094338,174.254716981132" />
+        <NodeLayout
+          Size="299,44"
+          Id="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Hent data fra MARA"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\Data Conversion"
+          TopLeft="7.46226415094338,86.4056603773585" />
+        <EdgeLayout
+          Id="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata.Paths[Excel Source Output]"
+          TopLeft="155,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-68.5377358490566,36.9056603773585"
+              Start="0,0"
+              End="-68.5377358490566,29.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4528301886792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4528301886792"
+                    Point2="0,18.4528301886792"
+                    Point3="-4,18.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-64.5377358490566,18.4528301886792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-64.5377358490566,18.4528301886792"
+                    Point2="-68.5377358490566,18.4528301886792"
+                    Point3="-68.5377358490566,22.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-68.5377358490566,29.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata.Paths[Data Conversion Output]"
+          TopLeft="86.4622641509434,128.405660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70.5,45.8490566037736"
+              Start="0,0"
+              End="70.5,38.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.9245283018868" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.9245283018868"
+                    Point2="0,22.9245283018868"
+                    Point3="4,22.9245283018868" />
+                  <mssgle:LineSegment
+                    End="66.5,22.9245283018868" />
+                  <mssgle:CubicBezierSegment
+                    Point1="66.5,22.9245283018868"
+                    Point2="70.5,22.9245283018868"
+                    Point3="70.5,26.9245283018868" />
+                  <mssgle:LineSegment
+                    End="70.5,38.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Indlæs data fra MARA til RD_SAP_MaterialeStamdata\RD_SAP_Materialestamdata">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

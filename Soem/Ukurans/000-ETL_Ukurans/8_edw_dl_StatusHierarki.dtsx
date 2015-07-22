@@ -1,0 +1,1384 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/3/2013 10:49:25 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB075473"
+  DTS:CreatorName="DSB\KM2406"
+  DTS:DTSID="{23BBC689-D90D-4D8C-AC5D-6193AD8EF1BF}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="edw_dl_StatusHierarki"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{28D29BF2-732B-4D20-9077-68105CA5F8BE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection MD_MatStatusGr2]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{72001016-6C84-4999-BA37-869E9F654936}"
+      DTS:ObjectName="Excel Connection MD_MatStatusGr2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\12_Ukurans\10_Data\02_Manuelle_Data\Data_til_upload\MD_StatusGr2_Stamdata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{34FD86CF-E9EC-4296-8F1B-C1C432891788}"
+      DTS:ObjectName="mssqlp01\Alpha.Ukurans">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[User::DATABASE]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::SERVER]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=mssqlp01\alpha;Initial Catalog=Ukurans;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-ods_dl_StatusGr-{34FD86CF-E9EC-4296-8F1B-C1C432891788}mssqlp01\Alpha.UKURANS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="\\gbdfs1\DSBDFS\Økonomi\KONC-POEM\70_BI\Projekter - debug\Ukurans\ServerOgDatabase.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{F44BC273-C34B-4F2A-B125-4AE5FAF42BEB}"
+      DTS:ObjectName="ServerogDatabase" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{135AC415-FAA4-4B90-9D8A-C9CC64FC6D63}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATABASE">
+      <DTS:VariableValue
+        DTS:DataType="8">Ukurans</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FC8A7678-5E5C-434D-8EB6-C15AB04B0BAD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SERVER">
+      <DTS:VariableValue
+        DTS:DataType="8">mssqlp01\alpha</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{ABEDDAAA-4948-49B3-8D88-3EB10ABE46D9}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{545D5A45-FCFA-43AC-A5BA-294F084F2932}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task MD_MatStatusGr2"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Inputs[Data Conversion Input].Columns[StatusGr2]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="StatusGr2"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Inputs[Data Conversion Input].Columns[Materiale]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Materiale"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[Materiale]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2]"
+                          name="StatusGr2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output].Columns[Materiale]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="18"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output].Columns[Materiale]"
+                          name="Materiale"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[Materiale]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source"
+                  componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">MD_MatStatusGr2$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection MD_MatStatusGr2]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection MD_MatStatusGr2]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[Materiale]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Materiale]"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[Materiale]"
+                          name="Materiale"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr2]"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]"
+                          name="StatusGr2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[GyldigFra]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[GyldigFra]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[GyldigFra]"
+                          name="GyldigFra"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[GyldigTil]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[GyldigTil]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[GyldigTil]"
+                          name="GyldigTil"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Materiale]"
+                          dataType="wstr"
+                          length="255"
+                          name="Materiale" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr2]"
+                          dataType="wstr"
+                          length="255"
+                          name="StatusGr2" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[GyldigFra]"
+                          dataType="date"
+                          name="GyldigFra" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].ExternalColumns[GyldigTil]"
+                          dataType="date"
+                          name="GyldigTil" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[Materiale]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[Materiale]"
+                          name="Materiale" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr2]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr2]"
+                          name="StatusGr2" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[GyldigFra]"
+                          dataType="date"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[GyldigFra]"
+                          name="GyldigFra" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[GyldigTil]"
+                          dataType="date"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[GyldigTil]"
+                          name="GyldigTil" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="MD_MatStatusGr2"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[MD_MatStatusGr2]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+                      connectionManagerRefId="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].Columns[GyldigFra]"
+                          cachedDataType="date"
+                          cachedName="GyldigFra"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[GyldigFra]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[GyldigFra]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].Columns[GyldigTil]"
+                          cachedDataType="date"
+                          cachedName="GyldigTil"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[GyldigTil]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output].Columns[GyldigTil]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].Columns[Materiale]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="18"
+                          cachedName="Materiale"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[Materiale]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output].Columns[Materiale]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].Columns[StatusGr2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="StatusGr2"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr2]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[Materiale]"
+                          codePage="1252"
+                          dataType="str"
+                          length="18"
+                          name="Materiale" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="StatusGr2" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[GyldigFra]"
+                          dataType="dbTimeStamp"
+                          name="GyldigFra" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input].ExternalColumns[GyldigTil]"
+                          dataType="dbTimeStamp"
+                          name="GyldigTil" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2.Paths[Data Conversion Output]"
+                  endId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\MD_MatStatusGr2.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2.Paths[Excel Source Output]"
+                  endId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{F3D398D1-F791-4BB1-BFD7-EB5BF74053B4}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task MD_StatusGr2_Stamdata"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input].Columns[StatusGr2]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="StatusGr2"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input].Columns[StatusGr2Tekst]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="StatusGr2Tekst"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2Tekst]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input].Columns[FixedNedskrErMax]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="FixedNedskrErMax"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input].Columns[StatusGr1]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="StatusGr1"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr1]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input].Columns[RID_NedskrTekst]"
+                          cachedDataType="r8"
+                          cachedName="RID_NedskrTekst"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2]"
+                          name="StatusGr2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2Tekst]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2Tekst]"
+                          name="StatusGr2Tekst"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2Tekst]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[FixedNedskrErMax]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="5"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[FixedNedskrErMax]"
+                          name="FixedNedskrErMax"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr1]"
+                          name="StatusGr1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[RID_NedskrTekst]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[RID_NedskrTekst]"
+                          name="RID_NedskrTekst"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source"
+                  componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">MD_StatusGr2_Stamdata$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection MD_MatStatusGr2]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection MD_MatStatusGr2]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr2]"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2]"
+                          name="StatusGr2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2Tekst]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr2Tekst]"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr2Tekst]"
+                          name="StatusGr2Tekst"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGrNedskrPct]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGrNedskrPct]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGrNedskrPct]"
+                          name="StatusGrNedskrPct"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[DUF_NedskrAar]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[DUF_NedskrAar]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[DUF_NedskrAar]"
+                          name="DUF_NedskrAar"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrFaktor]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrFaktor]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrFaktor]"
+                          name="RID_NedskrFaktor"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrTekst]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]"
+                          name="RID_NedskrTekst"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrFra]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrFra]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrFra]"
+                          name="FixedNedskrFra"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrTil]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrTil]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrTil]"
+                          name="FixedNedskrTil"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrErMax]"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]"
+                          name="FixedNedskrErMax"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr1]"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGr1]"
+                          name="StatusGr1"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr2]"
+                          dataType="wstr"
+                          length="255"
+                          name="StatusGr2" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr2Tekst]"
+                          dataType="wstr"
+                          length="255"
+                          name="StatusGr2Tekst" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGrNedskrPct]"
+                          dataType="r8"
+                          name="StatusGrNedskrPct" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[DUF_NedskrAar]"
+                          dataType="r8"
+                          name="DUF_NedskrAar" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrFaktor]"
+                          dataType="r8"
+                          name="RID_NedskrFaktor" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrTekst]"
+                          dataType="r8"
+                          name="RID_NedskrTekst" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrFra]"
+                          dataType="date"
+                          name="FixedNedskrFra" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrTil]"
+                          dataType="date"
+                          name="FixedNedskrTil" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrErMax]"
+                          dataType="wstr"
+                          length="255"
+                          name="FixedNedskrErMax" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].ExternalColumns[StatusGr1]"
+                          dataType="wstr"
+                          length="255"
+                          name="StatusGr1" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr2]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr2]"
+                          name="StatusGr2" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr2Tekst]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr2Tekst]"
+                          name="StatusGr2Tekst" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGrNedskrPct]"
+                          dataType="r8"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGrNedskrPct]"
+                          name="StatusGrNedskrPct" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[DUF_NedskrAar]"
+                          dataType="r8"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[DUF_NedskrAar]"
+                          name="DUF_NedskrAar" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrFaktor]"
+                          dataType="r8"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrFaktor]"
+                          name="RID_NedskrFaktor" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrTekst]"
+                          dataType="r8"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrTekst]"
+                          name="RID_NedskrTekst" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrFra]"
+                          dataType="date"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrFra]"
+                          name="FixedNedskrFra" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrTil]"
+                          dataType="date"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrTil]"
+                          name="FixedNedskrTil" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrErMax]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrErMax]"
+                          name="FixedNedskrErMax" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[StatusGr1]"
+                          name="StatusGr1" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="MD_StatusGr2_stamdata"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[MD_StatusGr2_Stamdata]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+                      connectionManagerRefId="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[StatusGrNedskrPct]"
+                          cachedDataType="r8"
+                          cachedName="StatusGrNedskrPct"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGrNedskrPct]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[StatusGrNedskrPct]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[FixedNedskrFra]"
+                          cachedDataType="date"
+                          cachedName="FixedNedskrFra"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrFra]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrFra]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[FixedNedskrTil]"
+                          cachedDataType="date"
+                          cachedName="FixedNedskrTil"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrTil]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrTil]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[StatusGr1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="StatusGr1"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr1]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr1]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[FixedNedskrErMax]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedName="FixedNedskrErMax"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrErMax]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[FixedNedskrErMax]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[StatusGr2Tekst]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="StatusGr2Tekst"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr2Tekst]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2Tekst]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[StatusGr2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="StatusGr2"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr2]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[StatusGr2]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[DUF_NedskrAar]"
+                          cachedDataType="r8"
+                          cachedName="DUF_NedskrAar"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[DUF_NedskrAar]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[DUF_NedskrAar]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[RID_NedskrFaktor]"
+                          cachedDataType="r8"
+                          cachedName="RID_NedskrFaktor"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrFaktor]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrFaktor]" />
+                        <inputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].Columns[RID_NedskrTekst]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RID_NedskrTekst"
+                          externalMetadataColumnId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrTekst]"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output].Columns[RID_NedskrTekst]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="StatusGr2" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr2Tekst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="StatusGr2Tekst" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGrNedskrPct]"
+                          dataType="numeric"
+                          name="StatusGrNedskrPct"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrFra]"
+                          dataType="dbTimeStamp"
+                          name="FixedNedskrFra" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrTil]"
+                          dataType="dbTimeStamp"
+                          name="FixedNedskrTil" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrErMax]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="FixedNedskrErMax" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[StatusGr1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="StatusGr1" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[DUF_NedskrAar]"
+                          dataType="i4"
+                          name="DUF_NedskrAar" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrFaktor]"
+                          dataType="numeric"
+                          name="RID_NedskrFaktor"
+                          precision="7"
+                          scale="5" />
+                        <externalMetadataColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrTekst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RID_NedskrTekst" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata.Paths[Data Conversion Output]"
+                  endId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\MD_StatusGr2_stamdata.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata.Paths[Excel Source Output]"
+                  endId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{9E703ED9-7C0C-49A0-86FE-918251457F59}"
+          DTS:From="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate table ods MD_StatusGr2_Stamdata og MD_MatStatusGr2"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{11629E8B-3336-4789-A854-46C0920DBE29}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate table ods MD_StatusGr2_Stamdata og MD_MatStatusGr2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{34FD86CF-E9EC-4296-8F1B-C1C432891788}"
+          SQLTask:SqlStatementSource="Truncate table [ods].[MD_StatusGr2_Stamdata]&#xA;Truncate table [ods].[MD_MatStatusGr2]&#xA;&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{71CEB049-8A31-4C2D-B690-6006C30D55BF}"
+      DTS:From="Package\Truncate table ods MD_StatusGr2_Stamdata og MD_MatStatusGr2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:PackageVariables>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{0CB5BE2B-D2D2-47BE-8739-84D27F23ABFF}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{545D5A45-FCFA-43AC-A5BA-294F084F2932}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;TaskHost xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsDataFlowDiagram&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="14" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="13150" y="11086" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="0" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Conversion" left="2183" top="3003" logicalid="6" controlid="1" masterid="0" hint1="0" hint2="0" width="3651" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000430e00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="2" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="OLE DB Destination" left="2182" top="5437" logicalid="7" controlid="2" masterid="0" hint1="0" hint2="0" width="3677" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800005d0e00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="41" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="3609" top="3768" logicalid="8" controlid="3" masterid="0" hint1="0" hint2="0" width="811" height="2169" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="66" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="1" destid="2" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="4008" y="4167" /&gt;&lt;point x="4008" y="4802" /&gt;&lt;point x="4020" y="4802" /&gt;&lt;point x="4020" y="5437" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Excel Source" left="2155" top="569" logicalid="9" controlid="4" masterid="0" hint1="0" hint2="0" width="3731" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000930e00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="16" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="3609" top="1334" logicalid="10" controlid="5" masterid="0" hint1="0" hint2="0" width="811" height="2169" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="67" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="4" destid="1" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="4020" y="1733" /&gt;&lt;point x="4020" y="2368" /&gt;&lt;point x="4008" y="2368" /&gt;&lt;point x="4008" y="3003" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsDataFlowDiagram&gt;&lt;dwd:DtsComponentDesignerPropertiesList&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;41	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;67	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;67	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;41	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;/dwd:DtsComponentDesignerPropertiesList&gt;&lt;/TaskHost&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{D7B9596E-7CBB-49D5-AC62-256D8872F872}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{545D5A45-FCFA-43AC-A5BA-294F084F2932}-58">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;Data Conversion Output&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;OLE DB Destination Input&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{920B8E6E-42A2-4810-9510-F04513B06D4F}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{545D5A45-FCFA-43AC-A5BA-294F084F2932}-80">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;Excel Source Output&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;Data Conversion Input&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{71C61A15-899D-42F6-A8A4-7FD7852DC12F}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{71CEB049-8A31-4C2D-B690-6006C30D55BF}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{011AB565-157E-4F07-8B47-17B70E7FBC39}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{9E703ED9-7C0C-49A0-86FE-918251457F59}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{EC2A3F98-C8AF-462A-91E7-3BDFB75D4FB8}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{F3D398D1-F791-4BB1-BFD7-EB5BF74053B4}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;TaskHost xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsDataFlowDiagram&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="14" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="23178" y="22516" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="0" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Conversion" left="2077" top="2858" logicalid="6" controlid="1" masterid="0" hint1="0" hint2="0" width="3862" height="1454" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000160f0000ae050000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="2" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="OLE DB Destination" left="1998" top="5927" logicalid="7" controlid="2" masterid="0" hint1="0" hint2="0" width="3994" height="1270" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800009a0f0000f6040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="71" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="3596" top="3913" logicalid="8" controlid="3" masterid="0" hint1="0" hint2="0" width="812" height="2514" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="108" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="1" destid="2" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="4008" y="4312" /&gt;&lt;point x="4008" y="5119" /&gt;&lt;point x="3995" y="5119" /&gt;&lt;point x="3995" y="5927" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Excel Source" left="2156" top="345" logicalid="9" controlid="4" masterid="0" hint1="0" hint2="0" width="3704" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000780e00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="28" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="3609" top="1110" logicalid="10" controlid="5" masterid="0" hint1="0" hint2="0" width="799" height="2248" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="109" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="4" destid="1" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="4008" y="1509" /&gt;&lt;point x="4008" y="2858" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsDataFlowDiagram&gt;&lt;dwd:DtsComponentDesignerPropertiesList&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;115	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;70	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;70	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;115	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;/dwd:DtsComponentDesignerPropertiesList&gt;&lt;/TaskHost&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{E419C4FF-ACC1-4709-AEFB-61774CF19BE5}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{F3D398D1-F791-4BB1-BFD7-EB5BF74053B4}-170">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;Excel Source Output&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;Data Conversion Input&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{B1FC3735-37CA-4404-BBC4-638B4DD831F4}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{F3D398D1-F791-4BB1-BFD7-EB5BF74053B4}-87">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;Data Conversion Output&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;OLE DB Destination Input&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{9AC6C4C4-3157-4133-A935-3875D0C6D5A9}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="package-diagram">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:BoundingTop&gt;-2474&lt;/dwd:BoundingTop&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="15" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1000" scrolltop="-3474" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="23178" y="23442" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsContainerObjectManagedBridge.2" tooltip="Sequence Container" left="0" top="648" logicalid="7" controlid="1" masterid="0" hint1="0" hint2="0" width="9341" height="10160" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800007d240000b0270000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="Caption" value="Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="CaptionHeight" value="1164" vartype="3" /&gt;&lt;property name="Collapsed" value="0" vartype="11" /&gt;&lt;property name="CollapsedWidth" value="9341" vartype="3" /&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="RealHeight" value="8996" vartype="3" /&gt;&lt;property name="RealWidth" value="9341" vartype="3" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="1702" top="-2474" logicalid="8" controlid="2" masterid="0" hint1="0" hint2="0" width="5927" height="1958" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="0008000027170000a6070000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Truncate table ods MD_StatusGr2_Stamdata og MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="4266" top="-915" logicalid="9" controlid="3" masterid="0" hint1="0" hint2="0" width="804" height="2063" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="2" destid="1" sourceattachpoint="11" destattachpoint="16" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="4665" y="-516" /&gt;&lt;point x="4665" y="66" /&gt;&lt;point x="4670" y="66" /&gt;&lt;point x="4670" y="648" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Flow Task" left="2544" top="2659" logicalid="10" controlid="4" masterid="1" hint1="0" hint2="0" width="5027" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000a31300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Flow Task" left="2651" top="5781" logicalid="11" controlid="5" masterid="1" hint1="0" hint2="0" width="4815" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000cf1200008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="4658" top="3424" logicalid="12" controlid="6" masterid="0" hint1="0" hint2="0" width="800" height="2857" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="4" destid="5" sourceattachpoint="9" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="5057" y="3823" /&gt;&lt;point x="5057" y="4802" /&gt;&lt;point x="5058" y="4802" /&gt;&lt;point x="5058" y="5781" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;dwd:PersistedViewPortLeft&gt;-1000&lt;/dwd:PersistedViewPortLeft&gt;&lt;dwd:PersistedViewPortTop&gt;-3474&lt;/dwd:PersistedViewPortTop&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{F528DA63-D782-47A6-9877-D5AE2BEAF7C9}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="package-diagram">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:BoundingTop&gt;-2474&lt;/dwd:BoundingTop&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="15" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1000" scrolltop="-3474" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="23178" y="23442" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsContainerObjectManagedBridge.2" tooltip="Sequence Container" left="0" top="648" logicalid="7" controlid="1" masterid="0" hint1="0" hint2="0" width="9341" height="10160" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800007d240000b0270000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="Caption" value="Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="CaptionHeight" value="1164" vartype="3" /&gt;&lt;property name="Collapsed" value="0" vartype="11" /&gt;&lt;property name="CollapsedWidth" value="9341" vartype="3" /&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="RealHeight" value="8996" vartype="3" /&gt;&lt;property name="RealWidth" value="9341" vartype="3" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="1702" top="-2474" logicalid="8" controlid="2" masterid="0" hint1="0" hint2="0" width="5927" height="1958" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="0008000027170000a6070000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Truncate table ods MD_StatusGr2_Stamdata og MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="4266" top="-915" logicalid="9" controlid="3" masterid="0" hint1="0" hint2="0" width="804" height="2063" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="2" destid="1" sourceattachpoint="11" destattachpoint="16" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="4665" y="-516" /&gt;&lt;point x="4665" y="66" /&gt;&lt;point x="4670" y="66" /&gt;&lt;point x="4670" y="648" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Flow Task" left="2544" top="2659" logicalid="10" controlid="4" masterid="1" hint1="0" hint2="0" width="5027" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000a31300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_StatusGr2_Stamdata" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Flow Task" left="2651" top="5781" logicalid="11" controlid="5" masterid="1" hint1="0" hint2="0" width="4815" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000cf1200008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2\Data Flow Task MD_MatStatusGr2" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="4658" top="3424" logicalid="12" controlid="6" masterid="0" hint1="0" hint2="0" width="800" height="2857" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Overføre data til tabellerne  MD_StatusGr2_Stamdata og MD_MatStatusGr2.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="4" destid="5" sourceattachpoint="9" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="5057" y="3823" /&gt;&lt;point x="5057" y="4802" /&gt;&lt;point x="5058" y="4802" /&gt;&lt;point x="5058" y="5781" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;dwd:PersistedViewPortLeft&gt;-1000&lt;/dwd:PersistedViewPortLeft&gt;&lt;dwd:PersistedViewPortTop&gt;-3474&lt;/dwd:PersistedViewPortTop&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+    </DTS:PackageVariable>
+  </DTS:PackageVariables>
+</DTS:Executable>

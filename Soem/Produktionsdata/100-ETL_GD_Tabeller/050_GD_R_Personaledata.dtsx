@@ -1,0 +1,3168 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2013 1:29:54 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{24A6E9CE-E00F-47EB-9390-2928D9D444FA}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="050_GD_R_Personaledata"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{EECD36D3-E0E1-4B14-A995-D1EA09303F5D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{31CDF072-D322-4755-A8DF-39F74E187BDA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Maaned">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CABDFBD8-66BE-487E-9320-0E75F797A368}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Check"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{6B0EBE2E-C593-4649-8C20-2BA0E5047590}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Check">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{A7EEE7E6-1186-4EE1-A392-42669898FB55}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_FTE_sum">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Find FT FTE sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3D671AE0-664E-4AD2-9BE0-37018B37B155}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find FT FTE sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select convert(float,SUM(d.FTE))/? FTE&#xA;from edw.FT_FTE d&#xA;join edw.DI_Tid_Maaned t on (t.PK_ID = d.DI_Tid_Maaned)&#xA;join -- Periode&#xA;(Select SUBSTRING(value,1,4) as År, CONVERT(Int, value) as Måned , SUBSTRING(value,1,50) as Periode,&#xA; CONVERT(Int, SUBSTRING(value,5,2)) as PeriodeNr&#xA; from ods.ctl_dataload&#xA; Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode') p on (t.Aar = p.År&#xA;                                      and convert(int, t.PK_ID) &lt;= p.måned)&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_FTE_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Maaned"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Find GD FTE sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6fe40d36-3975-42b2-be02-1c25df92530c}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find GD FTE sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Fuldtidsstillinger) from [dbo].[GD_R_Personaledata]&#xA;where PeriodeIndlæst = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_FTE_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Gem FT FTE sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ED244CF4-D067-4A0B-AAFC-386C963C469F}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem FT FTE sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 85, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_FTE_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Gem GD FTE sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{079be316-ff94-4d2b-bb70-358091128a56}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem GD FTE sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 86, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_FTE_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7E1028EC-1E89-475B-B8E6-46B751B4291E}"
+          DTS:From="Package\Data Check\Find FT FTE sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Data Check\Gem FT FTE sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{208A43F3-83C6-4377-B064-E9C18873D3E3}"
+          DTS:From="Package\Data Check\Gem FT FTE sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Data Check\Find GD FTE sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{5AE1BBBA-B855-41C0-9781-55EB4F8199EE}"
+          DTS:From="Package\Data Check\Find GD FTE sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Data Check\Gem GD FTE sum" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Find periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5594D644-1864-4DD8-9FE1-BDC97F8FC4F1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="Select SUBSTRING(value,1,50) as Periode, convert(float,SUBSTRING(value,5,2)) as Maaned &#xA;from ods.ctl_dataload&#xA;Where kilde_system = 'Alle'&#xA;and variable = 'Model_Periode'&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Periode" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::v_Maaned" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fjern eksisterende periode data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="fra GD_R_Personaledata"
+      DTS:DTSID="{911D75BD-1224-4039-9709-5922B7792B0E}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern eksisterende periode data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.GD_R_Personaledata&#xA;WHERE PeriodeIndlæst = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs GD data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{58758575-2F82-45A7-AF72-0A52CAABFB35}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs GD data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs GD data\Beregn periode FTE"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Beregn periode FTE"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input].Columns[PeriodeNr]"
+                      cachedDataType="i4"
+                      cachedName="PeriodeNr"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[PeriodeNr]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input].Columns[FTE]"
+                      cachedDataType="r8"
+                      cachedName="FTE"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[FTE]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input].Columns[ProfitcenterNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ProfitcenterNavn"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[ProfitcenterNavn]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[ProfitcenterNavn]}) ? "Ukendt" : #{Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[ProfitcenterNavn]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(ProfitcenterNavn) ? "Ukendt" : ProfitcenterNavn</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input].Columns[OmkStedNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OmkStedNavn"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkStedNavn]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkStedNavn]}) ? "Ukendt" : #{Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkStedNavn]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(OmkStedNavn) ? "Ukendt" : OmkStedNavn</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Output].Columns[Fuldtidsstillinger]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Output].Columns[Fuldtidsstillinger]"
+                      name="Fuldtidsstillinger"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[FTE]} / #{Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[PeriodeNr]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">FTE / PeriodeNr</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\DI_ Omksted"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DI_ Omksted"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Omksted, OmkStedNavn, GyldigFraDato, GyldigTilDato
+from edw.DI_OmkSted_ny
+group by Omksted, OmkStedNavn, GyldigFraDato, GyldigTilDato
+order by Omksted</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs GD data\DI_ Omksted.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[OmkStedNavn]"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[OmkStedNavn]"
+                      name="OmkStedNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[Omksted]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[Omksted]"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[Omksted]"
+                      name="Omksted"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[GyldigFraDato]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[GyldigFraDato]"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[GyldigFraDato]"
+                      name="GyldigFraDato"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[GyldigTilDato]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[GyldigTilDato]"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[GyldigTilDato]"
+                      name="GyldigTilDato"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OmkStedNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[Omksted]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Omksted" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[GyldigFraDato]"
+                      dataType="dbTimeStamp"
+                      name="GyldigFraDato" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].ExternalColumns[GyldigTilDato]"
+                      dataType="dbTimeStamp"
+                      name="GyldigTilDato" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[Omksted]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[Omksted]"
+                      name="Omksted" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[OmkStedNavn]"
+                      name="OmkStedNavn" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[GyldigFraDato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[GyldigFraDato]"
+                      name="GyldigFraDato" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[GyldigTilDato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[GyldigTilDato]"
+                      name="GyldigTilDato" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\DI_Profitcenter"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DI_Profitcenter"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Profitcenter, ProfitcenterNavn As ProfitcenterNavn
+from edw.DI_Profitcenter_ny
+where Aktiv = 'j'
+order by Profitcenter</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs GD data\DI_Profitcenter.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].Columns[ProfitcenterNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].ExternalColumns[ProfitcenterNavn]"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].Columns[ProfitcenterNavn]"
+                      name="ProfitcenterNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                      name="Profitcenter"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].ExternalColumns[ProfitcenterNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ProfitcenterNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Profitcenter" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                      name="Profitcenter" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[ProfitcenterNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[ProfitcenterNavn]"
+                      name="ProfitcenterNavn" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\FT_FTE"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="FT_FTE"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select p.Periode As PeriodeIndlæst, d.Profitcenter, d.Omksted As OmkstedKont, d.DI_Omksted, p.PeriodeNr, d.FTE,
+    dateadd(dd,-1,dateadd(mm,datediff(mm,0,t.PK_ID + '01')+1,0)) As FPC_dag
+from edw.FT_FTE d
+join edw.DI_Tid_Maaned t on (t.PK_ID = d.DI_Tid_Maaned)
+join -- Periode
+(Select SUBSTRING(value,1,4) as År, CONVERT(Int, value) as Måned , SUBSTRING(value,1,50) as Periode,
+ CONVERT(Int, SUBSTRING(value,5,2)) as PeriodeNr
+ from ods.ctl_dataload
+ Where kilde_system = 'Alle'
+ and variable = 'Model_Periode') p on (t.Aar = p.År
+                                      and convert(int, t.PK_ID) &lt;= p.måned)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs GD data\FT_FTE.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                      name="Profitcenter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[OmkstedKont]"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[OmkstedKont]"
+                      name="OmkstedKont"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[DI_Omksted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[DI_Omksted]"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[DI_Omksted]"
+                      name="DI_Omksted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeNr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[PeriodeNr]"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeNr]"
+                      name="PeriodeNr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FTE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[FTE]"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FTE]"
+                      name="FTE"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FPC_dag]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[FPC_dag]"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FPC_dag]"
+                      name="FPC_dag"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Profitcenter" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="OmkstedKont" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[DI_Omksted]"
+                      dataType="i4"
+                      name="DI_Omksted" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[PeriodeNr]"
+                      dataType="i4"
+                      name="PeriodeNr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[FTE]"
+                      dataType="numeric"
+                      name="FTE"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].ExternalColumns[FPC_dag]"
+                      dataType="dbTimeStamp"
+                      name="FPC_dag" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                      name="Profitcenter" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[OmkstedKont]"
+                      name="OmkstedKont" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[DI_Omksted]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[DI_Omksted]"
+                      name="DI_Omksted" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[PeriodeNr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[PeriodeNr]"
+                      name="PeriodeNr" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[FTE]"
+                      dataType="numeric"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[FTE]"
+                      name="FTE"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[FPC_dag]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[FPC_dag]"
+                      name="FPC_dag" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\GD_R_Personaledata"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GD_R_Personaledata"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[GD_R_Personaledata]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs GD data\GD_R_Personaledata.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      externalMetadataColumnId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].Columns[Profitcenter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Profitcenter"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[Profitcenter]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].Columns[ProfitcenterNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ProfitcenterNavn"
+                      externalMetadataColumnId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[ProfitcenterNavn]"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[ProfitcenterNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].Columns[OmkstedKont]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="OmkstedKont"
+                      externalMetadataColumnId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[OmkStedKont]"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkstedKont]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].Columns[OmkStedNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OmkStedNavn"
+                      externalMetadataColumnId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[OmkStedNavn]"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkStedNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].Columns[Fuldtidsstillinger]"
+                      cachedDataType="r8"
+                      cachedName="Fuldtidsstillinger"
+                      externalMetadataColumnId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[Fuldtidsstillinger]"
+                      lineageId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Output].Columns[Fuldtidsstillinger]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Profitcenter" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[ProfitcenterNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ProfitcenterNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[OmkStedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OmkStedKont" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OmkStedNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input].ExternalColumns[Fuldtidsstillinger]"
+                      dataType="r8"
+                      name="Fuldtidsstillinger" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\GD_R_Personaledata.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\GD_R_Personaledata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\GD_R_Personaledata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\GD_R_Personaledata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\Konverter til float"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Konverter til float"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Konverter til float.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Konverter til float.Inputs[Data Conversion Input].Columns[FTE]"
+                      cachedDataType="numeric"
+                      cachedName="FTE"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Indlæs GD data\Konverter til float.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Output].Columns[FTE_Float]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Output].Columns[FTE_Float]"
+                      name="FTE_Float"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FTE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Indlæs GD data\Konverter til float.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\Kun de korrekte perioder"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Evaluates and directs rows in a dataset."
+              name="Kun de korrekte perioder"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input].Columns[GyldigFraDato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="GyldigFraDato"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigFraDato]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input].Columns[GyldigTilDato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="GyldigTilDato"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigTilDato]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input].Columns[FPC_dag]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FPC_dag"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FPC_dag]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[PeriodeMatch]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="PeriodeMatch"
+                  synchronousInputId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FPC_dag]} &gt;= #{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigFraDato]} &amp;&amp; #{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FPC_dag]} &lt;= #{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigTilDato]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">FPC_dag &gt;= GyldigFraDato &amp;&amp; FPC_dag &lt;= GyldigTilDato</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[Ingen Match]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Ingen Match"
+                  synchronousInputId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\Merge omksted"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge omksted"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[Profitcenter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Profitcenter"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[Profitcenter]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[OmkstedKont]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="OmkstedKont"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[OmkstedKont]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[PeriodeNr]"
+                      cachedDataType="i4"
+                      cachedName="PeriodeNr"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[PeriodeNr]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[FPC_dag]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FPC_dag"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[FPC_dag]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[FTE_Float]"
+                      cachedDataType="r4"
+                      cachedName="FTE_Float"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[FTE_Float]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input].Columns[OmkStedNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OmkStedNavn"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[OmkStedNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input].Columns[Omksted]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Omksted"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[Omksted]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input].Columns[GyldigFraDato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="GyldigFraDato"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[GyldigFraDato]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input].Columns[GyldigTilDato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="GyldigTilDato"
+                      lineageId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output].Columns[GyldigTilDato]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[PeriodeIndlæst]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[Profitcenter]"
+                      name="Profitcenter">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[Profitcenter]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkstedKont]"
+                      name="OmkstedKont"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[OmkstedKont]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeNr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeNr]"
+                      name="PeriodeNr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[PeriodeNr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkStedNavn]"
+                      name="OmkStedNavn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input].Columns[OmkStedNavn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigFraDato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigFraDato]"
+                      name="GyldigFraDato">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input].Columns[GyldigFraDato]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigTilDato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[GyldigTilDato]"
+                      name="GyldigTilDato">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input].Columns[GyldigTilDato]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FPC_dag]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FPC_dag]"
+                      name="FPC_dag">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[FPC_dag]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FTE_Float]"
+                      dataType="r4"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FTE_Float]"
+                      name="FTE_Float">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input].Columns[FTE_Float]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\Merge profitcenter"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge profitcenter"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[Profitcenter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Profitcenter"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[Profitcenter]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[OmkstedKont]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="OmkstedKont"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[OmkstedKont]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[OmkStedNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OmkStedNavn"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[OmkStedNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[PeriodeNr]"
+                      cachedDataType="i4"
+                      cachedName="PeriodeNr"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[PeriodeNr]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[FTE]"
+                      cachedDataType="r8"
+                      cachedName="FTE"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[FTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Right Input].Columns[ProfitcenterNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ProfitcenterNavn"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].Columns[ProfitcenterNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Right Input].Columns[Profitcenter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Profitcenter"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output].Columns[Profitcenter]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[PeriodeIndlæst]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[Profitcenter]"
+                      name="Profitcenter"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[Profitcenter]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[ProfitcenterNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[ProfitcenterNavn]"
+                      name="ProfitcenterNavn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Right Input].Columns[ProfitcenterNavn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkstedKont]"
+                      name="OmkstedKont">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[OmkstedKont]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[OmkStedNavn]"
+                      name="OmkStedNavn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[OmkStedNavn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[PeriodeNr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[PeriodeNr]"
+                      name="PeriodeNr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[PeriodeNr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[FTE]"
+                      dataType="r8"
+                      lineageId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output].Columns[FTE]"
+                      name="FTE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input].Columns[FTE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\Sorter omkostningssted"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts data."
+              name="Sorter omkostningssted"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input].Columns[Profitcenter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Profitcenter"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input].Columns[OmkstedKont]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="OmkstedKont"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[OmkstedKont]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input].Columns[DI_Omksted]"
+                      cachedDataType="i4"
+                      cachedName="DI_Omksted"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[DI_Omksted]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input].Columns[PeriodeNr]"
+                      cachedDataType="i4"
+                      cachedName="PeriodeNr"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeNr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input].Columns[FPC_dag]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FPC_dag"
+                      lineageId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FPC_dag]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input].Columns[FTE_Float]"
+                      cachedDataType="r4"
+                      cachedName="FTE_Float"
+                      lineageId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Output].Columns[FTE_Float]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[Profitcenter]"
+                      name="Profitcenter">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[OmkstedKont]"
+                      name="OmkstedKont"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[OmkstedKont]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[DI_Omksted]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[DI_Omksted]"
+                      name="DI_Omksted">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[DI_Omksted]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[PeriodeNr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[PeriodeNr]"
+                      name="PeriodeNr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[PeriodeNr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[FPC_dag]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[FPC_dag]"
+                      name="FPC_dag">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output].Columns[FPC_dag]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[FTE_Float]"
+                      dataType="r4"
+                      lineageId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output].Columns[FTE_Float]"
+                      name="FTE_Float">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Output].Columns[FTE_Float]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\Sorter profitcenter"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts data."
+              name="Sorter profitcenter"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeIndlæst]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input].Columns[Profitcenter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Profitcenter"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[Profitcenter]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input].Columns[OmkstedKont]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="OmkstedKont"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkstedKont]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input].Columns[PeriodeNr]"
+                      cachedDataType="i4"
+                      cachedName="PeriodeNr"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeNr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input].Columns[FTE]"
+                      cachedDataType="r8"
+                      cachedName="FTE"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[FTE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input].Columns[OmkStedNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OmkStedNavn"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkStedNavn]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeIndlæst]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[Profitcenter]"
+                      name="Profitcenter"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[Profitcenter]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[OmkstedKont]"
+                      name="OmkstedKont">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkstedKont]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[PeriodeNr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[PeriodeNr]"
+                      name="PeriodeNr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeNr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[FTE]"
+                      dataType="r8"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[FTE]"
+                      name="FTE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[FTE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output].Columns[OmkStedNavn]"
+                      name="OmkStedNavn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkStedNavn]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs GD data\Sumer værdier"
+              componentClassID="{5B201335-B360-485C-BB93-75C34E09B3D3}"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates and groups values in a dataset."
+              name="Sumer værdier"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1].Columns[Profitcenter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Profitcenter"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[Profitcenter]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1].Columns[OmkstedKont]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="OmkstedKont"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkstedKont]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1].Columns[PeriodeNr]"
+                      cachedDataType="i4"
+                      cachedName="PeriodeNr"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeNr]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1].Columns[FTE_Float]"
+                      cachedDataType="r4"
+                      cachedName="FTE_Float"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FTE_Float]" />
+                    <inputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1].Columns[OmkStedNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OmkStedNavn"
+                      lineageId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkStedNavn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeIndlæst]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[Profitcenter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[Profitcenter]"
+                      name="Profitcenter">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[Profitcenter]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkstedKont]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkstedKont]"
+                      name="OmkstedKont">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkstedKont]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeNr]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[PeriodeNr]"
+                      name="PeriodeNr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[PeriodeNr]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[FTE]"
+                      dataType="r8"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[FTE]"
+                      name="FTE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[FTE_Float]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkStedNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1].Columns[OmkStedNavn]"
+                      name="OmkStedNavn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output].Columns[OmkStedNavn]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs GD data.Paths[Aggregate Output 1]"
+              endId="Package\Indlæs GD data\Sorter profitcenter.Inputs[Sort Input]"
+              name="Aggregate Output 1"
+              startId="Package\Indlæs GD data\Sumer værdier.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[Data Conversion Output]"
+              endId="Package\Indlæs GD data\Sorter omkostningssted.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\Indlæs GD data\Konverter til float.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[Derived Column Output]"
+              endId="Package\Indlæs GD data\GD_R_Personaledata.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Indlæs GD data\Beregn periode FTE.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[Merge Join Output]"
+              endId="Package\Indlæs GD data\Beregn periode FTE.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\Indlæs GD data\Merge profitcenter.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[Merge Join Output1]"
+              endId="Package\Indlæs GD data\Kun de korrekte perioder.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Indlæs GD data\Merge omksted.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[OLE DB Source Output]"
+              endId="Package\Indlæs GD data\Konverter til float.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæs GD data\FT_FTE.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[OLE DB Source Output1]"
+              endId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæs GD data\DI_ Omksted.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[OLE DB Source Output2]"
+              endId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæs GD data\DI_Profitcenter.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[PeriodeMatch]"
+              endId="Package\Indlæs GD data\Sumer værdier.Inputs[Aggregate Input 1]"
+              name="PeriodeMatch"
+              startId="Package\Indlæs GD data\Kun de korrekte perioder.Outputs[PeriodeMatch]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[Sort Output]"
+              endId="Package\Indlæs GD data\Merge omksted.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Indlæs GD data\Sorter omkostningssted.Outputs[Sort Output]" />
+            <path
+              refId="Package\Indlæs GD data.Paths[Sort Output1]"
+              endId="Package\Indlæs GD data\Merge profitcenter.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Indlæs GD data\Sorter profitcenter.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{644B0A10-764C-44DC-B40A-59B5DA278CCE}"
+      DTS:From="Package\Fjern eksisterende periode data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Indlæs GD data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{863F1022-8296-4027-9504-7A7EA1973215}"
+      DTS:From="Package\Find periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Fjern eksisterende periode data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D73D8D5C-83C3-4686-B624-61593E5BE826}"
+      DTS:From="Package\Indlæs GD data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Data Check" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,44"
+          Id="Package\Data Check\Find FT FTE sum"
+          TopLeft="119.283018867925,39.1132075471699" />
+        <NodeLayout
+          Size="171,44"
+          Id="Package\Data Check\Find GD FTE sum"
+          TopLeft="120.11320754717,189.150943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Check\Gem FT FTE sum"
+          TopLeft="137.283018867925,111" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Check\Gem GD FTE sum"
+          TopLeft="141.433962264151,272.509433962264" />
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint]"
+          TopLeft="204.641509433962,83.0377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.528301886792448,27.9622641509434"
+              Start="0,0"
+              End="0.528301886792448,20.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.528301886792448,13.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.528301886792448,20.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint 1]"
+          TopLeft="205.169811320755,154.924528301887">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.301886792452834,34.2264150943396"
+              Start="0,0"
+              End="0.301886792452834,26.7264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.0943396226415" />
+                  <mssgle:LineSegment
+                    End="0.301886792452834,17.0943396226415" />
+                  <mssgle:LineSegment
+                    End="0.301886792452834,26.7264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint 2]"
+          TopLeft="205.471698113208,233.075471698113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="3.84905660377359,39.433962264151"
+              Start="0,0"
+              End="3.84905660377359,31.933962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.6981132075472" />
+                  <mssgle:LineSegment
+                    End="3.84905660377359,19.6981132075472" />
+                  <mssgle:LineSegment
+                    End="3.84905660377359,31.933962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="442,386"
+          Size="442,429"
+          Id="Package\Data Check"
+          TopLeft="5.5,352.933962264151" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Find periode"
+          TopLeft="38.8962264150944,5.5" />
+        <NodeLayout
+          Size="186,44"
+          Id="Package\Fjern eksisterende periode data"
+          TopLeft="20.933962264151,111.122641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data"
+          TopLeft="44.8962264150944,224.933962264151" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="113.764150943396,155.047169811321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.981132075471692,69.8867924528302"
+              Start="0,0"
+              End="-0.981132075471692,62.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,34.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,62.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="106.783018867925,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="6.98113207547169,61.6981132075472"
+              Start="0,0"
+              End="6.98113207547169,54.1981132075472">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.8301886792453" />
+                  <mssgle:LineSegment
+                    End="6.98113207547169,30.8301886792453" />
+                  <mssgle:LineSegment
+                    End="6.98113207547169,54.1981132075472" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="112.783018867925,268.858490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="113.849056603774,84.0754716981132"
+              Start="0,0"
+              End="113.849056603774,76.5754716981132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.0377358490566" />
+                  <mssgle:LineSegment
+                    End="113.849056603774,42.0377358490566" />
+                  <mssgle:LineSegment
+                    End="113.849056603774,76.5754716981132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs GD data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Kun de korrekte perioder"
+          TopLeft="105.537735849057,431.688679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\FT_FTE"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="156,44"
+          Id="Package\Indlæs GD data\GD_R_Personaledata"
+          TopLeft="217.160377358491,922.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Konverter til float"
+          TopLeft="5.5,107.349056603774" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\DI_ Omksted"
+          TopLeft="212.179245283019,189.198113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\DI_Profitcenter"
+          TopLeft="335.009433962264,611.537735849057" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Merge omksted"
+          TopLeft="105.349056603774,331.990566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Merge profitcenter"
+          TopLeft="224.141509433962,728.330188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Sorter profitcenter"
+          TopLeft="107.349056603774,610.518867924528" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Beregn periode FTE"
+          TopLeft="227.160377358491,827.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Sumer værdier"
+          TopLeft="105.311320754717,512.669811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs GD data\Sorter omkostningssted"
+          TopLeft="5.5377358490566,188.179245283019" />
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[Sort Output1]"
+          TopLeft="175.235849056604,654.443396226415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.792452830189,73.8867924528303"
+              Start="0,0"
+              End="116.792452830189,66.3867924528303">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.9433962264151" />
+                  <mssgle:LineSegment
+                    End="116.792452830189,36.9433962264151" />
+                  <mssgle:LineSegment
+                    End="116.792452830189,66.3867924528303" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[Sort Output]"
+          TopLeft="73.4245283018868,232.103773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79.0566037735849,99.8867924528302"
+              Start="0,0"
+              End="79.0566037735849,92.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.9245283018868" />
+                  <mssgle:LineSegment
+                    End="79.0566037735849,49.9245283018868" />
+                  <mssgle:LineSegment
+                    End="79.0566037735849,92.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[PeriodeMatch]"
+          TopLeft="173.424528301887,475.61320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.226415094339643,37.0566037735849"
+              Start="0,0"
+              End="-0.226415094339643,29.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5283018867924" />
+                  <mssgle:LineSegment
+                    End="-0.226415094339643,18.5283018867924" />
+                  <mssgle:LineSegment
+                    End="-0.226415094339643,29.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-30.1151411409198,23.5283018867924,60.0038671875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[OLE DB Source Output2]"
+          TopLeft="402.896226415094,655.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-90.1132075471698,72.867924528302"
+              Start="0,0"
+              End="-90.1132075471698,65.367924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.4150943396227" />
+                  <mssgle:LineSegment
+                    End="-90.1132075471698,36.4150943396227" />
+                  <mssgle:LineSegment
+                    End="-90.1132075471698,65.367924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[OLE DB Source Output1]"
+          TopLeft="280.066037735849,233.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-86.0754716981132,98.8679245283019"
+              Start="0,0"
+              End="-86.0754716981132,91.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.433962264151" />
+                  <mssgle:LineSegment
+                    End="-86.0754716981132,49.433962264151" />
+                  <mssgle:LineSegment
+                    End="-86.0754716981132,91.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.9245283018868"
+              Start="0,0"
+              End="0,50.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[Merge Join Output1]"
+          TopLeft="173.235849056604,375.915094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.188679245283026,55.7735849056603"
+              Start="0,0"
+              End="0.188679245283026,48.2735849056603">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.8867924528302" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,27.8867924528302" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,48.2735849056603" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[Merge Join Output]"
+          TopLeft="292.028301886792,772.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="3.01886792452831,55.2452830188679"
+              Start="0,0"
+              End="3.01886792452831,47.7452830188679">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6226415094339" />
+                  <mssgle:LineSegment
+                    End="3.01886792452831,27.6226415094339" />
+                  <mssgle:LineSegment
+                    End="3.01886792452831,47.7452830188679" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[Derived Column Output]"
+          TopLeft="295.047169811321,871.424528301887">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.0377358490566166,50.7169811320755"
+              Start="0,0"
+              End="-0.0377358490566166,43.2169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.3584905660377" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,25.3584905660377" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,43.2169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[Data Conversion Output]"
+          TopLeft="73.3867924528302,151.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0377358490566166,36.9056603773585"
+              Start="0,0"
+              End="0.0377358490566166,29.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.4528301886793" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,18.4528301886793" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,29.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs GD data.Paths[Aggregate Output 1]"
+          TopLeft="173.198113207547,556.594339622642">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.03773584905662,53.9245283018868"
+              Start="0,0"
+              End="2.03773584905662,46.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.9433962264151" />
+                  <mssgle:LineSegment
+                    End="2.03773584905662,26.9433962264151" />
+                  <mssgle:LineSegment
+                    End="2.03773584905662,46.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

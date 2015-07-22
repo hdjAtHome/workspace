@@ -1,0 +1,1959 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/8/2014 2:51:34 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{ACC2C45D-1593-4F35-B59D-53B2F79D097F}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="060_GD_R_RejseIndtaegter_Togsystem_FR"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{249D1AD4-9D15-4599-A6AA-4979F47ACF2C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0067AEAA-E27D-4E28-B7AC-EA5F6D03EA6E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data check Delrejse"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{77AC5142-01ED-4445-A5BC-EE83A0A51772}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data check Delrejse">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{30599275-65A7-41AC-9894-0F3089D7BED0}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_check_sum">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Data check Delrejse\Find GD delrejse sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{391204d5-6c1a-44bb-96ef-46e0204dd9b8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find GD delrejse sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(værdi) værdi &#xA;from dbo.GD_R_RejseIndtægter_Togsystem_FR&#xA;where PeriodeIndlæst = ?&#xA;and Enhed = 'Delrejser'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Delrejse\Find RD delrejse ikke allokeret sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{865716d5-0669-4349-a6bc-d8e1508f466b}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find RD delrejse ikke allokeret sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Værdi) from ods.RD_RIM_Rejseindtaegter_togsystemer&#xA;where CostObjekt in (&#xA;  select togsystemnummer from ods.MD_G_STAM_Togsystem&#xA;  where Costobjekt = 'Ikke allokeret')&#xA;and Enhed = 'Delrejser'&#xA;and År = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Delrejse\Find RD delrejse sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4B4254A1-B802-4CA5-8558-8B2BC4BA1AF3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find RD delrejse sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Værdi) delrejser from ods.RD_RIM_Rejseindtaegter_togsystemer&#xA;where år = ?&#xA;and Enhed = 'Delrejser'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Delrejse\Gem GD delrejse sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{00e4a910-0bbb-44f6-9900-8a4d1c7424a9}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem GD delrejse sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 88, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Delrejse\Gem RD delrejse ikke allokeret sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0d97a61d-2d32-4e1f-b98c-f8399c63f55d}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem RD delrejse ikke allokeret sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 89, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Delrejse\Gem RD delrejse sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{11606FEF-614D-432A-A072-814794B60ABF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem RD delrejse sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 87, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Delrejse.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6C1891A5-A465-4B9F-9947-2E6C55B7CE6D}"
+          DTS:From="Package\Data check Delrejse\Find RD delrejse sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Data check Delrejse\Gem RD delrejse sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Delrejse.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{C11C8E93-9825-4861-B851-A67AEB0D4440}"
+          DTS:From="Package\Data check Delrejse\Gem RD delrejse sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Data check Delrejse\Find GD delrejse sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Delrejse.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{13375CA4-AD8D-476B-8226-9B17A4355DFD}"
+          DTS:From="Package\Data check Delrejse\Find GD delrejse sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Data check Delrejse\Gem GD delrejse sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Delrejse.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{7BA49FC8-37B8-4DB5-B42F-E5BEDD2F201B}"
+          DTS:From="Package\Data check Delrejse\Gem GD delrejse sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Data check Delrejse\Find RD delrejse ikke allokeret sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Delrejse.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{E84B7E34-8EA0-44B5-B32E-F5F16C33D73F}"
+          DTS:From="Package\Data check Delrejse\Find RD delrejse ikke allokeret sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Data check Delrejse\Gem RD delrejse ikke allokeret sum" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data check Indtægt"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{cd2222b6-ff6d-4cbf-a8b5-35530a14c2d3}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data check Indtægt">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{6ca29de2-62fd-438e-b136-dd102277d163}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_check_sum">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Data check Indtægt\Find GD indtægt sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f127b094-47f7-4a1e-878f-1101074e2c7e}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find GD indtægt sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(værdi) værdi &#xA;from dbo.GD_R_RejseIndtægter_Togsystem_FR&#xA;where PeriodeIndlæst = ?&#xA;and Enhed = 'Indtægt'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Indtægt\Find RD indtægt ikke allokeret sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b9797261-dca1-4350-b625-c8eb082047e0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find RD indtægt ikke allokeret sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Værdi) from ods.RD_RIM_Rejseindtaegter_togsystemer&#xA;where CostObjekt in (&#xA;  select togsystemnummer from ods.MD_G_STAM_Togsystem&#xA;  where Costobjekt = 'Ikke allokeret')&#xA;and Enhed = 'Indtægt'&#xA;and År = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Indtægt\Find RD Indtægt sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{57acb86c-957a-4ada-a3f9-3544ff9d92fb}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find RD Indtægt sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Værdi) delrejser from ods.RD_RIM_Rejseindtaegter_togsystemer&#xA;where år = ?&#xA;and Enhed = 'Indtægt'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Indtægt\Gem GD indtægt sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{839b7d81-9f50-49f2-a284-f820b23836ed}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem GD indtægt sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 91, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Indtægt\Gem RD indtægt ikke allokeret sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{84d4c504-0b3f-465c-a7c8-65c141abefe1}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem RD indtægt ikke allokeret sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 92, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Indtægt\Gem RD indtægt sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{cf32cc12-57f0-4b81-b20a-0b685505d6d9}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem RD indtægt sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 90, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Indtægt.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{42068bd9-f20b-42f6-b816-282d486fa9dc}"
+          DTS:From="Package\Data check Indtægt\Find RD Indtægt sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Data check Indtægt\Gem RD indtægt sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Indtægt.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{b3d8e019-86f3-4772-a756-e03418573427}"
+          DTS:From="Package\Data check Indtægt\Gem RD indtægt sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Data check Indtægt\Find GD indtægt sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Indtægt.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{87e960a4-a0bd-4f98-98ea-8537fbb34f51}"
+          DTS:From="Package\Data check Indtægt\Find GD indtægt sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Data check Indtægt\Gem GD indtægt sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Indtægt.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{79dd1116-5277-4302-8504-2f22f9202ca3}"
+          DTS:From="Package\Data check Indtægt\Gem GD indtægt sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Data check Indtægt\Find RD indtægt ikke allokeret sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Indtægt.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{8bc5e149-8f00-433d-9a1e-495debf4d1a9}"
+          DTS:From="Package\Data check Indtægt\Find RD indtægt ikke allokeret sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Data check Indtægt\Gem RD indtægt ikke allokeret sum" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data check Passagerkm"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3969f4f3-876d-4a49-99b0-e2c1105db2fd}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data check Passagerkm">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{0749b0f1-2239-4a83-81ce-bc5f6bf518a4}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_check_sum">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Data check Passagerkm\Find GD Passagerkm sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{17112001-fd76-4ee7-b6cc-a13b65e676da}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find GD Passagerkm sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(værdi) værdi &#xA;from dbo.GD_R_RejseIndtægter_Togsystem_FR&#xA;where PeriodeIndlæst = ?&#xA;and Enhed = 'Passagerkm'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Passagerkm\Find RD Passagerkm ikke allokeret sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{cb1e1265-f5f0-4aa1-9e69-94565dff77a0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find RD Passagerkm ikke allokeret sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Værdi) from ods.RD_RIM_Rejseindtaegter_togsystemer&#xA;where CostObjekt in (&#xA;  select togsystemnummer from ods.MD_G_STAM_Togsystem&#xA;  where Costobjekt = 'Ikke allokeret')&#xA;and Enhed = 'Passagerkm'&#xA;and År = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Passagerkm\Find RD Passagerkm sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{41260703-8d83-40aa-af09-2f289d640d5a}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find RD Passagerkm sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Værdi) delrejser from ods.RD_RIM_Rejseindtaegter_togsystemer&#xA;where år = ?&#xA;and Enhed = 'Passagerkm'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Passagerkm\Gem GD Passagerkm sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{443706c3-cb05-43bf-9109-92e1793ea611}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem GD Passagerkm sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 94, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Passagerkm\Gem RD Passagerkm ikke allokeret sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{451994d4-0e18-4d71-be15-f1f1e74f008a}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem RD Passagerkm ikke allokeret sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 95, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check Passagerkm\Gem RD Passagerkm sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0393cdcb-ee50-40e7-998b-e554da75c31a}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem RD Passagerkm sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 93, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Passagerkm.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{f3e014fe-83b6-4e43-b73b-1620864c33fa}"
+          DTS:From="Package\Data check Passagerkm\Find RD Passagerkm sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Data check Passagerkm\Gem RD Passagerkm sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{08667d43-366b-459d-93b8-f0300aa33378}"
+          DTS:From="Package\Data check Passagerkm\Gem RD Passagerkm sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Data check Passagerkm\Find GD Passagerkm sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{db5ad4e3-9969-4896-92d9-a5ed3d926990}"
+          DTS:From="Package\Data check Passagerkm\Find GD Passagerkm sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Data check Passagerkm\Gem GD Passagerkm sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{2ad8a2f6-33ce-49cd-9c88-3f7cc479c3df}"
+          DTS:From="Package\Data check Passagerkm\Gem GD Passagerkm sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Data check Passagerkm\Find RD Passagerkm ikke allokeret sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{eb5cef5f-9fba-476e-abb3-05837ac82d8e}"
+          DTS:From="Package\Data check Passagerkm\Find RD Passagerkm ikke allokeret sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Data check Passagerkm\Gem RD Passagerkm ikke allokeret sum" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Find år som loades"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A29F456B-B2D1-4BD2-8A54-368965E87CE6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find år som loades"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="Select value As Periode&#xA; from ods.ctl_dataload&#xA;Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Periode" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fjern eksisterende periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{32A87D90-B7FE-4194-BC02-1405E302675A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern eksisterende periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="DELETE FROM  dbo.[GD_R_RejseIndtægter_Togsystem_FR] where PeriodeIndlæst = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B03D3CC6-1766-4D67-98C4-40F6417FC9C8}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GD_R_RejseIndtægter_Togsystem_FR"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[GD_R_RejseIndtægter_Togsystem_FR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      externalMetadataColumnId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].Columns[togsystemnummer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="togsystemnummer"
+                      externalMetadataColumnId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[togsystemnummer]"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[togsystemnummer]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].Columns[Togsystemnavn_Kort]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystemnavn_Kort"
+                      externalMetadataColumnId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnavn_Kort]"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[Togsystemnavn_Kort]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].Columns[costObjekt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="costObjekt"
+                      externalMetadataColumnId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[costObjekt]"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[costObjekt]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].Columns[Enhed]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Enhed"
+                      externalMetadataColumnId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[Enhed]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].Columns[værdi]"
+                      cachedDataType="r8"
+                      cachedName="værdi"
+                      externalMetadataColumnId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[værdi]"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[værdi]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[togsystemnummer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="togsystemnummer" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[Togsystemnavn_Kort]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystemnavn_Kort" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[costObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="costObjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input].ExternalColumns[værdi]"
+                      dataType="r8"
+                      name="værdi" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\MDW"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MDW"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select convert(Varchar(50), r.År) As PeriodeIndlæst, convert(Varchar(50), s.togsystemnummer) As togsystemnummer,
+s.Togsystemnavn_Kort, s.costObjekt, r.Enhed, r.værdi
+from ods.RD_RIM_Rejseindtaegter_togsystemer r
+join ods.MD_G_STAM_Togsystem s on (r.costObjekt = s.togsystemnummer)
+where r.År = ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0",{0067AEAA-E27D-4E28-B7AC-EA5F6D03EA6E};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\MDW.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[togsystemnummer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[togsystemnummer]"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[togsystemnummer]"
+                      name="togsystemnummer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[Togsystemnavn_Kort]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[Togsystemnavn_Kort]"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[Togsystemnavn_Kort]"
+                      name="Togsystemnavn_Kort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[costObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[costObjekt]"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[costObjekt]"
+                      name="costObjekt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[Enhed]"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[Enhed]"
+                      name="Enhed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[værdi]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[værdi]"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].Columns[værdi]"
+                      name="værdi"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[togsystemnummer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="togsystemnummer" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[Togsystemnavn_Kort]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystemnavn_Kort" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[costObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="costObjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output].ExternalColumns[værdi]"
+                      dataType="r8"
+                      name="værdi" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[togsystemnummer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[togsystemnummer]"
+                      name="togsystemnummer" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[Togsystemnavn_Kort]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[Togsystemnavn_Kort]"
+                      name="Togsystemnavn_Kort" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[costObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[costObjekt]"
+                      name="costObjekt" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[Enhed]"
+                      name="Enhed" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[værdi]"
+                      dataType="r8"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[værdi]"
+                      name="værdi" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\MDW.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs data.Paths[OLE DB Source Output]"
+              endId="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæs data\MDW.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A77DE986-F5F7-48E4-A47D-117478F776C7}"
+      DTS:From="Package\Find år som loades"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Fjern eksisterende periode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{583D72EE-039C-45FC-9E82-1A5CC95FC7FC}"
+      DTS:From="Package\Fjern eksisterende periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Indlæs data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5CD8253E-69B9-45C1-AC50-63D4603ADF4F}"
+      DTS:From="Package\Indlæs data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Data check Delrejse" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{18373686-74EB-49A7-BE14-9E15B784B712}"
+      DTS:From="Package\Data check Delrejse"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Data check Indtægt" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D7F6C328-9429-4975-9CFD-8DAA888986BF}"
+      DTS:From="Package\Data check Indtægt"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Data check Passagerkm" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Delrejse\Find GD delrejse sum"
+          TopLeft="54.4150943396226,125.188679245283" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Delrejse\Find RD delrejse ikke allokeret sum"
+          TopLeft="59.1698113207547,227.037735849057" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Delrejse\Find RD delrejse sum"
+          TopLeft="55.4716981132075,37.0377358490566" />
+        <NodeLayout
+          Size="190,44"
+          Id="Package\Data check Delrejse\Gem GD delrejse sum"
+          TopLeft="297.471698113208,125.754716981132" />
+        <NodeLayout
+          Size="190,44"
+          Id="Package\Data check Delrejse\Gem RD delrejse ikke allokeret sum"
+          TopLeft="299.207547169811,228.660377358491" />
+        <NodeLayout
+          Size="195,44"
+          Id="Package\Data check Delrejse\Gem RD delrejse sum"
+          TopLeft="296.11320754717,39.0754716981132" />
+        <EdgeLayout
+          Id="Package\Data check Delrejse.PrecedenceConstraints[Constraint]"
+          TopLeft="223.207547169811,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.9056603773585,2.03773584905662"
+              Start="0,0"
+              End="65.4056603773585,2.03773584905662">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.4528301886792,0" />
+                  <mssgle:LineSegment
+                    End="36.4528301886792,2.03773584905662" />
+                  <mssgle:LineSegment
+                    End="65.4056603773585,2.03773584905662" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Delrejse.PrecedenceConstraints[Constraint 1]"
+          TopLeft="351.924528301887,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-213.660377358491,42.188679245283"
+              Start="0,0"
+              End="-213.660377358491,34.688679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0943396226415" />
+                  <mssgle:LineSegment
+                    End="-213.660377358491,21.0943396226415" />
+                  <mssgle:LineSegment
+                    End="-213.660377358491,34.688679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Delrejse.PrecedenceConstraints[Constraint 2]"
+          TopLeft="222.150943396226,147.150943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.3207547169811,0.566037735849079"
+              Start="0,0"
+              End="67.8207547169811,0.566037735849079">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37.6603773584906,0" />
+                  <mssgle:LineSegment
+                    End="37.6603773584906,0.566037735849079" />
+                  <mssgle:LineSegment
+                    End="67.8207547169811,0.566037735849079" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Delrejse.PrecedenceConstraints[Constraint 3]"
+          TopLeft="350.792452830189,169.679245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-207.77358490566,57.3584905660377"
+              Start="0,0"
+              End="-207.77358490566,49.8584905660377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.6792452830189" />
+                  <mssgle:LineSegment
+                    End="-207.77358490566,28.6792452830189" />
+                  <mssgle:LineSegment
+                    End="-207.77358490566,49.8584905660377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Delrejse.PrecedenceConstraints[Constraint 4]"
+          TopLeft="226.905660377358,249">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.3018867924528,1.62264150943395"
+              Start="0,0"
+              End="64.8018867924528,1.62264150943395">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.1509433962264,0" />
+                  <mssgle:LineSegment
+                    End="36.1509433962264,1.62264150943395" />
+                  <mssgle:LineSegment
+                    End="64.8018867924528,1.62264150943395" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="548,320"
+          Size="548,364"
+          Id="Package\Data check Delrejse"
+          TopLeft="6.70754716981132,317.990566037736" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Indtægt\Find GD indtægt sum"
+          TopLeft="54.6415094339623,125.188679245283" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Indtægt\Find RD indtægt ikke allokeret sum"
+          TopLeft="59.3962264150943,227.037735849057" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Indtægt\Find RD Indtægt sum"
+          TopLeft="55.6981132075472,37.0377358490565" />
+        <NodeLayout
+          Size="190,44"
+          Id="Package\Data check Indtægt\Gem GD indtægt sum"
+          TopLeft="297.698113207547,125.754716981132" />
+        <NodeLayout
+          Size="190,44"
+          Id="Package\Data check Indtægt\Gem RD indtægt ikke allokeret sum"
+          TopLeft="299.433962264151,228.660377358491" />
+        <NodeLayout
+          Size="195,44"
+          Id="Package\Data check Indtægt\Gem RD indtægt sum"
+          TopLeft="296.339622641509,39.0754716981131" />
+        <EdgeLayout
+          Id="Package\Data check Indtægt.PrecedenceConstraints[Constraint]"
+          TopLeft="223.433962264151,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.9056603773585,2.0377358490565"
+              Start="0,0"
+              End="65.4056603773585,2.0377358490565">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.4528301886793,0" />
+                  <mssgle:LineSegment
+                    End="36.4528301886793,2.0377358490565" />
+                  <mssgle:LineSegment
+                    End="65.4056603773585,2.0377358490565" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Indtægt.PrecedenceConstraints[Constraint 1]"
+          TopLeft="352.150943396226,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-213.660377358491,42.188679245283"
+              Start="0,0"
+              End="-213.660377358491,34.688679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0943396226414" />
+                  <mssgle:LineSegment
+                    End="-213.660377358491,21.0943396226414" />
+                  <mssgle:LineSegment
+                    End="-213.660377358491,34.688679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Indtægt.PrecedenceConstraints[Constraint 2]"
+          TopLeft="222.377358490566,147.150943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.3207547169811,0.566037735849022"
+              Start="0,0"
+              End="67.8207547169811,0.566037735849022">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37.6603773584906,0" />
+                  <mssgle:LineSegment
+                    End="37.6603773584906,0.566037735849022" />
+                  <mssgle:LineSegment
+                    End="67.8207547169811,0.566037735849022" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Indtægt.PrecedenceConstraints[Constraint 3]"
+          TopLeft="392.528301886792,169.679245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-249.283018867925,57.3584905660377"
+              Start="0,0"
+              End="-249.283018867925,49.8584905660377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.6792452830189" />
+                  <mssgle:LineSegment
+                    End="-249.283018867925,28.6792452830189" />
+                  <mssgle:LineSegment
+                    End="-249.283018867925,49.8584905660377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Indtægt.PrecedenceConstraints[Constraint 4]"
+          TopLeft="227.132075471698,249">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.3018867924528,1.62264150943395"
+              Start="0,0"
+              End="64.8018867924528,1.62264150943395">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.1509433962264,0" />
+                  <mssgle:LineSegment
+                    End="36.1509433962264,1.62264150943395" />
+                  <mssgle:LineSegment
+                    End="64.8018867924528,1.62264150943395" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="548,320"
+          Size="548,364"
+          Id="Package\Data check Indtægt"
+          TopLeft="5.5,736.481132075472" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Passagerkm\Find GD Passagerkm sum"
+          TopLeft="54.8301886792453,125.188679245283" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Passagerkm\Find RD Passagerkm ikke allokeret sum"
+          TopLeft="59.5849056603774,227.037735849057" />
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Data check Passagerkm\Find RD Passagerkm sum"
+          TopLeft="55.8867924528302,37.0377358490566" />
+        <NodeLayout
+          Size="190,44"
+          Id="Package\Data check Passagerkm\Gem GD Passagerkm sum"
+          TopLeft="297.88679245283,125.754716981132" />
+        <NodeLayout
+          Size="190,44"
+          Id="Package\Data check Passagerkm\Gem RD Passagerkm ikke allokeret sum"
+          TopLeft="299.622641509434,228.660377358491" />
+        <NodeLayout
+          Size="195,44"
+          Id="Package\Data check Passagerkm\Gem RD Passagerkm sum"
+          TopLeft="296.528301886792,39.0754716981132" />
+        <EdgeLayout
+          Id="Package\Data check Passagerkm.PrecedenceConstraints[Constraint]"
+          TopLeft="223.622641509434,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.9056603773585,2.03773584905662"
+              Start="0,0"
+              End="65.4056603773585,2.03773584905662">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.4528301886793,0" />
+                  <mssgle:LineSegment
+                    End="36.4528301886793,2.03773584905662" />
+                  <mssgle:LineSegment
+                    End="65.4056603773585,2.03773584905662" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 1]"
+          TopLeft="352.339622641509,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-213.660377358491,42.1886792452831"
+              Start="0,0"
+              End="-213.660377358491,34.6886792452831">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0943396226414" />
+                  <mssgle:LineSegment
+                    End="-213.660377358491,21.0943396226414" />
+                  <mssgle:LineSegment
+                    End="-213.660377358491,34.6886792452831" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 2]"
+          TopLeft="222.566037735849,147.150943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.3207547169811,0.566037735849022"
+              Start="0,0"
+              End="67.8207547169811,0.566037735849022">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37.6603773584906,0" />
+                  <mssgle:LineSegment
+                    End="37.6603773584906,0.566037735849022" />
+                  <mssgle:LineSegment
+                    End="67.8207547169811,0.566037735849022" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 3]"
+          TopLeft="392.716981132075,169.679245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-249.283018867925,57.3584905660377"
+              Start="0,0"
+              End="-249.283018867925,49.8584905660377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.6792452830189" />
+                  <mssgle:LineSegment
+                    End="-249.283018867925,28.6792452830189" />
+                  <mssgle:LineSegment
+                    End="-249.283018867925,49.8584905660377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check Passagerkm.PrecedenceConstraints[Constraint 4]"
+          TopLeft="227.320754716981,249">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.3018867924528,1.62264150943406"
+              Start="0,0"
+              End="64.8018867924528,1.62264150943406">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.1509433962264,0" />
+                  <mssgle:LineSegment
+                    End="36.1509433962264,1.62264150943406" />
+                  <mssgle:LineSegment
+                    End="64.8018867924528,1.62264150943406" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="548,320"
+          Size="548,364"
+          Id="Package\Data check Passagerkm"
+          TopLeft="11.311320754717,1141.99056603774" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Find år som loades"
+          TopLeft="59.6509433962264,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Fjern eksisterende periode"
+          TopLeft="84.5943396226415,106.367924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data"
+          TopLeft="55.6509433962264,209.198113207547" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="127.537735849057,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.9433962264151,56.9433962264151"
+              Start="0,0"
+              End="24.9433962264151,49.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.4528301886792" />
+                  <mssgle:LineSegment
+                    End="24.9433962264151,28.4528301886792" />
+                  <mssgle:LineSegment
+                    End="24.9433962264151,49.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="152.481132075472,150.292452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-28.9433962264151,58.9056603773585"
+              Start="0,0"
+              End="-28.9433962264151,51.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-28.9433962264151,29.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-28.9433962264151,51.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="123.537735849057,253.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157.207547169811,64.8679245283019"
+              Start="0,0"
+              End="157.207547169811,57.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.4150943396227" />
+                  <mssgle:LineSegment
+                    End="157.207547169811,32.4150943396227" />
+                  <mssgle:LineSegment
+                    End="157.207547169811,57.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="280.745283018868,681.650943396226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.20754716981131,54.8301886792453"
+              Start="0,0"
+              End="-1.20754716981131,47.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.3962264150944" />
+                  <mssgle:LineSegment
+                    End="-1.20754716981131,27.3962264150944" />
+                  <mssgle:LineSegment
+                    End="-1.20754716981131,47.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="279.537735849057,1100.14150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5.81132075471697,41.8490566037735"
+              Start="0,0"
+              End="5.81132075471697,34.3490566037735">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.9056603773583" />
+                  <mssgle:LineSegment
+                    End="5.81132075471697,20.9056603773583" />
+                  <mssgle:LineSegment
+                    End="5.81132075471697,34.3490566037735" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data\MDW"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="285,44"
+          Id="Package\Indlæs data\GD_R_RejseIndtægter_Togsystem_FR"
+          TopLeft="74.4056603773585,159.235849056604" />
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="143.283018867925,109.811320754717"
+              Start="0,0"
+              End="143.283018867925,102.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.9056603773585" />
+                  <mssgle:LineSegment
+                    End="143.283018867925,54.9056603773585" />
+                  <mssgle:LineSegment
+                    End="143.283018867925,102.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

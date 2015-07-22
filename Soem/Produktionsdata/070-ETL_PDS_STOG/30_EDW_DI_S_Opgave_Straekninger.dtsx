@@ -1,0 +1,2227 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/13/2014 12:48:50 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{C15E3FA2-87CC-4BF8-8A80-A8C98D56994A}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="30_EDW_DI_S_Opgave_Straekninger"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{79F4E228-7C3C-4481-BCC7-209423820A83}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tilføj nye strækninger"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F45D48AC-78B0-4D92-AD8F-2E4BDACE1A33}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tilføj nye strækninger"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Tilføj nye strækninger\Håndter Null værdier"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Håndter Null værdier"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input].Columns[Opgave_Station_start]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_start"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input].Columns[Opgave_Station_start_Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Opgave_Station_start_Navn"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]}) ? #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start]} : #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(Opgave_Station_start_Navn) ? Opgave_Station_start : Opgave_Station_start_Navn</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input].Columns[Opgave_Station_Slut]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Slut"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input].Columns[Opgave_Station_Slut_Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Opgave_Station_Slut_Navn"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]}) ? #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]} : #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(Opgave_Station_Slut_Navn) ? Opgave_Station_Slut : Opgave_Station_Slut_Navn</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Håndter Null værdier.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Håndter Null værdier.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Håndter Null værdier.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\Håndter Null værdier.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Håndter Null værdier.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\Håndter Null værdier.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\Insert Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[edw].[DI_S_Opgave_Straekning]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tilføj nye strækninger\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].Columns[Straekningskode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Straekningskode"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Straekningskode]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Straekningskode]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].Columns[Frastation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Frastation"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Frastation]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].Columns[Frastation_Tekst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Frastation_Tekst"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Frastation_Tekst]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation_Tekst]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].Columns[Tilstation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Tilstation"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tilstation]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].Columns[Tilstation_Tekst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Tilstation_Tekst"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tilstation_Tekst]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation_Tekst]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].Columns[Retningsbestemt_Straekning]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Retningsbestemt_Straekning"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Retningsbestemt_Straekning]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Retningsbestemt_Straekning]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].Columns[Ikke_retningsbestemt_Straekning]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Ikke_retningsbestemt_Straekning"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ikke_retningsbestemt_Straekning]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Ikke_retningsbestemt_Straekning]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[PK_ID]"
+                      dataType="i4"
+                      name="PK_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Straekningskode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Straekningskode" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Frastation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Frastation" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Frastation_Tekst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Frastation_Tekst" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tilstation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Tilstation" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tilstation_Tekst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Tilstation_Tekst" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Retningsbestemt_Straekning]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Retningsbestemt_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ikke_retningsbestemt_Straekning]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Ikke_retningsbestemt_Straekning" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\Lav attributer"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Lav attributer"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input].Columns[Opgave_Station_start]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_start"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input].Columns[Opgave_Station_Slut]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Slut"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input].Columns[Opgave_Station_start_Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Opgave_Station_start_Navn"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input].Columns[Opgave_Station_Slut_Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Opgave_Station_Slut_Navn"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Straekningskode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Straekningskode]"
+                      name="Straekningskode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,10,1252)(#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start]} + "-" + #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,10,1252)(Opgave_Station_start + "-" + Opgave_Station_Slut)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation]"
+                      name="Frastation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)Opgave_Station_start</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation_Tekst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation_Tekst]"
+                      name="Frastation_Tekst"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,100,1252)#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,100,1252)Opgave_Station_start_Navn</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation]"
+                      name="Tilstation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)Opgave_Station_Slut</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation_Tekst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation_Tekst]"
+                      name="Tilstation_Tekst"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,100,1252)#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,100,1252)Opgave_Station_Slut_Navn</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Retningsbestemt_Straekning]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Retningsbestemt_Straekning]"
+                      name="Retningsbestemt_Straekning"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,100,1252)(#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]} + "-" + #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,100,1252)(Opgave_Station_start_Navn + "-" + Opgave_Station_Slut_Navn)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Ikke_retningsbestemt_Straekning]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Ikke_retningsbestemt_Straekning]"
+                      name="Ikke_retningsbestemt_Straekning"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,100,1252)(#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]} &lt; #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]} ? (DT_STR,100,1252)(#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]} + "-" + #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]}) : (DT_STR,100,1252)(#{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]} + "-" + #{Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,100,1252)(Opgave_Station_start_Navn &lt; Opgave_Station_Slut_Navn ? (DT_STR,100,1252)(Opgave_Station_start_Navn + "-" + Opgave_Station_Slut_Navn) : (DT_STR,100,1252)(Opgave_Station_Slut_Navn + "-" + Opgave_Station_start_Navn))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MD_G_STAM_Stationer"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Stationsfork, Stationsnavn 
+from ods.MD_G_STAM_Stationer
+group by Stationsfork, Stationsnavn
+order by Stationsfork, Stationsnavn</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsfork]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].ExternalColumns[Stationsfork]"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsfork]"
+                      name="Stationsfork"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].ExternalColumns[Stationsnavn]"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsnavn]"
+                      name="Stationsnavn"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].ExternalColumns[Stationsfork]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsfork" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].ExternalColumns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnavn" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[Stationsfork]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[Stationsfork]"
+                      name="Stationsfork" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[Stationsnavn]"
+                      name="Stationsnavn" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\Merge Fra station"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge Fra station"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Left Input].Columns[Opgave_Station_start]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_start"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_start]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Left Input].Columns[Opgave_Station_Slut]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Slut"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Slut]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Right Input].Columns[Stationsfork]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsfork"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsfork]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Right Input].Columns[Stationsnavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnavn"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsnavn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start]"
+                      name="Opgave_Station_start"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Left Input].Columns[Opgave_Station_start]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]"
+                      name="Opgave_Station_start_Navn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Right Input].Columns[Stationsnavn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Left Input].Columns[Opgave_Station_Slut]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\Merge Til station"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge Til station"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input].Columns[Opgave_Station_Slut]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Slut"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_Slut]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input].Columns[Opgave_Station_start]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_start"
+                      lineageId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_start]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input].Columns[Opgave_Station_start_Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Opgave_Station_start_Navn"
+                      lineageId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_start_Navn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Right Input].Columns[Stationsfork]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsfork"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsfork]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Right Input].Columns[Stationsnavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnavn"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output].Columns[Stationsnavn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start]"
+                      name="Opgave_Station_start">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input].Columns[Opgave_Station_start]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]"
+                      name="Opgave_Station_start_Navn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input].Columns[Opgave_Station_start_Navn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input].Columns[Opgave_Station_Slut]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut_Navn]"
+                      name="Opgave_Station_Slut_Navn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Right Input].Columns[Stationsnavn]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\Multicast"
+              componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+              contactInfo="Multicast;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates copies of a dataset."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Tilføj nye strækninger\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Tilføj nye strækninger\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Multicast.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Tilføj nye strækninger\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\OLE DB Command"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Executes an SQL command for each row in a dataset."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [edw].[DI_S_Opgave_Straekning] SET [Frastation_Tekst] = ?,[Ikke_retningsbestemt_Straekning] = ?,[Retningsbestemt_Straekning] = ?,[Tilstation_Tekst] = ? WHERE [Straekningskode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tilføj nye strækninger\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].Columns[Frastation_Tekst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Frastation_Tekst"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation_Tekst]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].Columns[Ikke_retningsbestemt_Straekning]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Ikke_retningsbestemt_Straekning"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Ikke_retningsbestemt_Straekning]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].Columns[Retningsbestemt_Straekning]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Retningsbestemt_Straekning"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Retningsbestemt_Straekning]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].Columns[Straekningskode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Straekningskode"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Straekningskode]" />
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].Columns[Tilstation_Tekst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Tilstation_Tekst"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation_Tekst]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\Slowly Changing Dimension"
+              componentClassID="{25BBB0C5-369B-4303-B3DF-D0DC741DEE58}"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a slowly changing dimension."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [Frastation], [Frastation_Tekst], [Ikke_retningsbestemt_Straekning], [Retningsbestemt_Straekning], [Straekningskode], [Tilstation], [Tilstation_Tekst] FROM [edw].[DI_S_Opgave_Straekning]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Frastation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Frastation"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Frastation]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Frastation_Tekst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Frastation_Tekst"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Frastation_Tekst]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Frastation_Tekst]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Ikke_retningsbestemt_Straekning]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Ikke_retningsbestemt_Straekning"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Ikke_retningsbestemt_Straekning]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Ikke_retningsbestemt_Straekning]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Retningsbestemt_Straekning]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Retningsbestemt_Straekning"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Retningsbestemt_Straekning]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Retningsbestemt_Straekning]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Straekningskode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Straekningskode"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Straekningskode]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Straekningskode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Tilstation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Tilstation"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Tilstation]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Tilstation_Tekst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Tilstation_Tekst"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Tilstation_Tekst]"
+                      lineageId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output].Columns[Tilstation_Tekst]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Frastation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Frastation" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Frastation_Tekst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Frastation_Tekst" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Ikke_retningsbestemt_Straekning]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Ikke_retningsbestemt_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Retningsbestemt_Straekning]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Retningsbestemt_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Straekningskode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Straekningskode" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Tilstation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Tilstation" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Tilstation_Tekst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Tilstation_Tekst" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\Sort til station"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts data."
+              name="Sort til station"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tilføj nye strækninger\Sort til station.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Sort til station.Inputs[Sort Input].Columns[Opgave_Station_start]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_start"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Sort til station.Inputs[Sort Input].Columns[Opgave_Station_start_Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Opgave_Station_start_Navn"
+                      lineageId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tilføj nye strækninger\Sort til station.Inputs[Sort Input].Columns[Opgave_Station_Slut]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Slut"
+                      lineageId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_start]"
+                      name="Opgave_Station_start">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_start_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_start_Navn]"
+                      name="Opgave_Station_start_Navn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_start_Navn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output].Columns[Opgave_Station_Slut]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TD_Strækning_S_Lokofører_Opgaver"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Opgave_Station_start, Opgave_Station_Slut
+from ods.TD_Strækning_S_Lokofører_Opgaver
+group by Opgave_Station_start, Opgave_Station_Slut
+order by Opgave_Station_start</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_start]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_start]"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_start]"
+                      name="Opgave_Station_start"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_Slut]"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Opgave_Station_start" />
+                    <externalMetadataColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Opgave_Station_Slut" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_start]"
+                      name="Opgave_Station_start" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Changing Attribute Updates Output]"
+              endId="Package\Tilføj nye strækninger\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Derived Column Output]"
+              endId="Package\Tilføj nye strækninger\Lav attributer.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Tilføj nye strækninger\Håndter Null værdier.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Derived Column Output1]"
+              endId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="Derived Column Output"
+              startId="Package\Tilføj nye strækninger\Lav attributer.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Merge Join Output]"
+              endId="Package\Tilføj nye strækninger\Sort til station.Inputs[Sort Input]"
+              name="Merge Join Output"
+              startId="Package\Tilføj nye strækninger\Merge Fra station.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Merge Join Output1]"
+              endId="Package\Tilføj nye strækninger\Håndter Null værdier.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\Tilføj nye strækninger\Merge Til station.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Multicast Output 1]"
+              endId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Right Input]"
+              name="Multicast Output 1"
+              startId="Package\Tilføj nye strækninger\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Multicast Output 2]"
+              endId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Right Input]"
+              name="Multicast Output 2"
+              startId="Package\Tilføj nye strækninger\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[New Output]"
+              endId="Package\Tilføj nye strækninger\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\Tilføj nye strækninger\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[OLE DB Source Output]"
+              endId="Package\Tilføj nye strækninger\Multicast.Inputs[Multicast Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Tilføj nye strækninger\MD_G_STAM_Stationer.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[OLE DB Source Output1]"
+              endId="Package\Tilføj nye strækninger\Merge Fra station.Inputs[Merge Join Left Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Tilføj nye strækninger.Paths[Sort Output]"
+              endId="Package\Tilføj nye strækninger\Merge Til station.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Tilføj nye strækninger\Sort til station.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="192,44"
+          Id="Package\Tilføj nye strækninger"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tilføj nye strækninger">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Insert Destination"
+          TopLeft="195.764150943396,847.990566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Merge Fra station"
+          TopLeft="110.330188679245,258.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Lav attributer"
+          TopLeft="272.066037735849,662.481132075472" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Slowly Changing Dimension"
+          TopLeft="273.084905660377,766.330188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Merge Til station"
+          TopLeft="272.066037735849,481.764150943396" />
+        <NodeLayout
+          Size="212,44"
+          Id="Package\Tilføj nye strækninger\MD_G_STAM_Stationer"
+          TopLeft="350.933962264151,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\OLE DB Command"
+          TopLeft="350.405660377359,847.990566037736" />
+        <NodeLayout
+          Size="244,44"
+          Id="Package\Tilføj nye strækninger\TD_Strækning_S_Lokofører_Opgaver"
+          TopLeft="5.5,22.5188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Sort til station"
+          TopLeft="110.292452830189,357.952830188679" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Multicast"
+          TopLeft="403.839622641509,129.311320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tilføj nye strækninger\Håndter Null værdier"
+          TopLeft="269.084905660377,573.61320754717" />
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Multicast Output 1]"
+          TopLeft="471.72641509434,173.235849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-272.754716981132,84.9056603773585"
+              Start="0,0"
+              End="-272.754716981132,77.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-272.754716981132,42.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-272.754716981132,77.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Merge Join Output1]"
+          TopLeft="339.952830188679,525.688679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.98113207547169,47.9245283018868"
+              Start="0,0"
+              End="-2.98113207547169,40.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547169,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547169,40.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Merge Join Output]"
+          TopLeft="178.216981132075,302.066037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.0377358490566166,55.8867924528302"
+              Start="0,0"
+              End="-0.0377358490566166,48.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,27.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,48.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Derived Column Output1]"
+          TopLeft="339.952830188679,706.405660377358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.01886792452831,59.9245283018869"
+              Start="0,0"
+              End="1.01886792452831,52.4245283018869">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.9622641509434" />
+                  <mssgle:LineSegment
+                    End="1.01886792452831,29.9622641509434" />
+                  <mssgle:LineSegment
+                    End="1.01886792452831,52.4245283018869" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Derived Column Output]"
+          TopLeft="336.971698113208,617.537735849057">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.98113207547169,44.9433962264151"
+              Start="0,0"
+              End="2.98113207547169,37.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4528301886793" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,22.4528301886793" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,37.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Changing Attribute Updates Output]"
+          TopLeft="361.72641509434,810.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.566037735849,37.7358490566038"
+              Start="0,0"
+              End="56.566037735849,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283018" />
+                  <mssgle:LineSegment
+                    End="56.566037735849,18.8679245283018" />
+                  <mssgle:LineSegment
+                    End="56.566037735849,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.2508873820755,23.8679245283018,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Sort Output]"
+          TopLeft="178.179245283019,401.877358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="161.77358490566,79.8867924528302"
+              Start="0,0"
+              End="161.77358490566,72.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.9245283018868" />
+                  <mssgle:LineSegment
+                    End="161.77358490566,39.9245283018868" />
+                  <mssgle:LineSegment
+                    End="161.77358490566,72.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[OLE DB Source Output1]"
+          TopLeft="127.27358490566,66.4433962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.9433962264151,191.698113207547"
+              Start="0,0"
+              End="50.9433962264151,184.198113207547">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,95.8490566037736" />
+                  <mssgle:LineSegment
+                    End="50.9433962264151,95.8490566037736" />
+                  <mssgle:LineSegment
+                    End="50.9433962264151,184.198113207547" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[OLE DB Source Output]"
+          TopLeft="456.745283018868,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.9811320754717,79.8867924528302"
+              Start="0,0"
+              End="14.9811320754717,72.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.9245283018868" />
+                  <mssgle:LineSegment
+                    End="14.9811320754717,39.9245283018868" />
+                  <mssgle:LineSegment
+                    End="14.9811320754717,72.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[New Output]"
+          TopLeft="320.216981132075,810.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56.5660377358491,37.7358490566038"
+              Start="0,0"
+              End="-56.5660377358491,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283018" />
+                  <mssgle:LineSegment
+                    End="-56.5660377358491,18.8679245283018" />
+                  <mssgle:LineSegment
+                    End="-56.5660377358491,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.3744055866745,23.8679245283018,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tilføj nye strækninger.Paths[Multicast Output 2]"
+          TopLeft="492.481132075472,173.235849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-131.77358490566,308.528301886792"
+              Start="0,0"
+              End="-131.77358490566,301.028301886792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,231.396226415094" />
+                  <mssgle:LineSegment
+                    End="-131.77358490566,231.396226415094" />
+                  <mssgle:LineSegment
+                    End="-131.77358490566,301.028301886792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

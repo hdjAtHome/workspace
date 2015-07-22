@@ -1,0 +1,1292 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/23/2014 1:30:07 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{055FE9CC-0D56-4A9D-819E-0F8FDEF64BA9}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="20_RD_RIM_Rejseindtaegter"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{65E557EC-0E24-4CC5-9533-DC941B871034}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[GD_R_REJSERINDTÆGTER]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{0951A2AB-5C91-4F19-8BA1-18C5FF0800A5}"
+      DTS:ObjectName="GD_R_REJSERINDTÆGTER">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">"\\\\"+@[$Project::MDWSERVER]+"\\Files\\"+ @[$Project::MDWDATABASE]+"\\RejseData_RIM\\GD_R_REJSERINDTÆGTER.xlsx"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\oesmsqlt01\soem\Files\mdw_udv4\RejseData_RIM\GD_R_REJSERINDTÆGTER.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB9D4C01-B849-4052-A5BC-E4D26BB584C1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute exec etl RD_RIM_Rejseindtaegter_beregn_for_loadperiode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{70DA8FED-C018-420E-9290-77A261F28188}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute exec etl RD_RIM_Rejseindtaegter_beregn_for_loadperiode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0A3E1081-84CA-4B6E-8DC5-EC04B21B3E99}"
+          SQLTask:SqlStatementSource="exec etl.RD_RIM_Rejseindtaegter_beregn_for_loadperiode ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Find periode for GD load  - aka model_periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d7abf7c9-7d5d-4d2a-b351-99aa98cefc8a}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find periode for GD load  - aka model_periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0A3E1081-84CA-4B6E-8DC5-EC04B21B3E99}"
+          SQLTask:SqlStatementSource="Select Value As periode from ods.ctl_dataload&#xA;Where kilde_system = 'alle'&#xA;and Variable = 'Model_Periode'&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="periode"
+            SQLTask:DtsVariableName="User::Periode" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Indlæst data fra fil GD_R_Rejseindtægter"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7C2C0956-C37D-4F40-B4EC-7E111FDE4310}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæst data fra fil GD_R_Rejseindtægter"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="GD_R_REJSERINDTÆGTER"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">GD_R_REJSERINDTÆGTER$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[GD_R_REJSERINDTÆGTER]"
+                  connectionManagerRefId="Package.ConnectionManagers[GD_R_REJSERINDTÆGTER]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[PeriodeIndlæst]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[PeriodeIndlæst]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnr]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Stationsnr]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnr]"
+                      name="Stationsnr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnavn]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Stationsnavn]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnavn]"
+                      name="Stationsnavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationstype]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Stationstype]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationstype]"
+                      name="Stationstype"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Landsdel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Landsdel]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Landsdel]"
+                      name="Landsdel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Togsystem]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Togsystem]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Togsystem]"
+                      name="Togsystem"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TogsystemNavn]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[TogsystemNavn]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TogsystemNavn]"
+                      name="TogsystemNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[CostObjekt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[CostObjekt]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[CostObjekt]"
+                      name="CostObjekt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Produkt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Produkt]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Produkt]"
+                      name="Produkt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TidsintervalNavn]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[TidsintervalNavn]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TidsintervalNavn]"
+                      name="TidsintervalNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Enhed]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Enhed]"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Enhed]"
+                      name="Enhed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Værdi]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Værdi]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Værdi]"
+                      name="Værdi"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[PeriodeIndlæst]"
+                      dataType="r8"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Stationsnr]"
+                      dataType="r8"
+                      name="Stationsnr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Stationsnavn]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stationsnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Stationstype]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stationstype" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Landsdel]"
+                      dataType="wstr"
+                      length="255"
+                      name="Landsdel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Togsystem]"
+                      dataType="wstr"
+                      length="255"
+                      name="Togsystem" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[TogsystemNavn]"
+                      dataType="wstr"
+                      length="255"
+                      name="TogsystemNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[CostObjekt]"
+                      dataType="wstr"
+                      length="255"
+                      name="CostObjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Produkt]"
+                      dataType="wstr"
+                      length="255"
+                      name="Produkt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[TidsintervalNavn]"
+                      dataType="wstr"
+                      length="255"
+                      name="TidsintervalNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Enhed]"
+                      dataType="wstr"
+                      length="255"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].ExternalColumns[Værdi]"
+                      dataType="r8"
+                      name="Værdi" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[PeriodeIndlæst]"
+                      dataType="r8"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Stationsnr]"
+                      dataType="r8"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Stationsnr]"
+                      name="Stationsnr" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Stationsnavn]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Stationsnavn]"
+                      name="Stationsnavn" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Stationstype]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Stationstype]"
+                      name="Stationstype" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Landsdel]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Landsdel]"
+                      name="Landsdel" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Togsystem]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Togsystem]"
+                      name="Togsystem" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[TogsystemNavn]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[TogsystemNavn]"
+                      name="TogsystemNavn" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[CostObjekt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[CostObjekt]"
+                      name="CostObjekt" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Produkt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Produkt]"
+                      name="Produkt" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[TidsintervalNavn]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[TidsintervalNavn]"
+                      name="TidsintervalNavn" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Enhed]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Enhed]"
+                      name="Enhed" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Værdi]"
+                      dataType="r8"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[Værdi]"
+                      name="Værdi" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Konverter kolonner"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[Stationsnr]"
+                      cachedDataType="r8"
+                      cachedName="Stationsnr"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnr]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[Stationsnavn]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Stationsnavn"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnavn]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[Stationstype]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Stationstype"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationstype]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[Landsdel]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Landsdel"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Landsdel]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[Togsystem]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Togsystem"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Togsystem]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[TogsystemNavn]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TogsystemNavn"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TogsystemNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[CostObjekt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CostObjekt"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[CostObjekt]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[Produkt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Produkt"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Produkt]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[TidsintervalNavn]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TidsintervalNavn"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TidsintervalNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input].Columns[Enhed]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Enhed"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Enhed]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Stationsnavn_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Stationsnavn_conv]"
+                      name="Stationsnavn_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnavn]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Stationsnavn,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[StationsType_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[StationsType_conv]"
+                      name="StationsType_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationstype]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Stationstype,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Landsdel_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Landsdel_conv]"
+                      name="Landsdel_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Landsdel]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Landsdel,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Togsystem_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Togsystem_conv]"
+                      name="Togsystem_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Togsystem]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Togsystem,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Togsystem_navn_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Togsystem_navn_conv]"
+                      name="Togsystem_navn_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TogsystemNavn]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(TogsystemNavn,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Costobjekt_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Costobjekt_conv]"
+                      name="Costobjekt_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[CostObjekt]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(CostObjekt,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Produkt_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Produkt_conv]"
+                      name="Produkt_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Produkt]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Produkt,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[TidsintervalNavn_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[TidsintervalNavn_conv]"
+                      name="TidsintervalNavn_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[TidsintervalNavn]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(TidsintervalNavn,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Enhed_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Enhed_conv]"
+                      name="Enhed_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Enhed]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Enhed,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Stationsnr_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Stationsnr_conv]"
+                      name="Stationsnr_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([REVERSE]([SUBSTRING]([REVERSE]("00" + (DT_STR,3,1252)#{Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Stationsnr]}),1,3)))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(REVERSE(SUBSTRING(REVERSE("00" + (DT_STR,3,1252)Stationsnr),1,3)))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="RD_RIM_Rejseindtaegter"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[RD_RIM_Rejseindtaegter]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Connections[OleDbConnection]"
+                  connectionManagerID="{0A3E1081-84CA-4B6E-8DC5-EC04B21B3E99}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[PeriodeIndlæst]"
+                      cachedDataType="r8"
+                      cachedName="PeriodeIndlæst"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Værdi]"
+                      cachedDataType="r8"
+                      cachedName="Værdi"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Værdi]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output].Columns[Værdi]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Stationsnr_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnr_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnr]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Stationsnr_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Stationsnavn_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnavn_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnavn]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Stationsnavn_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[StationsType_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="StationsType_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Stationstype]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[StationsType_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Landsdel_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Landsdel_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Landsdel]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Landsdel_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Togsystem_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystem_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Togsystem_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Togsystem_navn_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystem_navn_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Togsystem_navn_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Costobjekt_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Costobjekt_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[CostObjekt]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Costobjekt_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Produkt_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Produkt_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Produkt_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[TidsintervalNavn_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TidsintervalNavn_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[TidsintervalNavn]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[TidsintervalNavn_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].Columns[Enhed_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Enhed_conv"
+                      externalMetadataColumnId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output].Columns[Enhed_conv]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Stationstype]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationstype" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Landsdel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Landsdel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystem" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TogsystemNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[CostObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CostObjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Produkt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[TidsintervalNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TidsintervalNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input].ExternalColumns[Værdi]"
+                      dataType="r8"
+                      name="Værdi" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæst data fra fil GD_R_Rejseindtægter.Paths[Derived Column Output]"
+              endId="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Indlæst data fra fil GD_R_Rejseindtægter.Paths[Excel Source Output]"
+              endId="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE TABLE ods RD_RIM_Rejseindtaegter"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="ods RD_RIM_Rejseindtaegter"
+      DTS:DTSID="{0B51F0C6-12F4-4304-A4F9-C312DE8BA622}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE TABLE ods RD_RIM_Rejseindtaegter"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0A3E1081-84CA-4B6E-8DC5-EC04B21B3E99}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].[RD_RIM_Rejseindtaegter]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{390DC970-BDB3-4D17-830E-EF0C26092E46}"
+      DTS:From="Package\Indlæst data fra fil GD_R_Rejseindtægter"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute exec etl RD_RIM_Rejseindtaegter_beregn_for_loadperiode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AFB593D1-9D3D-47B6-9EFA-CD9CACB93E0F}"
+      DTS:From="Package\TRUNCATE TABLE ods RD_RIM_Rejseindtaegter"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Indlæst data fra fil GD_R_Rejseindtægter" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BFA98942-19DB-4A16-924A-C083184445D9}"
+      DTS:From="Package\Find periode for GD load  - aka model_periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\TRUNCATE TABLE ods RD_RIM_Rejseindtaegter" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="394,44"
+          Id="Package\Execute exec etl RD_RIM_Rejseindtaegter_beregn_for_loadperiode"
+          TopLeft="5.5,322.141509433962" />
+        <NodeLayout
+          Size="348,44"
+          Id="Package\Find periode for GD load  - aka model_periode"
+          TopLeft="28.4433962264151,5.5" />
+        <NodeLayout
+          Size="323,44"
+          Id="Package\Indlæst data fra fil GD_R_Rejseindtægter"
+          TopLeft="40.9339622641509,218.066037735849" />
+        <NodeLayout
+          Size="336,44"
+          Id="Package\TRUNCATE TABLE ods RD_RIM_Rejseindtaegter"
+          TopLeft="34.4433962264151,103.27358490566" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="202.669811320755,261.990566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.1509433962264"
+              Start="0,0"
+              End="0,52.6509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.6509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="202.669811320755,147.198113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.8679245283019"
+              Start="0,0"
+              End="0,63.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="202.669811320755,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.8490566037736"
+              Start="0,0"
+              End="0,46.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæst data fra fil GD_R_Rejseindtægter">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213,44"
+          Id="Package\Indlæst data fra fil GD_R_Rejseindtægter\RD_RIM_Rejseindtaegter"
+          TopLeft="114.330188679245,204.179245283019" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæst data fra fil GD_R_Rejseindtægter\Konverter kolonner"
+          TopLeft="106.330188679245,103.349056603774" />
+        <NodeLayout
+          Size="213,44"
+          Id="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Indlæst data fra fil GD_R_Rejseindtægter.Paths[Excel Source Output]"
+          TopLeft="111.801886792453,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.4150943396226,53.9245283018868"
+              Start="0,0"
+              End="62.4150943396226,46.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.9433962264151" />
+                  <mssgle:LineSegment
+                    End="62.4150943396226,26.9433962264151" />
+                  <mssgle:LineSegment
+                    End="62.4150943396226,46.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæst data fra fil GD_R_Rejseindtægter.Paths[Derived Column Output]"
+          TopLeft="174.216981132075,147.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46.4150943396227,56.9056603773585"
+              Start="0,0"
+              End="46.4150943396227,49.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.4528301886793" />
+                  <mssgle:LineSegment
+                    End="46.4150943396227,28.4528301886793" />
+                  <mssgle:LineSegment
+                    End="46.4150943396227,49.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Indlæst data fra fil GD_R_Rejseindtægter\GD_R_REJSERINDTÆGTER">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

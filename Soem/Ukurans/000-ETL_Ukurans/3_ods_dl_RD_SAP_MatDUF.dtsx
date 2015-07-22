@@ -1,0 +1,2131 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/20/2011 1:31:42 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB073913"
+  DTS:CreatorName="DSB\PAMA2610"
+  DTS:DTSID="{EFDEEFA9-C728-4666-8468-84A79C8AAB1F}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="3_ods_dl_RD_SAP_MatDUF"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="306"
+  DTS:VersionGUID="{E652303D-590B-49F6-BF73-DDF034CA6238}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Ukurans_L]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="L1720"
+      DTS:DTSID="{35955AEB-C505-405F-A4E8-7759BFBD547D}"
+      DTS:ObjectName="Ukurans_L">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::v_FileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="RaggedRight"
+          DTS:LocaleID="1030"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column1"
+              DTS:DTSID="{048D0442-EB6F-493B-AF3A-0319ABB9425B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1800F472-6820-48F7-B477-83E29872DFE8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATABASE">
+      <DTS:VariableValue
+        DTS:DataType="8">Ukurans</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CB97A6DB-BC41-4C67-9EF3-202472A815F1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SERVER">
+      <DTS:VariableValue
+        DTS:DataType="8">mssqlp01\alpha</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2D1D6BCE-A324-4BE4-A034-4043935D3E18}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_BeregnDato">
+      <DTS:VariableValue
+        DTS:DataType="7">1/10/2014 12:16:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08AE693B-46A3-443A-A489-5DC0EB381CB3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Dato">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{29EDE27A-1D9D-443C-8B34-B692814A0878}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Fabrik">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08535C75-27E5-4669-BF09-E152678F0E2C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_FileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{35C40293-C95B-4383-8C82-96D491103483}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_num_AntalMat">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F2B7A2A6-2BB0-4224-882D-9260BB0A1A41}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_sum_Beholdning">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CLEAN RD table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{766D2393-1995-471D-8ECE-4CB316A3FE08}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CLEAN RD table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="truncate table  [ods].[RD_SAP_MatDUF]&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Hent BeregnDato"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{601B4EDC-1148-4EDF-BF33-16F2BF372C43}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hent BeregnDato"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="select cast(left(vaerdi, 8) + '01' as datetime) v_BeregnDato&#xA;from edw.md_styringstabel&#xA;where parameter = 'RegnOpdtDato'&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="v_BeregnDato"
+            SQLTask:DtsVariableName="User::v_BeregnDato" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Iteration trough Ukurans_L files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Iteration trough Ukurans_L files"
+      DTS:DTSID="{D9FB9BD0-E64B-4F2C-8C94-52E75429C8B1}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Iteration trough Ukurans_L files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{01F48BDD-FAF7-4F0E-8A6E-9756A0CECE46}"
+        DTS:ObjectName="{01F48BDD-FAF7-4F0E-8A6E-9756A0CECE46}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="P:\12_Ukurans\10_Data\01_SAP_Input\Aktuel_periode" />
+            <FEFEProperty
+              FileSpec="L*.txt" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\CLEAN temporal table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5242AB6E-DAC2-4D93-9337-48B517903138}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="CLEAN temporal table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+              SQLTask:SqlStatementSource="truncate table ods.TD_indlaes_useq&#xA;GO&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Data Flow Task"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{415A1982-838B-41CC-8676-6A0C4AA55F22}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles"
+                  componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+                  contactInfo="Conditional Split;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="FILT not-titles"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Inputs[Conditional Split Input].Columns[Column1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="500"
+                          cachedName="Column1"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[No title rows except behold total]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="No title rows except behold total"
+                      synchronousInputId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[SUBSTRING](#{Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]},1,5) != "Antal" &amp;&amp; [SUBSTRING](#{Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]},1,4) != "Anal" &amp;&amp; [SUBSTRING](#{Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]},2,4) != "Mat." &amp;&amp; [SUBSTRING](#{Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]},21,15) != "Aktuel beholdn." &amp;&amp; [SUBSTRING](#{Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]},21,9) != "MRPcontr." &amp;&amp; [SUBSTRING](#{Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]},2,6) != "------"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(Column1,1,5) != "Antal" &amp;&amp; SUBSTRING(Column1,1,4) != "Anal" &amp;&amp; SUBSTRING(Column1,2,4) != "Mat." &amp;&amp; SUBSTRING(Column1,21,15) != "Aktuel beholdn." &amp;&amp; SUBSTRING(Column1,21,9) != "MRPcontr." &amp;&amp; SUBSTRING(Column1,2,6) != "------"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[Title rows]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Title rows"
+                      synchronousInputId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="TD_indlaes_useq"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[TD_indlaes_useq]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Connections[OleDbConnection]"
+                      connectionManagerID="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Ukurans]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Inputs[OLE DB Destination Input].Columns[Column1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="500"
+                          cachedName="Column1"
+                          externalMetadataColumnId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Inputs[OLE DB Destination Input].ExternalColumns[Række]"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Inputs[OLE DB Destination Input].ExternalColumns[Række]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          name="Række" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L"
+                  componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                  contactInfo="Flat File Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1030"
+                  name="Ukurans L"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Ukurans_L]"
+                      connectionManagerRefId="Package.ConnectionManagers[Ukurans_L]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].ExternalColumns[Column1]"
+                          length="500"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].Columns[Column1]"
+                          name="Column1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output].ExternalColumns[Column1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="Column1" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Iteration trough Ukurans_L files\Data Flow Task.Paths[Flat File Source Output]"
+                  endId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Inputs[Conditional Split Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L.Outputs[Flat File Source Output]" />
+                <path
+                  refId="Package\Iteration trough Ukurans_L files\Data Flow Task.Paths[No title rows]"
+                  endId="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq.Inputs[OLE DB Destination Input]"
+                  name="No title rows"
+                  startId="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles.Outputs[No title rows except behold total]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Read txt files"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Read txt files"
+          DTS:Disabled="True"
+          DTS:DTSID="{AF60EFCD-A710-48CA-9379-FA25E7CD6BC0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Read txt files"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ScriptTask_345d3b7f5ce346349bda5df5bb2c56d5"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="VisualBasic"
+              ReadOnlyVariables="v_FileName">
+              <ProjectItem
+                Name="My Project\AssemblyInfo.vb"
+                Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ScriptTask_345d3b7f5ce346349bda5df5bb2c56d5.vbproj")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("DSB")> 
+<Assembly: AssemblyProduct("ScriptTask_345d3b7f5ce346349bda5df5bb2c56d5.vbproj")> 
+<Assembly: AssemblyCopyright("Copyright @ DSB 2013")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("b4428dfb-2977-490c-ba9a-aabf9cebfdcf")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+              <ProjectItem
+                Name="ScriptMain.vb"
+                Encoding="UTF8"><![CDATA[' Microsoft SQL Server Integration Services Script Task
+' Write scripts using Microsoft Visual Basic
+' The ScriptMain class is the entry point of the Script Task.
+
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+	Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+	Enum ScriptResults
+		Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+		Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+	End Enum
+
+	' The execution engine calls this method when the task executes.
+	' To access the object model, use the Dts object. Connections, variables, events,
+	' and logging features are available as static members of the Dts class.
+	' Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+	' 
+	' To open Code and Text Editor Help, press F1.
+	' To open Object Browser, press Ctrl+Alt+J.
+
+	Public Sub Main()
+		'
+		' Add your code here
+        '
+        Dim variables As Variables
+        If Dts.Variables.Contains("v_FileName") = True Then
+            Dts.VariableDispenser.LockOneForRead("v_FileName", variables)
+        End If
+
+        MsgBox(CStr(variables("v_FileName").Value))
+
+		Dts.TaskResult = ScriptResults.Success
+	End Sub
+
+End Class]]></ProjectItem>
+              <ProjectItem
+                Name="My Project\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
+                Name="My Project\Settings.Designer.vb"
+                Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>scripttask_345d3b7f5ce346349bda5df5bb2c56d5</msb:CodeName>
+		<msb:DisplayName>scripttask_345d3b7f5ce346349bda5df5bb2c56d5</msb:DisplayName>
+		<msb:ProjectId>{1D4A1E6F-89C8-441E-AF14-1327C995D35B}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="scripttask_345d3b7f5ce346349bda5df5bb2c56d5.vbproj"/>
+		<msb:File Include="My Project\AssemblyInfo.vb"/>
+		<msb:File Include="My Project\Resources.resx"/>
+		<msb:File Include="ScriptMain.vb"/>
+		<msb:File Include="My Project\Resources.Designer.vb"/>
+		<msb:File Include="My Project\Settings.settings"/>
+		<msb:File Include="My Project\Settings.Designer.vb"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="My Project\Resources.resx"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+              <ProjectItem
+                Name="scripttask_345d3b7f5ce346349bda5df5bb2c56d5.vbproj"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- This section defines project-level properties.
+
+       Configuration - Specifies whether the default configuration is Release or Debug.
+       Platform - Specifies what CPU the output of this project can run on.
+       OutputType - Must be "Library" for VSTA.
+       NoStandardLibraries - Set to "false" for VSTA.
+       RootNamespace - In C#, this specifies the namespace given to new files.
+                       In Visual Basic, all objects are wrapped in this namespace at runtime.
+       AssemblyName - Name of the output assembly.
+  -->
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ScriptTask_345d3b7f5ce346349bda5df5bb2c56d5.vbproj</RootNamespace>
+    <AssemblyName>ScriptTask_345d3b7f5ce346349bda5df5bb2c56d5.vbproj</AssemblyName>
+    <StartupObject></StartupObject>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <ProjectGuid>{D2C6A701-BE90-4549-9AAE-7FFCEDE3982D}</ProjectGuid>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Debug" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants></DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Release" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants></DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <!-- This section enables pre- and post-build steps. However,
+       it is recommended that MSBuild tasks be used instead of these properties.
+  -->
+  <PropertyGroup>
+    <PreBuildEvent></PreBuildEvent>
+    <PostBuildEvent></PostBuildEvent>
+  </PropertyGroup>
+  <!-- This sections specifies references for the project. -->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <!-- Visual Basic supports Importing namespaces (equivalent to using statements in C#).-->
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <!-- This section defines the user source files that are part of the
+       project.
+
+       Compile - Specifies a source file to compile.
+       EmbeddedResource - Specifies a .resx file for embedded resources.
+       None - Specifies a file that is not to be passed to the compiler (for instance,
+              a text file or XML file).
+       AppDesigner - Specifies the directory where the application properties files can
+                     be found.
+  -->
+  <ItemGroup>
+    <AppDesigner Include="My Project\" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptMain.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <!-- Include the default configuration information and metadata files for the add-in.
+         These files are copied to the build output directory when the project is
+         built, and the path to the configuration file is passed to add-in on the command
+         line when debugging.
+    -->
+  </ItemGroup>
+  <!-- Include the build rules for a VB project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\9.0\InstallDir#\devenv.exe" />
+        <Host Name="SSIS_ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+              <ProjectItem
+                Name="My Project\Resources.Designer.vb"
+                Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace]]></ProjectItem>
+              <BinaryItem
+                Name="ScriptTask_345d3b7f5ce346349bda5df5bb2c56d5.vbproj.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAG/+rVUAAAAAAAAAAOAAAiELAQsAABwAAAAIAAAAAAAAjjoA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAIAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAADg6AABTAAAAAEAAAIgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAlBoAAAAgAAAAHAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAIgEAAAAQAAAAAYAAAAeAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAJAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABw
+OgAAAAAAAEgAAAACAAUAzCMAAGwWAAABAAAAAAAAABQjAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKAEAAAoqHgIoBAAACiqmcwYAAAqAAQAABHMHAAAKgAIA
+AARzCAAACoADAAAEcwkAAAqABAAABCoAABMwAQALAAAAAQAAEX4BAAAEbwoAAAoqABMwAQALAAAA
+AgAAEX4CAAAEbwsAAAoqABMwAQALAAAAAwAAEX4DAAAEbwwAAAoqABMwAQALAAAABAAAEX4EAAAE
+bw0AAAoqABMwAgANAAAABQAAEQIDKBEAAAooEgAACioAAAATMAEABwAAAAYAABECKBMAAAoqABMw
+AQALAAAABwAAEdAFAAACKBQAAAoqABMwAQAHAAAACAAAEQIoFQAACioAEzABABAAAAAJAAARAowB
+AAAbLQYoAQAAKyoCKhMwAgAQAAAACgAAEQMSAP4VAgAAGwaBAgAAGyoeAigXAAAKKhMwAgAoAAAA
+CwAAEQJ7GQAACm8aAAAKCweMAwAAGy0SKAIAACsLAnsZAAAKB28bAAAKBypKAigXAAAKAnMcAAAK
+fRkAAAoqAB4CKBcAAAoqEzACAC0AAAAMAAARfgYAAAQtIHIBAABw0AcAAAIoFAAACm8eAAAKcx8A
+AAoLB4AGAAAEfgYAAAQqAAAAEzABAAYAAAANAAARfgcAAAQqAAAeAoAHAAAEKkJzFwAACigRAAAK
+gAkAAAQqAAAAHgIoIAAACiobMAEAPwAAAA4AABF+CAAABC0yfgkAAAQoEQAACighAAAKfggAAAQt
+HHMWAAAGgAgAAATeEH4JAAAEKBEAAAooIgAACtx+CAAABCoAARAAAAIAHQAMKQAQAAAAAB4CKCQA
+AAoqEzADAFgAAAAPAAARAm8lAAAKbyYAAApyMwAAcG8nAAAKLBcCbyUAAApvKAAACnIzAABwEgBv
+KQAACgZyMwAAcG8qAAAKbysAAAooLAAAChYUKC0AAAomAm8lAAAKFm8uAAAKKrQAAADOyu++AQAA
+AJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249
+NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5
+I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQA
+AABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAADkBwAAI34AAFAIAAD4CQAAI1N0
+cmluZ3MAAAAASBIAAEwAAAAjVVMAlBIAABAAAAAjR1VJRAAAAKQSAADIAwAAI0Jsb2IAAAAAAAAA
+AgAAAVcdogkJDwAAAPolMwAWAAABAAAALwAAAAoAAAAMAAAAGQAAAAQAAAA7AAAAAgAAADYAAAAP
+AAAABAAAAAgAAAAJAAAACQAAAAEAAAAFAAAAAQAAAAMAAAADAAAAAgAAAAAAvwkBAAAAAAAKAHgB
+TgEKAKwBjgEGALwBtQEKABQCTgEGAJICtQEKABQD6gIGAEoDOQMGAHcDYgMOAN4DyQMSAF0ENAQG
+AH4EtQEOALEEmwQOAMoEmwQOAPcE3wQGACEFDgUKAGAFOQUKAHgFEwAOAK0FkAUGAOIFwgUGAAAG
+tQEGACQGtQEKAD0GEwAGAIEGYgYGAKcGlQYGAM4GvQYGAOEGDgUWAD0HHQcSAEcHNAQWAHgHHQcW
+AK8HHQcKAMEHOQUKAM0HEwAKANkHEwAKAOYHEwAGAAgItQESAB4INAQGAIcIwgUGAKcIwgUGAN8I
+xQgGAPgIlQYGABUJYgYGACMJlQYGAD4JlQYGAFkJlQYGAHIJlQYGAIsJlQYGAKgJlQYAAAAAAQAA
+AAAAAQABAAAAAAApADcABQABAAEAAAAAAG0ANwAJAAEAAgAAARAAeAA3AA0AAQADAAUBAACCAAAA
+DQAFAAgABQEAAJAAAAANAAUADwAAAAAAqwC3AA0ABgARAAABEAD3AAIBJQAIABUAAQAAADUBAgEp
+AAoAGAACAQAAQAEAAC0ACgAaADEA1wEgADEAAAItADEAIgI6ADEARwJHACEAIwOQABEAWgOdABEA
+gwOhABEA9gO/ABEA/gPDAAYGgwTZAFaAiwTcAFaAkwTcAFAgAAAAAAYYiAETAAEAWCAAAAAABhiI
+ARMAAQBgIAAAAAARGMMBFwABAIwgAAAAABMIygEbAAEApCAAAAAAEwjwASgAAQC8IAAAAAATCBkC
+NQABANQgAAAAABMINwJCAAEA7CAAAAAARgJ9AmMAAQAIIQAAAABGAoYCaAACABwhAAAAAIMAlwJs
+AAIANCEAAAAARgKfAnEAAgBIIQAAAAARAKgCeAACAGQhAAAAAAEAxgKAAAMAgCEAAAAABhiIARMA
+BACIIQAAAAADCNoCiwAEALwhAAAAAAYYiAETAAQA0CEAAAAAAxiIARMABADYIQAAAAAWCI8DpQAE
+ABQiAAAAABYIowOqAAQAKCIAAAAAFgivA68ABAAwIgAAAAARGMMBFwAFAEQiAAAAAAYYiAETAAUA
+TCIAAAAAFggLBMYABQCoIgAAAAAGGIgBEwAFALAiAAAAAAYAeQQTAAUAAAABAIQCAAABAL0CAAAB
+AL0CAAABALsDCQCIARMAYQCIAeoAcQCIAfkAEQCIARMAeQCIARMAJACIARMALACIARMANACIARMA
+PACIARMAJADaAosALADaAosANADaAosAPADaAosAgQCIARMAiQCIARMAkQCIAUgBmQDxBZMBGQB9
+AmMAGQCGAmgAKQASBqABGQCfAnEAqQAuBrABGQCIARMAsQCIAcABRAAjA5AATAALBIsATABYBj0C
+TACIARMAuQCIAUwCKQCwBlcCOQCIAVwCSQCIARMAyQDWBngCyQDcBngC0QCIARMAUQCIARMAUQBZ
+B4IC4QBhB4cC2QBvB2MA4QCKB4wC6QCgB5EC2QC4B5kC8QALBJ8C+QCfAqMCAQHyB6gC4QD5B7MC
+GQGIAUwCIQGIARMAKQGIAbMCMQGIARMAOQGIAUgBQQGIAUgBSQGIAUgBUQGIAUgBWQGIAUgBYQGI
+AUgBaQGIAUgBcQGIAUgBeQGIAUgBCAAsAOAACAAwAOUAKQCDAE0BLgDLAbwDLgDbAYQDLgDDAYQD
+LgCTAcYCLgC7AWoDLgDTAVECLgCLAb0CLgCbAeUCLgCjAS0DLgCrAToDLgDrAFECLgB7AWQDLgCz
+AVECQAArAOUAQAATAPAAQwAbAP8AQwATAPAASQCDAH8BYwAbAP8AYwATAPAAaQCDAF4BgAArAOUA
+gwB7AOUAgwAbAP8AgwBzAOUAiQCDAGsBoAArAOUAowATAPAAowDDAMgBwAArAOUAwwDrAFECwwAT
+APAAyQATAG8C4AArAOUA6QATAG8CAAETAPAAAAErAOUACQEbAeUAIAETAPAAIAErAOUAIwF7AVEC
+IwGDAeUAQAErAOUAQAETAPAAYAETAPAAYAErAOUAgAErAOUAoAErAOUAwAErAOUAwAETAPAA4AEr
+AOUAAAIrAOUAAAITAPAANAE5AT4BQwGYAZwBpwGsAbsBuwFDAmMCagJ9ArgCBAABAAYABQAHAAYA
+CAAIAAAArAFPAAAAZQJUAAAAFAJZAAAAcQJeAAAALQOYAAAASgO1AAAAwQO6AAAAuwPLAAIABAAD
+AAIABQAFAAIABgAHAAIABwAJAAIADwALAAIAEgANAAIAEwAPAAEAFAAPAAIAFwARAHUAdQCIABgB
+HwEmAS0BKgIxAgSAAAABAAAAAAAAAAAAAAAAAAIBAAAEAAAAAAAAAAAAAAABAAoAAAAAAAoAAAAA
+AAAAAAAAAAoAEwAAAAAABAAAAAAAAAAAAAAAAQC1AQAAAAALAAAAAAAAAAAAAADQABUEAAAAAAsA
+AAAAAAAAAAAAANAA/gYAAAAAAAAAAAEAAABACAAABQAEAAYABAAKAAkAAAAQAAwAuwIAABAAGQC7
+AgAAAAAbALsCLQC2AS0AOAIAAAAAADxNb2R1bGU+AG1zY29ybGliAE1pY3Jvc29mdC5WaXN1YWxC
+YXNpYwBNeUFwcGxpY2F0aW9uAFNjcmlwdFRhc2tfMzQ1ZDNiN2Y1Y2UzNDYzNDliZGE1ZGY1YmIy
+YzU2ZDUudmJwcm9qLk15AE15Q29tcHV0ZXIATXlQcm9qZWN0AE15V2ViU2VydmljZXMAVGhyZWFk
+U2FmZU9iamVjdFByb3ZpZGVyYDEATXlSZXNvdXJjZXMAU2NyaXB0VGFza18zNDVkM2I3ZjVjZTM0
+NjM0OWJkYTVkZjViYjJjNTZkNS52YnByb2ouTXkuUmVzb3VyY2VzAE15U2V0dGluZ3MAU2NyaXB0
+VGFza18zNDVkM2I3ZjVjZTM0NjM0OWJkYTVkZjViYjJjNTZkNS52YnByb2oAU2NyaXB0TWFpbgBT
+Y3JpcHRSZXN1bHRzAE1pY3Jvc29mdC5WaXN1YWxCYXNpYy5BcHBsaWNhdGlvblNlcnZpY2VzAEFw
+cGxpY2F0aW9uQmFzZQAuY3RvcgBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuRGV2aWNlcwBDb21wdXRl
+cgBTeXN0ZW0AT2JqZWN0AC5jY3RvcgBnZXRfQ29tcHV0ZXIAbV9Db21wdXRlck9iamVjdFByb3Zp
+ZGVyAGdldF9BcHBsaWNhdGlvbgBtX0FwcE9iamVjdFByb3ZpZGVyAFVzZXIAZ2V0X1VzZXIAbV9V
+c2VyT2JqZWN0UHJvdmlkZXIAZ2V0X1dlYlNlcnZpY2VzAG1fTXlXZWJTZXJ2aWNlc09iamVjdFBy
+b3ZpZGVyAEFwcGxpY2F0aW9uAFdlYlNlcnZpY2VzAEVxdWFscwBvAEdldEhhc2hDb2RlAFR5cGUA
+R2V0VHlwZQBUb1N0cmluZwBDcmVhdGVfX0luc3RhbmNlX18AVABpbnN0YW5jZQBEaXNwb3NlX19J
+bnN0YW5jZV9fAGdldF9HZXRJbnN0YW5jZQBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuTXlTZXJ2aWNl
+cy5JbnRlcm5hbABDb250ZXh0VmFsdWVgMQBtX0NvbnRleHQAR2V0SW5zdGFuY2UAU3lzdGVtLlJl
+c291cmNlcwBSZXNvdXJjZU1hbmFnZXIAX3Jlc01ncgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBDdWx0
+dXJlSW5mbwBfcmVzQ3VsdHVyZQBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9D
+dWx0dXJlAFZhbHVlAEN1bHR1cmUAU3lzdGVtLkNvbmZpZ3VyYXRpb24AQXBwbGljYXRpb25TZXR0
+aW5nc0Jhc2UAbV9WYWx1ZQBtX1N5bmNPYmplY3QAZ2V0X1ZhbHVlAE1pY3Jvc29mdC5TcWxTZXJ2
+ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZT
+VEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBNYWluAEVudW0AdmFsdWVfXwBTdWNjZXNzAEZhaWx1
+cmUAU3lzdGVtLkNvbXBvbmVudE1vZGVsAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JC
+cm93c2FibGVTdGF0ZQBTeXN0ZW0uQ29kZURvbS5Db21waWxlcgBHZW5lcmF0ZWRDb2RlQXR0cmli
+dXRlAFN5c3RlbS5EaWFnbm9zdGljcwBEZWJ1Z2dlckhpZGRlbkF0dHJpYnV0ZQBNaWNyb3NvZnQu
+VmlzdWFsQmFzaWMuQ29tcGlsZXJTZXJ2aWNlcwBTdGFuZGFyZE1vZHVsZUF0dHJpYnV0ZQBIaWRl
+TW9kdWxlTmFtZUF0dHJpYnV0ZQBTeXN0ZW0uQ29tcG9uZW50TW9kZWwuRGVzaWduAEhlbHBLZXl3
+b3JkQXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMAUnVudGltZUhlbHBl
+cnMAR2V0T2JqZWN0VmFsdWUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAQWN0
+aXZhdG9yAENyZWF0ZUluc3RhbmNlAE15R3JvdXBDb2xsZWN0aW9uQXR0cmlidXRlAHNldF9WYWx1
+ZQBTeXN0ZW0uUnVudGltZS5JbnRlcm9wU2VydmljZXMAQ29tVmlzaWJsZUF0dHJpYnV0ZQBTeXN0
+ZW0uUmVmbGVjdGlvbgBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLlRocmVhZGluZwBNb25p
+dG9yAEVudGVyAEV4aXQARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBNaWNyb3NvZnQuU3Fs
+U2VydmVyLk1hbmFnZWREVFMATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUnVudGltZQBWYXJpYWJs
+ZXMAU2NyaXB0T2JqZWN0TW9kZWwAZ2V0X0R0cwBnZXRfVmFyaWFibGVzAENvbnRhaW5zAFZhcmlh
+YmxlRGlzcGVuc2VyAGdldF9WYXJpYWJsZURpc3BlbnNlcgBMb2NrT25lRm9yUmVhZABWYXJpYWJs
+ZQBnZXRfSXRlbQBDb252ZXJzaW9ucwBJbnRlcmFjdGlvbgBNc2dCb3hSZXN1bHQATXNnQm94U3R5
+bGUATXNnQm94AHNldF9UYXNrUmVzdWx0AENMU0NvbXBsaWFudEF0dHJpYnV0ZQBTU0lTU2NyaXB0
+VGFza0VudHJ5UG9pbnRBdHRyaWJ1dGUAU2NyaXB0VGFza18zNDVkM2I3ZjVjZTM0NjM0OWJkYTVk
+ZjViYjJjNTZkNS52YnByb2ouUmVzb3VyY2VzLnJlc291cmNlcwBDb21waWxhdGlvblJlbGF4YXRp
+b25zQXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFN5c3RlbS5SdW50aW1l
+LlZlcnNpb25pbmcAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5RmlsZVZlcnNpb25B
+dHRyaWJ1dGUAR3VpZEF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBBc3NlbWJs
+eUNvcHlyaWdodEF0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb21w
+YW55QXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0
+dHJpYnV0ZQBTY3JpcHRUYXNrXzM0NWQzYjdmNWNlMzQ2MzQ5YmRhNWRmNWJiMmM1NmQ1LnZicHJv
+ai5kbGwAAAAAMU0AeQAuAFIAZQBzAG8AdQByAGMAZQBzAC4ATQB5AFIAZQBzAG8AdQByAGMAZQBz
+AAAVdgBfAEYAaQBsAGUATgBhAG0AZQAAAAAA3iZ3wfIO3kOuMqnqscRODwAIt3pcVhk04IkIsD9f
+fxHVCjoDIAABAwAAAQQAABIMBwYVEhgBEgwEAAASCAcGFRIYARIIBAAAEhEHBhUSGAESEQQAABIU
+BwYVEhgBEhQECAASDAQIABIIBAgAEhEECAASFAQgAQIcAyAACAQgABIVAyAADgIeAAcQAQEeAB4A
+BzABAQEQHgACEwAEIAATAAcGFRIZARMABCgAEwADBhIdAwYSIQQAABIdBAAAEiEFAAEBEiEECAAS
+HQQIABIhAwYSIAIGHAQAABIgBAgAEiAIiYRdzYCAzJECBggDBhEoBAAAAAAEAQAAAAUgAQERNQgB
+AAEAAAAAAAUgAgEODhgBAApNeVRlbXBsYXRlCDEwLjAuMC4wAAAGFRIYARIMBhUSGAESCAYVEhgB
+EhEGFRIYARIUBAcBEgwEBwESCAQHARIRBAcBEhQEIAEBDhABAAtNeS5Db21wdXRlcgAADAEAB015
+LlVzZXIAABMBAA5NeS5XZWJTZXJ2aWNlcwAAEwEADk15LkFwcGxpY2F0aW9uAAAEAAEcHAMHAQID
+BwEIBgABEhURUQQHARIVAwcBDgUQAQAeAAQKAR4ABAcBHgAHIAQBDg4ODmEBADRTeXN0ZW0uV2Vi
+LlNlcnZpY2VzLlByb3RvY29scy5Tb2FwSHR0cENsaWVudFByb3RvY29sEkNyZWF0ZV9fSW5zdGFu
+Y2VfXxNEaXNwb3NlX19JbnN0YW5jZV9fAAAABhUSGAETAAYVEhkBEwAECgETAAUgAQETAAgHAxMA
+EwATAAQgAQECBQEAAAAABCAAEmEGIAIBDhJhBgcCEh0SHQQHARIhCAEAAgAAAAAABAABARwEBwES
+IAQgABJxBCAAEm0EIAASdQcgAgEOEBJtBSABEnkcAyAAHAQAAQ4cCgADEYCFHBGAiRwEIAEBCAQH
+ARJtCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAUcBABouTkVURnJhbWV3
+b3JrLFZlcnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsg
+NAwBAAcxLjAuMC4wAAApAQAkYjQ0MjhkZmItMjk3Ny00OTBjLWJhOWEtYWFiZjljZWJmZGNmAAAF
+AQABAAAZAQAUQ29weXJpZ2h0IEAgRFNCIDIwMTMAADcBADJTY3JpcHRUYXNrXzM0NWQzYjdmNWNl
+MzQ2MzQ5YmRhNWRmNWJiMmM1NmQ1LnZicHJvagAACAEAA0RTQgAAAAAAYDoAAAAAAAAAAAAAfjoA
+AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHA6AAAAAAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1z
+Y29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB
+ABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAA
+WEAAADAEAAAAAAAAAAAAADAENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9
+BO/+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEA
+VgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAA
+AAAAsASQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABsAwAAAQAwADAAMAAwADAA
+NABiADAAAAAoAAQAAQBDAG8AbQBwAGEAbgB5AE4AYQBtAGUAAAAAAEQAUwBCAAAAkAAzAAEARgBp
+AGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAYwByAGkAcAB0AFQAYQBzAGsAXwAzADQA
+NQBkADMAYgA3AGYANQBjAGUAMwA0ADYAMwA0ADkAYgBkAGEANQBkAGYANQBiAGIAMgBjADUANgBk
+ADUALgB2AGIAcAByAG8AagAAAAAAMAAIAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4A
+MAAuADAALgAwAAAAkAA3AAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAGMAcgBpAHAAdABU
+AGEAcwBrAF8AMwA0ADUAZAAzAGIANwBmADUAYwBlADMANAA2ADMANAA5AGIAZABhADUAZABmADUA
+YgBiADIAYwA1ADYAZAA1AC4AdgBiAHAAcgBvAGoALgBkAGwAbAAAAAAAUAAVAAEATABlAGcAYQBs
+AEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAARABTAEIAIAAyADAA
+MQAzAAAAAACYADcAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBjAHIAaQBw
+AHQAVABhAHMAawBfADMANAA1AGQAMwBiADcAZgA1AGMAZQAzADQANgAzADQAOQBiAGQAYQA1AGQA
+ZgA1AGIAYgAyAGMANQA2AGQANQAuAHYAYgBwAHIAbwBqAC4AZABsAGwAAAAAAIgAMwABAFAAcgBv
+AGQAdQBjAHQATgBhAG0AZQAAAAAAUwBjAHIAaQBwAHQAVABhAHMAawBfADMANAA1AGQAMwBiADcA
+ZgA1AGMAZQAzADQANgAzADQAOQBiAGQAYQA1AGQAZgA1AGIAYgAyAGMANQA2AGQANQAuAHYAYgBw
+AHIAbwBqAAAAAAA0AAgAAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAA
+LgAwAAAAOAAIAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAu
+ADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAACQOgAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+            </ScriptProject>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Udfyld behold total"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E43F2C37-A88E-4742-B4EB-A9741375A9F0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Udfyld behold total"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+              SQLTask:SqlStatementSource="select rtrim(ltrim(substring(Række, 20, 19 )))  v_sum_Beholdning&#xA;from ods.TD_indlaes_useq&#xA;where substring(Række, 1, 12 )  = 'BeholdnVærdi'&#xA;group by substring(Række, 20, 19 )"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_sum_Beholdning"
+                SQLTask:DtsVariableName="User::v_sum_Beholdning" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Udfyld dato"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{02F776F4-ADC0-4A47-B915-94124FA1C2EC}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Udfyld dato"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+              SQLTask:SqlStatementSource="select replace(substring(Række, 57, 10 ), '.', '-')  v_Dato&#xA;from ods.TD_indlaes_useq&#xA;where substring(Række, 41, 8 )  = 'Analysed'&#xA;group by replace(substring(Række, 57, 10 ), '.', '-')&#xA;GO"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_Dato"
+                SQLTask:DtsVariableName="User::v_Dato" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Udfyld fabrik"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BED630CF-0372-471D-B6EC-840DADA7DD1B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Udfyld fabrik"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+              SQLTask:SqlStatementSource="select substring(Række, 4, 4 )  v_Fabrik&#xA;from ods.TD_indlaes_useq&#xA;where substring(Række, 1, 2 )  = 'Fb'&#xA;group by substring(Række, 4, 4 ) &#xA;&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_Fabrik"
+                SQLTask:DtsVariableName="User::v_Fabrik" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Udfylde totaler"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a00e5235-3948-4d56-bb50-c1c182713b39}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Udfylde totaler"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2562EF84-7EC9-4FCD-BB4D-B747966D8964}"
+              SQLTask:SqlStatementSource="select &#xA; convert( varchar, count(*)) v_num_AntalMat&#xA;from  [ods].[RD_SAP_MatDUF]&#xA;where fabrik = @v_Fabrik&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_num_AntalMat" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_Fabrik"
+                SQLTask:DtsVariableName="User::v_Fabrik"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="16"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\UPD RD_Langsoms table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{74AB31C6-8775-44E9-8105-56A1F38E61F7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="UPD RD_Langsoms table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2562EF84-7EC9-4FCD-BB4D-B747966D8964}"
+              SQLTask:SqlStatementSource="DECLARE @sql   varchar(1000)&#xA;set @sql =&#xA;'If object_id(''[ods].[TD1_indlaes_useq]'') is not null Drop Table [ods].[TD1_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'CREATE TABLE [ods].[TD1_indlaes_useq](&#xA;&#x9;[PK_ID] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[Række] [varchar](1000) NOT NULL&#xA;) ON [PRIMARY]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'insert into [ods].[TD1_indlaes_useq]&#xA;select [Række]&#xA;from [ods].[TD_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'If object_id(''[ods].[TD2_indlaes_useq]'') is not null Drop Table [ods].[TD2_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'select pk_id PK_ID&#xA;, ' + quotename(@v_Fabrik, '''')  + ' Fabrik&#xA;, substring(række, 2, 9) Mat&#xA;, substring(række, 21, 43) Korttext&#xA;, substring(række, 64, 14) Dage_sid_forb&#xA;into [ods].[TD2_indlaes_useq]&#xA;from [ods].[TD1_indlaes_useq]&#xA;where substring(række, 2, 1) in (''1'',''2'',''3'',''4'',''5'',''6'',''7'',''8'',''9'',''0'')'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'If object_id(''[ods].[TD3_indlaes_useq]'') is not null Drop Table [ods].[TD3_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'select pk_id -1 pk_id&#xA;, substring(række, 21, 16) Aktuel_beholdn&#xA;, substring(række, 62, 10) Dato&#xA;into  [ods].[TD3_indlaes_useq]&#xA;from [ods].[TD1_indlaes_useq]&#xA;where substring(række, 64, 1) = ''.'' and substring(række, 67, 1) = ''.'' '&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'If object_id(''[Ukurans].[ods].[TD4_indlaes_useq]'') is not null Drop Table [Ukurans].[ods].[TD4_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'select pk_id -2 pk_id&#xA;, substring(række, 21, 6) MRPcontr&#xA;, substring(række, 31, 8) MRP_type&#xA;, substring(række, 47, 8) ABC_IN&#xA;, substring(række, 60, 12) Varegrp&#xA;, substring(række, 76, 6) Mat_art&#xA;, substring(række, 90, 5) IKGruppe&#xA;into  [ods].[TD4_indlaes_useq]&#xA;from [ods].[TD1_indlaes_useq]&#xA;where &#xA;pk_id -2 in (select pk_id from [ods].[TD2_indlaes_useq])'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'insert into [ods].[RD_SAP_MatDUF]&#xA;select rtrim(ltrim(Fabrik)) Fabrik&#xA;, rtrim(ltrim(Mat)) Material&#xA;, rtrim(ltrim(Korttext)) MatTekst&#xA;, case when substring(ltrim(Korttext), 1, 1) = ''¤'' then ''J'' else null end OmlVare&#xA;, convert(int, rtrim(ltrim(replace(replace (Dage_sid_forb, ''(Intet forbrug)'', ''''), ''.'', '''')))) Dage_U_Forbrug&#xA;, case when right(Dage_sid_forb, 15) = ''(Intet forbrug)'' then ''N'' else null end Anvendt&#xA;, convert( decimal, replace(replace(rtrim(ltrim(Aktuel_beholdn)), ''.'', ''''), '','', ''.'')) Beholdning&#xA;, replace(rtrim(ltrim(Dato)), ''.'', ''-'') Dato&#xA;, rtrim(ltrim(MRPcontr)) MRPcontr&#xA;, rtrim(ltrim(MRP_type)) MRP_type&#xA;, rtrim(ltrim(ABC_IN)) ABC_IN&#xA;, rtrim(ltrim(Varegrp)) Varegrp&#xA;, rtrim(ltrim(Mat_art)) MatArt&#xA;, rtrim(ltrim(IKGruppe)) IKGruppe&#xA;from [ods].[TD2_indlaes_useq]&#xA;left join [ods].[TD3_indlaes_useq]&#xA;on [ods].[TD2_indlaes_useq].pk_id = [ods].[TD3_indlaes_useq].pk_id&#xA;left join [ods].[TD4_indlaes_useq]&#xA;on [ods].[TD2_indlaes_useq].pk_id = [ods].[TD4_indlaes_useq].pk_id'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'drop table [ods].[TD1_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'drop table [ods].[TD2_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'drop table [ods].[TD3_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;set @sql =&#xA;'drop table [ods].[TD4_indlaes_useq]'&#xA;exec (@sql)&#xA;&#xA;&#xA;--update &#xA;--ods.CTL_UKUR_LOAD&#xA;--set fabrik = substring(@v_FileName, 42, 4)&#xA;--where Fabrik = '-'&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_Fabrik"
+                SQLTask:DtsVariableName="User::v_Fabrik"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="16"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Update ods TD_indlaes_useq"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{63A4528A-3DE3-4545-9A37-14079DDE420D}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update ods TD_indlaes_useq"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+              SQLTask:SqlStatementSource="delete from [ods].[TD_indlaes_useq]&#xA;where substring (ltrim(rtrim(række)), 1, 20) = ' '&#xA;GO&#xA;&#xA;delete from [ods].[TD_indlaes_useq]&#xA;where isnull(ltrim(rtrim(række)), '-') = '-'&#xA;GO&#xA;&#xA;delete from ods.TD_indlaes_useq&#xA;where substring(Række, 1, 2 )  = 'Fb'&#xA;GO&#xA;&#xA;delete from ods.TD_indlaes_useq&#xA;where substring(Række, 1,3) = 'Beh'&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iteration trough Ukurans_L files\Update ods_CTL_loader"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ab59336b-4f76-467e-9cfd-fac8ac0b87fa}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update ods_CTL_loader"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{2562EF84-7EC9-4FCD-BB4D-B747966D8964}"
+              SQLTask:SqlStatementSource="DECLARE @sql        varchar(800)&#xA;&#xA;set @sql =&#xA;'insert into ods.CTL_loader values ( ''SAP Langsomt omsættelige'' , ' + quotename(@v_FileName, '''') + ' , ' &#xA;+ quotename(@v_Dato, '''')+ ' , '  + '''Sum Beholdnings værdier'' , '+ quotename(@v_sum_Beholdning, '''') + ' , ''Antal Materialer'' , ' +  quotename(@v_num_AntalMat, '''')  + ', null, null, getdate() , ' + quotename(convert(varchar(10),@v_BeregnDato,121), '''') +'  )'   &#xA;exec (@sql)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_FileName"
+                SQLTask:DtsVariableName="User::v_FileName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="16"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_Dato"
+                SQLTask:DtsVariableName="User::v_Dato"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="16"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_sum_Beholdning"
+                SQLTask:DtsVariableName="User::v_sum_Beholdning"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="16"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_num_AntalMat"
+                SQLTask:DtsVariableName="User::v_num_AntalMat"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="16"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_BeregnDato"
+                SQLTask:DtsVariableName="User::v_BeregnDato"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="6"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1ED0E75E-37F1-4B98-BFA7-B983401DC3C1}"
+          DTS:From="Package\Iteration trough Ukurans_L files\CLEAN temporal table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Iteration trough Ukurans_L files\Data Flow Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7494D87D-BFE5-4FBC-BDA7-635F8F69198F}"
+          DTS:From="Package\Iteration trough Ukurans_L files\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Iteration trough Ukurans_L files\Udfyld dato" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{F176ADD5-A39B-43F7-88A7-26AC1D714C40}"
+          DTS:From="Package\Iteration trough Ukurans_L files\Read txt files"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Iteration trough Ukurans_L files\CLEAN temporal table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{DE0CEDBF-F0EC-4489-8DD3-8BD12967C854}"
+          DTS:From="Package\Iteration trough Ukurans_L files\Update ods TD_indlaes_useq"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Iteration trough Ukurans_L files\UPD RD_Langsoms table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{4CE8E876-E1BF-4CBA-8A7D-E5E416D3D4B5}"
+          DTS:From="Package\Iteration trough Ukurans_L files\Udfyld dato"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Iteration trough Ukurans_L files\Udfyld behold total" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{D916B186-6556-4226-9B74-68419C985EDB}"
+          DTS:From="Package\Iteration trough Ukurans_L files\Udfyld fabrik"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Iteration trough Ukurans_L files\Update ods TD_indlaes_useq" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{B3FBC420-660E-42FA-8F1C-DC281BEC23EA}"
+          DTS:From="Package\Iteration trough Ukurans_L files\UPD RD_Langsoms table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Iteration trough Ukurans_L files\Udfylde totaler" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{9A93F85E-5D09-4ED9-B82E-3E23098010B7}"
+          DTS:From="Package\Iteration trough Ukurans_L files\Udfylde totaler"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\Iteration trough Ukurans_L files\Update ods_CTL_loader" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{20D59B4B-82E4-43C5-807F-078AC605DD80}"
+          DTS:From="Package\Iteration trough Ukurans_L files\Udfyld behold total"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Iteration trough Ukurans_L files\Udfyld fabrik" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2945AF2E-A3DD-465D-BE8E-3CA640CB1865}"
+          DTS:ObjectName="{2945AF2E-A3DD-465D-BE8E-3CA640CB1865}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::v_FileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Opdater tjek-tabel"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B4E83D30-F48A-4388-B22D-C83FD69162B4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Opdater tjek-tabel"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="&#xA;-- indsæt kontrollinjer for sum af indlæste materialer i ods.RD_SAP_MatDUF&#xA;Use Ukurans&#xA;-- sum værdi i headere&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'11a'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.CTL_loader'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#x9;&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'11a' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;&#x9;&#x9;,'ods.CTL_loader' as Tabel&#xA;&#x9;&#x9;,'Vaerdi_kolonne1' as Felt &#xA;&#x9;&#x9;,'Sum af anskaffelsesvaerdier i headere på L-filer' as Forklaring&#xA;&#x9;&#x9;,(Select sum(convert(float, replace(replace(vaerdi_kolonne1, '.', ''),',', '.'))) as vaerdi from ods.CTL_loader&#xA;&#x9;&#x9;&#x9;where BeregnDato = (select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;&#x9;&#x9;&#x9;and Kolonne1 = 'Sum Beholdnings værdier' --) as Sum&#xA;&#x9;&#x9;&#x9;and [timestamp] &gt; (select max([timestamp]-0.001) from ods.CTL_loader where Kolonne1 = 'Sum Beholdnings værdier'))&#xA;&#x9;&#x9;&#x9;&#xA;&#xA;-- sum antal materialer i headere&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'10a'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.CTL_loader'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#x9;&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'10a' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.CTL_loader' as Tabel&#xA;&#x9;&#x9;,'Vaerdi_kolonne2' as Felt &#xA;&#x9;&#x9;,'Sum af antal materialer i headere på L-filer' as Forklaring&#xA;&#x9;&#x9;,(Select sum(convert(float, replace(replace(vaerdi_kolonne2, '.', ''),',', '.'))) as vaerdi from ods.CTL_loader&#xA;&#x9;&#x9;&#x9;where BeregnDato = (select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;&#x9;&#x9;&#x9;and Kolonne1 = 'Sum Beholdnings værdier' &#xA;&#x9;&#x9;&#x9;and [timestamp] &gt; (select max([timestamp]-0.001) from ods.CTL_loader where Kolonne1 = 'Sum Beholdnings værdier'))&#xA;&#xA;-- sum af antal materialer i filer&#x9;&#x9;&#x9;&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'10b'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.RD_SAP_MatDUF'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'10b' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.RD_SAP_MatDUF' as Tabel&#xA;&#x9;&#x9;,'AntalMaterialer' as Felt &#xA;&#x9;&#x9;,'Sum af antal materialer indlæst fra L-filerne' as Forklaring&#xA;&#x9;&#x9;,(Select count(materiale) as Antal from ods.RD_SAP_MatDUF) as Sum&#xA;&#xA;-- heraf sum af antal materialer til omløbsvarer i filer&#x9;&#x9;&#x9;&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'10c'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.RD_SAP_MatDUF'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'10c' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.RD_SAP_MatDUF' as Tabel&#xA;&#x9;&#x9;,'AntalMaterialer' as Felt &#xA;&#x9;&#x9;,'Indlæst antal Omløbsvarer fra L-filerne' as Forklaring&#xA;&#x9;&#x9;,(Select count(materiale) as Antal from ods.RD_SAP_MatDUF Where OmlVare ='J') as Sum&#xA;&#xA;-- heraf sum af antal materialer ej til omløbsvarer i filer&#x9;&#x9;&#x9;&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'10d'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.RD_SAP_MatDUF'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'10d' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.RD_SAP_MatDUF' as Tabel&#xA;&#x9;&#x9;,'AntalMaterialer' as Felt &#xA;&#x9;&#x9;,'Indlæst antal ekskl. Omløbsvarer fra L-filerne' as Forklaring&#xA;&#x9;&#x9;,(Select count(materiale) as Antal from ods.RD_SAP_MatDUF Where OmlVare is null) as Sum&#xA;&#xA;&#xA;-- heraf sum af antal forskellige materialer ej omløbsvarer i filer&#x9;&#x9;&#x9;&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'10e'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.RD_SAP_MatDUF'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'10e' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.RD_SAP_MatDUF' as Tabel&#xA;&#x9;&#x9;,'Materialer' as Felt &#xA;&#x9;&#x9;,'Indlæst forsk. antal ekskl. OmlVare fra L-filerne' as Forklaring&#xA;&#x9;&#x9;,(Select count(distinct(materiale)) as Antal from ods.RD_SAP_MatDUF Where OmlVare is null) as Sum&#xA;&#xA;&#xA;&#xA;-- sum af anskaffelsesværdi i filer&#x9;&#x9;&#x9;&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'12a'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.RD_SAP_MatDUF'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'12a' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.RD_SAP_MatDUF' as Tabel&#xA;&#x9;&#x9;,'Beholdning' as Felt &#xA;&#x9;&#x9;,'Sum af beholdning indlæst fra L-filerne' as Forklaring&#xA;&#x9;&#x9;,(Select sum(Beholdning) as Sum from ods.RD_SAP_MatDUF) as Sum&#xA;&#xA;-- sum af anskaffelsesværdi til omløbsvarer i filer&#x9;&#x9;&#x9;&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'12b'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.RD_SAP_MatDUF'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'12b' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.RD_SAP_MatDUF' as Tabel&#xA;&#x9;&#x9;,'Beholdning' as Felt &#xA;&#x9;&#x9;,'Sum af beholdning vedr omløbsvarer i L-filerne' as Forklaring&#xA;&#x9;&#x9;,(Select sum(Beholdning) as Sum from ods.RD_SAP_MatDUF Where OmlVare = 'J') as Sum&#xA; &#xA;-- sum af anskaffelsesværdi ej til omløbsvarer i filer&#x9;&#x9;&#x9;&#xA;Delete from edw.CD_TjekTabeller&#xA;Where&#x9;ProcesNr&#x9;=&#x9;'12c'&#xA;&#x9;and&#x9;Tabel&#x9;&#x9;=&#x9;'ods.RD_SAP_MatDUF'&#xA;&#x9;and&#x9;BeregnDato&#x9;=&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#xA;Insert into edw.CD_TjekTabeller&#xA;Select&#x9;'12c' as ProcesNr&#xA;&#x9;&#x9;,(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato') as BeregnDato&#xA;&#x9;&#x9;,'ods.RD_SAP_MatDUF' as Tabel&#xA;&#x9;&#x9;,'Beholdning' as Felt &#xA;&#x9;&#x9;,'Sum af beholdning ekskl omløbsvarer i L-filerne' as Forklaring&#xA;&#x9;&#x9;,(Select sum(Beholdning) as Sum from ods.RD_SAP_MatDUF Where OmlVare is null) as Sum  &#xA;&#x9;&#x9;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Overfør data til historisk tabel"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5BF378A9-A217-4945-A1B0-47447B53BEBF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Overfør data til historisk tabel"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="-- Slet tidligere data, hvis der indlæses mere end 1 gang&#xA;&#xA;Delete from ods.RD_SAP_MatDUF_Historisk&#xA;Where Dim_Tid = ( select replace(left(vaerdi, 7), '-', '') from edw.md_styringstabel where parameter = 'UltimoDato')&#xA;&#xA;-- Overfør data til historisk tabel&#xA;&#xA;Insert into ods.RD_SAP_MatDUF_Historisk&#xA;Select ( select replace(left(vaerdi, 7), '-', '') from edw.md_styringstabel where parameter = 'UltimoDato') as Dim_Tid&#xA;, *&#xA;From ods.RD_SAP_MatDUF&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tømmer CD_TjekTabeller"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{C98D34A5-4772-430D-A26F-B791CC32D82F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tømmer CD_TjekTabeller"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="-- Tømmer edw.CD_TjekTabeller&#xA;&#xA;Truncate table Ukurans.edw.CD_TjekTabeller&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8423490E-3B44-41FE-A780-283BC830B8C7}"
+      DTS:From="Package\CLEAN RD table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Hent BeregnDato" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0533BCA4-5D9C-4B3F-B07F-DE0A06C65264}"
+      DTS:From="Package\Hent BeregnDato"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Iteration trough Ukurans_L files" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2CC2F9E4-4B25-4E24-9126-6178ADCA5889}"
+      DTS:From="Package\Iteration trough Ukurans_L files"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Tømmer CD_TjekTabeller" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{A35917F6-998E-4E82-8769-671142F15C50}"
+      DTS:From="Package\Tømmer CD_TjekTabeller"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Opdater tjek-tabel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A125D7B-C533-4C20-BEB1-B9D6D17D74A6}"
+      DTS:From="Package\Opdater tjek-tabel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Overfør data til historisk tabel" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\CLEAN RD table"
+          TopLeft="5.5,9.00943396226415" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Hent BeregnDato"
+          TopLeft="6.70754716981132,85.5754716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\CLEAN temporal table"
+          TopLeft="21.5471698113207,102.056603773585" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Data Flow Task"
+          TopLeft="23.5849056603773,179.943396226415" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Iteration trough Ukurans_L files\Read txt files"
+          TopLeft="176.339622641509,23.377358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Udfyld behold total"
+          TopLeft="209.283018867925,220.698113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Udfyld dato"
+          TopLeft="26.188679245283,238.018867924528" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Udfyld fabrik"
+          TopLeft="201.396226415094,278.132075471698" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Udfylde totaler"
+          TopLeft="67.0943396226415,457.339622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\UPD RD_Langsoms table"
+          TopLeft="67.5094339622641,389.867924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Update ods TD_indlaes_useq"
+          TopLeft="26.2264150943396,297.188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Update ods_CTL_loader"
+          TopLeft="207.283018867925,532.471698113208" />
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint]"
+          TopLeft="89.4339622641509,145.981132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.03773584905662,33.9622641509434"
+              Start="0,0"
+              End="2.03773584905662,26.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="2.03773584905662,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="2.03773584905662,26.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 1]"
+          TopLeft="91.4716981132075,223.867924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.60377358490564,14.1509433962264"
+              Start="0,0"
+              End="2.60377358490564,6.65094339622641">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.05660377358487" />
+                  <mssgle:LineSegment
+                    End="2.60377358490564,7.05660377358487" />
+                  <mssgle:LineSegment
+                    End="2.60377358490564,6.65094339622641" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 2]"
+          TopLeft="247.339622641509,65.377358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-157.792452830189,36.6792452830189"
+              Start="0,0"
+              End="-157.792452830189,29.1792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.3396226415094" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.3396226415094"
+                    Point2="0,18.3396226415094"
+                    Point3="-4,18.3396226415094" />
+                  <mssgle:LineSegment
+                    End="-153.792452830189,18.3396226415094" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-153.792452830189,18.3396226415094"
+                    Point2="-157.792452830189,18.3396226415094"
+                    Point3="-157.792452830189,22.3396226415094" />
+                  <mssgle:LineSegment
+                    End="-157.792452830189,29.1792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 3]"
+          TopLeft="94.1132075471698,341.11320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.2830188679245,48.7547169811321"
+              Start="0,0"
+              End="41.2830188679245,41.2547169811321">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3773584905661" />
+                  <mssgle:LineSegment
+                    End="41.2830188679245,24.3773584905661" />
+                  <mssgle:LineSegment
+                    End="41.2830188679245,41.2547169811321" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 4]"
+          TopLeft="161.962264150943,259.981132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.3207547169811,-17.3207547169811"
+              Start="0,0"
+              End="39.8207547169811,-17.3207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="23.6603773584906,0" />
+                  <mssgle:LineSegment
+                    End="23.6603773584906,-17.3207547169811" />
+                  <mssgle:LineSegment
+                    End="39.8207547169811,-17.3207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 5]"
+          TopLeft="201.396226415094,300.094339622641">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-39.3962264150943,19.0566037735849"
+              Start="0,0"
+              End="-31.8962264150943,19.0566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-19.6981132075471,0" />
+                  <mssgle:LineSegment
+                    End="-19.6981132075471,19.0566037735849" />
+                  <mssgle:LineSegment
+                    End="-31.8962264150943,19.0566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 6]"
+          TopLeft="135.396226415094,433.792452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.415094339622613,23.5471698113208"
+              Start="0,0"
+              End="-0.415094339622613,16.0471698113208">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.7735849056604" />
+                  <mssgle:LineSegment
+                    End="-0.415094339622613,11.7735849056604" />
+                  <mssgle:LineSegment
+                    End="-0.415094339622613,16.0471698113208" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 7]"
+          TopLeft="134.981132075472,501.264150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.188679245283,31.2075471698114"
+              Start="0,0"
+              End="140.188679245283,23.7075471698114">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5849056603773" />
+                  <mssgle:LineSegment
+                    End="140.188679245283,15.5849056603773" />
+                  <mssgle:LineSegment
+                    End="140.188679245283,23.7075471698114" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files.PrecedenceConstraints[Constraint 8]"
+          TopLeft="277.169811320755,264.622641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-7.88679245283021,13.5094339622642"
+              Start="0,0"
+              End="-7.88679245283021,6.00943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.75471698113211" />
+                  <mssgle:LineSegment
+                    End="-7.88679245283021,6.75471698113211" />
+                  <mssgle:LineSegment
+                    End="-7.88679245283021,6.00943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="361,631"
+          Size="361,675"
+          Id="Package\Iteration trough Ukurans_L files"
+          TopLeft="244.707547169811,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Opdater tjek-tabel"
+          TopLeft="760.103773584906,175.424528301887" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Overfør data til historisk tabel"
+          TopLeft="761.009433962264,276.367924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Tømmer CD_TjekTabeller"
+          TopLeft="760.103773584906,78.5566037735849" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="73.3867924528302,52.9339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.20754716981132,32.6415094339623"
+              Start="0,0"
+              End="1.20754716981132,25.1415094339623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.3018867924528" />
+                  <mssgle:LineSegment
+                    End="1.20754716981132,16.3018867924528" />
+                  <mssgle:LineSegment
+                    End="1.20754716981132,25.1415094339623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="142.481132075472,107.537735849057">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.22641509434,226.188679245283"
+              Start="0,0"
+              End="94.7264150943396,226.188679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="51.0943396226415,0" />
+                  <mssgle:LineSegment
+                    End="51.0943396226415,226.188679245283" />
+                  <mssgle:LineSegment
+                    End="94.7264150943396,226.188679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="605.72641509434,333.72641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="154.377358490566,-233.207547169811"
+              Start="0,0"
+              End="146.877358490566,-233.207547169811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="77.1698113207548,0" />
+                  <mssgle:LineSegment
+                    End="77.1698113207548,-233.207547169811" />
+                  <mssgle:LineSegment
+                    End="146.877358490566,-233.207547169811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="827.990566037736,122.481132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.9433962264151"
+              Start="0,0"
+              End="0,45.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="827.990566037736,219.349056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.905660377358458,57.0188679245283"
+              Start="0,0"
+              End="0.905660377358458,49.5188679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.4905660377358" />
+                  <mssgle:LineSegment
+                    End="0.905660377358458,28.4905660377358" />
+                  <mssgle:LineSegment
+                    End="0.905660377358458,49.5188679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Iteration trough Ukurans_L files\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,45"
+          Id="Package\Iteration trough Ukurans_L files\Data Flow Task\Ukurans L"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Data Flow Task\FILT not-titles"
+          TopLeft="6.48113207547171,95.9905660377359" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq"
+          TopLeft="13.4622641509434,186.179245283019" />
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files\Data Flow Task.Paths[No title rows]"
+          TopLeft="74.3679245283019,139.915094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="6.98113207547172,46.2641509433962"
+              Start="0,0"
+              End="6.98113207547172,38.7641509433962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.1320754716981" />
+                  <mssgle:LineSegment
+                    End="6.98113207547172,23.1320754716981" />
+                  <mssgle:LineSegment
+                    End="6.98113207547172,38.7641509433962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-68.4965628685142,28.1320754716981,143.9742578125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iteration trough Ukurans_L files\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="73.3867924528302,50.4433962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.981132075471692,45.5471698113208"
+              Start="0,0"
+              End="0.981132075471692,38.0471698113208">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7547169811321" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,22.7547169811321" />
+                  <mssgle:LineSegment
+                    End="0.981132075471692,38.0471698113208" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Iteration trough Ukurans_L files\Data Flow Task\TD_indlaes_useq">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2718 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/1/2013 1:37:29 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{4582084B-E480-4174-A67A-104D089CBEB3}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="030_GD_R_LoensumAnsaettelsetype"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{34D633C8-23F2-4E73-B44C-40AA0E0799B8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{03E36179-971D-414D-964E-9407612F5540}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Check"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{613814A6-7BEE-456F-982A-E3094C83B456}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Check">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{C5E020D7-FD99-463B-B09C-8720F671CE91}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_Lønsum_data_check_sum">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Find FT sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{73A91AB3-A297-4425-BB1C-0D3A71EEB2F6}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find FT sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="SELECT SUM(convert(float,replace(replace(replace(lønsum, '.', ''), ',','.'),'DKK', ''))) As Lønsum&#xA;FROM [ods].[RD_FPC_Lønsum]&#xA;where substring(PeriodeIndlæst,5,4) in (&#xA;Select SUBSTRING(value,1,4) as År&#xA; from ods.ctl_dataload&#xA; Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode')"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Lønsum_data_check_sum" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Find GD diff nyere perioder"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4fc380b9-b124-4aae-b06c-4b9e039aacd7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find GD diff nyere perioder"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="SELECT SUM(convert(float,replace(lønsum, ',','.'))) As Lønsum&#xA;FROM [ods].[RD_FPC_Lønsum]&#xA;where substring(PeriodeIndlæst,5,4) in (&#xA;Select SUBSTRING(value,1,4) as År&#xA; from ods.ctl_dataload&#xA; Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode')&#xA;and convert(int, substring(PeriodeIndlæst,2,2)) &gt; &#xA;  (Select convert(int, SUBSTRING(value,5,2))&#xA;  from ods.ctl_dataload&#xA;  Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode')&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Lønsum_data_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Find GD sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1ED775BD-2679-42FC-9070-11FB11ACFA3B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find GD sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select SUM(Lønsum) Lønsum from [dbo].[GD_R_LønsumAnsættelsetype] &#xA;where PeriodeIndlæst = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Lønsum_data_check_sum" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Gem FT sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7426BA64-11A6-46AE-87F4-0335173D8016}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem FT sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 82, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_Lønsum_data_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Gem GD sum"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{97b01351-be62-4e5f-8aa6-f5462181b4a5}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem GD sum"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 83, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_Lønsum_data_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data Check\Gem periode diff"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0dfa85c3-43da-4d6e-9d1e-e67561519754}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem periode diff"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 84, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_Lønsum_data_check_sum"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{66AF731E-3E7F-49D2-A3B3-4307B6A7CE5B}"
+          DTS:From="Package\Data Check\Find FT sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Data Check\Gem FT sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{674D4C89-3D3A-45DD-810B-BB4A1828341D}"
+          DTS:From="Package\Data Check\Gem FT sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Data Check\Find GD sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{83AF6821-6F08-4F8E-9C06-BA9BA7609A26}"
+          DTS:From="Package\Data Check\Find GD sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Data Check\Gem GD sum" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{D5E04619-0966-4556-B730-3C8583397244}"
+          DTS:From="Package\Data Check\Gem GD sum"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Data Check\Find GD diff nyere perioder" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data Check.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{234C4FCA-A9ED-4185-9E0A-D071BAA79637}"
+          DTS:From="Package\Data Check\Find GD diff nyere perioder"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Data Check\Gem periode diff" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GD_R_LønsumAnsættelsetype"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{008F7DAA-0595-420B-A30F-7882A23DAF7F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GD_R_LønsumAnsættelsetype">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\GD_R_LønsumAnsættelsetype\Find periode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="ods.ctl_dataload"
+          DTS:DTSID="{2C8BCDE2-DFA9-4B7D-A295-E5498DDC0C4F}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find periode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="Select SUBSTRING(value,1,50) as Periode&#xA; from ods.ctl_dataload&#xA; Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Periode" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\GD_R_LønsumAnsættelsetype\Fjern eksisterende data"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Truncate tabel GD_R_LønsumAnsættelsetype"
+          DTS:DTSID="{443D8F04-AD44-45E8-81E7-677BA4537824}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fjern eksisterende data"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="delete from dbo.GD_R_LønsumAnsættelsetype&#xA; where periodeindlæst = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\GD_R_LønsumAnsættelsetype\Load date"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{46F6A07A-1F6A-4388-94AA-17ACFAD10B17}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load date"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate"
+                  componentClassID="{5B201335-B360-485C-BB93-75C34E09B3D3}"
+                  contactInfo="Aggregate;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+                  description="Aggregates and groups values in a dataset."
+                  name="Aggregate"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                      name="CountDistinctScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                      name="CountDistinctKeys" />
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                      name="AutoExtendFactor">25</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1]"
+                      name="Aggregate Input 1">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[Profitcenter]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Profitcenter]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[ProfitcenterNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProfitcenterNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ProfitcenterNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[Art]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Art"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Art]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[ArtNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ArtNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ArtNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[Medarb_Grp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_Grp"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_Grp]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[Medarb_GrpNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_GrpNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_GrpNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[Periode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Periode"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Periode]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1].Columns[Lønsum]"
+                          cachedDataType="r8"
+                          cachedName="Lønsum"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Lønsum]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1]"
+                      name="Aggregate Output 1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                          name="KeyScale"
+                          typeConverter="KeyScaleType">0</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                          name="Keys" />
+                      </properties>
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Profitcenter]"
+                          name="Profitcenter">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Profitcenter]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[ProfitcenterNavn]"
+                          name="ProfitcenterNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ProfitcenterNavn]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Art]"
+                          name="Art">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Art]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[ArtNavn]"
+                          name="ArtNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ArtNavn]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Medarb_Grp]"
+                          name="Medarb_Grp">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_Grp]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Medarb_GrpNavn]"
+                          name="Medarb_GrpNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_GrpNavn]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Periode]"
+                          name="Periode">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Periode]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Lønsum]"
+                          dataType="r8"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Lønsum]"
+                          name="Lønsum">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Lønsum]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">4</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split"
+                  componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Evaluates and directs rows in a dataset."
+                  name="Conditional Split"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Inputs[Conditional Split Input].Columns[PeriodeIndlæst]"
+                          cachedDataType="i4"
+                          cachedName="PeriodeIndlæst"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[PeriodeIndlæst]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Inputs[Conditional Split Input].Columns[Indlæsningsperiode_model]"
+                          cachedDataType="i4"
+                          cachedName="Indlæsningsperiode_model"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Indlæsningsperiode_model]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Model_Perioder]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Model_Perioder"
+                      synchronousInputId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[PeriodeIndlæst]} &lt;= #{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Indlæsningsperiode_model]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">[PeriodeIndlæst] &lt;= [Indlæsningsperiode_model]</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="Data konverteringer"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Inputs[Derived Column Input].Columns[PeriodeIndlæst]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PeriodeIndlæst"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[PeriodeIndlæst_konv]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[PeriodeIndlæst_konv]"
+                          name="PeriodeIndlæst_konv"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_I4)([SUBSTRING](#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]},5,4) + [SUBSTRING](#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]},2,2))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_I4)(SUBSTRING([PeriodeIndlæst],5,4) + SUBSTRING([PeriodeIndlæst],2,2))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[År]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[År]"
+                          name="År"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,4,1252)([SUBSTRING](#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]},5,4))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,4,1252)(SUBSTRING([PeriodeIndlæst],5,4))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="G_R_LønsumAnsættelsetype"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Profitcenter, ProfitcenterNavn, Art, ArtNavn, Medarb_Grp, Medarb_GrpNavn, PeriodeIndlæst, 
+convert(float,replace(replace(replace(lønsum, '.', ''), ',','.'),'DKK', '')) As Lønsum
+FROM [ods].[RD_FPC_Lønsum]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Connections[OleDbConnection]"
+                      connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                          name="Profitcenter"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[ProfitcenterNavn]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ProfitcenterNavn]"
+                          name="ProfitcenterNavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Art]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Art]"
+                          name="Art"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[ArtNavn]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ArtNavn]"
+                          name="ArtNavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Medarb_Grp]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_Grp]"
+                          name="Medarb_Grp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Medarb_GrpNavn]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_GrpNavn]"
+                          name="Medarb_GrpNavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                          name="PeriodeIndlæst"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Lønsum]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Lønsum]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Lønsum]"
+                          name="Lønsum"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ProfitcenterNavn" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Art" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ArtNavn" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarb_Grp" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarb_GrpNavn" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PeriodeIndlæst" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].ExternalColumns[Lønsum]"
+                          dataType="r8"
+                          name="Lønsum" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                          name="Profitcenter" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ProfitcenterNavn]"
+                          name="ProfitcenterNavn" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Art]"
+                          name="Art" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ArtNavn]"
+                          name="ArtNavn" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Medarb_Grp]"
+                          name="Medarb_Grp" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Medarb_GrpNavn]"
+                          name="Medarb_GrpNavn" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                          name="PeriodeIndlæst" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Lønsum]"
+                          dataType="r8"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[Lønsum]"
+                          name="Lønsum" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Load periode"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Select SUBSTRING(value,1,4) as År, CONVERT(Int, value) as Indlæsningsperiode, SUBSTRING(value,1,50) as Periode
+ from ods.ctl_dataload
+ Where kilde_system = 'Alle'
+ and variable = 'Model_Periode'
+order by SUBSTRING(value,1,4)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Connections[OleDbConnection]"
+                      connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[År]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].ExternalColumns[År]"
+                          length="4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[År]"
+                          name="År"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[Indlæsningsperiode]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].ExternalColumns[Indlæsningsperiode]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[Indlæsningsperiode]"
+                          name="Indlæsningsperiode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].ExternalColumns[Periode]"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[Periode]"
+                          name="Periode"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].ExternalColumns[År]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="År" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].ExternalColumns[Indlæsningsperiode]"
+                          dataType="i4"
+                          name="Indlæsningsperiode" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].ExternalColumns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Periode" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[År]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[År]"
+                          name="År" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[Indlæsningsperiode]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[Indlæsningsperiode]"
+                          name="Indlæsningsperiode" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[Periode]"
+                          name="Periode" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join"
+                  componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+                  contactInfo="Merge Join;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Merges data from two datasets by using a join."
+                  name="Merge Join"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of join to perform."
+                      name="JoinType"
+                      typeConverter="JoinType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the number of columns in the ordering key."
+                      name="NumKeyColumns">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the null values are treated as equal values."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indicates the requested maximum buffers per input before blocking."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Left Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[År]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="År"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[År]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Profitcenter]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Profitcenter]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[ProfitcenterNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProfitcenterNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[ProfitcenterNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Art]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Art"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Art]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[ArtNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ArtNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[ArtNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Medarb_Grp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_Grp"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Medarb_Grp]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Medarb_GrpNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_GrpNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Medarb_GrpNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[PeriodeIndlæst_konv]"
+                          cachedDataType="i4"
+                          cachedName="PeriodeIndlæst_konv"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[PeriodeIndlæst_konv]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Lønsum]"
+                          cachedDataType="r8"
+                          cachedName="Lønsum"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Lønsum]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Right Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Right Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Right Input].Columns[År]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="År"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[År]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Right Input].Columns[Indlæsningsperiode]"
+                          cachedDataType="i4"
+                          cachedName="Indlæsningsperiode"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[Indlæsningsperiode]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Right Input].Columns[Periode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Periode"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output].Columns[Periode]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output]"
+                      name="Merge Join Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Profitcenter]"
+                          name="Profitcenter">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Profitcenter]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ProfitcenterNavn]"
+                          name="ProfitcenterNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[ProfitcenterNavn]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Art]"
+                          name="Art">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Art]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[ArtNavn]"
+                          name="ArtNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[ArtNavn]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_Grp]"
+                          name="Medarb_Grp">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Medarb_Grp]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Medarb_GrpNavn]"
+                          name="Medarb_GrpNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Medarb_GrpNavn]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[PeriodeIndlæst]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[PeriodeIndlæst]"
+                          name="PeriodeIndlæst">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[PeriodeIndlæst_konv]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Indlæsningsperiode_model]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Indlæsningsperiode_model]"
+                          name="Indlæsningsperiode_model">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Right Input].Columns[Indlæsningsperiode]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Periode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Periode]"
+                          name="Periode">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Right Input].Columns[Periode]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Lønsum]"
+                          dataType="r8"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output].Columns[Lønsum]"
+                          name="Lønsum">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input].Columns[Lønsum]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="POEM GD_R_LønsumAnsættelsetype"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[GD_R_LønsumAnsættelsetype]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Connections[OleDbConnection]"
+                      connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[Profitcenter]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Profitcenter]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[ProfitcenterNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProfitcenterNavn"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[ProfitcenterNavn]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[ProfitcenterNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[Art]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Art"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Art]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Art]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[ArtNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ArtNavn"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[ArtNavn]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[ArtNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[Medarb_Grp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_Grp"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_Grp]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Medarb_Grp]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[Medarb_GrpNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_GrpNavn"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_GrpNavn]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Medarb_GrpNavn]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[Periode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Periode"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Periode]" />
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].Columns[Lønsum]"
+                          cachedDataType="r8"
+                          cachedName="Lønsum"
+                          externalMetadataColumnId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Lønsum]"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1].Columns[Lønsum]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ProfitcenterNavn" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Art" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ArtNavn" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarb_Grp" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Medarb_GrpNavn" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PeriodeIndlæst" />
+                        <externalMetadataColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input].ExternalColumns[Lønsum]"
+                          dataType="r8"
+                          name="Lønsum" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts data."
+                  name="Sort indlæsningsperioder"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[Profitcenter]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Profitcenter"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Profitcenter]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[ProfitcenterNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ProfitcenterNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ProfitcenterNavn]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[Art]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Art"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Art]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[ArtNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ArtNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ArtNavn]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[Medarb_Grp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_Grp"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_Grp]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[Medarb_GrpNavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Medarb_GrpNavn"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_GrpNavn]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[PeriodeIndlæst_konv]"
+                          cachedDataType="i4"
+                          cachedName="PeriodeIndlæst_konv"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[PeriodeIndlæst_konv]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[År]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="År"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[År]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input].Columns[Lønsum]"
+                          cachedDataType="r8"
+                          cachedName="Lønsum"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Lønsum]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Profitcenter]"
+                          name="Profitcenter">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Profitcenter]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[ProfitcenterNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[ProfitcenterNavn]"
+                          name="ProfitcenterNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ProfitcenterNavn]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Art]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Art]"
+                          name="Art">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Art]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[ArtNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[ArtNavn]"
+                          name="ArtNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[ArtNavn]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Medarb_Grp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Medarb_Grp]"
+                          name="Medarb_Grp">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_Grp]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Medarb_GrpNavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Medarb_GrpNavn]"
+                          name="Medarb_GrpNavn">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Medarb_GrpNavn]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[PeriodeIndlæst_konv]"
+                          dataType="i4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[PeriodeIndlæst_konv]"
+                          name="PeriodeIndlæst_konv">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[PeriodeIndlæst_konv]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[År]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[År]"
+                          name="År"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output].Columns[År]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Lønsum]"
+                          dataType="r8"
+                          lineageId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output].Columns[Lønsum]"
+                          name="Lønsum">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output].Columns[Lønsum]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Aggregate Output 1]"
+                  endId="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype.Inputs[OLE DB Destination Input]"
+                  name="Aggregate Output 1"
+                  startId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Outputs[Aggregate Output 1]" />
+                <path
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Derived Column Output]"
+                  endId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Inputs[Sort Input]"
+                  name="Derived Column Output"
+                  startId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Merge Join Output]"
+                  endId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Inputs[Conditional Split Input]"
+                  name="Merge Join Output"
+                  startId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Outputs[Merge Join Output]" />
+                <path
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Model_Perioder]"
+                  endId="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Model_Perioder"
+                  startId="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split.Outputs[Model_Perioder]" />
+                <path
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[OLE DB Source Output]"
+                  endId="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[OLE DB Source Output1]"
+                  endId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Right Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Sort Output]"
+                  endId="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join.Inputs[Merge Join Left Input]"
+                  name="Sort Output"
+                  startId="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder.Outputs[Sort Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\GD_R_LønsumAnsættelsetype.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{E505BB96-5C84-4E88-ADCB-CA68568D0D11}"
+          DTS:From="Package\GD_R_LønsumAnsættelsetype\Fjern eksisterende data"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\GD_R_LønsumAnsættelsetype\Load date" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\GD_R_LønsumAnsættelsetype.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{F6F863F3-BC9F-4E74-BDEF-401E42636A9E}"
+          DTS:From="Package\GD_R_LønsumAnsættelsetype\Find periode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\GD_R_LønsumAnsættelsetype\Fjern eksisterende data" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{67667950-735D-4666-8A4F-90608D36B16E}"
+      DTS:From="Package\GD_R_LønsumAnsættelsetype"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Check" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,44"
+          Id="Package\Data Check\Find FT sum"
+          TopLeft="156.830188679245,20.6981132075472" />
+        <NodeLayout
+          Size="205,44"
+          Id="Package\Data Check\Find GD diff nyere perioder"
+          TopLeft="133.962264150943,305.415094339623" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Check\Find GD sum"
+          TopLeft="167.924528301887,150.245283018868" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Check\Gem FT sum"
+          TopLeft="167.88679245283,85.3773584905661" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Check\Gem GD sum"
+          TopLeft="168.566037735849,219.603773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Check\Gem periode diff"
+          TopLeft="168.339622641509,403.867924528302" />
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint]"
+          TopLeft="237.207547169811,64.6226415094339">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.43396226415094,20.7547169811321"
+              Start="0,0"
+              End="-1.43396226415094,13.2547169811321">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.3773584905661" />
+                  <mssgle:LineSegment
+                    End="-1.43396226415094,10.3773584905661" />
+                  <mssgle:LineSegment
+                    End="-1.43396226415094,13.2547169811321" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint 1]"
+          TopLeft="235.77358490566,129.301886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0377358490566024,20.9433962264152"
+              Start="0,0"
+              End="0.0377358490566024,13.4433962264152">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.4528301886793" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566024,10.4528301886793" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566024,13.4433962264152" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint 2]"
+          TopLeft="235.811320754717,194.169811320755">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.641509433962263,25.433962264151"
+              Start="0,0"
+              End="0.641509433962263,17.933962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.7169811320755" />
+                  <mssgle:LineSegment
+                    End="0.641509433962263,12.7169811320755" />
+                  <mssgle:LineSegment
+                    End="0.641509433962263,17.933962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint 3]"
+          TopLeft="236.452830188679,263.528301886792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.188679245283019,41.8867924528302"
+              Start="0,0"
+              End="-0.188679245283019,34.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.188679245283019,20.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.188679245283019,34.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Check.PrecedenceConstraints[Constraint 4]"
+          TopLeft="236.264150943396,349.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.0377358490566024,54.5283018867925"
+              Start="0,0"
+              End="-0.0377358490566024,47.0283018867925">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566024,27.245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566024,47.0283018867925" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="447,643"
+          Size="447,687"
+          Id="Package\Data Check"
+          TopLeft="5.5,380.367924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Find periode"
+          TopLeft="114.301886792453,30.8867924528302" />
+        <NodeLayout
+          Size="211,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Fjern eksisterende data"
+          TopLeft="108.264150943396,119.716981132075" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date"
+          TopLeft="78.377358490566,205.603773584906" />
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype.PrecedenceConstraints[Constraint]"
+          TopLeft="213.584905660377,163.641509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-67.3207547169811,41.9622641509434"
+              Start="0,0"
+              End="-67.3207547169811,34.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-67.3207547169811,20.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-67.3207547169811,34.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype.PrecedenceConstraints[Constraint 1]"
+          TopLeft="182.188679245283,74.811320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.3962264150943,44.9056603773585"
+              Start="0,0"
+              End="31.3962264150943,37.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4528301886792" />
+                  <mssgle:LineSegment
+                    End="31.3962264150943,22.4528301886792" />
+                  <mssgle:LineSegment
+                    End="31.3962264150943,37.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="423,268"
+          Size="423,312"
+          Id="Package\GD_R_LønsumAnsættelsetype"
+          TopLeft="28.7452830188679,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="240.405660377358,317.009433962264">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.5471698113208,63.3584905660377"
+              Start="0,0"
+              End="-11.5471698113208,55.8584905660377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6603773584906" />
+                  <mssgle:LineSegment
+                    End="-11.5471698113208,31.6603773584906" />
+                  <mssgle:LineSegment
+                    End="-11.5471698113208,55.8584905660377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\GD_R_LønsumAnsættelsetype\Load date">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\Merge Join"
+          TopLeft="176.292452830189,354.933962264151" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\Conditional Split"
+          TopLeft="176.254716981132,432.820754716981" />
+        <NodeLayout
+          Size="208,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\Sort indlæsningsperioder"
+          TopLeft="7.5377358490566,211.198113207547" />
+        <NodeLayout
+          Size="207,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\Load periode"
+          TopLeft="319.047169811321,213.160377358491" />
+        <NodeLayout
+          Size="177,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\Data konverteringer"
+          TopLeft="23.5,101.349056603774" />
+        <NodeLayout
+          Size="245,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype"
+          TopLeft="125.349056603774,605.537735849057" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\Aggregate"
+          TopLeft="179.235849056604,521.688679245283" />
+        <NodeLayout
+          Size="213,44"
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Sort Output]"
+          TopLeft="111.349056603774,255.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132.830188679245,99.811320754717"
+              Start="0,0"
+              End="132.830188679245,92.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.8867924528302" />
+                  <mssgle:LineSegment
+                    End="132.830188679245,49.8867924528302" />
+                  <mssgle:LineSegment
+                    End="132.830188679245,92.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[OLE DB Source Output1]"
+          TopLeft="422.367924528302,257.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-157.433962264151,97.8490566037735"
+              Start="0,0"
+              End="-157.433962264151,90.3490566037735">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9056603773585" />
+                  <mssgle:LineSegment
+                    End="-157.433962264151,48.9056603773585" />
+                  <mssgle:LineSegment
+                    End="-157.433962264151,90.3490566037735" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[OLE DB Source Output]"
+          TopLeft="111.801886792453,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0377358490566166,51.9245283018868"
+              Start="0,0"
+              End="0.0377358490566166,44.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,25.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,44.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Model_Perioder]"
+          TopLeft="244.141509433962,476.745283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.98113207547175,44.9433962264151"
+              Start="0,0"
+              End="2.98113207547175,37.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4528301886793" />
+                  <mssgle:LineSegment
+                    End="2.98113207547175,22.4528301886793" />
+                  <mssgle:LineSegment
+                    End="2.98113207547175,37.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-33.1981253685141,27.4528301886793,69.3773828125,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Merge Join Output]"
+          TopLeft="244.179245283019,398.858490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.0377358490566166,33.9622641509434"
+              Start="0,0"
+              End="-0.0377358490566166,26.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566166,26.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Derived Column Output]"
+          TopLeft="111.839622641509,145.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735874,65.9245283018868"
+              Start="0,0"
+              End="-0.490566037735874,58.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735874,32.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735874,58.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GD_R_LønsumAnsættelsetype\Load date.Paths[Aggregate Output 1]"
+          TopLeft="247.122641509434,565.61320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.490566037735846,39.9245283018868"
+              Start="0,0"
+              End="0.490566037735846,32.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.490566037735846,19.9622641509434" />
+                  <mssgle:LineSegment
+                    End="0.490566037735846,32.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\GD_R_LønsumAnsættelsetype\Load date\POEM GD_R_LønsumAnsættelsetype">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GD_R_LønsumAnsættelsetype\Load date\G_R_LønsumAnsættelsetype">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

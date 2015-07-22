@@ -1,0 +1,2182 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/11/2013 2:08:06 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{2D6CAAC6-6CDB-4A72-A0C6-B3256714C96E}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="040_GD_R_Lokofoerertid_STog"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{351942EF-1E24-4DE7-BAFB-4159352D98BC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81696583-F474-46E5-AF41-DA2677224CC4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data check"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{5700CEB2-0991-42E9-A1BA-D1C5D7167353}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data check">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{A055B207-9FFD-4E72-8F3F-31A822740FEE}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_Timer">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Data check\Find timer fra FT"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="FT_Lokopersonale_S_tog"
+          DTS:DTSID="{2013483A-834C-4060-8FEF-A7E6DE6DB50D}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find timer fra FT"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select CONVERT(Float, SUM(Opgave_Varighed_Timer)) timer&#xA;from [edw].[FT_Lokopersonale_S_tog] d&#xA;join edw.DI_Tid t on (t.reference = d.DI_Tid)&#xA;join -- Periode&#xA;(Select SUBSTRING(value,1,4) as År, CONVERT(Int, SUBSTRING(value,5,2)) as Måned , SUBSTRING(value,1,6) as Periode &#xA;from ods.ctl_dataload&#xA; Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode') p on (t.Aar = p.År&#xA;                                      and t.MaanedNum &lt;= p.måned)&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Timer" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check\Find timer fra GD"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="GD_R_Lokoførertid_STog"
+          DTS:DTSID="{4ef2b4a8-cc9b-45fc-b727-88dd6f1b63d0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find timer fra GD"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="select CONVERT(Float, SUM(Timer)) As timer from [dbo].[GD_R_Lokoførertid_STog]&#xA;where periodeIndlæst = ?&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Timer" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check\Gem timer fra FT"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="FT_Lokopersonale_S_tog"
+          DTS:DTSID="{3505CC51-7ED5-4F4F-8250-2C11B27298B0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem timer fra FT"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 80 , ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_Timer"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Data check\Gem timer fra GD"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="FT_Lokopersonale_S_tog"
+          DTS:DTSID="{467cea74-548c-4935-9544-18b6cfcc44d4}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem timer fra GD"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 81 , ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_Periode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_Timer"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3A157B2A-AA37-4132-A6F6-55A5411D655F}"
+          DTS:From="Package\Data check\Find timer fra FT"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Data check\Gem timer fra FT" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{D5EB38E8-99DF-4EC5-A7A0-D825D84A8DE3}"
+          DTS:From="Package\Data check\Gem timer fra FT"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Data check\Find timer fra GD" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Data check.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{98C04ADF-A741-4BFE-9901-9942FC984FBD}"
+          DTS:From="Package\Data check\Find timer fra GD"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Data check\Gem timer fra GD" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9D8903F1-0200-4C99-B7E7-CD6847CFAED6}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\FT_Lokopersonale_S_tog"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="FT_Lokopersonale_S_tog"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select p.Periode As periodeIndlæst, d.DI_S_Straekning, d.DI_S_Doegn_Inddeling As DI_Tidsintervaller, 
+   d.Di_depot, d.DI_S_Opgave_Lokofører, Opgave_Varighed_Timer
+from [edw].[FT_Lokopersonale_S_tog] d
+join edw.DI_Tid t on (t.reference = d.DI_Tid)
+join -- Periode
+(Select SUBSTRING(value,1,4) as År, CONVERT(Int, SUBSTRING(value,5,2)) as Måned , SUBSTRING(value,1,6) as Periode 
+from ods.ctl_dataload
+ Where kilde_system = 'Alle'
+ and variable = 'Model_Periode') p on (t.Aar = p.År
+                                      and t.MaanedNum &lt;= p.måned)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[periodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[periodeIndlæst]"
+                      length="6"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[periodeIndlæst]"
+                      name="periodeIndlæst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Straekning]"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Di_depot]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[Di_depot]"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Di_depot]"
+                      name="Di_depot"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Opgave_Lokofører]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Opgave_Lokofører]"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Opgave_Lokofører]"
+                      name="DI_S_Opgave_Lokofører"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Opgave_Varighed_Timer]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Varighed_Timer]"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Opgave_Varighed_Timer]"
+                      name="Opgave_Varighed_Timer"
+                      precision="24"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[periodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="periodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      name="DI_Tidsintervaller" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[Di_depot]"
+                      dataType="i4"
+                      name="Di_depot" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Opgave_Lokofører]"
+                      dataType="i4"
+                      name="DI_S_Opgave_Lokofører" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Varighed_Timer]"
+                      dataType="numeric"
+                      name="Opgave_Varighed_Timer"
+                      precision="24"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[periodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[periodeIndlæst]"
+                      name="periodeIndlæst" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[Di_depot]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[Di_depot]"
+                      name="Di_depot" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Opgave_Lokofører]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[DI_S_Opgave_Lokofører]"
+                      name="DI_S_Opgave_Lokofører" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[Opgave_Varighed_Timer]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[Opgave_Varighed_Timer]"
+                      name="Opgave_Varighed_Timer"
+                      precision="24"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\GD_R_Lokoførertid_STo"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GD_R_Lokoførertid_STo"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[GD_R_Lokoførertid_STog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[periodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="periodeIndlæst"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[periodeIndlæst]"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[periodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[Turdepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Turdepot"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Turdepot]"
+                      lineageId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output].Columns[Turdepot]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[Turdepot_Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Turdepot_Navn"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[TurdepotNavn]"
+                      lineageId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output].Columns[Turdepot_Navn]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[OpgaveType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OpgaveType"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveType]"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveType]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[OpgaveGruppe]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OpgaveGruppe"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppe]"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveGruppe]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[OpgaveGruppeNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="OpgaveGruppeNavn"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppeNavn]"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveGruppeNavn]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[Togsystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystem"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[Togsystem]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[TogsystemNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TogsystemNavn"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[TogsystemNavn]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[Costobjekt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Costobjekt"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Costobjekt]"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[Costobjekt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[TidsintervalNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TidsintervalNavn"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[TidsintervalNavn]"
+                      lineageId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Match Output].Columns[TidsintervalNavn]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].Columns[Opgave_Varighed_Timer]"
+                      cachedDataType="numeric"
+                      cachedName="Opgave_Varighed_Timer"
+                      cachedPrecision="24"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Timer]"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[Opgave_Varighed_Timer]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[periodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="periodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Turdepot" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[TurdepotNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TurdepotNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OpgaveType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OpgaveGruppe" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[OpgaveGruppeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OpgaveGruppeNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystem" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TogsystemNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Costobjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[TidsintervalNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TidsintervalNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input].ExternalColumns[Timer]"
+                      dataType="r8"
+                      name="Timer" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Påsæt depot"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Påsæt depot"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [edw].[DI_Depot]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [edw].[DI_Depot]) [refTable]
+where [refTable].[PK_ID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Depot" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Station" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Stations_Nummer" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Stations_Navn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[Di_depot]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Påsæt depot.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Påsæt depot.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Påsæt depot.Inputs[Lookup Input].Columns[Di_depot]"
+                      cachedDataType="i4"
+                      cachedName="Di_depot"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[Di_depot]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PK_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt depot.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output].Columns[Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output].Columns[Turdepot]"
+                      name="Turdepot"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Depot</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output].Columns[Turdepot_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output].Columns[Turdepot_Navn]"
+                      name="Turdepot_Navn"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Stations_Navn</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt depot.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt depot.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Påsæt opgave"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Påsæt opgave"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [edw].[DI_S_Opgave_Lokofører]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [edw].[DI_S_Opgave_Lokofører]) [refTable]
+where [refTable].[PK_ID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Elementkode" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Elementkode_Navn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Gruppe" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Gruppe_Navn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Type" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Type_Navn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Opgave_Lokofører]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Påsæt opgave.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Påsæt opgave.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Påsæt opgave.Inputs[Lookup Input].Columns[DI_S_Opgave_Lokofører]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Opgave_Lokofører"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Opgave_Lokofører]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PK_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt opgave.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveType]"
+                      name="OpgaveType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Type</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveGruppe]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveGruppe]"
+                      name="OpgaveGruppe"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Gruppe</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveGruppeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output].Columns[OpgaveGruppeNavn]"
+                      name="OpgaveGruppeNavn"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Gruppe_Navn</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt opgave.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt opgave.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Påsæt Strækninger"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Påsæt Strækninger"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select s.PK_ID as DI_S_Straekning, ISNULL(ms.StogTogsystem, '-1') As Togsystem, 
+  ISNULL(ms.TogsystemNavn_Kort, 'Ingen') As TogsystemNavn, ISNULL(ms.Costobjekt, '-1') As Costobjekt
+from edw.DI_S_Straekning s
+left outer join ods.MD_G_STAM_Togsystem ms on (s.Straekning = ms.StogTogsystem)
+order by s.pk_id</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select s.PK_ID as DI_S_Straekning, ISNULL(ms.StogTogsystem, '-1') As Togsystem, 
+  ISNULL(ms.TogsystemNavn_Kort, 'Ingen') As TogsystemNavn, ISNULL(ms.Costobjekt, '-1') As Costobjekt
+from edw.DI_S_Straekning s
+left outer join ods.MD_G_STAM_Togsystem ms on (s.Straekning = ms.StogTogsystem)
+order by s.pk_id) [refTable]
+where [refTable].[DI_S_Straekning] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DI_S_Straekning" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Togsystem" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TogsystemNavn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Costobjekt" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Straekning]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Påsæt Strækninger.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Påsæt Strækninger.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Påsæt Strækninger.Inputs[Lookup Input].Columns[DI_S_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Straekning"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Straekning]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DI_S_Straekning</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt Strækninger.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[Togsystem]"
+                      name="Togsystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Togsystem</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[TogsystemNavn]"
+                      name="TogsystemNavn"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TogsystemNavn</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output].Columns[Costobjekt]"
+                      name="Costobjekt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Costobjekt</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt Strækninger.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt Strækninger.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Påsæt tidsintervaller"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Påsæt tidsintervaller"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select PK_ID As DI_Tidsintervaller, Navn As TidsintervalNavn 
+from edw.di_s_doegn_inddeling
+order by pk_id</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select PK_ID As DI_Tidsintervaller, Navn As TidsintervalNavn 
+from edw.di_s_doegn_inddeling
+order by pk_id) [refTable]
+where [refTable].[DI_Tidsintervaller] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DI_Tidsintervaller" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TidsintervalNavn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_Tidsintervaller]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Påsæt tidsintervaller.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Påsæt tidsintervaller.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Påsæt tidsintervaller.Inputs[Lookup Input].Columns[DI_Tidsintervaller]"
+                      cachedDataType="i4"
+                      cachedName="DI_Tidsintervaller"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_Tidsintervaller]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DI_Tidsintervaller</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt tidsintervaller.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Match Output].Columns[TidsintervalNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Match Output].Columns[TidsintervalNavn]"
+                      name="TidsintervalNavn"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TidsintervalNavn</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt tidsintervaller.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Påsæt tidsintervaller.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Sumer opgave minutter"
+              componentClassID="{5B201335-B360-485C-BB93-75C34E09B3D3}"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates and groups values in a dataset."
+              name="Sumer opgave minutter"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1].Columns[periodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="periodeIndlæst"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[periodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1].Columns[DI_S_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Straekning"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1].Columns[DI_Tidsintervaller]"
+                      cachedDataType="i4"
+                      cachedName="DI_Tidsintervaller"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1].Columns[Di_depot]"
+                      cachedDataType="i4"
+                      cachedName="Di_depot"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Di_depot]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1].Columns[DI_S_Opgave_Lokofører]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Opgave_Lokofører"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Opgave_Lokofører]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1].Columns[Opgave_Varighed_Timer]"
+                      cachedDataType="numeric"
+                      cachedName="Opgave_Varighed_Timer"
+                      cachedPrecision="24"
+                      cachedScale="6"
+                      lineageId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Opgave_Varighed_Timer]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[periodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[periodeIndlæst]"
+                      name="periodeIndlæst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[periodeIndlæst]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Straekning]"
+                      name="DI_S_Straekning">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Straekning]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_Tidsintervaller]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_Tidsintervaller]"
+                      name="DI_Tidsintervaller">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[Di_depot]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[Di_depot]"
+                      name="Di_depot">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Di_depot]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Opgave_Lokofører]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[DI_S_Opgave_Lokofører]"
+                      name="DI_S_Opgave_Lokofører">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[DI_S_Opgave_Lokofører]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[Opgave_Varighed_Timer]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1].Columns[Opgave_Varighed_Timer]"
+                      name="Opgave_Varighed_Timer"
+                      precision="24"
+                      scale="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output].Columns[Opgave_Varighed_Timer]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Aggregate Output 1]"
+              endId="Package\Data Flow Task\Påsæt Strækninger.Inputs[Lookup Input]"
+              name="Aggregate Output 1"
+              startId="Package\Data Flow Task\Sumer opgave minutter.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\Påsæt tidsintervaller.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\Påsæt Strækninger.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output1]"
+              endId="Package\Data Flow Task\Påsæt depot.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\Påsæt tidsintervaller.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output2]"
+              endId="Package\Data Flow Task\Påsæt opgave.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\Påsæt depot.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output3]"
+              endId="Package\Data Flow Task\GD_R_Lokoførertid_STo.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\Påsæt opgave.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Sumer opgave minutter.Inputs[Aggregate Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\FT_Lokopersonale_S_tog.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Find periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{83A21270-0F47-48EF-8EE4-AECCA8099489}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="Select SUBSTRING(value,1,50) as Periode&#xA; from ods.ctl_dataload&#xA; Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Periode" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fjern eksisterende periode data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="fra GD_R_Lokoførertid_STog"
+      DTS:DTSID="{A9324709-CB91-44EA-B2A3-2519F89C8517}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern eksisterende periode data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="DELETE FROM [dbo].[GD_R_Lokoførertid_STog]&#xA;WHERE PeriodeIndlæst = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{00A37CF7-1D14-410C-9CA7-2F3F525E38C2}"
+      DTS:From="Package\Fjern eksisterende periode data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BFFDE3B7-5DE6-4058-8E7A-97DCFFECC738}"
+      DTS:From="Package\Find periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Fjern eksisterende periode data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5D6006E2-B230-4A9A-BD42-2259F0976D6B}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Data check" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,44"
+          Id="Package\Data check\Find timer fra FT"
+          TopLeft="110.301886792453,25.3773584905661" />
+        <NodeLayout
+          Size="154,44"
+          Id="Package\Data check\Find timer fra GD"
+          TopLeft="113.132075471698,183.075471698113" />
+        <NodeLayout
+          Size="149,44"
+          Id="Package\Data check\Gem timer fra FT"
+          TopLeft="116.301886792453,101.264150943396" />
+        <NodeLayout
+          Size="149,44"
+          Id="Package\Data check\Gem timer fra GD"
+          TopLeft="118.566037735849,266.471698113208" />
+        <EdgeLayout
+          Id="Package\Data check.PrecedenceConstraints[Constraint]"
+          TopLeft="187.169811320755,69.3018867924528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="3.50943396226415,31.9622641509434"
+              Start="0,0"
+              End="3.50943396226415,24.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9622641509434" />
+                  <mssgle:LineSegment
+                    End="3.50943396226415,15.9622641509434" />
+                  <mssgle:LineSegment
+                    End="3.50943396226415,24.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check.PrecedenceConstraints[Constraint 1]"
+          TopLeft="190.679245283019,145.188679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.679245283018872,37.8867924528302"
+              Start="0,0"
+              End="-0.679245283018872,30.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.679245283018872,18.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.679245283018872,30.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data check.PrecedenceConstraints[Constraint 2]"
+          TopLeft="190,227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.9433962264151,39.4716981132076"
+              Start="0,0"
+              End="2.9433962264151,31.9716981132076">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.7358490566038" />
+                  <mssgle:LineSegment
+                    End="2.9433962264151,19.7358490566038" />
+                  <mssgle:LineSegment
+                    End="2.9433962264151,31.9716981132076" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="351,337"
+          Size="351,380"
+          Id="Package\Data check"
+          TopLeft="5.5,321.839622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Flow Task"
+          TopLeft="44.9716981132076,194.028301886792" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Find periode"
+          TopLeft="41.1603773584906,5.5" />
+        <NodeLayout
+          Size="182,44"
+          Id="Package\Fjern eksisterende periode data"
+          TopLeft="20.9716981132076,93.1603773584906" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="111.801886792453,137.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.0566037735849,56.9433962264151"
+              Start="0,0"
+              End="1.0566037735849,49.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.4528301886793" />
+                  <mssgle:LineSegment
+                    End="1.0566037735849,28.4528301886793" />
+                  <mssgle:LineSegment
+                    End="1.0566037735849,49.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="109.047169811321,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.75471698113208,43.7358490566038"
+              Start="0,0"
+              End="2.75471698113208,36.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.8490566037736" />
+                  <mssgle:LineSegment
+                    End="2.75471698113208,21.8490566037736" />
+                  <mssgle:LineSegment
+                    End="2.75471698113208,36.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="112.858490566038,237.952830188679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.9622641509434,83.8867924528302"
+              Start="0,0"
+              End="67.9622641509434,76.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.9245283018868" />
+                  <mssgle:LineSegment
+                    End="67.9622641509434,41.9245283018868" />
+                  <mssgle:LineSegment
+                    End="67.9622641509434,76.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="178,44"
+          Id="Package\Data Flow Task\Påsæt opgave"
+          TopLeft="376.933962264151,597.009433962264" />
+        <NodeLayout
+          Size="189,44"
+          Id="Package\Data Flow Task\Sumer opgave minutter"
+          TopLeft="101.349056603774,113.537735849057" />
+        <NodeLayout
+          Size="193,44"
+          Id="Package\Data Flow Task\Påsæt tidsintervaller"
+          TopLeft="154.292452830189,379.27358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Flow Task\Påsæt Strækninger"
+          TopLeft="133.311320754717,237.61320754717" />
+        <NodeLayout
+          Size="162,44"
+          Id="Package\Data Flow Task\Påsæt depot"
+          TopLeft="226.179245283019,468.254716981132" />
+        <NodeLayout
+          Size="196,44"
+          Id="Package\Data Flow Task\FT_Lokopersonale_S_tog"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="184,44"
+          Id="Package\Data Flow Task\GD_R_Lokoførertid_STo"
+          TopLeft="368.933962264151,701.650943396226" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="103.349056603774,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.3396226415094,64.1132075471698"
+              Start="0,0"
+              End="92.3396226415094,56.6132075471698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.0377358490566" />
+                  <mssgle:LineSegment
+                    End="92.3396226415094,32.0377358490566" />
+                  <mssgle:LineSegment
+                    End="92.3396226415094,56.6132075471698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output3]"
+          TopLeft="465.764150943396,640.933962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4.98113207547169,60.7169811320755"
+              Start="0,0"
+              End="-4.98113207547169,53.2169811320755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.3396226415094" />
+                  <mssgle:LineSegment
+                    End="-4.98113207547169,30.3396226415094" />
+                  <mssgle:LineSegment
+                    End="-4.98113207547169,53.2169811320755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.6819527564858,35.3396226415094,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output2]"
+          TopLeft="307.047169811321,512.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="158.716981132075,84.8301886792452"
+              Start="0,0"
+              End="158.716981132075,77.3301886792452">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.4150943396227" />
+                  <mssgle:LineSegment
+                    End="158.716981132075,42.4150943396227" />
+                  <mssgle:LineSegment
+                    End="158.716981132075,77.3301886792452" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="31.1671038472877,47.4150943396227,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output1]"
+          TopLeft="250.632075471698,423.198113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.4150943396226,45.0566037735849"
+              Start="0,0"
+              End="56.4150943396226,37.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5283018867925" />
+                  <mssgle:LineSegment
+                    End="56.4150943396226,22.5283018867925" />
+                  <mssgle:LineSegment
+                    End="56.4150943396226,37.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.9838395489387,27.5283018867925,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="201.198113207547,281.537735849057">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.4339622641509,97.7358490566038"
+              Start="0,0"
+              End="49.4339622641509,90.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.8679245283019" />
+                  <mssgle:LineSegment
+                    End="49.4339622641509,48.8679245283019" />
+                  <mssgle:LineSegment
+                    End="49.4339622641509,90.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-23.4744055866745,53.8679245283019,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Aggregate Output 1]"
+          TopLeft="195.688679245283,157.462264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5.50943396226415,80.1509433962264"
+              Start="0,0"
+              End="5.50943396226415,72.6509433962264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.0754716981132" />
+                  <mssgle:LineSegment
+                    End="5.50943396226415,40.0754716981132" />
+                  <mssgle:LineSegment
+                    End="5.50943396226415,72.6509433962264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

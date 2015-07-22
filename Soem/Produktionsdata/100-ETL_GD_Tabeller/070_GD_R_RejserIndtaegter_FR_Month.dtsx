@@ -1,0 +1,892 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/23/2014 1:30:07 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{968C1772-80D3-4BD9-AACE-16CDC93AA28B}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="070_GD_R_RejserIndtaegter_FR_Month"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{E03C37CC-6260-41C4-A7A2-6FCF08BC8FEA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB9D4C01-B849-4052-A5BC-E4D26BB584C1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Find periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A762AA07-FAF4-4A1C-9D6C-56DF5C20E8AD}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="Select value As Periode&#xA; from ods.ctl_dataload&#xA;Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Periode" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fjern Eksisterende periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0B51F0C6-12F4-4304-A4F9-C312DE8BA622}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern Eksisterende periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="delete from dbo.GD_R_RejserIndtægter_FR&#xA; where PeriodeIndlæst = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Indlæst data fra fil"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7C2C0956-C37D-4F40-B4EC-7E111FDE4310}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæst data fra fil"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GD_R_RejserIndtægter_FR"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[GD_R_RejserIndtægter_FR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Stationsnr]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnr"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnr]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationsnr]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Stationsnavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnavn"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnavn]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationsnavn]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Stationstype]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationstype"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Stationstype]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationstype]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Landsdel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Landsdel"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Landsdel]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Landsdel]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Togsystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystem"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Togsystem]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[TogsystemNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TogsystemNavn"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[TogsystemNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[CostObjekt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CostObjekt"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[CostObjekt]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[CostObjekt]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Produkt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Produkt"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Produkt]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[TidsintervalNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TidsintervalNavn"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[TidsintervalNavn]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[TidsintervalNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Enhed]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Enhed"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Enhed]" />
+                    <inputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].Columns[Værdi]"
+                      cachedDataType="r8"
+                      cachedName="Værdi"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Værdi]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Værdi]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Stationstype]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationstype" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Landsdel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Landsdel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystem" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TogsystemNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[CostObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CostObjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Produkt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[TidsintervalNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TidsintervalNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input].ExternalColumns[Værdi]"
+                      dataType="r8"
+                      name="Værdi" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="RD_RIM_Rejseindtaegter"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT PeriodeIndlæst, Stationsnr, Stationsnavn, Stationstype, Landsdel, Togsystem,
+  TogsystemNavn, CostObjekt, Produkt, TidsintervalNavn, Enhed, Værdi
+FROM ods.RD_RIM_Rejseindtaegter
+WHERE PeriodeIndlæst = ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0",{EB9D4C01-B849-4052-A5BC-E4D26BB584C1};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationsnr]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Stationsnr]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationsnr]"
+                      name="Stationsnr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Stationsnavn]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationsnavn]"
+                      name="Stationsnavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationstype]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Stationstype]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Stationstype]"
+                      name="Stationstype"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Landsdel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Landsdel]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Landsdel]"
+                      name="Landsdel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                      name="Togsystem"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[TogsystemNavn]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[TogsystemNavn]"
+                      name="TogsystemNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[CostObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[CostObjekt]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[CostObjekt]"
+                      name="CostObjekt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Produkt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Produkt]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Produkt]"
+                      name="Produkt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[TidsintervalNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[TidsintervalNavn]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[TidsintervalNavn]"
+                      name="TidsintervalNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Enhed]"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Enhed]"
+                      name="Enhed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Værdi]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Værdi]"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].Columns[Værdi]"
+                      name="Værdi"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Stationsnr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Stationstype]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationstype" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Landsdel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Landsdel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystem" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TogsystemNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[CostObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CostObjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Produkt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Produkt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[TidsintervalNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TidsintervalNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output].ExternalColumns[Værdi]"
+                      dataType="r8"
+                      name="Værdi" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Stationsnr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Stationsnr]"
+                      name="Stationsnr" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Stationsnavn]"
+                      name="Stationsnavn" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Stationstype]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Stationstype]"
+                      name="Stationstype" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Landsdel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Landsdel]"
+                      name="Landsdel" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                      name="Togsystem" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[TogsystemNavn]"
+                      name="TogsystemNavn" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[CostObjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[CostObjekt]"
+                      name="CostObjekt" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Produkt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Produkt]"
+                      name="Produkt" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[TidsintervalNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[TidsintervalNavn]"
+                      name="TidsintervalNavn" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Enhed]"
+                      name="Enhed" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Værdi]"
+                      dataType="r8"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[Værdi]"
+                      name="Værdi" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæst data fra fil.Paths[OLE DB Source Output]"
+              endId="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1DB45C3-DE21-4096-A633-253755E34922}"
+      DTS:From="Package\Find periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Fjern Eksisterende periode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AFB593D1-9D3D-47B6-9EFA-CD9CACB93E0F}"
+      DTS:From="Package\Fjern Eksisterende periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Indlæst data fra fil" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,44"
+          Id="Package\Find periode"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="166,44"
+          Id="Package\Fjern Eksisterende periode"
+          TopLeft="5.5,138.292452830189" />
+        <NodeLayout
+          Size="166,44"
+          Id="Package\Indlæst data fra fil"
+          TopLeft="5.5,281.047169811321" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="88.3679245283019,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88.8679245283019"
+              Start="0,0"
+              End="0,81.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="88.3679245283019,182.216981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,98.8301886792453"
+              Start="0,0"
+              End="0,91.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,91.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæst data fra fil">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213,44"
+          Id="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR"
+          TopLeft="5.5,156.254716981132" />
+        <NodeLayout
+          Size="206,44"
+          Id="Package\Indlæst data fra fil\RD_RIM_Rejseindtaegter"
+          TopLeft="8.5188679245283,5.5" />
+        <EdgeLayout
+          Id="Package\Indlæst data fra fil.Paths[OLE DB Source Output]"
+          TopLeft="111.349056603774,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.452830188679258,106.830188679245"
+              Start="0,0"
+              End="0.452830188679258,99.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.3962264150943" />
+                  <mssgle:LineSegment
+                    End="0.452830188679258,53.3962264150943" />
+                  <mssgle:LineSegment
+                    End="0.452830188679258,99.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Indlæst data fra fil\GD_R_RejserIndtægter_FR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>UkuransDatabase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{ae6674f9-c1bb-43c4-b781-625a2e4a9531}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>UkuransDatabase</RootNamespace>
+    <AssemblyName>UkuransDatabase</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="ods\" />
+    <Folder Include="ods\Tables\" />
+    <Folder Include="edw\" />
+    <Folder Include="edw\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Ukurans_Historik_Noegletal.sql" />
+    <Build Include="dbo\Tables\ukurans_historik.sql" />
+    <Build Include="ods\Tables\MD_LitraGr2_Stamdata.sql" />
+    <Build Include="ods\Tables\MD_MatDUF_NedskrPct.sql" />
+    <Build Include="ods\Tables\TD1_SAP_Transaktioner.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatTransaktioner.sql" />
+    <Build Include="ods\Tables\MD_MatStatusGr2.sql" />
+    <Build Include="ods\Tables\MD_StatusGr2_Stamdata.sql" />
+    <Build Include="ods\Tables\CTL_loader.sql" />
+    <Build Include="ods\Tables\TD_indlaes_useq.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatTransaktioner_Samlet.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatKlass_1.sql" />
+    <Build Include="ods\Tables\TD_SAP_MatBehold.sql" />
+    <Build Include="ods\Tables\TD_SAP_Raekkevidde.sql" />
+    <Build Include="ods\Tables\RD_SAP_MaterialeStamdata_1.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatBehold.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatDUF_1.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatRID.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatRID_Historisk.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatDUF_Historisk.sql" />
+    <Build Include="ods\Tables\RD_SAP_MatBehold_Historisk.sql" />
+    <Build Include="ods\Tables\CD_SAP_MatBehold.sql" />
+    <Build Include="edw\Tables\FT_Forklaring.sql" />
+    <Build Include="edw\Tables\Dim_Tid.sql" />
+    <Build Include="edw\Tables\TD14_FTransaktKl.sql" />
+    <Build Include="edw\Tables\TD15_FTransaktBevArt.sql" />
+    <Build Include="edw\Tables\TD13_FTransaktDato.sql" />
+    <Build Include="edw\Tables\CD_NYMat_viaTransData.sql" />
+    <Build Include="edw\Tables\MDH_Litragr2_Stamdata.sql" />
+    <Build Include="edw\Tables\MD_Styringstabel_Multipli.sql" />
+    <Build Include="edw\Tables\TD52_Fabrikker_For_Omsaetningstal.sql" />
+    <Build Include="edw\Tables\Omsaetningstal.sql" />
+    <Build Include="edw\Tables\TD_stamdata.sql" />
+    <Build Include="edw\Tables\TD51_LitraGrupper_For_Omsaetningstal.sql" />
+    <Build Include="edw\Tables\TD_Klass_Litragr3.sql" />
+    <Build Include="edw\Tables\MD_Styringstabel.sql" />
+    <Build Include="edw\Tables\FT_Nedskriv_FraOriginalTest.sql" />
+    <Build Include="edw\Tables\MD_Klass_Litragr3_Litrahierarki.sql" />
+    <Build Include="edw\Tables\MD_Klass_KlassLitra.sql" />
+    <Build Include="edw\Tables\PeriodeAnalyse.sql" />
+    <Build Include="edw\Tables\FT_Transaktioner.sql" />
+    <Build Include="edw\Tables\TD37_MatTransAabnBalRest.sql" />
+    <Build Include="edw\Tables\TD36_MatBehIndk12md.sql" />
+    <Build Include="edw\Tables\FT_Nedskriv_Prg.sql" />
+    <Build Include="edw\Tables\TD35_MatBehNySeneste3Aar.sql" />
+    <Build Include="edw\Tables\FT_Beregning_LNType.sql" />
+    <Build Include="edw\Tables\TD24_MatTransAnskMgd.sql" />
+    <Build Include="edw\Tables\TD23_MatBehGnsGlidIndkPris.sql" />
+    <Build Include="edw\Tables\Dim_Materiale_Log.sql" />
+    <Build Include="edw\Tables\MP_FabMatTid_Att.sql" />
+    <Build Include="edw\Tables\TD22_MatMinRID.sql" />
+    <Build Include="edw\Tables\Dim_Fabrik.sql" />
+    <Build Include="edw\Tables\TD00_LitraGr2_Stamdata.sql" />
+    <Build Include="edw\Tables\TD21_MatBeh.sql" />
+    <Build Include="edw\Tables\Dim_BevArt.sql" />
+    <Build Include="edw\Tables\Dim_Aendring.sql" />
+    <Build Include="edw\Tables\TD12_EjMatTid_Att.sql" />
+    <Build Include="edw\Tables\CD_Klass_Klass.sql" />
+    <Build Include="edw\Tables\TD11_MatStatus_Ej_FLUK.sql" />
+    <Build Include="edw\Tables\TD10_MatStatusGrFLUK.sql" />
+    <Build Include="edw\Tables\CD_TjekTabeller.sql" />
+    <Build Include="edw\Tables\Dim_Materiale.sql" />
+    <Build Include="edw\Tables\Dim_Fabrik_Materiale.sql" />
+    <Build Include="edw\Tables\FT_Nedskriv_Arkiv_Gemte.sql" />
+    <Build Include="edw\Tables\FT_Forklaring_Arkiv_Gemte.sql" />
+    <Build Include="edw\Tables\TD08_MatStatusEj2010L.sql" />
+    <Build Include="edw\Tables\TD07_MatStatusGr2010L.sql" />
+    <Build Include="edw\Tables\TD06_MatBehMinDUF.sql" />
+    <Build Include="edw\Tables\TD03_Klass_MatLitra.sql" />
+    <Build Include="edw\Tables\TD02_Klass_MatLitra.sql" />
+    <Build Include="edw\Tables\FT_Transaktion_Statistik.sql" />
+    <Build Include="edw\Tables\TD01_Klass_MatLitra.sql" />
+    <Build Include="edw\Tables\Dim_Litra.sql" />
+    <Build Include="edw\Tables\Raekkevidde_Analyse.sql" />
+    <Build Include="edw\Tables\TD09_MatStatusBrutto2010L.sql" />
+    <Build Include="edw\Tables\PeriodeAnalyse_Netto.sql" />
+    <Build Include="edw\Tables\PeriodeAnalyse_Brutto.sql" />
+    <Build Include="edw\Tables\Temp_Opf2.sql" />
+    <Build Include="edw\Tables\TD40_MatBehNedskrSfaFLUK.sql" />
+    <Build Include="edw\Tables\Temp_Opf.sql" />
+    <Build Include="edw\Tables\FT_NySeneste3aar.sql" />
+    <Build Include="edw\Tables\FT_MinDUF.sql" />
+    <Build Include="edw\Tables\FT_MinRID.sql" />
+    <Build Include="edw\Tables\MP_MatTid_Att.sql" />
+    <Build Include="edw\Tables\FT_Nedskriv.sql" />
+    <Build Include="edw\Tables\FT_MatFluk.sql" />
+    <Build Include="edw\Tables\FT_Beholdning.sql" />
+    <Build Include="edw\Tables\FT_Indk12md.sql" />
+    <Build Include="edw\Tables\FT_NoegleTal.sql" />
+    <Build Include="edw\Tables\TD09_MatStatusBrutto2010L_Opr.sql" />
+    <Build Include="edw\Tables\TD05_Klass_MatLitra.sql" />
+    <Build Include="edw\Tables\Dim_StatusHierarki.sql" />
+    <Build Include="edw\Tables\GamleBeregninger.sql" />
+    <Build Include="edw\Tables\TD04_Klass_MatLitra.sql" />
+    <Build Include="dbo\Views\vw_UltBeh_Indk12md.sql" />
+    <Build Include="dbo\Views\vw_TransAabnBalRest.sql" />
+    <Build Include="dbo\Views\vw_TransAnskMgd.sql" />
+    <Build Include="dbo\Views\vw_Transaktioner.sql" />
+    <Build Include="dbo\Views\vw_Stigende_Beh.sql" />
+    <Build Include="dbo\Views\vw_Samme_Beh.sql" />
+    <Build Include="dbo\Views\vw_Reelle_Ekstra_Nedskr.sql" />
+    <Build Include="dbo\Views\vw_NyIndkPer_Beh.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaStatPae.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaStat.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaRIDPae.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaRID.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaLitraPae.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaLitra.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaDUFProg.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaDUFPae.sql" />
+    <Build Include="dbo\Views\vw_NedskrSfaDUF.sql" />
+    <Build Include="dbo\Views\vw_NedskrivNetto.sql" />
+    <Build Include="dbo\Views\vw_Nedskriv_Primo_Netto.sql" />
+    <Build Include="dbo\Views\vw_Nedskriv_Primo_Brutto.sql" />
+    <Build Include="dbo\Views\vw_Nedskriv_Prg.sql" />
+    <Build Include="dbo\Views\vw_Nedskriv_Pae.sql" />
+    <Build Include="dbo\Views\vw_Nedskriv_Akt.sql" />
+    <Build Include="dbo\Views\vw_Nedskriv.sql" />
+    <Build Include="dbo\Views\vw_LogNedsBrutto_Prg.sql" />
+    <Build Include="dbo\Views\vw_LogNedsBrutto.sql" />
+    <Build Include="dbo\Views\vw_KorrNyeMat36m.sql" />
+    <Build Include="dbo\Views\vw_KorrFLUK.sql" />
+    <Build Include="dbo\Views\vw_Kasseret.sql" />
+    <Build Include="dbo\Views\vw_kassation.sql" />
+    <Build Include="dbo\Views\vw_Forklaring_2del.sql" />
+    <Build Include="dbo\Views\vw_Forklaring_1del.sql" />
+    <Build Include="dbo\Views\vw_Flg_Uroerte.sql" />
+    <Build Include="dbo\Views\vw_Flg_NytMat36md.sql" />
+    <Build Include="dbo\Views\vw_Flg_Indk12md.sql" />
+    <Build Include="dbo\Views\vw_Faldende_Beh.sql" />
+    <Build Include="dbo\Views\vw_Delta_Netto.sql" />
+    <Build Include="dbo\Views\vw_Delta_Brutto.sql" />
+    <Build Include="dbo\Views\vw_Afstemning.sql" />
+    <Build Include="dbo\Views\vw_Afstemn_fork.sql" />
+    <Build Include="Security\KONC-POEM-MT.sql" />
+    <Build Include="Security\DSB_KONC-UKURANS.sql" />
+    <Build Include="dbo\Functions\minNedSkrPctVaerdi.sql" />
+    <Build Include="dbo\Functions\minNedSkrPctKolonne.sql" />
+    <Build Include="dbo\Stored Procedures\tablesize.sql" />
+    <Build Include="Security\ods_1.sql" />
+    <Build Include="Security\etl.sql" />
+    <Build Include="Security\edw.sql" />
+  </ItemGroup>
+</Project>

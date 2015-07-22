@@ -1,0 +1,1056 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/14/2014 10:06:01 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{E2F474BE-CD0B-487A-97F4-D9F8E01D0C9A}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="35_EDW_DI_S_Opgave_Lokofoerer"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{3D96667C-0150-4E0D-908C-19F83CA8ABE5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs data i DI_S_Opgave_Lokofører"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{87A88BB9-CA16-4019-AB75-E990085E2235}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs data i DI_S_Opgave_Lokofører"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører"
+              componentClassID="{25BBB0C5-369B-4303-B3DF-D0DC741DEE58}"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a slowly changing dimension."
+              name="DI_S_Opgave_Lokofører"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [Elementkode], [Elementkode_Navn], [Gruppe], [Gruppe_Navn], [Type], [Type_Navn] FROM [edw].[DI_S_Opgave_Lokofører]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Connections[LookupConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].Columns[Elementkode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Elementkode"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Elementkode]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Elementkode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].Columns[ElementKodeNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ElementKodeNavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Elementkode_Navn]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].Columns[Gruppe]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gruppe"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Gruppe]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppe]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].Columns[Gruppenavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gruppenavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Gruppe_Navn]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppenavn]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].Columns[Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Type"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Type]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Type]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].Columns[TypeNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeNavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Type_Navn]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[TypeNavn]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Elementkode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Elementkode" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Elementkode_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Elementkode_Navn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Gruppe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gruppe" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Gruppe_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gruppe_Navn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input].ExternalColumns[Type_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Type_Navn" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[edw].[DI_S_Opgave_Lokofører]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].Columns[Elementkode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Elementkode"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Elementkode]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Elementkode]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].Columns[ElementKodeNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ElementKodeNavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Elementkode_Navn]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].Columns[Gruppe]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gruppe"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gruppe]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppe]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].Columns[Gruppenavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gruppenavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gruppe_Navn]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppenavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].Columns[Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Type"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Type]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].Columns[TypeNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeNavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type_Navn]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[TypeNavn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[PK_ID]"
+                      dataType="i4"
+                      name="PK_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Elementkode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Elementkode" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Elementkode_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Elementkode_Navn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gruppe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gruppe" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gruppe_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gruppe_Navn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type_Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Type_Navn" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Elementkode, ElementKodeNavn, Gruppe, Gruppenavn, Type, TypeNavn from ods.MD_G_STAM_Timer_Grp_Lokoførertid_STog</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Elementkode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Elementkode]"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Elementkode]"
+                      name="Elementkode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[ElementKodeNavn]"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]"
+                      name="ElementKodeNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppe]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Gruppe]"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppe]"
+                      name="Gruppe"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppenavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Gruppenavn]"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppenavn]"
+                      name="Gruppenavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[TypeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[TypeNavn]"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[TypeNavn]"
+                      name="TypeNavn"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Elementkode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Elementkode" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[ElementKodeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ElementKodeNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Gruppe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gruppe" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Gruppenavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Gruppenavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].ExternalColumns[TypeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TypeNavn" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Elementkode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Elementkode]"
+                      name="Elementkode" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[ElementKodeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[ElementKodeNavn]"
+                      name="ElementKodeNavn" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Gruppe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Gruppe]"
+                      name="Gruppe" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Gruppenavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Gruppenavn]"
+                      name="Gruppenavn" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      name="Type" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[TypeNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[TypeNavn]"
+                      name="TypeNavn" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="OLE DB Command;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Executes an SQL command for each row in a dataset."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [edw].[DI_S_Opgave_Lokofører] SET [Elementkode_Navn] = ?,[Gruppe] = ?,[Gruppe_Navn] = ?,[Type] = ?,[Type_Navn] = ? WHERE [Elementkode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].Columns[Elementkode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Elementkode"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Elementkode]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].Columns[ElementKodeNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ElementKodeNavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[ElementKodeNavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].Columns[Gruppe]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gruppe"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppe]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].Columns[Gruppenavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Gruppenavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Gruppenavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].Columns[Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Type"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[Type]" />
+                    <inputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].Columns[TypeNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeNavn"
+                      externalMetadataColumnId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output].Columns[TypeNavn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs data i DI_S_Opgave_Lokofører.Paths[Changing Attribute Updates Output]"
+              endId="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\Indlæs data i DI_S_Opgave_Lokofører.Paths[New Output]"
+              endId="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Outputs[New Output]" />
+            <path
+              refId="Package\Indlæs data i DI_S_Opgave_Lokofører.Paths[OLE DB Source Output]"
+              endId="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører.Inputs[Slowly Changing Dimension Input]"
+              name="OLE DB Source Output"
+              startId="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="235,44"
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs data i DI_S_Opgave_Lokofører">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="291,44"
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører\ODS MD_G_STAM_Timer_Grp_Lokoførertid_STog"
+          TopLeft="6.40566037735849,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører\Insert Destination"
+          TopLeft="160.141509433962,245.952830188679" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører\DI_S_Opgave_Lokofører"
+          TopLeft="36.4056603773585,164.292452830189" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører\OLE DB Command"
+          TopLeft="5.5,245.952830188679" />
+        <EdgeLayout
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører.Paths[OLE DB Source Output]"
+          TopLeft="151.650943396226,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.943396226415103,114.867924528302"
+              Start="0,0"
+              End="-0.943396226415103,107.367924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,57.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-0.943396226415103,107.367924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører.Paths[New Output]"
+          TopLeft="192.216981132075,208.216981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="35.811320754717,37.7358490566037"
+              Start="0,0"
+              End="35.811320754717,30.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="35.811320754717,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="35.811320754717,30.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.1857263413915,23.8679245283019,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data i DI_S_Opgave_Lokofører.Paths[Changing Attribute Updates Output]"
+          TopLeft="109.198113207547,208.216981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35.811320754717,37.7358490566037"
+              Start="0,0"
+              End="-35.811320754717,30.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-35.811320754717,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-35.811320754717,30.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-96.4395666273585,23.8679245283019,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

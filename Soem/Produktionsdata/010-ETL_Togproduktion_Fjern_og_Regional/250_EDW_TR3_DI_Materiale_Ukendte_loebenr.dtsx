@@ -1,0 +1,1608 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/23/2013 1:01:16 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{B65EF300-DBA3-43B8-9B85-7E65C29C6450}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="250_EDW_TR3_DI_Materiale_Ukendte_loebenr"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{FDCDC41C-63E4-45EE-AC87-AC48904B43A6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A7AB1ED8-07F3-4F5A-BD08-A70304A6572B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Aktiv_dato">
+      <DTS:VariableValue
+        DTS:DataType="7">4/23/2013 1:06:33 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Aktiv dato"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1d1e3961-b3bf-4fa3-bc7a-b38ea3a192de}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Aktiv dato"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CAF59936-1F57-48F0-BE4F-38037430D2F4}"
+          SQLTask:SqlStatementSource="Select CONVERT(datetime,  value + '01') Aktiv_dato&#xA;from ods.ctl_dataload&#xA;Where kilde_system = 'protal'&#xA;and Variable = 'Load_Period'&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Aktiv_dato" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Opret ukendte løbenr"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B641D0C0-4B9A-49E3-BAFA-25BC0F5FE2EC}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Opret ukendte løbenr"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Opret ukendte løbenr\Derived Column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Opret ukendte løbenr\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Inputs[Derived Column Input].Columns[AntalPladser]"
+                      cachedDataType="i4"
+                      cachedName="AntalPladser"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[AntalPladser]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Inputs[Derived Column Input].Columns[litra]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="litra"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[litra]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Opret ukendte løbenr\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Nummer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Nummer]"
+                      name="Nummer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Antal]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Antal]"
+                      name="Antal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">-1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">-1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Variant]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Variant]"
+                      name="Variant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Kaldenavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Kaldenavn]"
+                      name="Kaldenavn"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Egenavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Egenavn]"
+                      name="Egenavn"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[AntalVogne]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[AntalVogne]"
+                      name="AntalVogne"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">-1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">-1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Hastighed]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Hastighed]"
+                      name="Hastighed"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">-1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">-1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Klapsæder]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Klapsæder]"
+                      name="Klapsæder"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Traktionssystem]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Traktionssystem]"
+                      name="Traktionssystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Ejerforhold]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Ejerforhold]"
+                      name="Ejerforhold"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[BistroOgPantry]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[BistroOgPantry]"
+                      name="BistroOgPantry"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Salgautomater]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Salgautomater]"
+                      name="Salgautomater"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Greenspeed]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Greenspeed]"
+                      name="Greenspeed"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[GodkendtTilTunnel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[GodkendtTilTunnel]"
+                      name="GodkendtTilTunnel"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"-"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"-"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Source]"
+                      name="Source"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Default værdier"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Default værdier"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Aktiv_fra]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Aktiv_fra]"
+                      name="Aktiv_fra"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::v_Aktiv_dato]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::v_Aktiv_dato]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[PladserTotal]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[PladserTotal]"
+                      name="PladserTotal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[AntalPladser]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">AntalPladser</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[litra_substr]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[litra_substr]"
+                      name="litra_substr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[litra]},1,25)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(litra,1,25)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Opret ukendte løbenr\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Opret ukendte løbenr\DI Materiale"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DI Materiale"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[edw].[DI_Materiale]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Opret ukendte løbenr\DI Materiale.Connections[OleDbConnection]"
+                  connectionManagerID="{CAF59936-1F57-48F0-BE4F-38037430D2F4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[loebenr]"
+                      cachedDataType="i4"
+                      cachedName="loebenr"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[loebenr]"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[loebenr]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Nummer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Nummer"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Nummer]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Nummer]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Antal]"
+                      cachedDataType="i4"
+                      cachedName="Antal"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Antal]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Antal]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Variant]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Variant"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Variant]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Variant]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Kaldenavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Kaldenavn"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Kaldenavn]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Kaldenavn]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Egenavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Egenavn"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Egenavn]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Egenavn]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[AntalVogne]"
+                      cachedDataType="i4"
+                      cachedName="AntalVogne"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[AntalVogne]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[AntalVogne]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Hastighed]"
+                      cachedDataType="i4"
+                      cachedName="Hastighed"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Hastighed]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Hastighed]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Klapsæder]"
+                      cachedDataType="i4"
+                      cachedName="Klapsæder"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Klapsæder]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Klapsæder]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Traktionssystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Traktionssystem"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Traktionssystem]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Traktionssystem]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Ejerforhold]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Ejerforhold"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Ejerforhold]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Ejerforhold]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[BistroOgPantry]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="BistroOgPantry"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[BistroOgPantry]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[BistroOgPantry]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Greenspeed]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Greenspeed"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Greenspeed]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Greenspeed]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Source]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Source]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Aktiv_fra]"
+                      cachedDataType="date"
+                      cachedName="Aktiv_fra"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Aktiv_fra]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Aktiv_fra]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[AntalPladser]"
+                      cachedDataType="i4"
+                      cachedName="AntalPladser"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[FasteSiddepladser]"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[AntalPladser]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[PladserTotal]"
+                      cachedDataType="i4"
+                      cachedName="PladserTotal"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[SiddepladserTotal]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[PladserTotal]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[Salgautomater]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Salgautomater"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Salgsautomater]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[Salgautomater]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[GodkendtTilTunnel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="GodkendtTilTunnel"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[GodkendtTilTunnelkørsel]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[GodkendtTilTunnel]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[litra_substr]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="litra_substr"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Litra]"
+                      lineageId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output].Columns[litra_substr]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].Columns[litra_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="litra_type"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[litra_type]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[PK_ID]"
+                      dataType="i4"
+                      name="PK_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[loebenr]"
+                      dataType="i4"
+                      name="loebenr" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Nummer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nummer" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Antal]"
+                      dataType="i4"
+                      name="Antal" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Litra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Litra" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Variant]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Variant" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Kaldenavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Kaldenavn" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Egenavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Egenavn" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[AntalVogne]"
+                      dataType="i4"
+                      name="AntalVogne" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Hastighed]"
+                      dataType="i4"
+                      name="Hastighed" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[FasteSiddepladser]"
+                      dataType="i4"
+                      name="FasteSiddepladser" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Klapsæder]"
+                      dataType="i4"
+                      name="Klapsæder" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[SiddepladserTotal]"
+                      dataType="i4"
+                      name="SiddepladserTotal" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Traktionssystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Traktionssystem" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Ejerforhold]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Ejerforhold" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[BistroOgPantry]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BistroOgPantry" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Salgsautomater]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Salgsautomater" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Greenspeed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Greenspeed" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[GodkendtTilTunnelkørsel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="GodkendtTilTunnelkørsel" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Source" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Aktiv_fra]"
+                      dataType="dbTimeStamp"
+                      name="Aktiv_fra" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input].ExternalColumns[Aktiv_til]"
+                      dataType="dbTimeStamp"
+                      name="Aktiv_til" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Opret ukendte løbenr\DI Materiale.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\DI Materiale.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\DI Materiale.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\DI Materiale.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="MD_Materiale_sidepladser_default"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select litra, [Antal pladser] as AntalPladser, litra_type 
+from edw.MD_Materiale_sidepladser_default
+order by litra</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Connections[OleDbConnection]"
+                  connectionManagerID="{CAF59936-1F57-48F0-BE4F-38037430D2F4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[litra]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].ExternalColumns[litra]"
+                      length="6"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[litra]"
+                      name="litra"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[AntalPladser]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].ExternalColumns[AntalPladser]"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[AntalPladser]"
+                      name="AntalPladser"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[litra_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].ExternalColumns[litra_type]"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[litra_type]"
+                      name="litra_type"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].ExternalColumns[litra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="litra" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].ExternalColumns[AntalPladser]"
+                      dataType="i4"
+                      name="AntalPladser" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].ExternalColumns[litra_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="litra_type" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[litra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[litra]"
+                      name="litra" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[AntalPladser]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[AntalPladser]"
+                      name="AntalPladser" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[litra_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[litra_type]"
+                      name="litra_type" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Opret ukendte løbenr\Merge Join"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Left Input].Columns[litra]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="litra"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].Columns[litra]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Left Input].Columns[loebenr]"
+                      cachedDataType="i4"
+                      cachedName="loebenr"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].Columns[loebenr]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Right Input].Columns[litra]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="litra"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[litra]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Right Input].Columns[AntalPladser]"
+                      cachedDataType="i4"
+                      cachedName="AntalPladser"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[AntalPladser]" />
+                    <inputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Right Input].Columns[litra_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="litra_type"
+                      lineageId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output].Columns[litra_type]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[litra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[litra]"
+                      name="litra"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Left Input].Columns[litra]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[loebenr]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[loebenr]"
+                      name="loebenr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Left Input].Columns[loebenr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[AntalPladser]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[AntalPladser]"
+                      name="AntalPladser">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Right Input].Columns[AntalPladser]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[litra_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output].Columns[litra_type]"
+                      name="litra_type">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Right Input].Columns[litra_type]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Opret ukendte løbenr\RD_togproduction_litra"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="RD_togproduction_litra"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select p.litra, p.loebenr
+from (
+select loebenr, litra from ods.rd_togproduktion_litra
+group by loebenr, litra) p
+left outer join [edw].[DI_Materiale] m on (m.litra = p.litra
+                                       and m.loebenr = p.loebenr)
+where m.litra is null
+order by p.litra</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Connections[OleDbConnection]"
+                  connectionManagerID="{CAF59936-1F57-48F0-BE4F-38037430D2F4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].Columns[litra]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].ExternalColumns[litra]"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].Columns[litra]"
+                      name="litra"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].Columns[loebenr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].ExternalColumns[loebenr]"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].Columns[loebenr]"
+                      name="loebenr"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].ExternalColumns[litra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="litra" />
+                    <externalMetadataColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output].ExternalColumns[loebenr]"
+                      dataType="i4"
+                      name="loebenr" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[litra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[litra]"
+                      name="litra" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[loebenr]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[loebenr]"
+                      name="loebenr" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Opret ukendte løbenr.Paths[Derived Column Output]"
+              endId="Package\Opret ukendte løbenr\DI Materiale.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Opret ukendte løbenr\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Opret ukendte løbenr.Paths[Merge Join Output]"
+              endId="Package\Opret ukendte løbenr\Derived Column.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\Opret ukendte løbenr\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Opret ukendte løbenr.Paths[OLE DB Source Output]"
+              endId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Left Input]"
+              name="OLE DB Source Output"
+              startId="Package\Opret ukendte løbenr\RD_togproduction_litra.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Opret ukendte løbenr.Paths[OLE DB Source Output1]"
+              endId="Package\Opret ukendte løbenr\Merge Join.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{216C62BB-33B4-4E1C-BD81-44B5BD5AC2AD}"
+      DTS:From="Package\Aktiv dato"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Opret ukendte løbenr" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Aktiv dato"
+          TopLeft="106.5,7.5" />
+        <NodeLayout
+          Size="341,44"
+          Id="Package\Opret ukendte løbenr"
+          TopLeft="5.5,132.330188679245" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="175.25,51.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,80.8301886792453"
+              Start="0,0"
+              End="0,73.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Opret ukendte løbenr">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Opret ukendte løbenr\DI Materiale"
+          TopLeft="189.122641509434,408.820754716981" />
+        <NodeLayout
+          Size="222,44"
+          Id="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default"
+          TopLeft="296.066037735849,8.48113207547171" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Opret ukendte løbenr\Merge Join"
+          TopLeft="189.122641509434,152.254716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Opret ukendte løbenr\Derived Column"
+          TopLeft="189.122641509434,276.066037735849" />
+        <NodeLayout
+          Size="177,44"
+          Id="Package\Opret ukendte løbenr\RD_togproduction_litra"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Opret ukendte løbenr.Paths[OLE DB Source Output1]"
+          TopLeft="406.896226415094,52.4056603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-129.132075471698,99.8490566037736"
+              Start="0,0"
+              End="-129.132075471698,92.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-129.132075471698,49.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-129.132075471698,92.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Opret ukendte løbenr.Paths[OLE DB Source Output]"
+          TopLeft="93.8396226415094,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="142.415094339623,102.830188679245"
+              Start="0,0"
+              End="142.415094339623,95.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.3962264150943" />
+                  <mssgle:LineSegment
+                    End="142.415094339623,51.3962264150943" />
+                  <mssgle:LineSegment
+                    End="142.415094339623,95.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Opret ukendte løbenr.Paths[Merge Join Output]"
+          TopLeft="257.009433962264,196.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,79.8867924528302"
+              Start="0,0"
+              End="0,72.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Opret ukendte løbenr.Paths[Derived Column Output]"
+          TopLeft="257.009433962264,319.990566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,88.8301886792453"
+              Start="0,0"
+              End="0,81.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Opret ukendte løbenr\MD_Materiale_sidepladser_default">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Opret ukendte løbenr\DI Materiale">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Opret ukendte løbenr\RD_togproduction_litra">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

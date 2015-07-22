@@ -1,0 +1,970 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2013 9:09:32 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{294E1464-F0D2-408D-A052-9BADF42C3058}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="080_GD_R_RejserIndtaegter_Stog"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{4307E19A-14DB-4CFD-B03A-E05CF17877AB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{30B24DE9-6077-4431-8A10-A33822CF356E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Find periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E291CF93-6477-4424-B696-034A036DFD77}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="Select SUBSTRING(value,1,50) as Periode&#xA; from ods.ctl_dataload&#xA; Where kilde_system = 'Alle'&#xA; and variable = 'Model_Periode'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Periode" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fjern eksisterende periode data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="fra GD_R_RejserIndtægter_Stog"
+      DTS:DTSID="{712754BD-D3FC-4E7D-83BE-9721B4C4B85F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern eksisterende periode data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3D369588-24E5-411C-9879-EFAAB22A264F}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.GD_R_RejserIndtægter_Stog&#xA; WHERE PeriodeIndlæst = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load GD data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{69733D96-ACF5-4BC3-8EE7-0842B3BCB697}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load GD data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Load GD data\Aggregate"
+              componentClassID="{5B201335-B360-485C-BB93-75C34E09B3D3}"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates and groups values in a dataset."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1].Columns[Togsystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystem"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Togsystem]" />
+                    <inputColumn
+                      refId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1].Columns[TogsystemNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TogsystemNavn"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[TogsystemNavn]" />
+                    <inputColumn
+                      refId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1].Columns[Costobjekt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Costobjekt"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Costobjekt]" />
+                    <inputColumn
+                      refId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1].Columns[Enhed]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Enhed"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Enhed]" />
+                    <inputColumn
+                      refId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1].Columns[Værdi]"
+                      cachedDataType="r8"
+                      cachedName="Værdi"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Værdi]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Togsystem]"
+                      name="Togsystem">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Togsystem]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[TogsystemNavn]"
+                      name="TogsystemNavn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[TogsystemNavn]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Costobjekt]"
+                      name="Costobjekt">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Costobjekt]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Enhed]"
+                      name="Enhed">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Enhed]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Værdi]"
+                      dataType="r8"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Værdi]"
+                      name="Værdi">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Værdi]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load GD data\GD_R_RejseIndtægter_Stog"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GD_R_RejseIndtægter_Stog"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[GD_R_RejserIndtægter_Stog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].Columns[PeriodeIndlæst]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PeriodeIndlæst"
+                      externalMetadataColumnId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[PeriodeIndlæst]" />
+                    <inputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].Columns[Togsystem]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Togsystem"
+                      externalMetadataColumnId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Togsystem]" />
+                    <inputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].Columns[TogsystemNavn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TogsystemNavn"
+                      externalMetadataColumnId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[TogsystemNavn]" />
+                    <inputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].Columns[Costobjekt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Costobjekt"
+                      externalMetadataColumnId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Costobjekt]"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Costobjekt]" />
+                    <inputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].Columns[Enhed]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Enhed"
+                      externalMetadataColumnId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Enhed]" />
+                    <inputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].Columns[Værdi]"
+                      cachedDataType="r8"
+                      cachedName="Værdi"
+                      externalMetadataColumnId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Værdi]"
+                      lineageId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1].Columns[Værdi]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystem" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TogsystemNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Costobjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input].ExternalColumns[Værdi]"
+                      dataType="r8"
+                      name="Værdi" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load GD data\Rejsefakt data"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Rejsefakt data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT p.Periode As PeriodeIndlæst, m.max_år, d.PeriodeIndlæst - m.max_år * 100 as PeriodeIndlæstNr,
+  d.Togsystem as Togsystem, ms.TogsystemNavn_Kort As TogsystemNavn, ms.Costobjekt, Enhed, Værdi
+  FROM [ods].[RD_Stog_Rejsedata] d
+join (select MAX(PeriodeIndlæst/100) max_år from [ods].[RD_Stog_Rejsedata]) m on (1=1)
+join -- Periode
+(Select SUBSTRING(value,1,4) as År, CONVERT(Int, value) as Måned , SUBSTRING(value,1,50) as Periode,
+ CONVERT(Int, SUBSTRING(value,5,2)) as PeriodeNr
+ from ods.ctl_dataload
+ Where kilde_system = 'Alle'
+ and variable = 'Model_Periode') p on (d.PeriodeIndlæst - m.max_år * 100 &lt;= p.PeriodeNr)
+left outer join ods.MD_G_STAM_Togsystem ms on (ms.stogtogsystem = d.Togsystem)
+-- Kun det seneste år
+where PeriodeIndlæst/100 = m.max_år</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load GD data\Rejsefakt data.Connections[OleDbConnection]"
+                  connectionManagerID="{3D369588-24E5-411C-9879-EFAAB22A264F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                      name="Togsystem"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[TogsystemNavn]"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[TogsystemNavn]"
+                      name="TogsystemNavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Costobjekt]"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Costobjekt]"
+                      name="Costobjekt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Enhed]"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Enhed]"
+                      name="Enhed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Værdi]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Værdi]"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].Columns[Værdi]"
+                      name="Værdi"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PeriodeIndlæst" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Togsystem" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TogsystemNavn" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Costobjekt" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[max_år]"
+                      dataType="i4"
+                      name="max_år" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[PeriodeIndlæstNr]"
+                      dataType="i4"
+                      name="PeriodeIndlæstNr" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Enhed" />
+                    <externalMetadataColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output].ExternalColumns[Værdi]"
+                      dataType="r8"
+                      name="Værdi" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[PeriodeIndlæst]"
+                      name="PeriodeIndlæst" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                      name="Togsystem" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[TogsystemNavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[TogsystemNavn]"
+                      name="TogsystemNavn" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Costobjekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Costobjekt]"
+                      name="Costobjekt" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Enhed]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Enhed]"
+                      name="Enhed" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Værdi]"
+                      dataType="r8"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[Værdi]"
+                      name="Værdi" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load GD data.Paths[Aggregate Output 1]"
+              endId="Package\Load GD data\GD_R_RejseIndtægter_Stog.Inputs[OLE DB Destination Input]"
+              name="Aggregate Output 1"
+              startId="Package\Load GD data\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\Load GD data.Paths[OLE DB Source Output]"
+              endId="Package\Load GD data\Aggregate.Inputs[Aggregate Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Load GD data\Rejsefakt data.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{23A15CAA-636C-46B0-A124-0093BE656A70}"
+      DTS:From="Package\Fjern eksisterende periode data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load GD data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E5BE18B3-EBDC-429E-A020-420B0FE40A5D}"
+      DTS:From="Package\Find periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Fjern eksisterende periode data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Find periode"
+          TopLeft="4.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Fjern eksisterende periode data"
+          TopLeft="5.5,112.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load GD data"
+          TopLeft="5.5,224.971698113208" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="73.3867924528302,156.066037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.9056603773585"
+              Start="0,0"
+              End="0,61.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="73,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.6415094339623"
+              Start="0,0"
+              End="0,55.1415094339623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.1415094339623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load GD data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load GD data\GD_R_RejseIndtægter_Stog"
+          TopLeft="5.5,250.632075471698" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load GD data\Aggregate"
+          TopLeft="13.5,115.839622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load GD data\Rejsefakt data"
+          TopLeft="9.00943396226414,5.5" />
+        <EdgeLayout
+          Id="Package\Load GD data.Paths[OLE DB Source Output]"
+          TopLeft="76.8962264150943,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="4.49056603773585,66.4150943396226"
+              Start="0,0"
+              End="4.49056603773585,58.9150943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.2075471698113" />
+                  <mssgle:LineSegment
+                    End="4.49056603773585,33.2075471698113" />
+                  <mssgle:LineSegment
+                    End="4.49056603773585,58.9150943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load GD data.Paths[Aggregate Output 1]"
+          TopLeft="81.3867924528302,159.764150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,90.8679245283019"
+              Start="0,0"
+              End="-8,83.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.433962264151" />
+                  <mssgle:LineSegment
+                    End="-8,45.433962264151" />
+                  <mssgle:LineSegment
+                    End="-8,83.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

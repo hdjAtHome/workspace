@@ -1,0 +1,1418 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/20/2009 1:41:40 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB073686"
+  DTS:CreatorName="DSB\nafr2711"
+  DTS:DTSID="{B701CD86-133B-49A2-BAAF-A3E79C00B4DD}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="EDW_TR2_POEM"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="61"
+  DTS:VersionGUID="{92FE8B0D-5BD3-4833-A332-E890AFD6AEA8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2BF3C612-7EF1-43F0-9461-750089CA04A1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ExtractLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CF7784B6-22B0-4D4D-9DA6-B599C1BBC848}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_numrows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{66A9F1D7-C66E-48ED-86C7-7F72106E0E6A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_packagLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{20E0D10D-5757-4B53-AF6A-3396D90C52FD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_period">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ac04477d-a4ff-411c-8725-053704f41bb9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7E01F8E9-F1AE-45F7-9494-394DEDC3005D}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::V_packagLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Init package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{bbd569c8-b7ae-4326-b4fd-c4276a4cb3fb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Init package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7E01F8E9-F1AE-45F7-9494-394DEDC3005D}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::V_packagLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9C2005CC-F211-42C1-BF11-EA53F07D1983}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæsning til MD_A_CostObject på POEM">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM\EXEC End TabRefLog"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4deeaa8e-dc71-43d5-a35e-0ffcff5dc113}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC End TabRefLog"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{75284398-F56F-493B-BDEA-909E53700CC0}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_EndTabRefLog @Extractlogid, @numrows, NULL, NULL,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="Extractlogid"
+                SQLTask:DtsVariableName="User::V_ExtractLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="Numrows"
+                SQLTask:DtsVariableName="User::V_numrows"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM\EXEC Init TabRefLog"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c5e24932-cf71-4dd5-b825-c2375f24e1f2}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC Init TabRefLog"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{75284398-F56F-493B-BDEA-909E53700CC0}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_InitTabRefLog @packagelogid, 'POEMaktuel.md_A_costobject', 'INS', @Period, NULL, NULL, NULL"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::V_ExtractLogID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="Packagelogid"
+                SQLTask:DtsVariableName="User::V_packagLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="Period"
+                SQLTask:DtsVariableName="User::V_period"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="16"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM\Find numrows"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1C21DD8C-04C2-4376-BD7C-310E9D00EF34}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find numrows"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{75284398-F56F-493B-BDEA-909E53700CC0}"
+              SQLTask:SqlStatementSource="Select count(period) from edw.GD_dim_costobject"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::V_numrows" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM\Find Periode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A53B7439-8FEF-4178-A9D8-7C55906E7DD4}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find Periode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{75284398-F56F-493B-BDEA-909E53700CC0}"
+              SQLTask:SqlStatementSource="Select distinct(period) from edw.gd_dim_costobject"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::V_period" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{862CC9A4-8047-4B09-B9D8-ADEBADB91DEB}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Indlæser GD_Dim_Costobject"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="GD_dim_costobject"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[GD_Dim_CostObject]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Connections[OleDbConnection]"
+                      connectionManagerID="{7E01F8E9-F1AE-45F7-9494-394DEDC3005D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Omraade]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Omraade]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Omraade]"
+                          name="Omraade"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Reference]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Reference]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Reference]"
+                          name="Reference"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Produkt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Produkt]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Produkt]"
+                          name="Produkt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[HFO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[HFO]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[HFO]"
+                          name="HFO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[FO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[FO]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[FO]"
+                          name="FO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Momsbelastning]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Momsbelastning]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Momsbelastning]"
+                          name="Momsbelastning"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Type]"
+                          name="Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[ParentReference]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[ParentReference]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[ParentReference]"
+                          name="ParentReference"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Togsystem]"
+                          name="Togsystem"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Kode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Kode]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Kode]"
+                          name="Kode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Beskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Beskrivelse]"
+                          length="255"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Beskrivelse]"
+                          name="Beskrivelse"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Udbudt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Udbudt]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Udbudt]"
+                          name="Udbudt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Kommentar]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Kommentar]"
+                          length="255"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Kommentar]"
+                          name="Kommentar"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Aktiv]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Aktiv]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Aktiv]"
+                          name="Aktiv"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Markedsprisdok]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Markedsprisdok]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Markedsprisdok]"
+                          name="Markedsprisdok"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Period]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Period]"
+                          name="Period"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Timestamp]"
+                          name="Timestamp"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Omraade]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Omraade" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Reference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Reference" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Produkt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Produkt" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[HFO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="HFO" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[FO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FO" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Momsbelastning]"
+                          dataType="r8"
+                          name="Momsbelastning" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[ParentReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ParentReference" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Togsystem]"
+                          dataType="i4"
+                          name="Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Kode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kode" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Beskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Beskrivelse" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Udbudt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Udbudt" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Kommentar]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Kommentar" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Aktiv]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Aktiv" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Markedsprisdok]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Markedsprisdok" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Period]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Period" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Omraade]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Omraade]"
+                          name="Omraade" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Reference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Reference]"
+                          name="Reference" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Produkt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Produkt]"
+                          name="Produkt" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[HFO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[HFO]"
+                          name="HFO" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[FO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[FO]"
+                          name="FO" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Momsbelastning]"
+                          dataType="r8"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Momsbelastning]"
+                          name="Momsbelastning" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Type]"
+                          name="Type" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[ParentReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[ParentReference]"
+                          name="ParentReference" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                          dataType="i4"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Togsystem]"
+                          name="Togsystem" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Kode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Kode]"
+                          name="Kode" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Beskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Beskrivelse]"
+                          name="Beskrivelse" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Udbudt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Udbudt]"
+                          name="Udbudt" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Kommentar]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Kommentar]"
+                          name="Kommentar" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Aktiv]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Aktiv]"
+                          name="Aktiv" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Markedsprisdok]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Markedsprisdok]"
+                          name="Markedsprisdok" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Period]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Period]"
+                          name="Period" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[Timestamp]"
+                          name="Timestamp" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="PoemAktuel md_a_costobject"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[MD_A_Costobjects]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Connections[OleDbConnection]"
+                      connectionManagerID="{7E01F8E9-F1AE-45F7-9494-394DEDC3005D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Omraade]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Omraade"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Omraade]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Omraade]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Reference]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Reference"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Reference]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Reference]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Produkt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Produkt"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Produkt]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[HFO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="HFO"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[HFO]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[HFO]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[FO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="FO"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[FO]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[FO]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Momsbelastning]"
+                          cachedDataType="r8"
+                          cachedName="Momsbelastning"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Momsbelastning]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Momsbelastning]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Type"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[ParentReference]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ParentReference"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[ParentReference]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[ParentReference]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Togsystem]"
+                          cachedDataType="i4"
+                          cachedName="Togsystem"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Togsystem]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Kode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Kode"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Kode]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Kode]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Beskrivelse]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="Beskrivelse"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Beskrivelse]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Beskrivelse]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Udbudt]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Udbudt"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Udbudt]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Udbudt]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Kommentar]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="Kommentar"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Kommentar]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Kommentar]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Aktiv]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Aktiv"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Aktiv]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Aktiv]" />
+                        <inputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].Columns[Markedsprisdok]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Markedsprisdok"
+                          externalMetadataColumnId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Markedsprisdok]"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output].Columns[Markedsprisdok]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Omraade]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Omraade" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Reference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Reference" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Produkt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Produkt" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[HFO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="HFO" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[FO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FO" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Momsbelastning]"
+                          dataType="r8"
+                          name="Momsbelastning" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[ParentReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ParentReference" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Togsystem]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Kode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kode" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Beskrivelse]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Beskrivelse" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Udbudt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Udbudt" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Kommentar]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="Kommentar" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Aktiv]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Aktiv" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Markedsprisdok]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Markedsprisdok" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input].ExternalColumns[Niveau]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="Niveau" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject.Paths[OLE DB Source Output]"
+                  endId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM\Truncate POEMaktuel MD_A_Costobject"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{48E3236E-F225-40FD-8DCE-30DA42EC8D11}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate POEMaktuel MD_A_Costobject"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7E01F8E9-F1AE-45F7-9494-394DEDC3005D}"
+              SQLTask:SqlStatementSource="Truncate table ods.md_a_costobjects" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7D8E68FB-760E-4056-ABBA-2AEF099E2690}"
+          DTS:From="Package\Indlæsning til MD_A_CostObject på POEM\Find Periode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Indlæsning til MD_A_CostObject på POEM\EXEC Init TabRefLog" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{72CA97B2-59F9-40CE-8142-BC9A1BC1CD07}"
+          DTS:From="Package\Indlæsning til MD_A_CostObject på POEM\EXEC Init TabRefLog"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Indlæsning til MD_A_CostObject på POEM\Find numrows" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{CEB6A923-F0E7-42F8-865E-9FC7D8843734}"
+          DTS:From="Package\Indlæsning til MD_A_CostObject på POEM\Find numrows"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Indlæsning til MD_A_CostObject på POEM\Truncate POEMaktuel MD_A_Costobject" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{0085B87D-8B04-4C91-B8FD-A7769737A09B}"
+          DTS:From="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Indlæsning til MD_A_CostObject på POEM\EXEC End TabRefLog" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{6CC80D59-66BD-4A09-A3AD-83881B8FB3D2}"
+          DTS:From="Package\Indlæsning til MD_A_CostObject på POEM\Truncate POEMaktuel MD_A_Costobject"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8D75D53E-6E60-4D9D-BCB8-47ED09E9E824}"
+      DTS:From="Package\EXEC Init package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Indlæsning til MD_A_CostObject på POEM" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{EB7733C8-6E38-45C0-976C-AD701D066DFE}"
+      DTS:From="Package\Indlæsning til MD_A_CostObject på POEM"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EXEC End Package Log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC End Package Log"
+          TopLeft="62.2857142857142,862.071428571429" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC Init package log"
+          TopLeft="67.9999999999999,15.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\EXEC End TabRefLog"
+          TopLeft="62.5000000000001,525.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\EXEC Init TabRefLog"
+          TopLeft="62.5,109.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\Find numrows"
+          TopLeft="62.5,213.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\Find Periode"
+          TopLeft="62.5,5.5" />
+        <NodeLayout
+          Size="198,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject"
+          TopLeft="31.5000000000001,421.5" />
+        <NodeLayout
+          Size="250,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\Truncate POEMaktuel MD_A_Costobject"
+          TopLeft="5.50000000000006,317.5" />
+        <EdgeLayout
+          Id="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint]"
+          TopLeft="130.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 1]"
+          TopLeft="130.5,153.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 2]"
+          TopLeft="130.5,257.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 3]"
+          TopLeft="130.5,465.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæsning til MD_A_CostObject på POEM.PrecedenceConstraints[Constraint 6]"
+          TopLeft="130.5,361.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="261,624"
+          Size="261,668"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM"
+          TopLeft="3.5,130.928571428571" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="135,59.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71.4285714285714"
+              Start="0,0"
+              End="0,63.9285714285714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.9285714285714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="132.142857142857,798.928571428571">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.1428571428575"
+              Start="0,0"
+              End="0,55.6428571428575">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.6428571428575" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\GD_dim_costobject"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject\PoemAktuel md_a_costobject"
+          TopLeft="44.4433962264151,164.216981132075" />
+        <EdgeLayout
+          Id="Package\Indlæsning til MD_A_CostObject på POEM\Indlæser GD_Dim_Costobject.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.9433962264151,114.792452830189"
+              Start="0,0"
+              End="38.9433962264151,107.292452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.3962264150943" />
+                  <mssgle:LineSegment
+                    End="38.9433962264151,57.3962264150943" />
+                  <mssgle:LineSegment
+                    End="38.9433962264151,107.292452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

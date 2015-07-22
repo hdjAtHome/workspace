@@ -1,0 +1,2821 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/2/2013 3:17:56 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{9E31378D-E343-4025-8BC1-B6798832227E}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="130_edw_tr2_ft_PDS"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{87A0BD12-B2A0-47A0-A26A-E753346A64E0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0CC951C3-6D84-425F-9F53-6922A546B6B1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_LoadPeriode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{71201CCA-8A5D-4BBB-8FA2-C2364A017978}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Do Logging"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C4FA7BB0-6E5E-4C05-9871-D0A579248A36}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Do Logging">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{B0174ED9-3405-4CD0-8D25-ED734C7AB6FC}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_FravaersTimer">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{B5D44CFE-34AC-4134-91D4-3344121D3B24}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_OpgaveTimer">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{DFD0E425-CBE7-4F31-8633-AE33F292D464}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_TjenesteTimer">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Do Logging\Find Tjeneste timer source"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{244DA3FF-261D-4152-9642-B0226DAEA111}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find Tjeneste timer source"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select convert(float, SUM(a.TjenesteVarighed_tim)) as TjenesteVarighed_tim from edw.FT_OBSArbejder a&#xA;join edw.di_tid t on (t.reference = a.di_tid)&#xA;where t.parentReference = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_TjenesteTimer" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Do Logging\Find totaler"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7C37DD25-6F83-4240-B027-75AE77682705}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find totaler"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select convert(float,sum(p.opgave_varighed_timer)) as opgave_varighed_timer, &#xA;  convert(float,sum(p.medarbejder_tjeneste_varighed_timer)) as medarbejder_tjeneste_varighed_timer,&#xA;  convert(float,sum(p.fravaer_varighed_timer)) as fravaer_varighed_timer&#xA;from edw.ft_pds p&#xA;join edw.di_tid t on (t.reference=p.di_tid) &#xA;where t.ParentReference = ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_OpgaveTimer" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::v_TjenesteTimer" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::v_FravaersTimer" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Do Logging\Gem fravær timer"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9f4e8ed5-4093-4604-986f-baa79ac88b30}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem fravær timer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 73, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_FravaersTimer"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Do Logging\Gem Opgave timer"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4AA1D83D-A4D9-4946-BD52-A1F632027C37}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem Opgave timer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 72, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_OpgaveTimer"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Do Logging\Gem tjeneste timer"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{01f8fb0a-9d3d-494a-9387-50d238652437}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem tjeneste timer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 75, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_TjenesteTimer"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Do Logging\Gem tjeneste timer source"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1c7bc114-e348-42e2-ad42-9cfffd6f7595}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem tjeneste timer source"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 74, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_TjenesteTimer"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="5"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Do Logging.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{DFFC3A81-C9F6-419C-8351-0C304914CE85}"
+          DTS:From="Package\Do Logging\Find totaler"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Do Logging\Gem Opgave timer" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Do Logging.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{DE611C2F-5B6E-4D72-9930-94C65FA80696}"
+          DTS:From="Package\Do Logging\Gem Opgave timer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Do Logging\Gem fravær timer" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Do Logging.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{0411F570-5B53-49B8-9354-9E860A5BE320}"
+          DTS:From="Package\Do Logging\Gem fravær timer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Do Logging\Gem tjeneste timer" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Do Logging.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{0381C1CC-3C75-427A-B4BB-23B0DEDF966C}"
+          DTS:From="Package\Do Logging\Gem tjeneste timer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Do Logging\Find Tjeneste timer source" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Do Logging.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{F2C56A38-3641-4E02-A77E-925192557893}"
+          DTS:From="Package\Do Logging\Find Tjeneste timer source"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Do Logging\Gem tjeneste timer source" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Exec End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A9B1C4AE-1E9A-4946-B84E-8A642307030A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Exec End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Exec Initiate  Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3F88E78F-BE0C-4C8C-82E8-D0A4EB62F1FD}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Exec Initiate  Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Data"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{BDB45C80-C323-4CB1-A668-A9A3034C388C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Data">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Data\Load Fraværstimer"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{ACD82FF5-5DF2-43CD-9B4B-17DA810D5970}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Fraværstimer"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Data\Load Fraværstimer\Get data"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Get data"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select p.DI_Medarbejder_Togfører_FR, p.DI_Tid, 1 as DI_Togsystem, 0 as DI_Tidsintervaller, 0 as DI_TjenesteDepot,
+    0 as DI_Straekning, 0 as DI_Opgave, p.DI_Fravaerkode, '0' as DI_Arbejdskode, 
+    0 as Opgave_varighed_timer, 0 as Medarbejder_Tjeneste_timer, p.Varighed_tim AS Fravaer_var_timer
+from edw.FT_OBSFravaer p
+join edw.DI_Tid t on (t.reference = p.DI_Tid)
+where t.parentreference = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0",{0CC951C3-6D84-425F-9F53-6922A546B6B1};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Data\Load Fraværstimer\Get data.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                          length="50"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                          name="DI_Tid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Togsystem]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]"
+                          name="DI_Togsystem"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                          name="DI_Tidsintervaller"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_TjenesteDepot]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]"
+                          name="DI_TjenesteDepot"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Straekning]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]"
+                          name="DI_Straekning"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Opgave]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]"
+                          name="DI_Opgave"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Fravaerkode]"
+                          length="10"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]"
+                          name="DI_Fravaerkode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Arbejdskode]"
+                          length="1"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]"
+                          name="DI_Arbejdskode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Opgave_varighed_timer]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]"
+                          name="Opgave_varighed_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Medarbejder_Tjeneste_timer]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]"
+                          name="Medarbejder_Tjeneste_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Fravaer_var_timer]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]"
+                          name="Fravaer_var_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          name="DI_Medarbejder_Togfører_FR"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Tid" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Togsystem]"
+                          dataType="i4"
+                          name="DI_Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          name="DI_Tidsintervaller" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_TjenesteDepot]"
+                          dataType="i4"
+                          name="DI_TjenesteDepot" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Straekning]"
+                          dataType="i4"
+                          name="DI_Straekning" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Opgave]"
+                          dataType="i4"
+                          name="DI_Opgave" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="DI_Fravaerkode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="DI_Arbejdskode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Opgave_varighed_timer]"
+                          dataType="i4"
+                          name="Opgave_varighed_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Medarbejder_Tjeneste_timer]"
+                          dataType="i4"
+                          name="Medarbejder_Tjeneste_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Fravaer_var_timer]"
+                          dataType="r8"
+                          name="Fravaer_var_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          name="DI_Medarbejder_Togfører_FR" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          name="DI_Medarbejder_Togfører_FR" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                          name="DI_Tid" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Togsystem]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Togsystem]"
+                          name="DI_Togsystem" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                          name="DI_Tidsintervaller" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_TjenesteDepot]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_TjenesteDepot]"
+                          name="DI_TjenesteDepot" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Straekning]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Straekning]"
+                          name="DI_Straekning" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Opgave]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Opgave]"
+                          name="DI_Opgave" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Fravaerkode]"
+                          name="DI_Fravaerkode" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Arbejdskode]"
+                          name="DI_Arbejdskode" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[Opgave_varighed_timer]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[Opgave_varighed_timer]"
+                          name="Opgave_varighed_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[Medarbejder_Tjeneste_timer]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[Medarbejder_Tjeneste_timer]"
+                          name="Medarbejder_Tjeneste_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[Fravaer_var_timer]"
+                          dataType="r8"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[Fravaer_var_timer]"
+                          name="Fravaer_var_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Data\Load Fraværstimer\Load fraværstimer"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Load fraværstimer"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[FT_PDS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Tid]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DI_Tid"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Togsystem]"
+                          cachedDataType="i4"
+                          cachedName="DI_Togsystem"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Togsystem]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Tidsintervaller]"
+                          cachedDataType="i4"
+                          cachedName="DI_Tidsintervaller"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Straekning]"
+                          cachedDataType="i4"
+                          cachedName="DI_Straekning"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Straekning]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Opgave]"
+                          cachedDataType="i4"
+                          cachedName="DI_Opgave"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Opgave]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Fravaerkode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="DI_Fravaerkode"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Fravaerkode]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Arbejdskode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="DI_Arbejdskode"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Arbejdskode]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[Opgave_varighed_timer]"
+                          cachedDataType="i4"
+                          cachedName="Opgave_varighed_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_varighed_timer]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_TjenesteDepot]"
+                          cachedDataType="i4"
+                          cachedName="DI_TjenesteDepot"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Turdepot]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[Medarbejder_Tjeneste_timer]"
+                          cachedDataType="i4"
+                          cachedName="Medarbejder_Tjeneste_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[Medarbejder_tjeneste_varighed_timer]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[Fravaer_var_timer]"
+                          cachedDataType="r8"
+                          cachedName="Fravaer_var_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[fravaer_varighed_timer]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].Columns[DI_Medarbejder_Togfører_FR]"
+                          cachedDataType="i4"
+                          cachedName="DI_Medarbejder_Togfører_FR"
+                          externalMetadataColumnId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          lineageId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Tid" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Togsystem]"
+                          dataType="i4"
+                          name="DI_Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          name="DI_Tidsintervaller" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Turdepot]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="DI_Turdepot" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Straekning]"
+                          dataType="i4"
+                          name="DI_Straekning" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Opgave]"
+                          dataType="i4"
+                          name="DI_Opgave" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Fravaerkode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="DI_Arbejdskode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_varighed_timer]"
+                          dataType="numeric"
+                          name="Opgave_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[Medarbejder_tjeneste_varighed_timer]"
+                          dataType="numeric"
+                          name="Medarbejder_tjeneste_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[fravaer_varighed_timer]"
+                          dataType="numeric"
+                          name="fravaer_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          name="DI_Medarbejder_Togfører_FR" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Data\Load Fraværstimer.Paths[OLE DB Source Output]"
+                  endId="Package\Load Data\Load Fraværstimer\Load fraværstimer.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load Data\Load Fraværstimer\Get data.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Data\Load Opgave timer"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D4D41B28-2020-44C6-A449-DF6A6868AA1B}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Opgave timer"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Data\Load Opgave timer\Get data"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Get data"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select p.DI_Medarbejder_Togfører_FR, p.DI_Tid, p.DI_Togsystem, p.DI_Tidsintervaller, p.DI_TjenesteDepot,
+    isnull(s.pk_ID,0) as DI_Straekning, p.DI_Opgave, '0' as DI_Fravaerkode, '0' AS DI_Arbejdskode,
+    p.PDS_Varighed_fordelt as Opgave_varighed_timer, 0 as Medarbejder_Tjeneste_timer, 0 AS Fravaer_var_timer
+--    , fs.station, ts.station, p.di_station_fra, p.di_station_til
+from edw.FT_OBSOpgaver p
+join edw.DI_Tid t on (t.reference = p.DI_Tid)
+join edw.DI_Station fs on (fs.pk_id = p.di_station_fra)
+join edw.di_station ts on (ts.pk_id = p.di_station_til)
+left outer join edw.di_straekning s on (s.frastation = fs.stationsforkortelse
+                                    and s.tilstation = ts.stationsforkortelse)
+where t.parentreference = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0",{0CC951C3-6D84-425F-9F53-6922A546B6B1};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Data\Load Opgave timer\Get data.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                          length="50"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                          name="DI_Tid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Togsystem]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]"
+                          name="DI_Togsystem"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                          name="DI_Tidsintervaller"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_TjenesteDepot]"
+                          length="5"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]"
+                          name="DI_TjenesteDepot"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Straekning]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]"
+                          name="DI_Straekning"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Opgave]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]"
+                          name="DI_Opgave"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Fravaerkode]"
+                          length="1"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]"
+                          name="DI_Fravaerkode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Arbejdskode]"
+                          length="1"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]"
+                          name="DI_Arbejdskode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Opgave_varighed_timer]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]"
+                          name="Opgave_varighed_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Medarbejder_Tjeneste_timer]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]"
+                          name="Medarbejder_Tjeneste_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Fravaer_var_timer]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]"
+                          name="Fravaer_var_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          name="DI_Medarbejder_Togfører_FR"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Tid" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Togsystem]"
+                          dataType="i4"
+                          name="DI_Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          name="DI_Tidsintervaller" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_TjenesteDepot]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="DI_TjenesteDepot" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Straekning]"
+                          dataType="i4"
+                          name="DI_Straekning" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Opgave]"
+                          dataType="i4"
+                          name="DI_Opgave" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="DI_Fravaerkode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="DI_Arbejdskode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Opgave_varighed_timer]"
+                          dataType="r8"
+                          name="Opgave_varighed_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Medarbejder_Tjeneste_timer]"
+                          dataType="i4"
+                          name="Medarbejder_Tjeneste_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[Fravaer_var_timer]"
+                          dataType="i4"
+                          name="Fravaer_var_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          name="DI_Medarbejder_Togfører_FR" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          name="DI_Medarbejder_Togfører_FR" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                          name="DI_Tid" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Togsystem]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Togsystem]"
+                          name="DI_Togsystem" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                          name="DI_Tidsintervaller" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_TjenesteDepot]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_TjenesteDepot]"
+                          name="DI_TjenesteDepot" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Straekning]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Straekning]"
+                          name="DI_Straekning" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Opgave]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Opgave]"
+                          name="DI_Opgave" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Fravaerkode]"
+                          name="DI_Fravaerkode" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Arbejdskode]"
+                          name="DI_Arbejdskode" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[Opgave_varighed_timer]"
+                          dataType="r8"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[Opgave_varighed_timer]"
+                          name="Opgave_varighed_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[Medarbejder_Tjeneste_timer]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[Medarbejder_Tjeneste_timer]"
+                          name="Medarbejder_Tjeneste_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[Fravaer_var_timer]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[Fravaer_var_timer]"
+                          name="Fravaer_var_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Data\Load Opgave timer\Load Opgave timer"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Load Opgave timer"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[FT_PDS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Tid]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DI_Tid"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Togsystem]"
+                          cachedDataType="i4"
+                          cachedName="DI_Togsystem"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Togsystem]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Tidsintervaller]"
+                          cachedDataType="i4"
+                          cachedName="DI_Tidsintervaller"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Straekning]"
+                          cachedDataType="i4"
+                          cachedName="DI_Straekning"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Straekning]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Opgave]"
+                          cachedDataType="i4"
+                          cachedName="DI_Opgave"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Opgave]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Fravaerkode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="DI_Fravaerkode"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Fravaerkode]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Arbejdskode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="DI_Arbejdskode"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Arbejdskode]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[Opgave_varighed_timer]"
+                          cachedDataType="r8"
+                          cachedName="Opgave_varighed_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_varighed_timer]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[Medarbejder_Tjeneste_timer]"
+                          cachedDataType="i4"
+                          cachedName="Medarbejder_Tjeneste_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[Medarbejder_tjeneste_varighed_timer]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[Fravaer_var_timer]"
+                          cachedDataType="i4"
+                          cachedName="Fravaer_var_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[fravaer_varighed_timer]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_TjenesteDepot]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedName="DI_TjenesteDepot"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Turdepot]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].Columns[DI_Medarbejder_Togfører_FR]"
+                          cachedDataType="i4"
+                          cachedName="DI_Medarbejder_Togfører_FR"
+                          externalMetadataColumnId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          lineageId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Tid" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Togsystem]"
+                          dataType="i4"
+                          name="DI_Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          name="DI_Tidsintervaller" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Turdepot]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="DI_Turdepot" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Straekning]"
+                          dataType="i4"
+                          name="DI_Straekning" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Opgave]"
+                          dataType="i4"
+                          name="DI_Opgave" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Fravaerkode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="DI_Arbejdskode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_varighed_timer]"
+                          dataType="numeric"
+                          name="Opgave_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[Medarbejder_tjeneste_varighed_timer]"
+                          dataType="numeric"
+                          name="Medarbejder_tjeneste_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[fravaer_varighed_timer]"
+                          dataType="numeric"
+                          name="fravaer_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          name="DI_Medarbejder_Togfører_FR" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Load Opgave timer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Opgave timer\Load Opgave timer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Opgave timer\Load Opgave timer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Data\Load Opgave timer.Paths[OLE DB Source Output]"
+                  endId="Package\Load Data\Load Opgave timer\Load Opgave timer.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load Data\Load Opgave timer\Get data.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Data\Load Tjeneste varighed"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{471F8B2A-FBF9-4DC3-A8A5-6A96998ECCC2}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Tjeneste varighed"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Data\Load Tjeneste varighed\Get data"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Get data"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select p.DI_Medarbejder_Togfører_FR, p.DI_Tid, 1 as DI_Togsystem, 0 as DI_Tidsintervaller, 0 as DI_TjenesteDepot,
+    0 as DI_Straekning, 0 as DI_Opgave, '0' as DI_Fravaerkode, p.DI_Arbejdskode, 
+    0 as Opgave_varighed_timer, p.TjenesteVarighed_tim as Medarbejder_Tjeneste_timer, 0 AS Fravaer_var_timer
+from edw.FT_OBSArbejder p
+join edw.DI_Tid t on (t.reference = p.DI_Tid)
+where t.parentreference = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0",{0CC951C3-6D84-425F-9F53-6922A546B6B1};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Data\Load Tjeneste varighed\Get data.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                          length="50"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                          name="DI_Tid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Togsystem]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]"
+                          name="DI_Togsystem"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]"
+                          name="DI_Tidsintervaller"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_TjenesteDepot]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]"
+                          name="DI_TjenesteDepot"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Straekning]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]"
+                          name="DI_Straekning"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Opgave]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]"
+                          name="DI_Opgave"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Fravaerkode]"
+                          length="1"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]"
+                          name="DI_Fravaerkode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Arbejdskode]"
+                          length="15"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]"
+                          name="DI_Arbejdskode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[Opgave_varighed_timer]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]"
+                          name="Opgave_varighed_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[Medarbejder_Tjeneste_timer]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]"
+                          name="Medarbejder_Tjeneste_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[Fravaer_var_timer]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]"
+                          name="Fravaer_var_timer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          name="DI_Medarbejder_Togfører_FR"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Tid" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Togsystem]"
+                          dataType="i4"
+                          name="DI_Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          name="DI_Tidsintervaller" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_TjenesteDepot]"
+                          dataType="i4"
+                          name="DI_TjenesteDepot" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Straekning]"
+                          dataType="i4"
+                          name="DI_Straekning" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Opgave]"
+                          dataType="i4"
+                          name="DI_Opgave" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="DI_Fravaerkode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="DI_Arbejdskode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[Opgave_varighed_timer]"
+                          dataType="i4"
+                          name="Opgave_varighed_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[Medarbejder_Tjeneste_timer]"
+                          dataType="r8"
+                          name="Medarbejder_Tjeneste_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[Fravaer_var_timer]"
+                          dataType="i4"
+                          name="Fravaer_var_timer" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          name="DI_Medarbejder_Togfører_FR" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Medarbejder_Togfører_FR]"
+                          name="DI_Medarbejder_Togfører_FR" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                          name="DI_Tid" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Togsystem]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Togsystem]"
+                          name="DI_Togsystem" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Tidsintervaller]"
+                          name="DI_Tidsintervaller" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_TjenesteDepot]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_TjenesteDepot]"
+                          name="DI_TjenesteDepot" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Straekning]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Straekning]"
+                          name="DI_Straekning" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Opgave]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Opgave]"
+                          name="DI_Opgave" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Fravaerkode]"
+                          name="DI_Fravaerkode" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[DI_Arbejdskode]"
+                          name="DI_Arbejdskode" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[Opgave_varighed_timer]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[Opgave_varighed_timer]"
+                          name="Opgave_varighed_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[Medarbejder_Tjeneste_timer]"
+                          dataType="r8"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[Medarbejder_Tjeneste_timer]"
+                          name="Medarbejder_Tjeneste_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[Fravaer_var_timer]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[Fravaer_var_timer]"
+                          name="Fravaer_var_timer" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Load Tjenneste varighed"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[FT_PDS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Tid]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DI_Tid"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Tid]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Togsystem]"
+                          cachedDataType="i4"
+                          cachedName="DI_Togsystem"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Togsystem]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Togsystem]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Tidsintervaller]"
+                          cachedDataType="i4"
+                          cachedName="DI_Tidsintervaller"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Tidsintervaller]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Straekning]"
+                          cachedDataType="i4"
+                          cachedName="DI_Straekning"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Straekning]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Straekning]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Opgave]"
+                          cachedDataType="i4"
+                          cachedName="DI_Opgave"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Opgave]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Opgave]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Fravaerkode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="DI_Fravaerkode"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Fravaerkode]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Fravaerkode]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Arbejdskode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="DI_Arbejdskode"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Arbejdskode]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Arbejdskode]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[Opgave_varighed_timer]"
+                          cachedDataType="i4"
+                          cachedName="Opgave_varighed_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_varighed_timer]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Opgave_varighed_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_TjenesteDepot]"
+                          cachedDataType="i4"
+                          cachedName="DI_TjenesteDepot"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Turdepot]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_TjenesteDepot]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[Medarbejder_Tjeneste_timer]"
+                          cachedDataType="r8"
+                          cachedName="Medarbejder_Tjeneste_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[Medarbejder_tjeneste_varighed_timer]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Medarbejder_Tjeneste_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[Fravaer_var_timer]"
+                          cachedDataType="i4"
+                          cachedName="Fravaer_var_timer"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[fravaer_varighed_timer]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[Fravaer_var_timer]" />
+                        <inputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].Columns[DI_Medarbejder_Togfører_FR]"
+                          cachedDataType="i4"
+                          cachedName="DI_Medarbejder_Togfører_FR"
+                          externalMetadataColumnId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output].Columns[DI_Medarbejder_Togfører_FR]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Tid" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Togsystem]"
+                          dataType="i4"
+                          name="DI_Togsystem" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsintervaller]"
+                          dataType="i4"
+                          name="DI_Tidsintervaller" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Turdepot]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="DI_Turdepot" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Straekning]"
+                          dataType="i4"
+                          name="DI_Straekning" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Opgave]"
+                          dataType="i4"
+                          name="DI_Opgave" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Fravaerkode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DI_Fravaerkode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Arbejdskode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="DI_Arbejdskode" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_varighed_timer]"
+                          dataType="numeric"
+                          name="Opgave_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[Medarbejder_tjeneste_varighed_timer]"
+                          dataType="numeric"
+                          name="Medarbejder_tjeneste_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[fravaer_varighed_timer]"
+                          dataType="numeric"
+                          name="fravaer_varighed_timer"
+                          precision="24"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder_Togfører_FR]"
+                          dataType="i4"
+                          name="DI_Medarbejder_Togfører_FR" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Data\Load Tjeneste varighed.Paths[OLE DB Source Output]"
+                  endId="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load Data\Load Tjeneste varighed\Get data.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Data.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2138B082-8F1D-49FA-A4C2-1518C74AE561}"
+          DTS:From="Package\Load Data\Load Opgave timer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load Data\Load Tjeneste varighed" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Data.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{BAD9E42A-04CF-407C-AE3E-FF44E80F7A9A}"
+          DTS:From="Package\Load Data\Load Tjeneste varighed"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Load Data\Load Fraværstimer" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B7D1F5BC-98BD-4152-BD98-6383BB409D18}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Prepare\Find periode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5413282F-320F-4DEB-9D79-AABFB267EF02}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find periode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select Value LoadPeriode from ods.ctl_dataload&#xA;where kilde_system = 'PDS'&#xA;and Variable = 'Last_Period_Load'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="LoadPeriode"
+                SQLTask:DtsVariableName="User::v_LoadPeriode" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Prepare\Fjern periode som skal loades"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E8FA5591-F552-4CC3-99BD-E36FC6A8CE7A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fjern periode som skal loades"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="delete &#xA;from edw.FT_PDS &#xA;where DI_Tid in (&#xA;select reference from edw.DI_Tid &#xA;where parentreference = ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="0" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Prepare.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D82BBEA1-F4A1-48DE-9781-472CE629A4D6}"
+          DTS:From="Package\Prepare\Find periode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Prepare\Fjern periode som skal loades" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{271CA38F-D016-40DB-B728-9F7140426672}"
+      DTS:From="Package\Prepare"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CE6FF794-E364-428A-8719-EFE0BAA534F9}"
+      DTS:From="Package\Exec Initiate  Package Log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Prepare" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{239B6374-DE01-4EDB-8B7F-9048D1CF4E3E}"
+      DTS:From="Package\Load Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Do Logging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{AE1DC3CB-425E-47FC-8C07-6488B53A0AE5}"
+      DTS:From="Package\Do Logging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Exec End Package Log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Do Logging\Find Tjeneste timer source"
+          TopLeft="70.4905660377359,379.377358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Do Logging\Find totaler"
+          TopLeft="66.566037735849,26.5849056603773" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Do Logging\Gem fravær timer"
+          TopLeft="65.2830188679245,197.150943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Do Logging\Gem Opgave timer"
+          TopLeft="67.5849056603773,97.4150943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Do Logging\Gem tjeneste timer"
+          TopLeft="64.3018867924528,289.037735849057" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Do Logging\Gem tjeneste timer source"
+          TopLeft="66.4528301886793,465.792452830189" />
+        <EdgeLayout
+          Id="Package\Do Logging.PrecedenceConstraints[Constraint]"
+          TopLeft="134.452830188679,70.5094339622642">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.01886792452831,26.9056603773585"
+              Start="0,0"
+              End="1.01886792452831,19.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.4339622641509" />
+                  <mssgle:LineSegment
+                    End="1.01886792452831,13.4339622641509" />
+                  <mssgle:LineSegment
+                    End="1.01886792452831,19.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Do Logging.PrecedenceConstraints[Constraint 1]"
+          TopLeft="135.471698113208,141.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.30188679245282,55.8113207547169"
+              Start="0,0"
+              End="-2.30188679245282,48.3113207547169">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-2.30188679245282,27.8867924528302" />
+                  <mssgle:LineSegment
+                    End="-2.30188679245282,48.3113207547169" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Do Logging.PrecedenceConstraints[Constraint 2]"
+          TopLeft="133.169811320755,241.075471698113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.981132075471692,47.9622641509434"
+              Start="0,0"
+              End="-0.981132075471692,40.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,23.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,40.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Do Logging.PrecedenceConstraints[Constraint 3]"
+          TopLeft="132.188679245283,332.962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="6.18867924528297,46.4150943396227"
+              Start="0,0"
+              End="6.18867924528297,38.9150943396227">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2075471698113" />
+                  <mssgle:LineSegment
+                    End="6.18867924528297,23.2075471698113" />
+                  <mssgle:LineSegment
+                    End="6.18867924528297,38.9150943396227" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Do Logging.PrecedenceConstraints[Constraint 4]"
+          TopLeft="138.377358490566,423.301886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4.03773584905662,42.4905660377359"
+              Start="0,0"
+              End="-4.03773584905662,34.9905660377359">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2452830188679" />
+                  <mssgle:LineSegment
+                    End="-4.03773584905662,21.2452830188679" />
+                  <mssgle:LineSegment
+                    End="-4.03773584905662,34.9905660377359" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="257,550"
+          Size="257,594"
+          Id="Package\Do Logging"
+          TopLeft="463.575471698113,373.72641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Exec End Package Log"
+          TopLeft="923.839622641509,380.367924528302" />
+        <NodeLayout
+          Size="159,44"
+          Id="Package\Exec Initiate  Package Log"
+          TopLeft="61.1603773584906,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Fraværstimer"
+          TopLeft="57.3962264150943,237.301886792453" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Opgave timer"
+          TopLeft="59.3584905660377,46.6603773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Tjeneste varighed"
+          TopLeft="55.3962264150943,131.490566037736" />
+        <EdgeLayout
+          Id="Package\Load Data.PrecedenceConstraints[Constraint]"
+          TopLeft="127.245283018868,90.5849056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-3.9622641509434,40.9056603773585"
+              Start="0,0"
+              End="-3.9622641509434,33.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-3.9622641509434,20.4528301886792" />
+                  <mssgle:LineSegment
+                    End="-3.9622641509434,33.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Data.PrecedenceConstraints[Constraint 3]"
+          TopLeft="123.283018867925,175.415094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2,61.8867924528303"
+              Start="0,0"
+              End="2,54.3867924528303">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.9433962264152" />
+                  <mssgle:LineSegment
+                    End="2,30.9433962264152" />
+                  <mssgle:LineSegment
+                    End="2,54.3867924528303" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="272,311"
+          Size="272,354"
+          Id="Package\Load Data"
+          TopLeft="5.5,429.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare\Find periode"
+          TopLeft="54.9433962264151,30.6981132075472" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Prepare\Fjern periode som skal loades"
+          TopLeft="54.9433962264151,117.528301886792" />
+        <EdgeLayout
+          Id="Package\Prepare.PrecedenceConstraints[Constraint]"
+          TopLeft="122.830188679245,74.622641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.9056603773585"
+              Start="0,0"
+              End="0,35.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="264,223"
+          Size="264,267"
+          Id="Package\Prepare"
+          TopLeft="8.89622641509434,123.915094339623" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="140.669811320755,390.481132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.641509433962256,39.0188679245283"
+              Start="0,0"
+              End="0.641509433962256,31.5188679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5094339622642" />
+                  <mssgle:LineSegment
+                    End="0.641509433962256,19.5094339622642" />
+                  <mssgle:LineSegment
+                    End="0.641509433962256,31.5188679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="140.518867924528,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.150943396226438,74.4905660377358"
+              Start="0,0"
+              End="0.150943396226438,66.9905660377358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.2452830188679" />
+                  <mssgle:LineSegment
+                    End="0.150943396226438,37.2452830188679" />
+                  <mssgle:LineSegment
+                    End="0.150943396226438,66.9905660377358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="277.122641509434,606.707547169811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="186.452830188679,63.8867924528302"
+              Start="0,0"
+              End="178.952830188679,63.8867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="93.2075471698113,0" />
+                  <mssgle:LineSegment
+                    End="93.2075471698113,63.8867924528302" />
+                  <mssgle:LineSegment
+                    End="178.952830188679,63.8867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="721.009433962264,670.594339622641">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="202.830188679245,-268.264150943396"
+              Start="0,0"
+              End="195.330188679245,-268.264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="101.396226415094,0" />
+                  <mssgle:LineSegment
+                    End="101.396226415094,-268.264150943396" />
+                  <mssgle:LineSegment
+                    End="195.330188679245,-268.264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Data\Load Fraværstimer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Fraværstimer\Load fraværstimer"
+          TopLeft="62.4056603773585,166.254716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Fraværstimer\Get data"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load Data\Load Fraværstimer.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.9056603773585,116.830188679245"
+              Start="0,0"
+              End="56.9056603773585,109.330188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.4150943396226" />
+                  <mssgle:LineSegment
+                    End="56.9056603773585,58.4150943396226" />
+                  <mssgle:LineSegment
+                    End="56.9056603773585,109.330188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load Data\Load Opgave timer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Opgave timer\Load Opgave timer"
+          TopLeft="43.4622641509434,154.292452830189" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Opgave timer\Get data"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load Data\Load Opgave timer.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37.9622641509434,104.867924528302"
+              Start="0,0"
+              End="37.9622641509434,97.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4150943396226" />
+                  <mssgle:LineSegment
+                    End="37.9622641509434,52.4150943396226" />
+                  <mssgle:LineSegment
+                    End="37.9622641509434,97.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load Data\Load Tjeneste varighed">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Tjeneste varighed\Load Tjenneste varighed"
+          TopLeft="5.5,126.292452830189" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load Data\Load Tjeneste varighed\Get data"
+          TopLeft="9.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load Data\Load Tjeneste varighed.Paths[OLE DB Source Output]"
+          TopLeft="77.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4,76.8679245283019"
+              Start="0,0"
+              End="-4,69.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4150943396226" />
+                  <mssgle:LineSegment
+                    End="-4,38.4150943396226" />
+                  <mssgle:LineSegment
+                    End="-4,69.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

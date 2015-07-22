@@ -1,0 +1,1218 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/26/2013 11:46:11 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB075360"
+  DTS:CreatorName="DSB\hebr2802"
+  DTS:DTSID="{9C42E627-2794-426E-9D24-8CAA5A3D6B7F}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="20_ODS_TR1_load KORELOBTIDER"
+  DTS:PackageType="5"
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{7B2276FF-F8CD-4E91-A2F6-41CD41355102}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6CCF05F7-DCAE-4973-B3FF-75C402A056DB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATABASE">
+      <DTS:VariableValue
+        DTS:DataType="8">MDW_udv1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8F74EEBB-8F06-4B6E-A5E2-65661E829240}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SERVER">
+      <DTS:VariableValue
+        DTS:DataType="8">oesmsqlt01\soem</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EE2132C2-B427-42F7-A987-DBEF5B1921C1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_FraDato">
+      <DTS:VariableValue
+        DTS:DataType="7">7/11/2013</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8A761DB0-3EC4-4567-84C5-D997CC68E384}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_LoadPeriode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D068BAA1-625E-45DD-90C4-9D9574E1C0CE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FF786433-024E-4FF2-80D6-ED4584ABFEF9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TilDato">
+      <DTS:VariableValue
+        DTS:DataType="7">7/11/2013</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{98D5AC6A-6E1A-4431-9577-11EE22063BA0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TogkmTotal">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a5a9038d-e48f-4d52-8fd1-97ce1228a8c0}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a80ac143-5740-45ad-8893-130742178a61}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+          SQLTask:SqlStatementSource="etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Initielle Processer"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3874C500-2E58-46B0-9251-20C8283062AD}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Initielle Processer">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Initielle Processer\Find load periode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F889DB42-B61E-40BE-AA34-C1F085DD9A3D}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find load periode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="Select Value as Periode, CONVERT(datetime, dateadd(mm, datediff(mm,0, Value + '01'),0)) as FraDato,&#xA;       CONVERT(datetime, dateadd(mm, datediff(mm,0, Value + '01')+1,-1)) as TilDato&#xA;from ods.ctl_dataload&#xA;Where kilde_system = 'S-tog'&#xA;and variable = 'Load_Period'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::v_FraDato" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::v_TilDato" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Initielle Processer\TRUNCATE TABLE ods rd_stog_korelobtider"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9AD10895-B21A-4F45-8227-DCB142C7896C}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE TABLE ods rd_stog_korelobtider"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ods.rd_stog_korelobtider" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Initielle Processer.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{1151B8D6-C13D-4125-8322-5D1BBD998AA7}"
+          DTS:From="Package\Initielle Processer\Find load periode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Initielle Processer\TRUNCATE TABLE ods rd_stog_korelobtider" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7A77EF4C-8BFE-41DF-8C28-DE23133041DB}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Korelobtider fra APS til ods rd_stog_korelobtider"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Korelobtider fra APS på  gbmssqlp04"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select 
+DATO,
+AFG_STAT_NR,
+ANK_STAT_NR,
+ANK_TID,
+AFG_TID,
+dateadd(second, ANK_TID, dato) as Ankomst,
+dateadd(second, AFG_TID, dato) as Afgang,
+TOG_NR,
+passagerkapacitet,
+Antal_vogne,
+Fingernr,
+km as Kilometer,
+DøgnInddeling,
+TOG_TYPE	
+from dbo.KORELOBTIDER k
+where KoreTidID = 1 --Afviklet drift
+and DATO between ? and ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0",{EE2132C2-B427-42F7-A987-DBEF5B1921C1};"Parameter1",{FF786433-024E-4FF2-80D6-ED4584ABFEF9};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Connections[OleDbConnection]"
+                  connectionManagerID="{FADCEABF-1D34-4DD1-B517-02FEFFDACCF1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[APS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[DATO]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[DATO]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[DATO]"
+                      name="DATO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[AFG_STAT_NR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[AFG_STAT_NR]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[AFG_STAT_NR]"
+                      name="AFG_STAT_NR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[ANK_STAT_NR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[ANK_STAT_NR]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[ANK_STAT_NR]"
+                      name="ANK_STAT_NR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[ANK_TID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[ANK_TID]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[ANK_TID]"
+                      name="ANK_TID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[AFG_TID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[AFG_TID]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[AFG_TID]"
+                      name="AFG_TID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Ankomst]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Ankomst]"
+                      name="Ankomst"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Afgang]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Afgang]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Afgang]"
+                      name="Afgang"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[TOG_NR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[TOG_NR]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[TOG_NR]"
+                      name="TOG_NR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Antal_vogne]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Antal_vogne]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Antal_vogne]"
+                      name="Antal_vogne"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[passagerkapacitet]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[passagerkapacitet]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[passagerkapacitet]"
+                      name="passagerkapacitet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Fingernr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Fingernr]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Fingernr]"
+                      name="Fingernr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Kilometer]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Kilometer]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Kilometer]"
+                      name="Kilometer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[DøgnInddeling]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[DøgnInddeling]"
+                      length="1"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[DøgnInddeling]"
+                      name="DøgnInddeling"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[TOG_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[TOG_TYPE]"
+                      length="1"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[TOG_TYPE]"
+                      name="TOG_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[DATO]"
+                      dataType="dbTimeStamp"
+                      name="DATO" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[AFG_STAT_NR]"
+                      dataType="i4"
+                      name="AFG_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[ANK_STAT_NR]"
+                      dataType="i4"
+                      name="ANK_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[ANK_TID]"
+                      dataType="i4"
+                      name="ANK_TID" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[AFG_TID]"
+                      dataType="i4"
+                      name="AFG_TID" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      name="Ankomst" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Afgang]"
+                      dataType="dbTimeStamp"
+                      name="Afgang" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[TOG_NR]"
+                      dataType="i4"
+                      name="TOG_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Antal_vogne]"
+                      dataType="i4"
+                      name="Antal_vogne" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[passagerkapacitet]"
+                      dataType="i4"
+                      name="passagerkapacitet" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Fingernr]"
+                      dataType="i4"
+                      name="Fingernr" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[Kilometer]"
+                      dataType="r8"
+                      name="Kilometer" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[DøgnInddeling]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="DøgnInddeling" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].ExternalColumns[TOG_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TOG_TYPE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[DATO]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[DATO]"
+                      name="DATO" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[AFG_STAT_NR]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[AFG_STAT_NR]"
+                      name="AFG_STAT_NR" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ANK_STAT_NR]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ANK_STAT_NR]"
+                      name="ANK_STAT_NR" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ANK_TID]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ANK_TID]"
+                      name="ANK_TID" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[AFG_TID]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[AFG_TID]"
+                      name="AFG_TID" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Ankomst]"
+                      name="Ankomst" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Afgang]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Afgang]"
+                      name="Afgang" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[TOG_NR]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[TOG_NR]"
+                      name="TOG_NR" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Antal_vogne]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Antal_vogne]"
+                      name="Antal_vogne" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[passagerkapacitet]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[passagerkapacitet]"
+                      name="passagerkapacitet" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Fingernr]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Fingernr]"
+                      name="Fingernr" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Kilometer]"
+                      dataType="r8"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[Kilometer]"
+                      name="Kilometer" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[DøgnInddeling]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[DøgnInddeling]"
+                      name="DøgnInddeling" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[TOG_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[TOG_TYPE]"
+                      name="TOG_TYPE" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ods rd_stog_korelobtider"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[rd_stog_korelobtider]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Connections[OleDbConnection]"
+                  connectionManagerID="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[DATO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DATO"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[DATO]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[DATO]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[AFG_STAT_NR]"
+                      cachedDataType="i4"
+                      cachedName="AFG_STAT_NR"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[AFG_STAT_NR]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[AFG_STAT_NR]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[ANK_STAT_NR]"
+                      cachedDataType="i4"
+                      cachedName="ANK_STAT_NR"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[ANK_STAT_NR]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[ANK_STAT_NR]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[ANK_TID]"
+                      cachedDataType="i4"
+                      cachedName="ANK_TID"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[ANK_TID]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[ANK_TID]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[AFG_TID]"
+                      cachedDataType="i4"
+                      cachedName="AFG_TID"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[AFG_TID]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[AFG_TID]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[Ankomst]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Ankomst"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Ankomst]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Ankomst]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[Afgang]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Afgang"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Afgang]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Afgang]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[TOG_NR]"
+                      cachedDataType="i4"
+                      cachedName="TOG_NR"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[TOG_NR]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[TOG_NR]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[Antal_vogne]"
+                      cachedDataType="i4"
+                      cachedName="Antal_vogne"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Antal_vogne]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Antal_vogne]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[passagerkapacitet]"
+                      cachedDataType="i4"
+                      cachedName="passagerkapacitet"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Passagerkapacitet]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[passagerkapacitet]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[Fingernr]"
+                      cachedDataType="i4"
+                      cachedName="Fingernr"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Fingernr]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Fingernr]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[Kilometer]"
+                      cachedDataType="r8"
+                      cachedName="Kilometer"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Kilometer]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[Kilometer]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[DøgnInddeling]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="DøgnInddeling"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[DoegnInddeling]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[DøgnInddeling]" />
+                    <inputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].Columns[TOG_TYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="TOG_TYPE"
+                      externalMetadataColumnId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[TOG_TYPE]"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output].Columns[TOG_TYPE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[DATO]"
+                      dataType="dbTimeStamp"
+                      name="DATO" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[AFG_STAT_NR]"
+                      dataType="i4"
+                      name="AFG_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[ANK_STAT_NR]"
+                      dataType="i4"
+                      name="ANK_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[ANK_TID]"
+                      dataType="i4"
+                      name="ANK_TID" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[AFG_TID]"
+                      dataType="i4"
+                      name="AFG_TID" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Ankomst]"
+                      dataType="dbTimeStamp"
+                      name="Ankomst" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Afgang]"
+                      dataType="dbTimeStamp"
+                      name="Afgang" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[TOG_NR]"
+                      dataType="i4"
+                      name="TOG_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Passagerkapacitet]"
+                      dataType="i4"
+                      name="Passagerkapacitet" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Antal_vogne]"
+                      dataType="i4"
+                      name="Antal_vogne" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Fingernr]"
+                      dataType="i4"
+                      name="Fingernr" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[Kilometer]"
+                      dataType="r8"
+                      name="Kilometer" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[DoegnInddeling]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="DoegnInddeling" />
+                    <externalMetadataColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input].ExternalColumns[TOG_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TOG_TYPE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Korelobtider fra APS til ods rd_stog_korelobtider.Paths[OLE DB Source Output]"
+              endId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Post Processer"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{535990E6-B89C-4A7A-AF2E-566FD5356406}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Post Processer">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Post Processer\Find total togkm"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DDB83C22-05EF-4FF2-92E3-8125A4251CBF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find total togkm"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="select sum(Kilometer) as togkm from ods.rd_stog_KORELOBTIDER"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_TogkmTotal" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Post Processer\Gem total togkm"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{16F0B207-8376-4D81-BB7C-E7C79E73BEBC}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem total togkm"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 76, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_TogkmTotal"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="4"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Post Processer.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5C6B6020-61C1-457E-9D89-A3D82364AC5A}"
+          DTS:From="Package\Post Processer\Find total togkm"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Post Processer\Gem total togkm" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FE696AA6-EFDE-492B-B93D-F0F1A804FC23}"
+      DTS:From="Package\Initielle Processer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Korelobtider fra APS til ods rd_stog_korelobtider" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{08F349DC-ADED-4C1E-98D3-926F4069B10C}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Initielle Processer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8604680E-2DF4-40A1-A46D-94170FC2E0BC}"
+      DTS:From="Package\Korelobtider fra APS til ods rd_stog_korelobtider"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Post Processer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{4DFBBA97-4596-417C-A07C-DCA0C87CFF79}"
+      DTS:From="Package\Post Processer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EXEC End package log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC End package log"
+          TopLeft="28.3679245283019,489.72641509434" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="29.3867924528302,5.50000000000001" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Initielle Processer\Find load periode"
+          TopLeft="30.8301886792453,14.3207547169811" />
+        <NodeLayout
+          Size="182,44"
+          Id="Package\Initielle Processer\TRUNCATE TABLE ods rd_stog_korelobtider"
+          TopLeft="7.69811320754718,103.075471698113" />
+        <EdgeLayout
+          Id="Package\Initielle Processer.PrecedenceConstraints[Constraint 3]"
+          TopLeft="98.7169811320755,58.2452830188679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.188679245283026,44.8301886792453"
+              Start="0,0"
+              End="-0.188679245283026,37.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4150943396226" />
+                  <mssgle:LineSegment
+                    End="-0.188679245283026,22.4150943396226" />
+                  <mssgle:LineSegment
+                    End="-0.188679245283026,37.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="204,176"
+          Size="204,220"
+          Id="Package\Initielle Processer"
+          TopLeft="404.103773584906,10.2547169811321" />
+        <NodeLayout
+          Size="182,44"
+          Id="Package\Korelobtider fra APS til ods rd_stog_korelobtider"
+          TopLeft="5.5,274.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Post Processer\Find total togkm"
+          TopLeft="37.0188679245283,30.8490566037736" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Post Processer\Gem total togkm"
+          TopLeft="42.0377358490566,108.77358490566" />
+        <EdgeLayout
+          Id="Package\Post Processer.PrecedenceConstraints[Constraint]"
+          TopLeft="104.905660377359,74.7735849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5.01886792452831,34"
+              Start="0,0"
+              End="5.01886792452831,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="5.01886792452831,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="5.01886792452831,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="216,176"
+          Size="216,220"
+          Id="Package\Post Processer"
+          TopLeft="406.933962264151,361.952830188679" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="506.254716981132,229.915094339623">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-409.924528301887,44.2264150943396"
+              Start="0,0"
+              End="-409.924528301887,36.7264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.1132075471698" />
+                  <mssgle:LineSegment
+                    End="-409.924528301887,22.1132075471698" />
+                  <mssgle:LineSegment
+                    End="-409.924528301887,36.7264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="165.160377358491,27.4622641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="238.943396226415,92.6037735849057"
+              Start="0,0"
+              End="231.443396226415,92.6037735849057">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="119.471698113208,0" />
+                  <mssgle:LineSegment
+                    End="119.471698113208,92.6037735849057" />
+                  <mssgle:LineSegment
+                    End="231.443396226415,92.6037735849057" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="96.3301886792453,318.066037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="418.490566037736,43.8867924528302"
+              Start="0,0"
+              End="418.490566037736,36.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9245283018868" />
+                  <mssgle:LineSegment
+                    End="418.490566037736,21.9245283018868" />
+                  <mssgle:LineSegment
+                    End="418.490566037736,36.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="406.933962264151,471.764150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-242.792452830189,39.9245283018868"
+              Start="0,0"
+              End="-235.292452830189,39.9245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-121.396226415094,0" />
+                  <mssgle:LineSegment
+                    End="-121.396226415094,39.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-235.292452830189,39.9245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Korelobtider fra APS til ods rd_stog_korelobtider">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="196,44"
+          Id="Package\Korelobtider fra APS til ods rd_stog_korelobtider\ods rd_stog_korelobtider"
+          TopLeft="5.5,109.349056603774" />
+        <NodeLayout
+          Size="195,54"
+          Id="Package\Korelobtider fra APS til ods rd_stog_korelobtider\Korelobtider fra APS på  gbmssqlp04"
+          TopLeft="6.4811320754717,5.5" />
+        <EdgeLayout
+          Id="Package\Korelobtider fra APS til ods rd_stog_korelobtider.Paths[OLE DB Source Output]"
+          TopLeft="103.801886792453,59.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735846,49.9245283018868"
+              Start="0,0"
+              End="-0.490566037735846,42.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,24.9433962264151" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,42.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

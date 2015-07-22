@@ -1,0 +1,1745 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/15/2014 11:12:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="PC001244"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{1219AA7A-38BE-46C1-BF16-9F4D7143FBFD}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="010_ODS_RD_PDS_Workdone_Togfoerer_FR"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{50DA87FD-6DCA-4F68-A40B-D4AF2629814F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8E8444ED-5A77-4225-8CCB-605A0E9A1033}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadFraDato">
+      <DTS:VariableValue
+        DTS:DataType="7">9/15/2014 11:46:15 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{443175C7-4411-4E62-9AD1-38D6878B7015}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadPeriode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56316EA8-780C-40B8-A91D-1B73ECCE8B10}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadTilDato">
+      <DTS:VariableValue
+        DTS:DataType="7">9/15/2014 11:46:28 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D439D797-B9E9-4160-8B44-C72298D74197}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_EmailAdresse">
+      <DTS:VariableValue
+        DTS:DataType="8">tbra@dsb.sk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{878F0C58-0CE9-43A2-964F-194A83B254CB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Afslutning"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D5F819C7-3DE9-4229-9160-C8A158E09BE6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Afslutning">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{EF89B139-4F73-41B0-B1A9-1E8E185F4CB7}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_Rows_table">
+          <DTS:VariableValue
+            DTS:DataType="3">0</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{FE27E956-3C0A-46A2-852F-D906A32AAD50}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="v_Sum_Varigtimer">
+          <DTS:VariableValue
+            DTS:DataType="5">0.</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Afslutning\Beregn datacheck"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2925A2B4-2E7D-420D-9CB7-142CF69F3EAA}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Beregn datacheck"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select sum(cast(T_DURATION as float))/60/60 v_Sum_Varigtimer, count(*) v_Rows_table&#xA;from ods.RD_PDS_Workdone_Togfører_FR&#xA;where CAST(YEAR(t_start_date_time) as VARCHAR) + right(replicate('0',2) + CAST(month(t_start_date_time) as VARCHAR),2)&#xA;   = (select [Value]&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'PDS'&#xA;and [Variable] = 'Last_Period_Load')"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_Sum_Varigtimer" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::v_Rows_table" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Afslutning\Gem timer total"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{68ada3f3-ab7d-4294-a902-f7b8771968ea}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gem timer total"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_char_Log 27, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LoadPeriode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="0" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_Sum_Varigtimer"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="4"
+                SQLTask:ParameterSize="1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Afslutning\Send mail"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{dbe774c8-dd9e-4150-b392-8c5ab0e48307}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send mail"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">"Mail sendes til: \n\n" + @[User::v_EmailAdresse]  + " \n\n" + "Periode: " +  @[User::LoadPeriode] + " \n" + " LoadPeriode er: " +  (DT_STR, 35, 1252)@[User::LoadFraDato] + " til " +  (DT_STR, 35, 1252)@[User::LoadTilDato]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">"Kørsel af pakken " + @[System::PackageName] + " for periode " + @[User::LoadPeriode] + " er afsluttet"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::v_EmailAdresse]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{32850507-B501-4886-ACE2-C81DD9D289B4}"
+              SendMailTask:From="datawarehouse@dsb.dk"
+              SendMailTask:To="tbra@dsb.sk"
+              SendMailTask:Subject="Kørsel af pakken 010_ODS_RD_PDS_Workdone_Togfoerer_FR for periode  er afsluttet"
+              SendMailTask:MessageSource="Mail sendes til: &#xA;&#xA;tbra@dsb.sk &#xA;&#xA;Periode:  &#xA; LoadPeriode er: 15-09-2014 11:46:15 til 15-09-2014 11:46:28" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Afslutning.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C74A97B7-CB85-4D19-9600-2082FE31DCF1}"
+          DTS:From="Package\Afslutning\Beregn datacheck"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Afslutning\Gem timer total" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Afslutning.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{73E53C38-7315-4737-95E0-8D0F1988BEBC}"
+          DTS:From="Package\Afslutning\Gem timer total"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Afslutning\Send mail" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3497782f-3cae-4415-92ce-fad43f901a82}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9d7c6d04-27f7-4b12-83d2-c65fd1aa4d51}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Forberedelse"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{1D67D332-70EC-4E97-B14B-B4A3976BD968}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Forberedelse">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Forberedelse\Find datoer"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Find til og fra load datoer"
+          DTS:DTSID="{A7E9273A-012A-4293-8076-455A6B7C3BC3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find datoer"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="with dato_sql as (&#xA;select  [Value] Periode, CAST([Value] + '01' as datetime) PeriodeDato&#xA;from ods.ctl_dataload&#xA;where kilde_system = 'PDS'&#xA;and [Variable] = 'Last_Period_Load')&#xA;select PeriodeDato - 1 AS fradato, dateadd(month, 1, PeriodeDato) -1 AS TilDato, Periode&#xA;from dato_sql"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::LoadFraDato" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::LoadTilDato" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::LoadPeriode" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Forberedelse\Find email adresser"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{07839462-121f-4314-a35a-269a820209fb}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Find email adresser"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="select [Value] v_EmailAdresse&#xA;from ods.CTL_Dataload&#xA;where [Variable] = 'Email_To'&#xA;and [Kilde_System] = 'PDS'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_EmailAdresse"
+                SQLTask:DtsVariableName="User::v_EmailAdresse" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Forberedelse\Fjern eksisterende data"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Truncate tabel ODS RD_PDS_Workdone_Togfører_FR"
+          DTS:DTSID="{DD9D894C-0687-48D1-A855-CBF12D83E7DA}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fjern eksisterende data"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ODS.[RD_PDS_Workdone_Togfører_FR]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Forberedelse.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{78023472-994B-4593-BE25-24203F8B1005}"
+          DTS:From="Package\Forberedelse\Find email adresser"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Forberedelse\Find datoer" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Forberedelse.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{2B098F7D-5AD3-49ED-B311-C5A09D59B6BE}"
+          DTS:From="Package\Forberedelse\Find datoer"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Forberedelse\Fjern eksisterende data" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs data"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{EB40F02B-032D-4118-B2E1-800A10380E12}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs data">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Indlæs data\Indlæs data fra PDS DM"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{6BA9DED5-8904-459E-8762-99FF29EC3D8F}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Indlæs data fra PDS DM"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="RD_PDS_Workdone_Togfører_FR"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[RD_PDS_Workdone_Togfører_FR]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Connections[OleDbConnection]"
+                      connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[E_DAY_DATE]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="E_DAY_DATE"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[E_DAY_DATE]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DAY_DATE]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[E_DATE_TIME_REGISTERED]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="E_DATE_TIME_REGISTERED"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DATE_TIME_REGISTERED]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_DAY_TYPE_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="P_DAY_TYPE_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DAY_TYPE_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_DATE_TIME_REGISTERED]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="P_DATE_TIME_REGISTERED"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DATE_TIME_REGISTERED]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_BRUGERID]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="P_BRUGERID"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_BRUGERID]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_BRUGERID]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_NICKNAME]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="P_NICKNAME"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_NICKNAME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_NICKNAME]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_PERSON_PB_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="P_PERSON_PB_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_PERSON_PB_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_ROSTER_COMPANY_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="P_ROSTER_COMPANY_ID"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_COMPANY_ID]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_ROSTER_WEEK]"
+                          cachedDataType="numeric"
+                          cachedName="P_ROSTER_WEEK"
+                          cachedPrecision="5"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_WEEK]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_WEEK]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[P_ROSTER_PB_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="P_ROSTER_PB_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_PB_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_DURATION]"
+                          cachedDataType="numeric"
+                          cachedName="D_DURATION"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_DURATION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DURATION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_DUTY_PB_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="D_DUTY_PB_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_PB_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_START_DATE_TIME]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="D_START_DATE_TIME"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_START_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_DATE_TIME]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_END_DATE_TIME]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="D_END_DATE_TIME"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_END_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_DATE_TIME]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_START_STATION_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="D_START_STATION_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_STATION_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_END_STATION_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="D_END_STATION_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_STATION_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_FIXED_START_DATE_TIME]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="D_FIXED_START_DATE_TIME"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_START_DATE_TIME]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[D_FIXED_END_DATE_TIME]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="D_FIXED_END_DATE_TIME"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_END_DATE_TIME]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_TASK_TYPE_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="T_TASK_TYPE_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_TASK_TYPE_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_START_DATE_TIME]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="T_START_DATE_TIME"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_START_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_DATE_TIME]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_END_DATE_TIME]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="T_END_DATE_TIME"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_END_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_DATE_TIME]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_SERIAL_NUMBER]"
+                          cachedDataType="numeric"
+                          cachedName="T_SERIAL_NUMBER"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_SERIAL_NUMBER]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_SERIAL_NUMBER]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_START_STATION_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="T_START_STATION_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_STATION_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_END_STATION_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="T_END_STATION_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_STATION_DESCRIPTION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_DURATION]"
+                          cachedDataType="numeric"
+                          cachedName="T_DURATION"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_DURATION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_DURATION]" />
+                        <inputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].Columns[T_ACTIVITY_DESCRIPTION]"
+                          cachedDataType="wstr"
+                          cachedLength="60"
+                          cachedName="T_ACTIVITY_DESCRIPTION"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_ACTIVITY_DESCRIPTION]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[E_DAY_DATE]"
+                          dataType="dbTimeStamp"
+                          name="E_DAY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          name="E_DATE_TIME_REGISTERED" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_DAY_TYPE_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          name="P_DATE_TIME_REGISTERED" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_BRUGERID]"
+                          dataType="wstr"
+                          length="50"
+                          name="P_BRUGERID" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_NICKNAME]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_NICKNAME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_PERSON_PB_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_ROSTER_COMPANY_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_WEEK]"
+                          dataType="numeric"
+                          name="P_ROSTER_WEEK"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_ROSTER_PB_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_DURATION]"
+                          dataType="numeric"
+                          name="D_DURATION"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="D_DUTY_PB_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_START_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_END_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="D_START_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="D_END_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_FIXED_START_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_FIXED_END_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="T_TASK_TYPE_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="T_START_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="T_END_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_SERIAL_NUMBER]"
+                          dataType="numeric"
+                          name="T_SERIAL_NUMBER"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="T_START_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="T_END_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_DURATION]"
+                          dataType="numeric"
+                          name="T_DURATION"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                          dataType="wstr"
+                          length="60"
+                          name="T_ACTIVITY_DESCRIPTION" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="v_DM_PDS_DSB_WRK_work_done"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [E_DAY_DATE], [E_DATE_TIME_REGISTERED],[P_DAY_TYPE_DESCRIPTION], [P_DATE_TIME_REGISTERED],
+  [P_BRUGERID], [P_NICKNAME], [P_PERSON_PB_DESCRIPTION], [P_ROSTER_COMPANY_ID], [P_ROSTER_WEEK],
+  [P_ROSTER_PB_DESCRIPTION], [D_DURATION], [D_DUTY_PB_DESCRIPTION], [D_START_DATE_TIME],
+  [D_END_DATE_TIME], [D_START_STATION_DESCRIPTION], [D_END_STATION_DESCRIPTION], [D_FIXED_START_DATE_TIME],
+  [D_FIXED_END_DATE_TIME], [T_TASK_TYPE_DESCRIPTION], [T_START_DATE_TIME], [T_END_DATE_TIME],
+  [T_SERIAL_NUMBER], [T_START_STATION_DESCRIPTION], [T_END_STATION_DESCRIPTION], [T_DURATION],
+  [T_ACTIVITY_DESCRIPTION]
+FROM [OKOSTYR].[v_DM_PDS_DSB_WRK_work_done]
+WHERE [E_DAY_DATE] BETWEEN ? AND ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"0",{8E8444ED-5A77-4225-8CCB-605A0E9A1033};"1",{56316EA8-780C-40B8-A91D-1B73ECCE8B10};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Connections[OleDbConnection]"
+                      connectionManagerID="{FCF59A4A-9D50-478B-9D44-F1BB8B9726BE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[PDSDWMART]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DAY_DATE]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DAY_DATE]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DAY_DATE]"
+                          name="E_DAY_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DATE_TIME_REGISTERED]"
+                          name="E_DATE_TIME_REGISTERED"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                          name="P_DAY_TYPE_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DATE_TIME_REGISTERED]"
+                          name="P_DATE_TIME_REGISTERED"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_BRUGERID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_BRUGERID]"
+                          length="50"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_BRUGERID]"
+                          name="P_BRUGERID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_NICKNAME]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_NICKNAME]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_NICKNAME]"
+                          name="P_NICKNAME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                          name="P_PERSON_PB_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_COMPANY_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_COMPANY_ID]"
+                          name="P_ROSTER_COMPANY_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_WEEK]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_WEEK]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_WEEK]"
+                          name="P_ROSTER_WEEK"
+                          precision="5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                          name="P_ROSTER_PB_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DURATION]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DURATION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DURATION]"
+                          name="D_DURATION"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                          name="D_DUTY_PB_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_DATE_TIME]"
+                          name="D_START_DATE_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_DATE_TIME]"
+                          name="D_END_DATE_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_STATION_DESCRIPTION]"
+                          name="D_START_STATION_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_STATION_DESCRIPTION]"
+                          name="D_END_STATION_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_START_DATE_TIME]"
+                          name="D_FIXED_START_DATE_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_END_DATE_TIME]"
+                          name="D_FIXED_END_DATE_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                          name="T_TASK_TYPE_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_DATE_TIME]"
+                          name="T_START_DATE_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_DATE_TIME]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_DATE_TIME]"
+                          name="T_END_DATE_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_SERIAL_NUMBER]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_SERIAL_NUMBER]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_SERIAL_NUMBER]"
+                          name="T_SERIAL_NUMBER"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_STATION_DESCRIPTION]"
+                          name="T_START_STATION_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_STATION_DESCRIPTION]"
+                          name="T_END_STATION_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_DURATION]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_DURATION]"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_DURATION]"
+                          name="T_DURATION"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                          length="60"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                          name="T_ACTIVITY_DESCRIPTION"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DAY_DATE]"
+                          dataType="dbTimeStamp"
+                          name="E_DAY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          name="E_DATE_TIME_REGISTERED" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_DAY_TYPE_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          name="P_DATE_TIME_REGISTERED" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_BRUGERID]"
+                          dataType="wstr"
+                          length="50"
+                          name="P_BRUGERID" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_NICKNAME]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_NICKNAME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_PERSON_PB_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_ROSTER_COMPANY_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_WEEK]"
+                          dataType="numeric"
+                          name="P_ROSTER_WEEK"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="P_ROSTER_PB_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DURATION]"
+                          dataType="numeric"
+                          name="D_DURATION"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="D_DUTY_PB_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_START_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_END_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="D_START_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="D_END_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_FIXED_START_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="D_FIXED_END_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="T_TASK_TYPE_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="T_START_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          name="T_END_DATE_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_SERIAL_NUMBER]"
+                          dataType="numeric"
+                          name="T_SERIAL_NUMBER"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="T_START_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          name="T_END_STATION_DESCRIPTION" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_DURATION]"
+                          dataType="numeric"
+                          name="T_DURATION"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                          dataType="wstr"
+                          length="60"
+                          name="T_ACTIVITY_DESCRIPTION" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DAY_DATE]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DAY_DATE]"
+                          name="E_DAY_DATE" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DATE_TIME_REGISTERED]"
+                          name="E_DATE_TIME_REGISTERED" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                          name="P_DAY_TYPE_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DATE_TIME_REGISTERED]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DATE_TIME_REGISTERED]"
+                          name="P_DATE_TIME_REGISTERED" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_BRUGERID]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_BRUGERID]"
+                          name="P_BRUGERID" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_NICKNAME]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_NICKNAME]"
+                          name="P_NICKNAME" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                          name="P_PERSON_PB_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_COMPANY_ID]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_COMPANY_ID]"
+                          name="P_ROSTER_COMPANY_ID" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_WEEK]"
+                          dataType="numeric"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_WEEK]"
+                          name="P_ROSTER_WEEK"
+                          precision="5" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                          name="P_ROSTER_PB_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DURATION]"
+                          dataType="numeric"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DURATION]"
+                          name="D_DURATION"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                          name="D_DUTY_PB_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_DATE_TIME]"
+                          name="D_START_DATE_TIME" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_DATE_TIME]"
+                          name="D_END_DATE_TIME" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_STATION_DESCRIPTION]"
+                          name="D_START_STATION_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_STATION_DESCRIPTION]"
+                          name="D_END_STATION_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_START_DATE_TIME]"
+                          name="D_FIXED_START_DATE_TIME" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_END_DATE_TIME]"
+                          name="D_FIXED_END_DATE_TIME" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                          name="T_TASK_TYPE_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_DATE_TIME]"
+                          name="T_START_DATE_TIME" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_DATE_TIME]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_DATE_TIME]"
+                          name="T_END_DATE_TIME" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_SERIAL_NUMBER]"
+                          dataType="numeric"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_SERIAL_NUMBER]"
+                          name="T_SERIAL_NUMBER"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_STATION_DESCRIPTION]"
+                          name="T_START_STATION_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_STATION_DESCRIPTION]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_STATION_DESCRIPTION]"
+                          name="T_END_STATION_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_DURATION]"
+                          dataType="numeric"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_DURATION]"
+                          name="T_DURATION"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                          dataType="wstr"
+                          length="60"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                          name="T_ACTIVITY_DESCRIPTION" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Indlæs data\Indlæs data fra PDS DM.Paths[OLE DB Source Output]"
+                  endId="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CA65A4B5-A102-4A64-9055-93952FB1F902}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Forberedelse" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A01AFE29-0F16-40F5-B0D0-6A57C3D495AA}"
+      DTS:From="Package\Forberedelse"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Indlæs data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{B7D7CB1E-2C91-4312-9DB5-E612E21822A7}"
+      DTS:From="Package\Indlæs data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Afslutning" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{5ABC5083-9130-4A63-895C-1EAED7792A61}"
+      DTS:From="Package\Afslutning"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EXEC End Package Log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Afslutning\Beregn datacheck"
+          TopLeft="7.73584905660377,8.47169811320759" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Afslutning\Gem timer total"
+          TopLeft="7.73584905660377,90.1320754716982" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Afslutning\Send mail"
+          TopLeft="7.73584905660377,171.792452830189" />
+        <EdgeLayout
+          Id="Package\Afslutning.PrecedenceConstraints[Constraint]"
+          TopLeft="75.622641509434,52.3962264150944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Afslutning.PrecedenceConstraints[Constraint 1]"
+          TopLeft="75.622641509434,134.056603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="151,222"
+          Size="151,266"
+          Id="Package\Afslutning"
+          TopLeft="28.8584905660377,531.839622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC End Package Log"
+          TopLeft="36.5943396226415,835.839622641509" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="36.5943396226415,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Forberedelse\Find datoer"
+          TopLeft="20.2641509433962,90.1320754716981" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Forberedelse\Find email adresser"
+          TopLeft="20.2641509433962,8.47169811320754" />
+        <NodeLayout
+          Size="161,44"
+          Id="Package\Forberedelse\Fjern eksisterende data"
+          TopLeft="7.81132075471698,171.792452830189" />
+        <EdgeLayout
+          Id="Package\Forberedelse.PrecedenceConstraints[Constraint]"
+          TopLeft="88.1509433962264,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Forberedelse.PrecedenceConstraints[Constraint 1]"
+          TopLeft="67.3962264150943,134.056603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.7547169811321,37.7358490566037"
+              Start="0,0"
+              End="20.7547169811321,30.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.3018867924528" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,28.3018867924528" />
+                  <mssgle:LineSegment
+                    End="20.7547169811321,30.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="176,222"
+          Size="176,266"
+          Id="Package\Forberedelse"
+          TopLeft="16.3301886792453,87.1603773584906" />
+        <NodeLayout
+          Size="183,44"
+          Id="Package\Indlæs data\Indlæs data fra PDS DM"
+          TopLeft="7.62264150943396,8.47169811320754" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="198,59"
+          Size="198,103"
+          Id="Package\Indlæs data"
+          TopLeft="5.5,391.160377358491" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="104.481132075472,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.264150943396231,37.7358490566038"
+              Start="0,0"
+              End="-0.264150943396231,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-0.264150943396231,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-0.264150943396231,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="104.216981132075,353.424528301887">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.188679245283026,37.7358490566038"
+              Start="0,0"
+              End="0.188679245283026,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="0.188679245283026,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="104.405660377358,494.103773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.113207547169807,37.7358490566038"
+              Start="0,0"
+              End="-0.113207547169807,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-0.113207547169807,18.8679245283019" />
+                  <mssgle:LineSegment
+                    End="-0.113207547169807,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="104.292452830189,798.103773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.188679245283012,37.7358490566038"
+              Start="0,0"
+              End="0.188679245283012,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.867924528302" />
+                  <mssgle:LineSegment
+                    End="0.188679245283012,18.867924528302" />
+                  <mssgle:LineSegment
+                    End="0.188679245283012,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs data\Indlæs data fra PDS DM">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="251,44"
+          Id="Package\Indlæs data\Indlæs data fra PDS DM\RD_PDS_Workdone_Togfører_FR"
+          TopLeft="5.5,157.27358490566" />
+        <NodeLayout
+          Size="244,44"
+          Id="Package\Indlæs data\Indlæs data fra PDS DM\v_DM_PDS_DSB_WRK_work_done"
+          TopLeft="9.5,5.5" />
+        <EdgeLayout
+          Id="Package\Indlæs data\Indlæs data fra PDS DM.Paths[OLE DB Source Output]"
+          TopLeft="131.311320754717,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.528301886792462,107.849056603774"
+              Start="0,0"
+              End="-0.528301886792462,100.349056603774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.528301886792462,53.9245283018868" />
+                  <mssgle:LineSegment
+                    End="-0.528301886792462,100.349056603774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

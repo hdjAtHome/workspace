@@ -1,0 +1,1402 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/23/2013 1:07:44 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{DEB8EFF7-BE10-46A9-8E6E-B295A28EDA7B}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="040_EX_MD_G_STAM_Stationer"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{139D0691-84B9-4050-A013-1C960D9D6971}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection EX_MD_G_STAM_Stationer]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{1E434C8D-D15A-441B-93B4-A3BB9E81E52F}"
+      DTS:ObjectName="Excel Connection EX_MD_G_STAM_Stationer">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">"\\\\"+@[$Project::MDWSERVER] +"\\files\\"+ @[$Project::MDWDATABASE]+"\\Stamdata\\EX_MD_G_STAM_Stationer.xlsx"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\oesmsqlt01\soem\files\MDW_udv4\Stamdata\EX_MD_G_STAM_Stationer.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E6318D67-4B2C-48F4-8062-B680F2383264}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs data\Converter kolonner"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Converter kolonner"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Stationsnr]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Stationsnr"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnr]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[UIC_nr]"
+                      cachedDataType="r8"
+                      cachedName="UIC_nr"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC_nr]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Stationsfork]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Stationsfork"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsfork]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Stationsnavn]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Stationsnavn"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnavn]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[BGV_nr]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BGV_nr"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[BGV_nr]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Standsningsted]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Standsningsted"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Standsningsted]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Udbudt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Udbudt"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Udbudt]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Landsdel]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Landsdel"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Landsdel]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Operatør]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Operatør"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Operatør]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Linie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Linie"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Linie]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Type"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Type]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Stationstype]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Stationstype"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationstype]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[Sekretariat_Operatør]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sekretariat_Operatør"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Sekretariat_Operatør]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input].Columns[UIC opslag]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="UIC opslag"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC opslag]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsnr_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsnr_conv]"
+                      name="Stationsnr_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnr]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Stationsnr,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[UIC_nr_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[UIC_nr_conv]"
+                      name="UIC_nr_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING]((DT_STR,50,1252)#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC_nr]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING((DT_STR,50,1252)UIC_nr,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsfork_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsfork_conv]"
+                      name="Stationsfork_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsfork]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Stationsfork,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsnavn_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsnavn_conv]"
+                      name="Stationsnavn_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnavn]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Stationsnavn,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[BGV_nr_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[BGV_nr_conv]"
+                      name="BGV_nr_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[BGV_nr]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(BGV_nr,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Standsningsted_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Standsningsted_conv]"
+                      name="Standsningsted_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Standsningsted]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Standsningsted,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Udbudt_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Udbudt_conv]"
+                      name="Udbudt_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Udbudt]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Udbudt,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Landsdel_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Landsdel_conv]"
+                      name="Landsdel_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Landsdel]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Landsdel,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Operatør_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Operatør_conv]"
+                      name="Operatør_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Operatør]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING([Operatør],1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Linie_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Linie_conv]"
+                      name="Linie_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Linie]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Linie,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Type_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Type_conv]"
+                      name="Type_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Type]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Type,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationstype_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationstype_conv]"
+                      name="Stationstype_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationstype]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING(Stationstype,1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Sekretariat_Operatør_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Sekretariat_Operatør_conv]"
+                      name="Sekretariat_Operatør_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Sekretariat_Operatør]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING([Sekretariat_Operatør],1,50))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[UIC_opslag_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[UIC_opslag_conv]"
+                      name="UIC_opslag_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1252)([SUBSTRING](#{Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC opslag]},1,50))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1252)(SUBSTRING([UIC opslag],1,50))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\EX_MD_G_STAM_Stationer"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="EX_MD_G_STAM_Stationer"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">MD_Stationer$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection EX_MD_G_STAM_Stationer]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection EX_MD_G_STAM_Stationer]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC_nr]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[UIC_nr]"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC_nr]"
+                      name="UIC_nr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsnr]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnr]"
+                      name="Stationsnr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsfork]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsfork]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsfork]"
+                      name="Stationsfork"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnavn]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsnavn]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnavn]"
+                      name="Stationsnavn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[BGV_nr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[BGV_nr]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[BGV_nr]"
+                      name="BGV_nr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Standsningsted]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Standsningsted]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Standsningsted]"
+                      name="Standsningsted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Udbudt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Udbudt]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Udbudt]"
+                      name="Udbudt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Landsdel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Landsdel]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Landsdel]"
+                      name="Landsdel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Operatør]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Operatør]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Operatør]"
+                      name="Operatør"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Linie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Linie]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Linie]"
+                      name="Linie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Type]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationstype]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationstype]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationstype]"
+                      name="Stationstype"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Sekretariat_Operatør]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Sekretariat_Operatør]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Sekretariat_Operatør]"
+                      name="Sekretariat_Operatør"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC opslag]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[UIC opslag]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[UIC opslag]"
+                      name="UIC opslag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnr1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsnr1]"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].Columns[Stationsnr1]"
+                      name="Stationsnr1"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[UIC_nr]"
+                      dataType="r8"
+                      name="UIC_nr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsnr]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stationsnr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsfork]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stationsfork" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsnavn]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stationsnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[BGV_nr]"
+                      dataType="wstr"
+                      length="255"
+                      name="BGV_nr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Standsningsted]"
+                      dataType="wstr"
+                      length="255"
+                      name="Standsningsted" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Udbudt]"
+                      dataType="wstr"
+                      length="255"
+                      name="Udbudt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Landsdel]"
+                      dataType="wstr"
+                      length="255"
+                      name="Landsdel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Operatør]"
+                      dataType="wstr"
+                      length="255"
+                      name="Operatør" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Linie]"
+                      dataType="wstr"
+                      length="255"
+                      name="Linie" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationstype]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stationstype" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Check]"
+                      dataType="r8"
+                      name="Check" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Sekretariat_Operatør]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sekretariat_Operatør" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[UIC opslag]"
+                      dataType="wstr"
+                      length="255"
+                      name="UIC opslag" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output].ExternalColumns[Stationsnr1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stationsnr1" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[UIC_nr]"
+                      dataType="r8"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[UIC_nr]"
+                      name="UIC_nr" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsnr]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsnr]"
+                      name="Stationsnr" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsfork]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsfork]"
+                      name="Stationsfork" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsnavn]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsnavn]"
+                      name="Stationsnavn" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[BGV_nr]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[BGV_nr]"
+                      name="BGV_nr" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Standsningsted]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Standsningsted]"
+                      name="Standsningsted" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Udbudt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Udbudt]"
+                      name="Udbudt" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Landsdel]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Landsdel]"
+                      name="Landsdel" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Operatør]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Operatør]"
+                      name="Operatør" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Linie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Linie]"
+                      name="Linie" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Type]"
+                      name="Type" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationstype]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationstype]"
+                      name="Stationstype" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Sekretariat_Operatør]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Sekretariat_Operatør]"
+                      name="Sekretariat_Operatør" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsnr1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[Stationsnr1]"
+                      name="Stationsnr1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[UIC opslag]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[UIC opslag]"
+                      name="UIC opslag" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs data\MD_G_STAM_Stationer"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="MD_G_STAM_Stationer"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[MD_G_STAM_Stationer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs data\MD_G_STAM_Stationer.Connections[OleDbConnection]"
+                  connectionManagerID="{DD1DE3AE-CE0B-4B30-A83C-0B9011997F07}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Stationsnr_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnr_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnr]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsnr_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[UIC_nr_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="UIC_nr_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[UIC_nr]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[UIC_nr_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Stationsfork_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsfork_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsfork]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsfork_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Stationsnavn_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationsnavn_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnavn]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationsnavn_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[BGV_nr_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BGV_nr_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[BGV_nr]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[BGV_nr_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Standsningsted_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Standsningsted_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Standsningsted]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Standsningsted_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Udbudt_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Udbudt_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Udbudt]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Udbudt_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Landsdel_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Landsdel_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Landsdel]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Landsdel_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Operatør_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Operatør_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Operatør]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Operatør_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Linie_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Linie_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Linie]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Linie_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Type_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Type_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Type_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Stationstype_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Stationstype_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationstype]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Stationstype_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[Sekretariat_Operatør_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Sekretariat_Operatør_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Sekretariat_Operatør]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[Sekretariat_Operatør_conv]" />
+                    <inputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].Columns[UIC_opslag_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="UIC_opslag_conv"
+                      externalMetadataColumnId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[UIC_opslag]"
+                      lineageId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output].Columns[UIC_opslag_conv]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[UIC_nr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="UIC_nr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsfork]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsfork" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsnavn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsnavn" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[BGV_nr]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BGV_nr" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Standsningsted]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Standsningsted" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Udbudt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Udbudt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Landsdel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Landsdel" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Operatør]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Operatør" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Linie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Linie" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationstype]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationstype" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Sekretariat_Operatør]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sekretariat_Operatør" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[UIC_opslag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="UIC_opslag" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsfork_PDS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsfork_PDS" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input].ExternalColumns[Stationsfork_LTD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Stationsfork_LTD" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs data\MD_G_STAM_Stationer.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Stationer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs data\MD_G_STAM_Stationer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs data\MD_G_STAM_Stationer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs data.Paths[Derived Column Output]"
+              endId="Package\Indlæs data\MD_G_STAM_Stationer.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Indlæs data\Converter kolonner.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Indlæs data.Paths[Excel Source Output]"
+              endId="Package\Indlæs data\Converter kolonner.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Indlæs data\EX_MD_G_STAM_Stationer.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate tabel MD_G_STAM_Stationer"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6E2DA78D-3DCB-403D-B41B-BC4C0872035C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate tabel MD_G_STAM_Stationer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DD1DE3AE-CE0B-4B30-A83C-0B9011997F07}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].[MD_G_STAM_Stationer]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{70F0A159-B374-4CCE-87A6-03A839CAB050}"
+      DTS:From="Package\Truncate tabel MD_G_STAM_Stationer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Indlæs data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data"
+          TopLeft="96.5,140.292452830189" />
+        <NodeLayout
+          Size="318,44"
+          Id="Package\Truncate tabel MD_G_STAM_Stationer"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="164.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,90.7924528301887"
+              Start="0,0"
+              End="0,83.2924528301887">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.2924528301887" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="230,44"
+          Id="Package\Indlæs data\MD_G_STAM_Stationer"
+          TopLeft="37,254.141509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Indlæs data\Converter kolonner"
+          TopLeft="84,143.311320754717" />
+        <NodeLayout
+          Size="293,44"
+          Id="Package\Indlæs data\EX_MD_G_STAM_Stationer"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Excel Source Output]"
+          TopLeft="152,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,93.811320754717"
+              Start="0,0"
+              End="0,86.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs data.Paths[Derived Column Output]"
+          TopLeft="152,187.311320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.8301886792453"
+              Start="0,0"
+              End="0,59.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Indlæs data\MD_G_STAM_Stationer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,3091 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/3/2014 2:26:21 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="PC001244"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{2DC3D06A-DAEB-4D1B-AF44-1E510D5ADA90}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="000_Initial_Medarbejder_load"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{B95FE247-1197-4ED5-8DCF-2C85EEBB1AFC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Fjern eksisterende data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Truncate ods.TD_PDS_Medarbejdere_Initiel_Load"
+      DTS:DTSID="{2F965688-D66D-4E4D-98B1-9FD4164986AB}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern eksisterende data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87E03497-A259-482D-AA8B-31D885F193AC}"
+          SQLTask:SqlStatementSource="Truncate table ods.TD_PDS_Medarbejdere_Initiel_Load" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Hent Brugere"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{40CF53A6-251D-48E6-8A8B-FDF5DAE50E5C}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hent Brugere"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Hent Brugere\Medarbejdere"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Medarbejdere"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT[P_BRUGERID] AS NetID
+      ,MIN([P_NICKNAME]) AS Navn
+      ,[P_PERSON_PB_DESCRIPTION] AS Turdepot
+      ,MAX(E_DAY_DATE) as Dato
+  FROM [dwmart].[OKOSTYR].[v_DM_PDS_DSB_WRK_work_done]
+  where year(E_DAY_DATE) in (2010, 2011 ,2012, 2013, 2014)
+  group by [P_BRUGERID]
+      ,[P_PERSON_PB_DESCRIPTION]
+      order by 1,2,3,4</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hent Brugere\Medarbejdere.Connections[OleDbConnection]"
+                  connectionManagerID="{FCF59A4A-9D50-478B-9D44-F1BB8B9726BE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PDSDWMART]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[NetID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[NetID]"
+                      length="50"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[NetID]"
+                      name="NetID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Navn]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      length="30"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Navn]"
+                      name="Navn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Turdepot]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[Turdepot]"
+                      length="30"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Turdepot]"
+                      name="Turdepot"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Dato]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[Dato]"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Dato]"
+                      name="Dato"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[NetID]"
+                      dataType="wstr"
+                      length="50"
+                      name="NetID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      dataType="wstr"
+                      length="30"
+                      name="Navn" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[Turdepot]"
+                      dataType="wstr"
+                      length="30"
+                      name="Turdepot" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].ExternalColumns[Dato]"
+                      dataType="dbTimeStamp"
+                      name="Dato" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[NetID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[NetID]"
+                      name="NetID" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      name="Navn" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[Turdepot]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[Turdepot]"
+                      name="Turdepot" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[Dato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[Dato]"
+                      name="Dato" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TD_PDS_Medarbejdere_Initiel_Load"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[TD_PDS_Medarbejdere_Initiel_Load]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].Columns[NetID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="NetID"
+                      externalMetadataColumnId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[NetID]"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[NetID]" />
+                    <inputColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].Columns[Navn]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Navn"
+                      externalMetadataColumnId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Navn]" />
+                    <inputColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].Columns[Turdepot]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Turdepot"
+                      externalMetadataColumnId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[Turdepot]"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Turdepot]" />
+                    <inputColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].Columns[Dato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Dato"
+                      externalMetadataColumnId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[Dato]"
+                      lineageId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output].Columns[Dato]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[NetID]"
+                      dataType="wstr"
+                      length="50"
+                      name="NetID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                      dataType="wstr"
+                      length="30"
+                      name="Navn" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[Turdepot]"
+                      dataType="wstr"
+                      length="30"
+                      name="Turdepot" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input].ExternalColumns[Dato]"
+                      dataType="dbTimeStamp"
+                      name="Dato" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hent Brugere.Paths[OLE DB Source Output]"
+              endId="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Hent Brugere\Medarbejdere.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\indsæt medarbejdere"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{3DC26B51-ACDB-472D-BD40-4CA020E085D1}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="indsæt medarbejdere"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\indsæt medarbejdere\Conditional Split"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Evaluates and directs rows in a dataset."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\indsæt medarbejdere\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Conditional Split.Inputs[Conditional Split Input].Columns[DI NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DI NetId"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[DI NetId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\indsæt medarbejdere\Conditional Split.Outputs[Nye]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Nye"
+                  synchronousInputId="Package\indsæt medarbejdere\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[DI NetId]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([DI NetId])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\indsæt medarbejdere\Conditional Split.Outputs[Andre]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Andre"
+                  synchronousInputId="Package\indsæt medarbejdere\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\indsæt medarbejdere\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\indsæt medarbejdere\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DI_Medarbejder_Togfører_FR"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select NetId, TurDepot from edw.DI_Medarbejder_Togfører_FR
+order by NetId, TurDepot</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      length="50"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[NetId]"
+                      name="NetId"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[TurDepot]"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[TurDepot]"
+                      name="TurDepot"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NetId" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="TurDepot" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      name="NetId" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[TurDepot]"
+                      name="TurDepot" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Indsæt i DI_Medarbejder_Togfører_FR"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[edw].[DI_Medarbejder_Togfører_FR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].Columns[NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NetId"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[NetId]"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[NetId]" />
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].Columns[Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Navn"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[Navn]" />
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].Columns[TurDepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="TurDepot"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[TurDepot]"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[TurDepot]" />
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].Columns[Dato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Dato"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[Tidsstempel]"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[Dato]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[PK_ID]"
+                      dataType="i4"
+                      name="PK_ID" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NetId" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Navn" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="TurDepot" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[Aktiv]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Aktiv" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input].ExternalColumns[Tidsstempel]"
+                      dataType="dbTimeStamp"
+                      name="Tidsstempel" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\indsæt medarbejdere\Merge Join"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NetId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[NetId]" />
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[TurDepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="TurDepot"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[TurDepot]" />
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Navn"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[Navn]" />
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[Dato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Dato"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[Dato]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Right Input].Columns[NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NetId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[NetId]" />
+                    <inputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Right Input].Columns[TurDepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="TurDepot"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[TurDepot]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[NetId]"
+                      name="NetId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[NetId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[Navn]"
+                      name="Navn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[Navn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[TurDepot]"
+                      name="TurDepot"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[TurDepot]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[Dato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[Dato]"
+                      name="Dato">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input].Columns[Dato]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[DI NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output].Columns[DI NetId]"
+                      name="DI NetId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Right Input].Columns[NetId]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TD_PDS_Medarbejdere_Initiel_Load"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select CAST(COALESCE(NetID, MIN(Navn)) as Varchar(50)) As NetId, 
+ CAST(MIN(Navn) AS Varchar(30)) As Navn, 
+ CAST(Turdepot AS Varchar(30)) as TurDepot, MAX(Dato) AS Dato 
+from ods.[TD_PDS_Medarbejdere_Initiel_Load]
+GROUP BY NetID, Turdepot
+order by NetID, Turdepot</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      length="50"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[NetId]"
+                      name="NetId"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[Navn]"
+                      name="Navn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[TurDepot]"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[TurDepot]"
+                      name="TurDepot"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[Dato]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[Dato]"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].Columns[Dato]"
+                      name="Dato"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NetId" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Navn" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="TurDepot" />
+                    <externalMetadataColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output].ExternalColumns[Dato]"
+                      dataType="dbTimeStamp"
+                      name="Dato" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      name="NetId" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      name="Navn" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[TurDepot]"
+                      name="TurDepot" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[Dato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[Dato]"
+                      name="Dato" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\indsæt medarbejdere.Paths[Merge Join Output]"
+              endId="Package\indsæt medarbejdere\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\indsæt medarbejdere\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\indsæt medarbejdere.Paths[Nye]"
+              endId="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR.Inputs[OLE DB Destination Input]"
+              name="Nye"
+              startId="Package\indsæt medarbejdere\Conditional Split.Outputs[Nye]" />
+            <path
+              refId="Package\indsæt medarbejdere.Paths[OLE DB Source Output]"
+              endId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Left Input]"
+              name="OLE DB Source Output"
+              startId="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\indsæt medarbejdere.Paths[OLE DB Source Output1]"
+              endId="Package\indsæt medarbejdere\Merge Join.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E5BA26EC-F8CB-4010-9543-6E18E1D8D137}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Updater DI_Medarbejder_Togfører_FR Aktiv"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Evaluates and directs rows in a dataset."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Inputs[Conditional Split Input].Columns[aktiv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="aktiv"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[aktiv]" />
+                    <inputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Inputs[Conditional Split Input].Columns[Rank]"
+                      cachedDataType="i8"
+                      cachedName="Rank"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Rank]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Forkerte]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Forkerte"
+                  synchronousInputId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">(#{Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Rank]} == 1 &amp;&amp; #{Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[aktiv]} == "N") || (#{Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Rank]} != 1 &amp;&amp; #{Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[aktiv]} == "J")</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(Rank == 1 &amp;&amp; aktiv == "N") || (Rank != 1 &amp;&amp; aktiv == "J")</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Andre]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Andre"
+                  synchronousInputId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Inputs[Derived Column Input].Columns[Rank]"
+                      cachedDataType="i8"
+                      cachedName="Rank"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Rank]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Output].Columns[Ny_Aktiv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Output].Columns[Ny_Aktiv]"
+                      name="Ny_Aktiv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,1,1252)(#{Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Rank]} == 1 ? "J" : "N")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,1,1252)(Rank == 1 ? "J" : "N")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DI_Medarbejder_Togfører_FR"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select NetId, TurDepot, Tidsstempel, aktiv,
+  RANK() Over (PARTITION BY NetId order by Tidsstempel desc) AS Rank 
+from edw.DI_Medarbejder_Togfører_FR</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      length="50"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[NetId]"
+                      name="NetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[TurDepot]"
+                      length="30"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[TurDepot]"
+                      name="TurDepot"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Tidsstempel]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[Tidsstempel]"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Tidsstempel]"
+                      name="Tidsstempel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[aktiv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[aktiv]"
+                      length="1"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[aktiv]"
+                      name="aktiv"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Rank]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[Rank]"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[Rank]"
+                      name="Rank"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NetId" />
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="TurDepot" />
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[Tidsstempel]"
+                      dataType="dbTimeStamp"
+                      name="Tidsstempel" />
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[aktiv]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="aktiv" />
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].ExternalColumns[Rank]"
+                      dataType="i8"
+                      name="Rank" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      name="NetId" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[TurDepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[TurDepot]"
+                      name="TurDepot" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[Tidsstempel]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[Tidsstempel]"
+                      name="Tidsstempel" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[aktiv]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[aktiv]"
+                      name="aktiv" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[Rank]"
+                      dataType="i8"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[Rank]"
+                      name="Rank" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Executes an SQL command for each row in a dataset."
+              name="Set Aktiv"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE edw.DI_Medarbejder_Togfører_FR SET aktiv = ? where NetId = ? and TurDepot = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].Columns[Ny_Aktiv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Ny_Aktiv"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Output].Columns[Ny_Aktiv]" />
+                    <inputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].Columns[NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NetId"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[NetId]" />
+                    <inputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].Columns[TurDepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="TurDepot"
+                      externalMetadataColumnId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output].Columns[TurDepot]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv.Paths[Derived Column Output]"
+              endId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv.Paths[Forkerte]"
+              endId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column.Inputs[Derived Column Input]"
+              name="Forkerte"
+              startId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Outputs[Forkerte]" />
+            <path
+              refId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv.Paths[OLE DB Source Output]"
+              endId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Updater Navne"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{43E08865-3241-4BF4-A36B-2C613718BC58}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Updater Navne"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Updater Navne\Aktive"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Aktive"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select NetId, Navn
+from edw.DI_Medarbejder_Togfører_FR
+where Aktiv = 'J'
+order by NetId</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Updater Navne\Aktive.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      length="50"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].Columns[NetId]"
+                      name="NetId"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      length="30"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].Columns[Navn]"
+                      name="Navn"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NetId" />
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Navn" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      name="NetId" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      name="Navn" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Updater Navne\Conditional Split"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Evaluates and directs rows in a dataset."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Updater Navne\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Updater Navne\Conditional Split.Inputs[Conditional Split Input].Columns[Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Navn"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Navn]" />
+                    <inputColumn
+                      refId="Package\Updater Navne\Conditional Split.Inputs[Conditional Split Input].Columns[Korrekt Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Korrekt Navn"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Korrekt Navn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Updater Navne\Conditional Split.Outputs[Forkert navn]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Forkert navn"
+                  synchronousInputId="Package\Updater Navne\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Navn]} != #{Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Korrekt Navn]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Navn != [Korrekt Navn]</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Updater Navne\Conditional Split.Outputs[korrekte]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="korrekte"
+                  synchronousInputId="Package\Updater Navne\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Updater Navne\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Updater Navne\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater Navne\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Updater Navne\Inaktive"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Inaktive"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select NetId, Turdepot, Navn
+from edw.DI_Medarbejder_Togfører_FR
+where Aktiv = 'N'
+order by NetId, TurDepot</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Updater Navne\Inaktive.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      length="50"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[NetId]"
+                      name="NetId"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      length="30"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[Navn]"
+                      name="Navn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].ExternalColumns[Turdepot]"
+                      length="30"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[Turdepot]"
+                      name="Turdepot"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].ExternalColumns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NetId" />
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Navn" />
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].ExternalColumns[Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Turdepot" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[NetId]"
+                      name="NetId" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[Turdepot]"
+                      name="Turdepot" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                      name="Navn" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Updater Navne\Merge Join"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Merges data from two datasets by using a join."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input].Columns[NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NetId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[NetId]" />
+                    <inputColumn
+                      refId="Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input].Columns[Turdepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Turdepot"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[Turdepot]" />
+                    <inputColumn
+                      refId="Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input].Columns[Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Navn"
+                      lineageId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output].Columns[Navn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Updater Navne\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Updater Navne\Merge Join.Inputs[Merge Join Right Input].Columns[NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NetId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].Columns[NetId]" />
+                    <inputColumn
+                      refId="Package\Updater Navne\Merge Join.Inputs[Merge Join Right Input].Columns[Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Navn"
+                      lineageId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output].Columns[Navn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[NetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[NetId]"
+                      name="NetId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input].Columns[NetId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Navn]"
+                      name="Navn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input].Columns[Navn]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Turdepot]"
+                      name="Turdepot">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input].Columns[Turdepot]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Korrekt Navn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Korrekt Navn]"
+                      name="Korrekt Navn">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Updater Navne\Merge Join.Inputs[Merge Join Right Input].Columns[Navn]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Updater Navne\Opdate navn"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Executes an SQL command for each row in a dataset."
+              name="Opdate navn"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE edw.DI_Medarbejder_Togfører_FR SET Navn = ? where NetId = ? and TurDepot = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Updater Navne\Opdate navn.Connections[OleDbConnection]"
+                  connectionManagerID="{87E03497-A259-482D-AA8B-31D885F193AC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].Columns[Korrekt Navn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Korrekt Navn"
+                      externalMetadataColumnId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Korrekt Navn]" />
+                    <inputColumn
+                      refId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].Columns[NetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NetId"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[NetId]" />
+                    <inputColumn
+                      refId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].Columns[Turdepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Turdepot"
+                      externalMetadataColumnId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output].Columns[Turdepot]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Updater Navne\Opdate navn.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Updater Navne\Opdate navn.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Updater Navne\Opdate navn.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Opdate navn.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Updater Navne\Opdate navn.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Updater Navne\Opdate navn.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Updater Navne.Paths[Forkert navn]"
+              endId="Package\Updater Navne\Opdate navn.Inputs[OLE DB Command Input]"
+              name="Forkert navn"
+              startId="Package\Updater Navne\Conditional Split.Outputs[Forkert navn]" />
+            <path
+              refId="Package\Updater Navne.Paths[Merge Join Output]"
+              endId="Package\Updater Navne\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Updater Navne\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Updater Navne.Paths[OLE DB Source Output]"
+              endId="Package\Updater Navne\Merge Join.Inputs[Merge Join Left Input]"
+              name="OLE DB Source Output"
+              startId="Package\Updater Navne\Inaktive.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Updater Navne.Paths[OLE DB Source Output1]"
+              endId="Package\Updater Navne\Merge Join.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\Updater Navne\Aktive.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CCCFA057-9963-4BEB-8F19-2F566BAD7BB6}"
+      DTS:From="Package\Fjern eksisterende data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Hent Brugere" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E688CF92-2D47-46E0-AF16-17651E29F980}"
+      DTS:From="Package\Hent Brugere"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\indsæt medarbejdere" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{7E97CEDF-A286-4C66-9352-86C6B771CCA2}"
+      DTS:From="Package\indsæt medarbejdere"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Updater DI_Medarbejder_Togfører_FR Aktiv" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{141CB0F8-08EB-4F09-8F0E-067780C02A64}"
+      DTS:From="Package\Updater DI_Medarbejder_Togfører_FR Aktiv"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Updater Navne" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Fjern eksisterende data"
+          TopLeft="6.4811320754717,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Hent Brugere"
+          TopLeft="5.5,148.254716981132" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\indsæt medarbejdere"
+          TopLeft="166.443396226415,291.27358490566" />
+        <NodeLayout
+          Size="254,44"
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv"
+          TopLeft="329.198113207547,456.028301886792" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater Navne"
+          TopLeft="155.462264150943,562.820754716981" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="74.3679245283019,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.981132075471706,98.8301886792453"
+              Start="0,0"
+              End="-0.981132075471706,91.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.3962264150943" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471706,49.3962264150943" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471706,91.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="73.3867924528302,192.179245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="160.943396226415,99.0943396226415"
+              Start="0,0"
+              End="160.943396226415,91.5943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5471698113207" />
+                  <mssgle:LineSegment
+                    End="160.943396226415,49.5471698113207" />
+                  <mssgle:LineSegment
+                    End="160.943396226415,91.5943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="234.330188679245,335.198113207547">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="221.660377358491,120.830188679245"
+              Start="0,0"
+              End="221.660377358491,113.330188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.4150943396227" />
+                  <mssgle:LineSegment
+                    End="221.660377358491,60.4150943396227" />
+                  <mssgle:LineSegment
+                    End="221.660377358491,113.330188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="455.990566037736,499.952830188679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-232.641509433962,62.867924528302"
+              Start="0,0"
+              End="-232.641509433962,55.367924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.433962264151" />
+                  <mssgle:LineSegment
+                    End="-232.641509433962,31.433962264151" />
+                  <mssgle:LineSegment
+                    End="-232.641509433962,55.367924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hent Brugere">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Hent Brugere\Medarbejdere"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load"
+          TopLeft="39.4245283018868,136.292452830189" />
+        <EdgeLayout
+          Id="Package\Hent Brugere.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.9245283018868,86.8679245283019"
+              Start="0,0"
+              End="33.9245283018868,79.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.4339622641509" />
+                  <mssgle:LineSegment
+                    End="33.9245283018868,43.4339622641509" />
+                  <mssgle:LineSegment
+                    End="33.9245283018868,79.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hent Brugere\TD_PDS_Medarbejdere_Initiel_Load">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\indsæt medarbejdere">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="238,44"
+          Id="Package\indsæt medarbejdere\TD_PDS_Medarbejdere_Initiel_Load"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="218,44"
+          Id="Package\indsæt medarbejdere\DI_Medarbejder_Togfører_FR"
+          TopLeft="337.990566037736,8.51886792452829" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\indsæt medarbejdere\Merge Join"
+          TopLeft="210.179245283019,167.235849056604" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\indsæt medarbejdere\Conditional Split"
+          TopLeft="210.179245283019,278.066037735849" />
+        <NodeLayout
+          Size="346,44"
+          Id="Package\indsæt medarbejdere\Indsæt i DI_Medarbejder_Togfører_FR"
+          TopLeft="103.216981132075,381.915094339623" />
+        <EdgeLayout
+          Id="Package\indsæt medarbejdere.Paths[OLE DB Source Output1]"
+          TopLeft="446.783018867925,52.4433962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-147.962264150943,114.792452830189"
+              Start="0,0"
+              End="-147.962264150943,107.292452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.3962264150944" />
+                  <mssgle:LineSegment
+                    End="-147.962264150943,57.3962264150944" />
+                  <mssgle:LineSegment
+                    End="-147.962264150943,107.292452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\indsæt medarbejdere.Paths[OLE DB Source Output]"
+          TopLeft="124.292452830189,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="153.77358490566,117.811320754717"
+              Start="0,0"
+              End="153.77358490566,110.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.9056603773585" />
+                  <mssgle:LineSegment
+                    End="153.77358490566,58.9056603773585" />
+                  <mssgle:LineSegment
+                    End="153.77358490566,110.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\indsæt medarbejdere.Paths[Nye]"
+          TopLeft="277.198113207547,322.066037735849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.8490566037735"
+              Start="0,0"
+              End="0,52.3490566037735">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.3490566037735" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-17.825,18.1745283018868,35.65,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\indsæt medarbejdere.Paths[Merge Join Output]"
+          TopLeft="278.066037735849,211.160377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.9056603773585"
+              Start="0,0"
+              End="0,59.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Updater DI_Medarbejder_Togfører_FR Aktiv">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Set Aktiv"
+          TopLeft="45.4245283018868,378.896226415094" />
+        <NodeLayout
+          Size="217,44"
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\DI_Medarbejder_Togfører_FR"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Conditional Split"
+          TopLeft="45.4245283018868,112.330188679245" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv\Derived Column"
+          TopLeft="42.4433962264151,239.122641509434" />
+        <EdgeLayout
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv.Paths[OLE DB Source Output]"
+          TopLeft="113.801886792453,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735846,62.9056603773585"
+              Start="0,0"
+              End="-0.490566037735846,55.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,31.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,55.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv.Paths[Forkerte]"
+          TopLeft="113.311320754717,156.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.98113207547169,82.8679245283018"
+              Start="0,0"
+              End="-2.98113207547169,75.3679245283018">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547169,41.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-2.98113207547169,75.3679245283018" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-20.3319136939858,46.4339622641509,37.6826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Updater DI_Medarbejder_Togfører_FR Aktiv.Paths[Derived Column Output]"
+          TopLeft="110.330188679245,283.047169811321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.98113207547169,95.8490566037736"
+              Start="0,0"
+              End="2.98113207547169,88.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.9245283018868" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,47.9245283018868" />
+                  <mssgle:LineSegment
+                    End="2.98113207547169,88.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Updater Navne">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater Navne\Opdate navn"
+          TopLeft="160.254716981132,375.915094339623" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater Navne\Merge Join"
+          TopLeft="156.254716981132,124.292452830189" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater Navne\Inaktive"
+          TopLeft="5.5,9.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater Navne\Conditional Split"
+          TopLeft="156.254716981132,258.103773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Updater Navne\Aktive"
+          TopLeft="275.084905660377,5.5" />
+        <EdgeLayout
+          Id="Package\Updater Navne.Paths[OLE DB Source Output1]"
+          TopLeft="342.971698113208,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-98.0754716981132,74.8679245283019"
+              Start="0,0"
+              End="-98.0754716981132,67.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-98.0754716981132,37.4339622641509" />
+                  <mssgle:LineSegment
+                    End="-98.0754716981132,67.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Updater Navne.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,53.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150.754716981132,70.8679245283019"
+              Start="0,0"
+              End="150.754716981132,63.3679245283019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4339622641509" />
+                  <mssgle:LineSegment
+                    End="150.754716981132,35.4339622641509" />
+                  <mssgle:LineSegment
+                    End="150.754716981132,63.3679245283019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Updater Navne.Paths[Merge Join Output]"
+          TopLeft="224.141509433962,168.216981132075">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89.8867924528302"
+              Start="0,0"
+              End="0,82.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Updater Navne.Paths[Forkert navn]"
+          TopLeft="224.141509433962,302.028301886792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="4,73.8867924528302"
+              Start="0,0"
+              End="4,66.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.9433962264151" />
+                  <mssgle:LineSegment
+                    End="4,36.9433962264151" />
+                  <mssgle:LineSegment
+                    End="4,66.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26.28693359375,41.9433962264151,56.5738671875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Updater Navne\Aktive">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

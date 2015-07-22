@@ -1,0 +1,2321 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/13/2014 3:36:05 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{88074F26-E850-4C87-9C93-65692B40F959}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="40_EDW_FT_Lokopersonale_S_tog"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{02FB9CE0-97EA-410E-B33B-8EA6324004E4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{107FB819-BABE-4A6C-9A4A-E5650DA53EF2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Opgaver">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{726E6835-5BFE-479F-8A25-78B2882188F3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EBB8DAC8-8708-4861-85E9-F0E9C76A0EF3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode_Int">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Find opgaver timer for periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{14644520-638F-4CA6-8DC6-8162F136CA38}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find opgaver timer for periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}"
+          SQLTask:SqlStatementSource="select CONVERT(Float, SUM(Opgave_Varighed_Timer)) As Vaerdi&#xA;from [edw].[FT_Lokopersonale_S_tog]&#xA;where DI_Tid in (&#xA;select Reference from edw.DI_Tid&#xA;where ParentReference = ?)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Opgaver" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Find periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{541FDC0E-CC38-4108-BEEA-3D738AA40473}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}"
+          SQLTask:SqlStatementSource="select SUBSTRING(DI_Tid, 1, 6) As Periode, CONVERT(Int, SUBSTRING(DI_Tid, 1, 6)) As Periode_int&#xA;from ods.TD_Strækning_S_Lokofører_Opgaver&#xA;group by SUBSTRING(DI_Tid, 1, 6)&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Periode" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::v_Periode_Int" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fjern eksisterende data fra periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1268988D-5206-47BE-B324-81396A6B49C9}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern eksisterende data fra periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}"
+          SQLTask:SqlStatementSource="delete from [edw].[FT_Lokopersonale_S_tog]&#xA;where DI_Tid in (&#xA;select Reference from edw.DI_Tid&#xA;where ParentReference = ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FT_Lokopersonale_S_tog"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3B901705-D2FC-4CBA-AC94-BB56E9A2A7A8}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FT_Lokopersonale_S_tog"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\Aggregate"
+              componentClassID="{5B201335-B360-485C-BB93-75C34E09B3D3}"
+              contactInfo="Aggregate;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates and groups values in a dataset."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[DI_Tid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="DI_Tid"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_Tid]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[Di_S_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="Di_S_Straekning"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_S_Straekning]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[Di_Tidsintervaller]"
+                      cachedDataType="i4"
+                      cachedName="Di_Tidsintervaller"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_Tidsintervaller]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[DSB_Brugerid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DSB_Brugerid"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DSB_Brugerid]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[DI_S_Turdepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="DI_S_Turdepot"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Turdepot]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[ElementCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ElementCode"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[ElementCode]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[Opgave_Station_Start]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Start"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Start]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[Opgave_Station_Slut]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Slut"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Slut]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[Tognr]"
+                      cachedDataType="i4"
+                      cachedName="Tognr"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Tognr]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[PDS_Strækningsvarighed]"
+                      cachedDataType="r8"
+                      cachedName="PDS_Strækningsvarighed"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[PDS_Strækningsvarighed]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1].Columns[DI_S_Doegn_Inddeling]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Doegn_Inddeling"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_Tid]"
+                      name="DI_Tid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_Tid]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Di_S_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Di_S_Straekning]"
+                      name="Di_S_Straekning">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_S_Straekning]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Di_Tidsintervaller]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Di_Tidsintervaller]"
+                      name="Di_Tidsintervaller">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_Tidsintervaller]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DSB_Brugerid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DSB_Brugerid]"
+                      name="DSB_Brugerid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DSB_Brugerid]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_S_Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_S_Turdepot]"
+                      name="DI_S_Turdepot">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Turdepot]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[ElementCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[ElementCode]"
+                      name="ElementCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[ElementCode]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Start]"
+                      name="Opgave_Station_Start">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Start]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Slut]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Tognr]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Tognr]"
+                      name="Tognr">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Tognr]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[PDS_Strækningsvarighed]"
+                      dataType="r8"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[PDS_Strækningsvarighed]"
+                      name="PDS_Strækningsvarighed">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[PDS_Strækningsvarighed]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\Beregninger"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="Beregninger"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FT_Lokopersonale_S_tog\Beregninger.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Beregninger.Inputs[Derived Column Input].Columns[PDS_Strækningsvarighed]"
+                      cachedDataType="r8"
+                      cachedName="PDS_Strækningsvarighed"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[PDS_Strækningsvarighed]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Beregninger.Inputs[Derived Column Input].Columns[DI_Medarbejder]"
+                      cachedDataType="i4"
+                      cachedName="DI_Medarbejder"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output].Columns[DI_Medarbejder]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output].Columns[DI_Medarbejder]}) ? -1 : #{Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output].Columns[DI_Medarbejder]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(DI_Medarbejder) ? -1 : DI_Medarbejder</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Beregninger.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Output].Columns[Opgave_Varighed_Timer]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Output].Columns[Opgave_Varighed_Timer]"
+                      name="Opgave_Varighed_Timer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[PDS_Strækningsvarighed]} / 60 / 60</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[PDS_Strækningsvarighed] / 60 / 60</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Beregninger.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FT_Lokopersonale_S_tog"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[edw].[FT_Lokopersonale_S_tog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[DI_Tid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="DI_Tid"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_Tid]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[Di_S_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="Di_S_Straekning"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Straekning]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Di_S_Straekning]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[Tognr]"
+                      cachedDataType="i4"
+                      cachedName="Tognr"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[Tognr]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Tognr]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[DI_Depot]"
+                      cachedDataType="i4"
+                      cachedName="DI_Depot"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Depot]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Match Output].Columns[DI_Depot]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[DI_Medarbejder]"
+                      cachedDataType="i4"
+                      cachedName="DI_Medarbejder"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output].Columns[DI_Medarbejder]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[DI_S_Opgave_Lokofører]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Opgave_Lokofører"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Opgave_Lokofører]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Match Output].Columns[DI_S_Opgave_Lokofører]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[DI_S_Opgave_Straekning]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Opgave_Straekning"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Opgave_Straekning]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Match Output].Columns[DI_S_Opgave_Straekning]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[Opgave_Varighed_Timer]"
+                      cachedDataType="r8"
+                      cachedName="Opgave_Varighed_Timer"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_Varighed_Timer]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Output].Columns[Opgave_Varighed_Timer]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[Di_Tidsintervaller]"
+                      cachedDataType="i4"
+                      cachedName="Di_Tidsintervaller"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsinterval]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Di_Tidsintervaller]" />
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].Columns[DI_S_Doegn_Inddeling]"
+                      cachedDataType="i4"
+                      cachedName="DI_S_Doegn_Inddeling"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_S_Doegn_Inddeling]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DI_Tid" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Tidsinterval]"
+                      dataType="i4"
+                      name="DI_Tidsinterval" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Medarbejder]"
+                      dataType="i4"
+                      name="DI_Medarbejder" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Opgave_Lokofører]"
+                      dataType="i4"
+                      name="DI_S_Opgave_Lokofører" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_Depot]"
+                      dataType="i4"
+                      name="DI_Depot" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Opgave_Straekning]"
+                      dataType="i4"
+                      name="DI_S_Opgave_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[Tognr]"
+                      dataType="i4"
+                      name="Tognr" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[Opgave_Varighed_Timer]"
+                      dataType="numeric"
+                      name="Opgave_Varighed_Timer"
+                      precision="24"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      name="DI_S_Doegn_Inddeling" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Lookup DI_Depot"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [edw].[DI_Depot]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam">select * from (select * from [edw].[DI_Depot]) [refTable]
+where [refTable].[Depot] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Depot" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Station" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Stations_Nummer" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Stations_Navn" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_S_Turdepot]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Inputs[Lookup Input].Columns[DI_S_Turdepot]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="DI_S_Turdepot"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DI_S_Turdepot]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Depot</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Match Output].Columns[DI_Depot]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Match Output].Columns[DI_Depot]"
+                      name="DI_Depot"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PK_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Lookup DI_Medarbejder"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select MAX(PK_ID) As PK_ID, NetID 
+from edw.DI_Medarbejde
+group by NetID</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NetID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DSB_Brugerid]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Inputs[Lookup Input].Columns[DSB_Brugerid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DSB_Brugerid"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[DSB_Brugerid]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NetID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output].Columns[DI_Medarbejder]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output].Columns[DI_Medarbejder]"
+                      name="DI_Medarbejder"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PK_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Lookup DI_S_Opgave_Lokofører"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select PK_ID, Elementkode from edw.DI_S_Opgave_Lokofører</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam">select * from (select PK_ID, Elementkode from edw.DI_S_Opgave_Lokofører) [refTable]
+where [refTable].[Elementkode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Elementkode" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[ElementCode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Inputs[Lookup Input].Columns[ElementCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ElementCode"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[ElementCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Elementkode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Match Output].Columns[DI_S_Opgave_Lokofører]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Match Output].Columns[DI_S_Opgave_Lokofører]"
+                      name="DI_S_Opgave_Lokofører"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PK_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Looks up values in a reference dataset by using exact matching."
+              name="Lookup DI_S_Opgave_Straekning"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select PK_ID, Frastation, Tilstation from EDW.DI_S_Opgave_Straekning</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Frastation" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Tilstation" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Start]};#{Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Slut]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Inputs[Lookup Input].Columns[Opgave_Station_Start]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Start"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Start]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Frastation</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Inputs[Lookup Input].Columns[Opgave_Station_Slut]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Opgave_Station_Slut"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1].Columns[Opgave_Station_Slut]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Tilstation</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Match Output].Columns[DI_S_Opgave_Straekning]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Match Output].Columns[DI_S_Opgave_Straekning]"
+                      name="DI_S_Opgave_Straekning"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PK_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TD_Strækning_S_Lokofører_Opgaver"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select DI_Tid, Di_S_Straekning, Di_Tidsintervaller, DSB_Brugerid, DI_S_Turdepot,
+  DI_S_Doegn_Inddeling, ElementCode, Opgave_Station_Start, Opgave_Station_Slut,
+  Tognr, PDS_Strækningsvarighed
+from ods.TD_Strækning_S_Lokofører_Opgaver</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Connections[OleDbConnection]"
+                  connectionManagerID="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                      length="20"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_Tid]"
+                      name="DI_Tid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_S_Straekning]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Di_S_Straekning]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_S_Straekning]"
+                      name="Di_S_Straekning"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_Tidsintervaller]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Di_Tidsintervaller]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Di_Tidsintervaller]"
+                      name="Di_Tidsintervaller"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DSB_Brugerid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DSB_Brugerid]"
+                      length="50"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DSB_Brugerid]"
+                      name="DSB_Brugerid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Turdepot]"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Turdepot]"
+                      name="DI_S_Turdepot"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[ElementCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[ElementCode]"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[ElementCode]"
+                      name="ElementCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Start]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_Start]"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Start]"
+                      name="Opgave_Station_Start"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_Slut]"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Tognr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[Tognr]"
+                      name="Tognr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[PDS_Strækningsvarighed]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[PDS_Strækningsvarighed]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[PDS_Strækningsvarighed]"
+                      name="PDS_Strækningsvarighed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="DI_Tid" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Di_S_Straekning]"
+                      dataType="i4"
+                      name="Di_S_Straekning" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Di_Tidsintervaller]"
+                      dataType="i4"
+                      name="Di_Tidsintervaller" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DSB_Brugerid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DSB_Brugerid" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="DI_S_Turdepot" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[ElementCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ElementCode" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_Start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Opgave_Station_Start" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Opgave_Station_Slut" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[Tognr]"
+                      dataType="i4"
+                      name="Tognr" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[PDS_Strækningsvarighed]"
+                      dataType="r8"
+                      name="PDS_Strækningsvarighed" />
+                    <externalMetadataColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output].ExternalColumns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      name="DI_S_Doegn_Inddeling" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DI_Tid]"
+                      name="DI_Tid" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Di_S_Straekning]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Di_S_Straekning]"
+                      name="Di_S_Straekning" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Di_Tidsintervaller]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Di_Tidsintervaller]"
+                      name="Di_Tidsintervaller" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DSB_Brugerid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DSB_Brugerid]"
+                      name="DSB_Brugerid" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DI_S_Turdepot]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DI_S_Turdepot]"
+                      name="DI_S_Turdepot" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DI_S_Doegn_Inddeling]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[DI_S_Doegn_Inddeling]"
+                      name="DI_S_Doegn_Inddeling" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ElementCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ElementCode]"
+                      name="ElementCode" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_Start]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_Start]"
+                      name="Opgave_Station_Start" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_Slut]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Opgave_Station_Slut]"
+                      name="Opgave_Station_Slut" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[Tognr]"
+                      name="Tognr" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[PDS_Strækningsvarighed]"
+                      dataType="r8"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[PDS_Strækningsvarighed]"
+                      name="PDS_Strækningsvarighed" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FT_Lokopersonale_S_tog.Paths[Aggregate Output 1]"
+              endId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Inputs[Lookup Input]"
+              name="Aggregate Output 1"
+              startId="Package\FT_Lokopersonale_S_tog\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\FT_Lokopersonale_S_tog.Paths[Derived Column Output]"
+              endId="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\FT_Lokopersonale_S_tog\Beregninger.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output]"
+              endId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Inputs[Lookup Input]"
+              name="Lookup Output"
+              startId="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output1]"
+              endId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Inputs[Lookup Input]"
+              name="Lookup Output"
+              startId="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output2]"
+              endId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Inputs[Lookup Input]"
+              name="Lookup Output"
+              startId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output3]"
+              endId="Package\FT_Lokopersonale_S_tog\Beregninger.Inputs[Derived Column Input]"
+              name="Lookup Output"
+              startId="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FT_Lokopersonale_S_tog.Paths[OLE DB Source Output]"
+              endId="Package\FT_Lokopersonale_S_tog\Aggregate.Inputs[Aggregate Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Gem opgave timer"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{87610174-449D-406C-9A78-3FF5ACE47B34}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Gem opgave timer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2198E506-8C7F-4B6A-8C6B-DC66A275DF3E}"
+          SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 79, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode_Int"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::v_Opgaver"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="5"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2910423E-2020-4BF3-8346-46DA0C74BFFC}"
+      DTS:From="Package\Find periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Fjern eksisterende data fra periode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9A8668F0-8415-4E66-AB5E-C47A67543CE9}"
+      DTS:From="Package\Fjern eksisterende data fra periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\FT_Lokopersonale_S_tog" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F96DF8EA-0304-4D17-878B-32A9A3835496}"
+      DTS:From="Package\FT_Lokopersonale_S_tog"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Find opgaver timer for periode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{076F4EAF-23BE-466B-8231-9D99085C8008}"
+      DTS:From="Package\Find opgaver timer for periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Gem opgave timer" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="298,44"
+          Id="Package\Find opgaver timer for periode"
+          TopLeft="50.4056603773585,291.037735849057" />
+        <NodeLayout
+          Size="298,44"
+          Id="Package\Find periode"
+          TopLeft="50.4056603773585,5.5" />
+        <NodeLayout
+          Size="298,44"
+          Id="Package\Fjern eksisterende data fra periode"
+          TopLeft="50.4056603773585,100.679245283019" />
+        <NodeLayout
+          Size="298,44"
+          Id="Package\FT_Lokopersonale_S_tog"
+          TopLeft="50.4056603773585,195.858490566038" />
+        <NodeLayout
+          Size="298,44"
+          Id="Package\Gem opgave timer"
+          TopLeft="50.4056603773585,386.216981132075" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="199.405660377358,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.1792452830189"
+              Start="0,0"
+              End="0,43.6792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.6792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="199.405660377358,144.679245283019">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.1792452830189"
+              Start="0,0"
+              End="0,43.6792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.6792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="199.405660377358,239.858490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.1792452830189"
+              Start="0,0"
+              End="0,43.6792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.6792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="199.405660377358,335.037735849057">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.1792452830189"
+              Start="0,0"
+              End="0,43.6792452830189">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.6792452830189" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FT_Lokopersonale_S_tog">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="245,44"
+          Id="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Straekning"
+          TopLeft="30.4433962264151,416.858490566038" />
+        <NodeLayout
+          Size="295,44"
+          Id="Package\FT_Lokopersonale_S_tog\TD_Strækning_S_Lokofører_Opgaver"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\FT_Lokopersonale_S_tog\Beregninger"
+          TopLeft="84.3679245283019,502.405660377358" />
+        <NodeLayout
+          Size="210,44"
+          Id="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot"
+          TopLeft="47.9150943396226,164.216981132075" />
+        <NodeLayout
+          Size="250,44"
+          Id="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører"
+          TopLeft="27.9528301886792,328.971698113208" />
+        <NodeLayout
+          Size="210,44"
+          Id="Package\FT_Lokopersonale_S_tog\FT_Lokopersonale_S_tog"
+          TopLeft="51.4622641509434,575.575471698113" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\FT_Lokopersonale_S_tog\Aggregate"
+          TopLeft="84.8584905660377,82.3301886792453" />
+        <NodeLayout
+          Size="246,44"
+          Id="Package\FT_Lokopersonale_S_tog\Lookup DI_Medarbejder"
+          TopLeft="29.9528301886792,242.103773584906" />
+        <EdgeLayout
+          Id="Package\FT_Lokopersonale_S_tog.Paths[OLE DB Source Output]"
+          TopLeft="151.179245283019,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.8301886792453"
+              Start="0,0"
+              End="0,25.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output3]"
+          TopLeft="152.745283018868,460.783018867925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735846,41.6226415094339"
+              Start="0,0"
+              End="-0.490566037735846,34.1226415094339">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.7924528301887" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,20.7924528301887" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,34.1226415094339" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.4366697376179,25.7924528301887,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output2]"
+          TopLeft="152.745283018868,372.896226415094">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.9622641509434"
+              Start="0,0"
+              End="0,36.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,12.4264445754717,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output1]"
+          TopLeft="152.745283018868,286.028301886792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.9433962264151"
+              Start="0,0"
+              End="0,35.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.9170106132076,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FT_Lokopersonale_S_tog.Paths[Lookup Output]"
+          TopLeft="152.745283018868,208.141509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.9622641509434"
+              Start="0,0"
+              End="0,26.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,7.4264445754717,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FT_Lokopersonale_S_tog.Paths[Derived Column Output]"
+          TopLeft="152.254716981132,546.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="4,29.2452830188679"
+              Start="0,0"
+              End="4,21.7452830188679">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6037735849056" />
+                  <mssgle:LineSegment
+                    End="4,14.6037735849056" />
+                  <mssgle:LineSegment
+                    End="4,21.7452830188679" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FT_Lokopersonale_S_tog.Paths[Aggregate Output 1]"
+          TopLeft="151.13679245283,124.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.8867924528297"
+              Start="0,0"
+              End="0,32.3867924528297">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3867924528297" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FT_Lokopersonale_S_tog\Lookup DI_Depot">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FT_Lokopersonale_S_tog\Lookup DI_S_Opgave_Lokofører">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

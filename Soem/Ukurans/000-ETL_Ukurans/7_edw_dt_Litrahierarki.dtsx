@@ -1,0 +1,1147 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/2/2013 2:12:19 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB075473"
+  DTS:CreatorName="DSB\KM2406"
+  DTS:DTSID="{EB78DEDE-6238-4CC7-8CE6-62CF05204636}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="edw_dt_Litrahierarki"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="53"
+  DTS:VersionGUID="{1860D803-8E9F-49E6-B3A7-C763087BF141}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C52C5F19-E83D-4C33-A5B9-98E076B126A1}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\12_Ukurans\10_Data\02_Manuelle_Data\Data_til_upload\MD_Klass_Litra_stamdata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+      DTS:ObjectName="mssqlp01\Alpha.Ukurans">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[User::DATABASE]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::SERVER]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=mssqlp01\alpha;Initial Catalog=Ukurans;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-Package2-{BFBEEDDD-6495-447D-A12B-295004FBFE56}mssqlp01\Alpha.UKURANS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="\\gbdfs1\DSBDFS\Økonomi\KONC-POEM\70_BI\Projekter - debug\Ukurans\ServerOgDatabase.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{7CA5F325-C8F8-48F0-8503-237B2C465B68}"
+      DTS:ObjectName="ServerogDatabase" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5702F3A2-86BF-440F-BAD2-3B1E83FFE67F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATABASE">
+      <DTS:VariableValue
+        DTS:DataType="8">Ukurans</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4D329FF2-08A7-483C-A458-C32533911E8E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SERVER">
+      <DTS:VariableValue
+        DTS:DataType="8">mssqlp01\alpha</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\1) Tøm MD_Litragr2_Stamdata"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7FDAD2A0-E980-4F18-AEBF-A7C50768DAF5}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="1) Tøm MD_Litragr2_Stamdata"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+          SQLTask:SqlStatementSource="Truncate Table [ods].[MD_Litragr2_Stamdata]&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{612A06C5-4CE9-47AA-9D37-70DE3545FD3B}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{A444B976-A1C2-49B5-84DD-7277BA42F1F1}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Litragr2]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Litragr2"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Litragr2Tekst]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Litragr2Tekst"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2Tekst]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Litragr1]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Litragr1"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr1]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[RID_NedskrTekst]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="RID_NedskrTekst"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[FixedNedskrErMax]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="FixedNedskrErMax"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr2]"
+                          name="Litragr2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr2Tekst]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr2Tekst]"
+                          name="Litragr2Tekst"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2Tekst]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr1]"
+                          name="Litragr1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[RID_NedskrTekst]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[RID_NedskrTekst]"
+                          name="RID_NedskrTekst"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[FixedNedskrErMax]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="5"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[FixedNedskrErMax]"
+                          name="FixedNedskrErMax"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source"
+                  componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">MD_Litragr2_Stamdata$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Litragr2]"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2]"
+                          name="Litragr2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2Tekst]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Litragr2Tekst]"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr2Tekst]"
+                          name="Litragr2Tekst"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[LitraNedskrPct]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[LitraNedskrPct]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[LitraNedskrPct]"
+                          name="LitraNedskrPct"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrFra]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrFra]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrFra]"
+                          name="FixedNedskrFra"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrTil]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrTil]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrTil]"
+                          name="FixedNedskrTil"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Litragr1]"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Litragr1]"
+                          name="Litragr1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[DUF_NedskrAar]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[DUF_NedskrAar]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[DUF_NedskrAar]"
+                          name="DUF_NedskrAar"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrFaktor]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrFaktor]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrFaktor]"
+                          name="RID_NedskrFaktor"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrTekst]"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrTekst]"
+                          name="RID_NedskrTekst"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrErMax]"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrErMax]"
+                          name="FixedNedskrErMax"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Litragr2]"
+                          dataType="wstr"
+                          length="255"
+                          name="Litragr2" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Litragr2Tekst]"
+                          dataType="wstr"
+                          length="255"
+                          name="Litragr2Tekst" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[LitraNedskrPct]"
+                          dataType="r8"
+                          name="LitraNedskrPct" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrFra]"
+                          dataType="date"
+                          name="FixedNedskrFra" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrTil]"
+                          dataType="date"
+                          name="FixedNedskrTil" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Litragr1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Litragr1" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[DUF_NedskrAar]"
+                          dataType="r8"
+                          name="DUF_NedskrAar" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrFaktor]"
+                          dataType="r8"
+                          name="RID_NedskrFaktor" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[RID_NedskrTekst]"
+                          dataType="wstr"
+                          length="255"
+                          name="RID_NedskrTekst" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[FixedNedskrErMax]"
+                          dataType="wstr"
+                          length="255"
+                          name="FixedNedskrErMax" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Litragr2]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Litragr2]"
+                          name="Litragr2" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Litragr2Tekst]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Litragr2Tekst]"
+                          name="Litragr2Tekst" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[LitraNedskrPct]"
+                          dataType="r8"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[LitraNedskrPct]"
+                          name="LitraNedskrPct" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[DUF_NedskrAar]"
+                          dataType="r8"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[DUF_NedskrAar]"
+                          name="DUF_NedskrAar" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrFaktor]"
+                          dataType="r8"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrFaktor]"
+                          name="RID_NedskrFaktor" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrTekst]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[RID_NedskrTekst]"
+                          name="RID_NedskrTekst" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrErMax]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrErMax]"
+                          name="FixedNedskrErMax" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Litragr1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Litragr1]"
+                          name="Litragr1" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrFra]"
+                          dataType="date"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrFra]"
+                          name="FixedNedskrFra" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrTil]"
+                          dataType="date"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[FixedNedskrTil]"
+                          name="FixedNedskrTil" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="MD_Klass_Litragr2_Stamdata"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[MD_LitraGr2_Stamdata]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+                      connectionManagerRefId="Package.ConnectionManagers[mssqlp01\Alpha.Ukurans]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[LitraNedskrPct]"
+                          cachedDataType="r8"
+                          cachedName="LitraNedskrPct"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraNedskrPct]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[LitraNedskrPct]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[FixedNedskrFra]"
+                          cachedDataType="date"
+                          cachedName="FixedNedskrFra"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrFra]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrFra]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[FixedNedskrTil]"
+                          cachedDataType="date"
+                          cachedName="FixedNedskrTil"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrTil]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[FixedNedskrTil]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[DUF_NedskrAar]"
+                          cachedDataType="r8"
+                          cachedName="DUF_NedskrAar"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[DUF_NedskrAar]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[DUF_NedskrAar]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[RID_NedskrFaktor]"
+                          cachedDataType="r8"
+                          cachedName="RID_NedskrFaktor"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrFaktor]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[RID_NedskrFaktor]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[FixedNedskrErMax]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedName="FixedNedskrErMax"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrErMax]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[FixedNedskrErMax]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[RID_NedskrTekst]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RID_NedskrTekst"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrTekst]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[RID_NedskrTekst]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[Litragr2Tekst]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="Litragr2Tekst"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraGr2Tekst]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr2Tekst]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[Litragr2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Litragr2"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraGr2]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr2]" />
+                        <inputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].Columns[Litragr1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="Litragr1"
+                          externalMetadataColumnId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraGr1]"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Litragr1]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraGr1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="LitraGr1" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraGr2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="LitraGr2" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraGr2Tekst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="LitraGr2Tekst" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[LitraNedskrPct]"
+                          dataType="numeric"
+                          name="LitraNedskrPct"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[DUF_NedskrAar]"
+                          dataType="i4"
+                          name="DUF_NedskrAar" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrFaktor]"
+                          dataType="numeric"
+                          name="RID_NedskrFaktor"
+                          precision="15"
+                          scale="15" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[RID_NedskrTekst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RID_NedskrTekst" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrFra]"
+                          dataType="dbTimeStamp"
+                          name="FixedNedskrFra" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrTil]"
+                          dataType="dbTimeStamp"
+                          name="FixedNedskrTil" />
+                        <externalMetadataColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input].ExternalColumns[FixedNedskrErMax]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="FixedNedskrErMax" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task.Paths[Data Conversion Output]"
+                  endId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\MD_Klass_Litragr2_Stamdata.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task.Paths[Excel Source Output]"
+                  endId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\3) Drop TD00_Litragr2_Stamdata og Tøm kontroltabel (ej defineret endnu)"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4D4F1733-C640-4F1D-920A-6FD8C21A17E1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="3) Drop TD00_Litragr2_Stamdata og Tøm kontroltabel (ej defineret endnu)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+          SQLTask:SqlStatementSource="--If object_id('[edw].[TD00_Litragr2_Stamdata]') is not null Drop Table [edw].[TD00_Litragr2_Stamdata]&#xA;truncate table [edw].[TD00_Litragr2_Stamdata]&#xA;&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\9) Ajourfør Dim_Materiale med rette Litra_PKID"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{964AE1F8-870F-4744-8CE4-3D21B5F8060B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="9) Ajourfør Dim_Materiale med rette Litra_PKID"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+          SQLTask:SqlStatementSource="-- Ajourfør DI_Materiale med rette Litra.PK_ID&#xA;&#xA;   Update a&#xA;   Set a.Litra_PKID = b.[PK_ID]&#xA;&#xA;   From edw.Dim_Materiale a&#xA;   Left join edw.Dim_Litra b on a.LitraGr2 = b.LitraGr2 and a.Aktiv = 'J' and b.GyldigTil = '9999-12-31'&#xA;   Where a.Litra_PKID &lt;&gt; b.[PK_ID]&#xA;   and a.pk_id not in (-1, 0)&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Opdater data til DI_Litra hvis ændringer"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C32A8504-A48C-46A6-AD90-F86465BE696C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Opdater data til DI_Litra hvis ændringer">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer\4) Gyldighedsperiode og (tomt) statusfelt tilføjes"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B0C12500-7CE2-4FF7-908D-097B4B5C108E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="4) Gyldighedsperiode og (tomt) statusfelt tilføjes"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+              SQLTask:SqlStatementSource="-- Så tilføjes gyldighedsperiode og tomt status-felt&#xA;&#xA;insert into [edw].[TD00_LitraGr2_Stamdata]&#xA;SELECT [LitraGr1]&#xA;      ,[LitraGr2]&#xA;      ,[LitraGr2Tekst]&#xA;      ,[LitraNedskrPct]&#xA;      ,[DUF_NedskrAar]&#xA;      ,[RID_NedskrFaktor]&#xA;      ,[RID_NedskrTekst]&#xA;      ,[FixedNedskrFra]&#xA;      ,[FixedNedskrTil]&#xA;      ,[FixedNedskrErMax]&#xA;      ,&#x9;(select cast(left(vaerdi, 8) + '01' as datetime) from edw.md_styringstabel where parameter = 'RegnOpdtDato')&#x9;As GyldigFra&#xA;&#x9;, convert(datetime,'9999-12-31') As GyldigTil&#xA;&#x9;, Status ='Aktiv'&#xA;  FROM [ods].[MD_LitraGr2_Stamdata]&#xA;&#xA;&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer\5) Hvis ingen ændring markeres slet i den temporare fil"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F57936DB-D3E9-40A9-B4E4-761D51D6FA66}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="5) Hvis ingen ændring markeres slet i den temporare fil"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+              SQLTask:SqlStatementSource="-- Hvis ingen ændring markeres slet i den aktuelle&#xA;&#xA;Update [edw].[TD00_LitraGr2_Stamdata]   &#xA;Set Status = 'Slet'&#xA;-- Select *&#xA;From [edw].[Dim_Litra] a&#xA;Left Join [edw].[TD00_LitraGr2_Stamdata] b on a.GyldigTil = b.GyldigTil And a.[LitraGr2] = b.[LitraGr2]&#x9;&#xA;Where a.LitraNedskrPct Is Null and b.LitraNedskrPct Is Null &#xA;&#x9;and a.LitraGr2Tekst = b.LitraGr2Tekst&#xA;&#x9;and a.DUF_NedskrAar = b.DUF_NedskrAar&#xA;&#x9;and a.RID_NedskrFaktor = b.RID_NedskrFaktor&#xA;&#x9;and a.RID_NedskrTekst = b.RID_NedskrTekst&#xA;&#x9;and a.LitraGr1 = b.LitraGr1&#xA;Or a.LitraNedskrPct = b.LitraNedskrPct&#xA;&#x9;and a.LitraGr2Tekst = b.LitraGr2Tekst&#xA;&#x9;and a.DUF_NedskrAar = b.DUF_NedskrAar&#xA;&#x9;and a.RID_NedskrFaktor = b.RID_NedskrFaktor&#xA;&#x9;and a.RID_NedskrTekst = b.RID_NedskrTekst&#xA;&#x9;and a.LitraGr1 = b.LitraGr1&#xA;Or a.LitraNedskrPct Is Null and b.LitraNedskrPct Is Null &#xA;&#x9;and a.FixedNedskrFra Is Null and b.FixedNedskrFra Is Null &#xA;&#x9;and a.FixedNedskrTil Is Null and b.FixedNedskrTil Is Null &#xA;&#x9;and a.FixedNedskrErMax Is Null and b.FixedNedskrErMax Is Null&#xA;&#x9;And a.LitraGr2Tekst = b.LitraGr2Tekst&#xA;&#x9;and a.DUF_NedskrAar = b.DUF_NedskrAar&#xA;&#x9;and a.RID_NedskrFaktor = b.RID_NedskrFaktor&#xA;&#x9;and a.RID_NedskrTekst = b.RID_NedskrTekst&#xA;&#x9;and a.LitraGr1 = b.LitraGr1&#xA;Or a.LitraNedskrPct Is Null and b.LitraNedskrPct Is Null &#xA;&#x9;and a.FixedNedskrFra = b.FixedNedskrFra&#xA;&#x9;And a.FixedNedskrTil = b.FixedNedskrTil&#xA;&#x9;And a.FixedNedskrErMax = b.FixedNedskrErMax&#xA;&#x9;and a.LitraGr2Tekst = b.LitraGr2Tekst&#xA;&#x9;and a.DUF_NedskrAar = b.DUF_NedskrAar&#xA;&#x9;and a.RID_NedskrFaktor = b.RID_NedskrFaktor&#xA;&#x9;and a.RID_NedskrTekst = b.RID_NedskrTekst&#xA;&#x9;and a.LitraGr1 = b.LitraGr1&#xA;&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer\6) Hvis ændring ajourføres den eksisterende"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1defe66b-2a14-4295-8d8c-4ff19fc0ece9}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="6) Hvis ændring ajourføres den eksisterende"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+              SQLTask:SqlStatementSource="-- Hvis ændring ajourføres den eksisterende&#xA;&#xA;&#xA;Update [edw].[Dim_Litra]&#xA;Set GyldigTil = a.GyldigFra-1&#xA;-- Select *&#xA;From [edw].[TD00_LitraGr2_Stamdata] a&#xA;Left Join [edw].[Dim_Litra] b on a.GyldigTil = b.GyldigTil And a.[LitraGr2] = b.[LitraGr2]&#x9;&#xA;Where a.LitraNedskrPct Is Not Null and Status = 'Aktiv'&#xA;&#x9;Or b.LitraNedskrPct Is not Null and Status = 'Aktiv'&#xA;&#x9;Or a.FixedNedskrFra Is Not Null and Status = 'Aktiv'&#xA;&#x9;Or b.FixedNedskrFra Is Not Null and Status = 'Aktiv'&#xA;&#x9;Or a.FixedNedskrTil Is Not Null and Status = 'Aktiv'&#xA;&#x9;Or b.FixedNedskrTil Is Not Null and Status = 'Aktiv'&#xA;&#x9;Or a.FixedNedskrErMax Is Not Null and Status = 'Aktiv'&#xA;&#x9;Or b.FixedNedskrErMax Is Not Null and Status = 'Aktiv'&#xA;&#x9;Or a.RID_NedskrFaktor is Not Null and Status = 'Aktiv'&#xA;&#x9;Or b.RID_NedskrFaktor is Not Null and Status = 'Aktiv'&#xA;&#x9;Or a.LitraGr2Tekst &lt;&gt; b.LitraGr2Tekst and Status = 'Aktiv'&#xA;&#x9;Or a.LitraNedskrPct &lt;&gt; b.LitraNedskrPct and Status = 'Aktiv'&#xA;&#x9;Or a.DUF_NedskrAar &lt;&gt; b.DUF_NedskrAar and Status = 'Aktiv'&#xA;&#x9;Or a.RID_NedskrFaktor &lt;&gt; b.RID_NedskrFaktor and Status = 'Aktiv'&#xA;&#x9;Or a.RID_NedskrTekst &lt;&gt; b.RID_NedskrTekst and Status = 'Aktiv'&#xA;&#x9;Or a.FixedNedskrFra &lt;&gt; b.FixedNedskrFra  and Status = 'Aktiv'&#xA;&#x9;Or a.FixedNedskrTil &lt;&gt; b.FixedNedskrTil  and Status = 'Aktiv'&#xA;&#x9;Or a.FixedNedskrErMax &lt;&gt; b.FixedNedskrErMax  and Status = 'Aktiv'&#xA;&#x9;Or a.LitraGr1 &lt;&gt; b.LitraGr1 and Status = 'Aktiv'&#xA;&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer\7) Opdater Dimension med de nye litragruppper"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BE8A78FC-6E11-4A9B-B9FA-F4C9C1A77F6B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="7) Opdater Dimension med de nye litragruppper"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+              SQLTask:SqlStatementSource="-- Opdater Dimension med de nye litragruppper&#xA;&#xA;Insert into [edw].[Dim_Litra] &#xA;Select LitraGr1, LitraGr2, LitraGr2Tekst, LitraNedskrPct, DUF_NedskrAar, RID_NedskrFaktor, RID_NedskrTekst, &#xA;&#x9;FixedNedskrFra, FixedNedskrTil, FixedNedskrErMax, GyldigFra, GyldigTil &#xA;From [edw].[TD00_LitraGr2_Stamdata]&#xA;Where Status = 'Aktiv'&#xA;&#xA;Go&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer\8) Hvis post er slettet, rettes gyldighedsperiode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AEEB4ED2-9F94-49FA-95C7-C8090D5E25D0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="8) Hvis post er slettet, rettes gyldighedsperiode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFBEEDDD-6495-447D-A12B-295004FBFE56}"
+              SQLTask:SqlStatementSource="-- Hvis post er slettet, rettes gyldighedsperiode&#xA;&#xA;Update [edw].[Dim_Litra]&#xA;Set GyldigTil = GyldigFra-0.0000001&#xA;Where LitraGr2 in&#xA;(Select LitraGr2 from [edw].[Dim_Litra]&#xA;&#x9;Except  -- = differensmængden&#xA;&#x9;Select LitraGr2 from [Ukurans].[edw].[TD00_LitraGr2_Stamdata]) &#xA;and GyldigTil = '9999-12-31'&#xA;and PK_ID not in (-1, 0)&#xA;&#xA;Go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{76D678EA-9B1E-4D4D-8029-EF23BC9E7A99}"
+          DTS:From="Package\Opdater data til DI_Litra hvis ændringer\4) Gyldighedsperiode og (tomt) statusfelt tilføjes"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Opdater data til DI_Litra hvis ændringer\5) Hvis ingen ændring markeres slet i den temporare fil" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{9E2A20F8-9244-4485-A54A-1EDEA7818576}"
+          DTS:From="Package\Opdater data til DI_Litra hvis ændringer\5) Hvis ingen ændring markeres slet i den temporare fil"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Opdater data til DI_Litra hvis ændringer\6) Hvis ændring ajourføres den eksisterende" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{E241EAEA-89D4-4863-82B4-5FFCB180FB56}"
+          DTS:From="Package\Opdater data til DI_Litra hvis ændringer\6) Hvis ændring ajourføres den eksisterende"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Opdater data til DI_Litra hvis ændringer\7) Opdater Dimension med de nye litragruppper" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{66915CBD-8BB0-4CA7-8352-A70461CAA56F}"
+          DTS:From="Package\Opdater data til DI_Litra hvis ændringer\7) Opdater Dimension med de nye litragruppper"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Opdater data til DI_Litra hvis ændringer\8) Hvis post er slettet, rettes gyldighedsperiode" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3875AE58-12D8-425D-BE00-A442F6B860DF}"
+      DTS:From="Package\1) Tøm MD_Litragr2_Stamdata"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{49C5B8AB-0A0B-4B31-B438-4238B403984F}"
+      DTS:From="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\3) Drop TD00_Litragr2_Stamdata og Tøm kontroltabel (ej defineret endnu)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{71B638B7-8CE4-4374-8561-13F208D4B0C9}"
+      DTS:From="Package\3) Drop TD00_Litragr2_Stamdata og Tøm kontroltabel (ej defineret endnu)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Opdater data til DI_Litra hvis ændringer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{92358DAB-38C3-4184-A755-48A848B0B08E}"
+      DTS:From="Package\Opdater data til DI_Litra hvis ændringer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\9) Ajourfør Dim_Materiale med rette Litra_PKID" />
+  </DTS:PrecedenceConstraints>
+  <DTS:PackageVariables>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{AFB8203A-77C6-4178-B54D-F494C154C7A3}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{3875AE58-12D8-425D-BE00-A442F6B860DF}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{761B2D3B-126F-471B-B453-B142EA28736F}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{49C5B8AB-0A0B-4B31-B438-4238B403984F}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{F8E6E07D-91AA-497B-9A73-20713ADBDC68}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{66915CBD-8BB0-4CA7-8352-A70461CAA56F}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{3CB15380-25EC-4EEB-A428-4D344E90E35A}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{71B638B7-8CE4-4374-8561-13F208D4B0C9}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{5861920C-59BA-4E1E-A79A-3B8CE7747BD4}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{76D678EA-9B1E-4D4D-8029-EF23BC9E7A99}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{7AAE0B23-424C-414F-AF82-72FCFC3DCB2A}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{92358DAB-38C3-4184-A755-48A848B0B08E}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{EB139F16-C637-49F0-A121-DD4E3F7BE4EE}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{9E2A20F8-9244-4485-A54A-1EDEA7818576}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{D104B248-7D2F-4633-93E1-2AB9C9195D9A}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{A444B976-A1C2-49B5-84DD-7277BA42F1F1}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;TaskHost xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsDataFlowDiagram&gt;&lt;dwd:BoundingLeft&gt;-5205&lt;/dwd:BoundingLeft&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="17" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-6205" scrolltop="-1000" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="26379" y="22516" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="0" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Excel Source" left="-4755" top="0" logicalid="6" controlid="1" masterid="0" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="28" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Conversion" left="-4649" top="2858" logicalid="7" controlid="2" masterid="0" hint1="0" hint2="0" width="3360" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000200d00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="2" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="-3368" top="765" logicalid="8" controlid="3" masterid="0" hint1="0" hint2="0" width="812" height="2593" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="109" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="1" destid="2" sourceattachpoint="7" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="-2956" y="1164" /&gt;&lt;point x="-2956" y="2011" /&gt;&lt;point x="-2969" y="2011" /&gt;&lt;point x="-2969" y="2858" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Truncation may occur due to inserting data from data flow column &amp;quot;Litragr1&amp;quot; with a length of 20 to d..." left="-5205" top="5768" logicalid="9" controlid="4" masterid="0" hint1="0" hint2="0" width="5238" height="2328" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800007614000018090000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="71" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="-3368" top="3623" logicalid="10" controlid="5" masterid="0" hint1="0" hint2="0" width="1182" height="2645" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="108" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="2" destid="4" sourceattachpoint="5" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="-2969" y="4022" /&gt;&lt;point x="-2969" y="4895" /&gt;&lt;point x="-2586" y="4895" /&gt;&lt;point x="-2586" y="5768" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;dwd:PersistedViewPortLeft&gt;-6205&lt;/dwd:PersistedViewPortLeft&gt;&lt;dwd:PersistedViewPortTop&gt;-1000&lt;/dwd:PersistedViewPortTop&gt;&lt;/dwd:DtsDataFlowDiagram&gt;&lt;dwd:DtsComponentDesignerPropertiesList&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;47	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;151	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;47	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;151	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;/dwd:DtsComponentDesignerPropertiesList&gt;&lt;/TaskHost&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{F20455D8-26FA-4465-8307-3FF525FB499B}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{A444B976-A1C2-49B5-84DD-7277BA42F1F1}-168">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;Data Conversion Output&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;OLE DB Destination Input&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{7DE25FDF-4BE7-4142-8C2C-5C7811113286}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{A444B976-A1C2-49B5-84DD-7277BA42F1F1}-32">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;Excel Source Output&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;Data Conversion Input&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{E92F17EE-766E-43B9-9D90-CF6BFCD3FE49}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{E241EAEA-89D4-4863-82B4-5FFCB180FB56}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PrecedenceConstraint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:EvalOp&gt;Constraint&lt;/dwd:EvalOp&gt;&lt;/PrecedenceConstraint&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{07AF218A-D6A3-418D-A6BF-3E1FEC72063C}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="package-diagram">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:BoundingLeft&gt;1000&lt;/dwd:BoundingLeft&gt;&lt;dwd:BoundingTop&gt;1000&lt;/dwd:BoundingTop&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="41" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="157" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="26379" y="23442" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="1000" top="1132" logicalid="20" controlid="1" masterid="0" hint1="0" hint2="0" width="5847" height="1640" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000d716000068060000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\1) Tøm MD_Litragr2_Stamdata" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsContainerObjectManagedBridge.2" tooltip="Sequence Container" left="8434" top="1000" logicalid="21" controlid="2" masterid="0" hint1="0" hint2="0" width="5717" height="3731" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="0008000055160000930e0000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="Caption" value="2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata" vartype="8" /&gt;&lt;property name="CaptionHeight" value="1164" vartype="3" /&gt;&lt;property name="Collapsed" value="0" vartype="11" /&gt;&lt;property name="CollapsedWidth" value="5717" vartype="3" /&gt;&lt;property name="LogicalObject" value="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata" vartype="8" /&gt;&lt;property name="RealHeight" value="0" vartype="3" /&gt;&lt;property name="RealWidth" value="0" vartype="3" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="6448" top="1553" logicalid="22" controlid="3" masterid="0" hint1="0" hint2="0" width="2286" height="1712" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="1" destid="2" sourceattachpoint="25" destattachpoint="28" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="6847" y="1952" /&gt;&lt;point x="7640" y="1952" /&gt;&lt;point x="7640" y="2865" /&gt;&lt;point x="8434" y="2865" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="The external columns for component &amp;quot;MD_Klass_Litragr2_Stamdata&amp;quot; (151) are out of synchronization wit..." left="9704" top="3010" logicalid="23" controlid="4" masterid="2" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="17457" top="1931" logicalid="24" controlid="5" masterid="0" hint1="0" hint2="0" width="6429" height="1375" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800001d1900005f050000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\3) Drop TD00_Litragr2_Stamdata og Tøm kontroltabel (ej defineret endnu)" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="13752" top="2219" logicalid="25" controlid="6" masterid="0" hint1="0" hint2="0" width="4005" height="1046" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint 1]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="2" destid="5" sourceattachpoint="29" destattachpoint="24" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="14151" y="2865" /&gt;&lt;point x="15804" y="2865" /&gt;&lt;point x="15804" y="2618" /&gt;&lt;point x="17457" y="2618" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsContainerObjectManagedBridge.2" tooltip="Sequence Container" left="11247" top="6721" logicalid="26" controlid="7" masterid="0" hint1="0" hint2="0" width="9830" height="15599" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="0008000066260000ef3c0000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="Caption" value="Opdater data til DI_Litra hvis ændringer" vartype="8" /&gt;&lt;property name="CaptionHeight" value="1164" vartype="3" /&gt;&lt;property name="Collapsed" value="0" vartype="11" /&gt;&lt;property name="CollapsedWidth" value="9830" vartype="3" /&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer" vartype="8" /&gt;&lt;property name="RealHeight" value="14435" vartype="3" /&gt;&lt;property name="RealWidth" value="9830" vartype="3" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14358" top="9498" logicalid="27" controlid="8" masterid="7" hint1="0" hint2="0" width="5080" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000d81300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\4) Gyldighedsperiode og (tomt) statusfelt tilføjes" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14251" top="11880" logicalid="28" controlid="9" masterid="7" hint1="0" hint2="0" width="4974" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800006e1300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\5) Hvis ingen ændring markeres slet i den temporare fil" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="16339" top="10263" logicalid="29" controlid="10" masterid="0" hint1="0" hint2="0" width="959" height="2117" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="8" destid="9" sourceattachpoint="9" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="16898" y="10662" /&gt;&lt;point x="16898" y="11271" /&gt;&lt;point x="16738" y="11271" /&gt;&lt;point x="16738" y="11880" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14146" top="14671" logicalid="30" controlid="11" masterid="7" hint1="0" hint2="0" width="4974" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800006e1300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\6) Hvis ændring ajourføres den eksisterende" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15239" top="12645" logicalid="31" controlid="12" masterid="0" hint1="0" hint2="0" width="1794" height="2526" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 1]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="9" destid="11" sourceattachpoint="5" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="15638" y="13044" /&gt;&lt;point x="15638" y="14264" /&gt;&lt;point x="16633" y="14264" /&gt;&lt;point x="16633" y="14671" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14147" top="17198" logicalid="32" controlid="13" masterid="7" hint1="0" hint2="0" width="4789" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000b51200008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\7) Opdater Dimension med de nye litragruppper" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15134" top="15436" logicalid="33" controlid="14" masterid="0" hint1="0" hint2="0" width="1807" height="2262" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 2]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="11" destid="13" sourceattachpoint="5" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="15533" y="15835" /&gt;&lt;point x="15533" y="16857" /&gt;&lt;point x="16541" y="16857" /&gt;&lt;point x="16541" y="17198" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15763" top="2907" logicalid="34" controlid="15" masterid="0" hint1="0" hint2="0" width="5308" height="4314" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint 2]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="5" destid="7" sourceattachpoint="11" destattachpoint="16" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="20671" y="3306" /&gt;&lt;point x="20671" y="5013" /&gt;&lt;point x="16162" y="5013" /&gt;&lt;point x="16162" y="6721" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14107" top="19272" logicalid="35" controlid="16" masterid="7" hint1="0" hint2="0" width="4947" height="1640" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800005313000068060000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\8) Hvis post er slettet, rettes gyldighedsperiode" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15592" top="17963" logicalid="36" controlid="17" masterid="0" hint1="0" hint2="0" width="1388" height="1809" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 3]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="13" destid="16" sourceattachpoint="7" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="15991" y="18362" /&gt;&lt;point x="15991" y="19044" /&gt;&lt;point x="16580" y="19044" /&gt;&lt;point x="16580" y="19272" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="2858" top="10424" logicalid="37" controlid="18" masterid="0" hint1="0" hint2="0" width="4762" height="2619" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800009a1200003b0a0000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\9) Ajourfør Dim_Materiale med rette Litra_PKID" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="7320" top="11334" logicalid="38" controlid="19" masterid="0" hint1="0" hint2="0" width="4327" height="3586" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint 3]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="7" destid="18" sourceattachpoint="60" destattachpoint="23" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="11247" y="14520" /&gt;&lt;point x="9433" y="14520" /&gt;&lt;point x="9433" y="11733" /&gt;&lt;point x="7620" y="11733" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;dwd:PersistedViewPortLeft&gt;157&lt;/dwd:PersistedViewPortLeft&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{5974C951-08B1-4453-B974-79E148AD6C92}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="package-diagram">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:BoundingLeft&gt;1000&lt;/dwd:BoundingLeft&gt;&lt;dwd:BoundingTop&gt;1000&lt;/dwd:BoundingTop&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="41" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="157" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="26379" y="23442" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="1000" top="1132" logicalid="20" controlid="1" masterid="0" hint1="0" hint2="0" width="5847" height="1640" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000d716000068060000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\1) Tøm MD_Litragr2_Stamdata" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsContainerObjectManagedBridge.2" tooltip="Sequence Container" left="8434" top="1000" logicalid="21" controlid="2" masterid="0" hint1="0" hint2="0" width="5717" height="3731" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="0008000055160000930e0000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="Caption" value="2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata" vartype="8" /&gt;&lt;property name="CaptionHeight" value="1164" vartype="3" /&gt;&lt;property name="Collapsed" value="0" vartype="11" /&gt;&lt;property name="CollapsedWidth" value="5717" vartype="3" /&gt;&lt;property name="LogicalObject" value="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata" vartype="8" /&gt;&lt;property name="RealHeight" value="0" vartype="3" /&gt;&lt;property name="RealWidth" value="0" vartype="3" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="6448" top="1553" logicalid="22" controlid="3" masterid="0" hint1="0" hint2="0" width="2286" height="1712" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="1" destid="2" sourceattachpoint="25" destattachpoint="28" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="6847" y="1952" /&gt;&lt;point x="7640" y="1952" /&gt;&lt;point x="7640" y="2865" /&gt;&lt;point x="8434" y="2865" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="The external columns for component &amp;quot;MD_Klass_Litragr2_Stamdata&amp;quot; (151) are out of synchronization wit..." left="9704" top="3010" logicalid="23" controlid="4" masterid="2" hint1="0" hint2="0" width="3598" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800000e0e00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\2) Data indlæses fra Excel-fil MD_Litragr2_Stamdata\Data Flow Task" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="17457" top="1931" logicalid="24" controlid="5" masterid="0" hint1="0" hint2="0" width="6429" height="1375" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800001d1900005f050000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\3) Drop TD00_Litragr2_Stamdata og Tøm kontroltabel (ej defineret endnu)" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="13752" top="2219" logicalid="25" controlid="6" masterid="0" hint1="0" hint2="0" width="4005" height="1046" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint 1]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="2" destid="5" sourceattachpoint="29" destattachpoint="24" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="14151" y="2865" /&gt;&lt;point x="15804" y="2865" /&gt;&lt;point x="15804" y="2618" /&gt;&lt;point x="17457" y="2618" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsContainerObjectManagedBridge.2" tooltip="Sequence Container" left="11247" top="6721" logicalid="26" controlid="7" masterid="0" hint1="0" hint2="0" width="9830" height="15599" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="0008000066260000ef3c0000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="Caption" value="Opdater data til DI_Litra hvis ændringer" vartype="8" /&gt;&lt;property name="CaptionHeight" value="1164" vartype="3" /&gt;&lt;property name="Collapsed" value="0" vartype="11" /&gt;&lt;property name="CollapsedWidth" value="9830" vartype="3" /&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer" vartype="8" /&gt;&lt;property name="RealHeight" value="14435" vartype="3" /&gt;&lt;property name="RealWidth" value="9830" vartype="3" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14358" top="9498" logicalid="27" controlid="8" masterid="7" hint1="0" hint2="0" width="5080" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000d81300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\4) Gyldighedsperiode og (tomt) statusfelt tilføjes" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14251" top="11880" logicalid="28" controlid="9" masterid="7" hint1="0" hint2="0" width="4974" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800006e1300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\5) Hvis ingen ændring markeres slet i den temporare fil" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="16339" top="10263" logicalid="29" controlid="10" masterid="0" hint1="0" hint2="0" width="959" height="2117" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="8" destid="9" sourceattachpoint="9" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="16898" y="10662" /&gt;&lt;point x="16898" y="11271" /&gt;&lt;point x="16738" y="11271" /&gt;&lt;point x="16738" y="11880" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14146" top="14671" logicalid="30" controlid="11" masterid="7" hint1="0" hint2="0" width="4974" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800006e1300008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\6) Hvis ændring ajourføres den eksisterende" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15239" top="12645" logicalid="31" controlid="12" masterid="0" hint1="0" hint2="0" width="1794" height="2526" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 1]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="9" destid="11" sourceattachpoint="5" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="15638" y="13044" /&gt;&lt;point x="15638" y="14264" /&gt;&lt;point x="16633" y="14264" /&gt;&lt;point x="16633" y="14671" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14147" top="17198" logicalid="32" controlid="13" masterid="7" hint1="0" hint2="0" width="4789" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000b51200008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\7) Opdater Dimension med de nye litragruppper" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15134" top="15436" logicalid="33" controlid="14" masterid="0" hint1="0" hint2="0" width="1807" height="2262" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 2]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="11" destid="13" sourceattachpoint="5" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="15533" y="15835" /&gt;&lt;point x="15533" y="16857" /&gt;&lt;point x="16541" y="16857" /&gt;&lt;point x="16541" y="17198" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15763" top="2907" logicalid="34" controlid="15" masterid="0" hint1="0" hint2="0" width="5308" height="4314" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint 2]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="5" destid="7" sourceattachpoint="11" destattachpoint="16" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="20671" y="3306" /&gt;&lt;point x="20671" y="5013" /&gt;&lt;point x="16162" y="5013" /&gt;&lt;point x="16162" y="6721" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="14107" top="19272" logicalid="35" controlid="16" masterid="7" hint1="0" hint2="0" width="4947" height="1640" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800005313000068060000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer\8) Hvis post er slettet, rettes gyldighedsperiode" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="15592" top="17963" logicalid="36" controlid="17" masterid="0" hint1="0" hint2="0" width="1388" height="1809" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Opdater data til DI_Litra hvis ændringer.PrecedenceConstraints[Constraint 3]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="13" destid="16" sourceattachpoint="7" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="15991" y="18362" /&gt;&lt;point x="15991" y="19044" /&gt;&lt;point x="16580" y="19044" /&gt;&lt;point x="16580" y="19272" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Execute SQL Task" left="2858" top="10424" logicalid="37" controlid="18" masterid="0" hint1="0" hint2="0" width="4762" height="2619" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800009a1200003b0a0000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\9) Ajourfør Dim_Materiale med rette Litra_PKID" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="7320" top="11334" logicalid="38" controlid="19" masterid="0" hint1="0" hint2="0" width="4327" height="3586" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="2" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package.PrecedenceConstraints[Constraint 3]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="7" destid="18" sourceattachpoint="60" destattachpoint="23" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="11247" y="14520" /&gt;&lt;point x="9433" y="14520" /&gt;&lt;point x="9433" y="11733" /&gt;&lt;point x="7620" y="11733" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;dwd:PersistedViewPortLeft&gt;157&lt;/dwd:PersistedViewPortLeft&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+    </DTS:PackageVariable>
+  </DTS:PackageVariables>
+</DTS:Executable>

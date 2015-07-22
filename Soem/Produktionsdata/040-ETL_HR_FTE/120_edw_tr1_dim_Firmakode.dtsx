@@ -1,0 +1,1978 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/22/2008 10:20:24 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB073986"
+  DTS:CreatorName="DSB\pama2610"
+  DTS:DTSID="{96055125-0929-4175-967A-0B3CC4E2E730}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="120_edw_tr1_dim_Firmakode"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="621"
+  DTS:VersionGUID="{FD0A6BFF-0885-43C8-8E77-FEEBE762BE30}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8DF3720B-57E5-4323-B9C2-283C57669F0C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod">
+      <DTS:VariableValue
+        DTS:DataType="7">10/1/2009</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56787C2B-95BF-4C8C-A806-CE959A49151F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrPeriod_char">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0115EEDE-7E56-44A6-8F2E-68400D6597CB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_CurrYear">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C9730E3-E943-476B-96F2-8D2B81271518}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_EmailAdresse">
+      <DTS:VariableValue
+        DTS:DataType="8">pama@dsb.dk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{120F6C28-58B1-41FA-B7A6-411F43BE1413}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_ExtractRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8DAA069-FEA0-4DE1-BEB0-360C8A334A59}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Personalniveau</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C4F632C-F6CA-4871-85D9-558CD3721A05}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Filepath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\gbsqlfi\konc-poem\70_BI\Projects\tempfiles\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0075DA89-8DBE-484B-A7DE-BE9FB0809589}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_LoaderLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D1A8D167-ECEA-4A44-BF9F-B7B26A02D6C2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_MaxPeriodRDH">
+      <DTS:VariableValue
+        DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6F06CE3-CA5B-4CC1-A521-264179BB7275}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Maxrecords_perMed">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D060504D-881A-4B07-9FAD-74B5AC288DC9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumNewRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45A9C9A7-0940-4390-9FDF-C316CEB0BC33}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_NumRows_bef_upd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6CD1737-D0B5-40F2-ABEE-9F4CA34B1F3B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6D129A81-3B2B-4517-8B4F-065A088EE61B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PrevPeriod">
+      <DTS:VariableValue
+        DTS:DataType="7">1/6/2010</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{100711B1-4623-4427-B37B-99B130E95648}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_afteragg">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8EB8B951-7567-46B5-9109-3C76967FC797}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_file">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{32426BE4-360D-45AF-9F34-F816CEE62719}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_fileRDH">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{860E3EB0-1D83-4C12-97F8-F6AAECB1EFDB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Rows_table">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8179476D-B4AB-42B3-99E7-BF43AE6E1996}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Sum_Arbejdstimer">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{885915FB-7D28-4B04-8A93-3B480C7D8B6B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Sum_ArbejdstimerRDH">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1E21623F-18B2-43C2-A03B-57912BD39B56}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_TabRefLogId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7FA85C99-765C-43F6-AF4C-1C343BF45920}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Tot_table">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End Package Log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b93a3c03-a814-4d3e-9e67-d680d11616cb}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End Package Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{85cb3749-7345-4ec0-b267-aca2edf6b3d8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load data from FPC file to DI_Firmakode table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{36283382-AA63-4C2B-9448-6811A1C3B5E5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load data from FPC file to DI_Firmakode table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0251e5b0-2e5f-445d-9ef4-2c248bc3d760}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD DI Firmakode"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Updates column values using expressions"
+                  name="ADD missing columns"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Output].Columns[[Timestamp]]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Output].Columns[[Timestamp]]"
+                          name="[Timestamp]"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate"
+                  componentClassID="{5B201335-B360-485C-BB93-75C34E09B3D3}"
+                  contactInfo="Aggregate;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+                  description="Aggregates and groups values in a dataset."
+                  name="Aggregate"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                      name="CountDistinctScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                      name="CountDistinctKeys" />
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                      name="AutoExtendFactor">25</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Inputs[Aggregate Input 1]"
+                      name="Aggregate Input 1">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Inputs[Aggregate Input 1].Columns[Firmakode_int]"
+                          cachedDataType="i4"
+                          cachedName="Firmakode_int"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Output].Columns[Firmakode_int]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Outputs[Aggregate Output 1]"
+                      name="Aggregate Output 1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                          name="KeyScale"
+                          typeConverter="KeyScaleType">0</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                          name="Keys" />
+                      </properties>
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Outputs[Aggregate Output 1].Columns[Firmakode_int]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Outputs[Aggregate Output 1].Columns[Firmakode_int]"
+                          name="Firmakode_int">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the ID of the input column used in the aggregation."
+                              name="AggregationColumnId">#{Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Output].Columns[Firmakode_int]}</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the type of aggregation."
+                              name="AggregationType"
+                              typeConverter="AggregationType">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                              name="IsBig">1</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the string comparison options."
+                              name="AggregationComparisonFlags">0</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode"
+                  componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+                  contactInfo="Data Conversion;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="CONV firmakode"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Inputs[Data Conversion Input].Columns[Firmakode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Firmakode"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Output].Columns[Firmakode_int]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Output].Columns[Firmakode_int]"
+                          name="Firmakode_int"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DI_Firmakode"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[edw].[DI_Firmakode]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input].Columns[Firmakode_int]"
+                          cachedDataType="i4"
+                          cachedName="Firmakode_int"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input].ExternalColumns[Firmakode]"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Outputs[Sort Output].Columns[Firmakode_int]" />
+                        <inputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input].Columns[[Timestamp]]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="[Timestamp]"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Output].Columns[[Timestamp]]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input].ExternalColumns[Firmakode]"
+                          dataType="i4"
+                          name="Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input].ExternalColumns[Tekst]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Tekst" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="RD_FPC_FTE"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[ods].[RD_FPC_FTE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Connections[OleDbConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[MedarbejderId]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[MedarbejderId]"
+                          name="MedarbejderId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Navn]"
+                          name="Navn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[BrugerId]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[BrugerId]"
+                          name="BrugerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Firmakode]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Firmakode]"
+                          name="Firmakode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[Profitcenter]"
+                          name="Profitcenter"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[OmkSted]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[OmkSted]"
+                          name="OmkSted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[RegnPeriode]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[RegnPeriode]"
+                          name="RegnPeriode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[LoanArt]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[LoanArt]"
+                          name="LoanArt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[FTE]"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].Columns[FTE]"
+                          name="FTE"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="MedarbejderId" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Navn" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="BrugerId" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Profitcenter" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="OmkSted" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RegnPeriode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LoanArt" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output].ExternalColumns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FTE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[MedarbejderId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[MedarbejderId]"
+                          name="MedarbejderId" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Navn]"
+                          name="Navn" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[BrugerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[BrugerId]"
+                          name="BrugerId" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Firmakode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Firmakode]"
+                          name="Firmakode" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[Profitcenter]"
+                          name="Profitcenter" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[OmkSted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[OmkSted]"
+                          name="OmkSted" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[RegnPeriode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[RegnPeriode]"
+                          name="RegnPeriode" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[LoanArt]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[LoanArt]"
+                          name="LoanArt" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[FTE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[FTE]"
+                          name="FTE" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension"
+                  componentClassID="{25BBB0C5-369B-4303-B3DF-D0DC741DEE58}"
+                  contactInfo="Slowly Changing Dimension;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+                  description="Updates a slowly changing dimension."
+                  name="Slowly Changing Dimension"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SELECT statement used to create a schema rowset."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [Firmakode], [Timestamp] FROM [edw].[DI_Firmakode]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                      name="CurrentRowWhere"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                      name="UpdateChangingAttributeHistory">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                      name="FailOnFixedAttributeChange">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the column name for the inferred member."
+                      name="InferredMemberIndicator"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether inferred member updates are detected."
+                      name="EnableInferredMember">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                      name="FailOnLookupFailure">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies that all rows in the input are new or the transformation detects the change type."
+                      name="IncomingRowChangeType"
+                      typeConverter="IncomingRowChangeType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Connections[LookupConnection]"
+                      connectionManagerID="{813D9F11-237F-44DA-94B7-C5BA377800CA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                      description="Defines the connection to use for lookups in the dimension table"
+                      name="LookupConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                      name="Slowly Changing Dimension Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Firmakode_int]"
+                          cachedDataType="i4"
+                          cachedName="Firmakode_int"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Firmakode]"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Outputs[Sort Output].Columns[Firmakode_int]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[[Timestamp]]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="[Timestamp]"
+                          externalMetadataColumnId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Timestamp]"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Output].Columns[[Timestamp]]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">4</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Firmakode]"
+                          dataType="i4"
+                          name="Firmakode" />
+                        <externalMetadataColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Timestamp]"
+                          dataType="dbTimeStamp"
+                          name="Timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                      description="Unchanged rows"
+                      exclusionGroup="1"
+                      name="Unchanged Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Outputs[New Output]"
+                      description="New rows"
+                      exclusionGroup="1"
+                      name="New Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                      description="Rows with changes in columns tagged FixedAttribute"
+                      exclusionGroup="1"
+                      name="Fixed Attribute Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                      description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                      exclusionGroup="1"
+                      name="Changing Attribute Updates Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                      description="HistoricalAttribute (Type 2) changes result in these new rows"
+                      exclusionGroup="2"
+                      name="Historical Attribute Inserts Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                      description="Information to update unpopulated initial dimension row"
+                      exclusionGroup="1"
+                      name="Inferred Member Updates Output"
+                      synchronousInputId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  contactInfo="Sort;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts data."
+                  name="Sort"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Inputs[Sort Input].Columns[Firmakode_int]"
+                          cachedDataType="i4"
+                          cachedName="Firmakode_int"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Outputs[Aggregate Output 1].Columns[Firmakode_int]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Outputs[Sort Output].Columns[Firmakode_int]"
+                          dataType="i4"
+                          lineageId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Outputs[Sort Output].Columns[Firmakode_int]"
+                          name="Firmakode_int"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Outputs[Aggregate Output 1].Columns[Firmakode_int]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Aggregate Output 1]"
+                  endId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Inputs[Sort Input]"
+                  name="Aggregate Output 1"
+                  startId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Outputs[Aggregate Output 1]" />
+                <path
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Data Conversion Output]"
+                  endId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Data Conversion Output"
+                  startId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Derived Column Output]"
+                  endId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Derived Column Output"
+                  startId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[New Output]"
+                  endId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode.Inputs[OLE DB Destination Input]"
+                  name="New Output"
+                  startId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension.Outputs[New Output]" />
+                <path
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[OLE DB Source Output]"
+                  endId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode.Inputs[Data Conversion Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Sort Output]"
+                  endId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns.Inputs[Derived Column Input]"
+                  name="Sort Output"
+                  startId="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort.Outputs[Sort Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation to load data to DI_Firmakode table"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{2E0E2529-0141-46BC-8FF5-CDE1459D8850}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation to load data to DI_Firmakode table">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load data to DI_Firmakode table\EXEC Loader Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{079c54fe-f6b1-4d4f-b5b9-7f68f46f5b4c}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC Loader Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_InitTabRefLog ?, 'edw.DI_Medarbejde', 'INS', ?, null, null, null"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogId" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_PackageLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_CurrPeriod_char"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load data to DI_Firmakode table\GET Email_To variable"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{63913acc-c0f1-468e-aa67-fe69b5d6547f}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Email_To variable"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select [value] v_EmailAdresse &#xA;from ods.ctl_dataload&#xA;where kilde_system = 'FPC' and [Variable] = 'Email_To'&#xA;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_EmailAdresse"
+                SQLTask:DtsVariableName="User::v_EmailAdresse" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Preparation to load data to DI_Firmakode table\GET num rows Di_Firmakode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2952c492-a9b3-4d4f-b703-0ebcfac1ac58}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET num rows Di_Firmakode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="select count(*) v_NumRows_bef_upd&#xA;from edw.di_firmakode"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="v_NumRows_bef_upd"
+                SQLTask:DtsVariableName="User::v_NumRows_bef_upd" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load data to DI_Firmakode table.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{B5418F2B-F291-4944-8CB5-60A104F050BC}"
+          DTS:From="Package\Preparation to load data to DI_Firmakode table\GET num rows Di_Firmakode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Preparation to load data to DI_Firmakode table\GET Email_To variable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Preparation to load data to DI_Firmakode table.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{2A2C0FEE-C1FC-445B-B31A-56DCBA77830E}"
+          DTS:From="Package\Preparation to load data to DI_Firmakode table\GET Email_To variable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Preparation to load data to DI_Firmakode table\EXEC Loader Log" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update logs"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{ef07e310-dfbe-4048-aa9a-e9144e63d232}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update logs">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\EXEC End TabRef Log"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0f27622d-e1e2-44a7-8058-33a2e36ecb8b}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC End TabRef Log"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{813D9F11-237F-44DA-94B7-C5BA377800CA}"
+              SQLTask:SqlStatementSource="EXEC etl.edw_EndTabRefLog ?, ?, null, null, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::v_TabRefLogId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::v_NumNewRows"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\GET Total rows at DI_Firmakode"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{78478512-6cb8-4ef0-bbe0-e7a76733fa44}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GET Total rows at DI_Firmakode"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{89DAC1BE-546E-40BC-908B-E3312030F86F}"
+              SQLTask:SqlStatementSource="select cast(count(*) as integer) - cast(@v_NumRows_bef_upd as integer)  v_NumNewRows &#xA;from edw.DI_firmakode"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::v_NumNewRows" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="v_NumRows_bef_upd"
+                SQLTask:DtsVariableName="User::v_NumRows_bef_upd"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Update logs\Send Mail Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{3684b281-7503-45e8-98df-49e5f897e5ee}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">"Data er indlæst fra rå data tabel RD_FPC_FTE til edw.DI_Firmakode \n\n" + (DT_STR, 50, 1252) @[User::v_NumNewRows] +" ny/nye firmakode/firmakoder har været tilføjt til dimensionen\n\n"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">"Kørsel af " +  @[System::PackageName] + " for periode " + @[User::v_CurrPeriod_char]  + " er afsluttet og nye rækker blev tilføjt til Firmakode dimensionen"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::v_EmailAdresse]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{FBEE9253-4ED8-4134-874E-BE13D3EC5B09}"
+              SendMailTask:From="datawarehouse@dsb.dk"
+              SendMailTask:To="pama@dsb.dk"
+              SendMailTask:Subject="Kørsel af 120_edw_tr1_dim_Firmakode for periode  er afsluttet og nye rækker blev tilføjt til Firmakode dimensionen"
+              SendMailTask:MessageSource="Data er indlæst fra rå data tabel RD_FPC_FTE til edw.DI_Firmakode &#xA;&#xA;0 ny/nye firmakode/firmakoder har været tilføjt til dimensionen&#xA;&#xA;" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0715ee00-e436-4455-b039-6a65922691bc}"
+          DTS:From="Package\Update logs\GET Total rows at DI_Firmakode"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Update logs\EXEC End TabRef Log" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{e28e2025-4298-4c6f-bd21-affdca2c9167}"
+          DTS:EvalOp="1"
+          DTS:Expression="@v_NumNewRows &gt; 0"
+          DTS:From="Package\Update logs\EXEC End TabRef Log"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Update logs\Send Mail Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FC6528FE-0D1A-452B-A88D-8B3FEC8FD76B}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Preparation to load data to DI_Firmakode table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{992B80EA-EB7D-4BB5-B5FE-3E844360BEA7}"
+      DTS:From="Package\Update logs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EXEC End Package Log" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{64476749-739B-4B93-BD4D-F99344C416FE}"
+      DTS:From="Package\Preparation to load data to DI_Firmakode table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load data from FPC file to DI_Firmakode table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{73D4DBC4-5799-418F-9BD1-C684BF23AB9C}"
+      DTS:From="Package\Load data from FPC file to DI_Firmakode table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update logs" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="109,44"
+          Id="Package\EXEC End Package Log"
+          TopLeft="703.537735849057,826.594339622641" />
+        <NodeLayout
+          Size="109,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="5.5,56.6320754716981" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode"
+          TopLeft="135.433962264151,39.3773584905661" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="429,120"
+          Size="429,164"
+          Id="Package\Load data from FPC file to DI_Firmakode table"
+          TopLeft="186.330188679245,310.896226415094" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load data to DI_Firmakode table\EXEC Loader Log"
+          TopLeft="143.811320754717,157.075471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load data to DI_Firmakode table\GET Email_To variable"
+          TopLeft="140.641509433962,93.2641509433962" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Preparation to load data to DI_Firmakode table\GET num rows Di_Firmakode"
+          TopLeft="142.377358490566,25.3396226415094" />
+        <EdgeLayout
+          Id="Package\Preparation to load data to DI_Firmakode table.PrecedenceConstraints[Constraint 2]"
+          TopLeft="210.264150943396,69.2641509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.73584905660377,24"
+              Start="0,0"
+              End="-1.73584905660377,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:LineSegment
+                    End="-1.73584905660377,12" />
+                  <mssgle:LineSegment
+                    End="-1.73584905660377,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Preparation to load data to DI_Firmakode table.PrecedenceConstraints[Constraint 3]"
+          TopLeft="208.528301886792,137.188679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="3.16981132075469,19.8867924528302"
+              Start="0,0"
+              End="3.16981132075469,12.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.96226415094338" />
+                  <mssgle:LineSegment
+                    End="3.16981132075469,9.96226415094338" />
+                  <mssgle:LineSegment
+                    End="3.16981132075469,12.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="434,233"
+          Size="434,277"
+          Id="Package\Preparation to load data to DI_Firmakode table"
+          TopLeft="186.292452830189,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\EXEC End TabRef Log"
+          TopLeft="32.4905660377358,113.301886792453" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\GET Total rows at DI_Firmakode"
+          TopLeft="33.4716981132075,30.3207547169811" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Update logs\Send Mail Task"
+          TopLeft="205.88679245283,115.11320754717" />
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint]"
+          TopLeft="101.358490566038,74.2452830188679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.981132075471692,39.0566037735849"
+              Start="0,0"
+              End="-0.981132075471692,31.5566037735849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5094339622641" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,19.5094339622641" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,31.5566037735849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update logs.PrecedenceConstraints[Constraint 1]"
+          TopLeft="168.264150943396,135.264150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37.622641509434,1.811320754717"
+              Start="0,0"
+              End="30.122641509434,1.811320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.8301886792453,0" />
+                  <mssgle:LineSegment
+                    End="18.8301886792453,1.811320754717" />
+                  <mssgle:LineSegment
+                    End="30.122641509434,1.811320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="10.8301886792453,-26,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="425,204"
+          Size="425,248"
+          Id="Package\Update logs"
+          TopLeft="184.933962264151,526.707547169811" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="114.141509433962,78.5943396226415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.1509433962264,65.433962264151"
+              Start="0,0"
+              End="64.6509433962264,65.433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.0754716981132,0" />
+                  <mssgle:LineSegment
+                    End="36.0754716981132,65.433962264151" />
+                  <mssgle:LineSegment
+                    End="64.6509433962264,65.433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="397.61320754717,774.783018867925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="360.22641509434,51.811320754717"
+              Start="0,0"
+              End="360.22641509434,44.311320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.8867924528302" />
+                  <mssgle:LineSegment
+                    End="360.22641509434,25.8867924528302" />
+                  <mssgle:LineSegment
+                    End="360.22641509434,44.311320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="403.537735849057,282.594339622642">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-2.49056603773585,28.3018867924528"
+              Start="0,0"
+              End="-2.49056603773585,20.8018867924528">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.1509433962264" />
+                  <mssgle:LineSegment
+                    End="-2.49056603773585,14.1509433962264" />
+                  <mssgle:LineSegment
+                    End="-2.49056603773585,20.8018867924528" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="401.047169811321,475.311320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-3.43396226415095,51.3962264150943"
+              Start="0,0"
+              End="-3.43396226415095,43.8962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6981132075472" />
+                  <mssgle:LineSegment
+                    End="-3.43396226415095,25.6981132075472" />
+                  <mssgle:LineSegment
+                    End="-3.43396226415095,43.8962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Aggregate"
+          TopLeft="6.48113207547169,148.443396226415" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\CONV firmakode"
+          TopLeft="10.5188679245283,76.5943396226415" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\RD_FPC_FTE"
+          TopLeft="6.93396226415094,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Sort"
+          TopLeft="6.48113207547169,214.367924528302" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode"
+          TopLeft="5.5,457.349056603774" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\ADD missing columns"
+          TopLeft="5.5,295.198113207547" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\Slowly Changing Dimension"
+          TopLeft="5.5,375.688679245283" />
+        <EdgeLayout
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Sort Output]"
+          TopLeft="74.3679245283019,258.292452830189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.981132075471692,36.9056603773585"
+              Start="0,0"
+              End="-0.981132075471692,29.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,18.4528301886793" />
+                  <mssgle:LineSegment
+                    End="-0.981132075471692,29.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[OLE DB Source Output]"
+          TopLeft="74.8207547169811,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="3.58490566037736,27.1698113207547"
+              Start="0,0"
+              End="3.58490566037736,19.6698113207547">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5849056603774" />
+                  <mssgle:LineSegment
+                    End="3.58490566037736,13.5849056603774" />
+                  <mssgle:LineSegment
+                    End="3.58490566037736,19.6698113207547" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[New Output]"
+          TopLeft="73.3867924528302,419.61320754717">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.7358490566037"
+              Start="0,0"
+              End="0,30.2358490566037">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566037" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.09138671875,9.40112765330184,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Derived Column Output]"
+          TopLeft="73.3867924528302,339.122641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.5660377358491"
+              Start="0,0"
+              End="0,29.0660377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0660377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Data Conversion Output]"
+          TopLeft="78.4056603773585,120.518867924528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4.03773584905662,27.9245283018868"
+              Start="0,0"
+              End="-4.03773584905662,20.4245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-4.03773584905662,13.9622641509434" />
+                  <mssgle:LineSegment
+                    End="-4.03773584905662,20.4245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode.Paths[Aggregate Output 1]"
+          TopLeft="74.3679245283019,192.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,22"
+              Start="0,0"
+              End="0,14.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load data from FPC file to DI_Firmakode table\LOAD DI Firmakode\DI_Firmakode">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

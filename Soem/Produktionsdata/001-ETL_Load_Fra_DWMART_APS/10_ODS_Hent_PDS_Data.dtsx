@@ -1,0 +1,1690 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/25/2013 3:23:29 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB076516"
+  DTS:CreatorName="DSB\thbr0803"
+  DTS:DTSID="{0D673351-DCBD-4A70-96B4-144C848CA92F}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="10_ODS_Hent_PDS_Data"
+  DTS:PackageType="5"
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{FBA33F25-D03C-49ED-ABA2-A0CD4D06A1B2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D36A36FE-ABE6-48B6-8702-0264CCE754C7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PDSDMSERVER">
+      <DTS:VariableValue
+        DTS:DataType="8">GBMSSQLP04</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45150C94-349C-4C9D-8685-D771A0F5BC07}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Periode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0600248C-AC94-467F-B947-6574A0F2FADC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PeriodeDato">
+      <DTS:VariableValue
+        DTS:DataType="7">5/7/2014 1:29:56 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FAE357A3-0582-4FD7-9CD8-D6292292CFBC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_Timer">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Find data summer for periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7AD34A2F-3886-4658-8E8C-25D48CEB94EC}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find data summer for periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7712857C-0EE4-4F8B-95F9-45910F515BC4}"
+          SQLTask:SqlStatementSource="SELECT p.Periode , CONVERT(float, SUM(o.T_DURATION))/60/60 as Vaerdi&#xA;FROM ods.RD_PDS_Lokofører_STOG o &#xA;join (&#xA;Select convert(int, SUBSTRING(value, 1,4)) As år, convert(int, SUBSTRING(value, 5,2)) As måned,&#xA;   value As Periode&#xA;        from ods.ctl_dataload&#xA;        where kilde_system = 'S-tog PDS') p on (p.år = year(o.e_day_date)&#xA;                                            and p.måned = month(o.e_day_date))&#xA;group by p.Periode"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_Periode" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::v_Timer" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Find periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{78074F8E-4A5E-4645-9ECC-32818A283AAF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Find periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7712857C-0EE4-4F8B-95F9-45910F515BC4}"
+          SQLTask:SqlStatementSource="Select CAST(value + '01' AS DATETIME) As Periode &#xA;from ods.ctl_dataload &#xA;where kilde_system = 'S-tog PDS'&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PeriodeDato" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fjern esisterende data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Truncate tabel RD_PDS_Lokofører_STOG"
+      DTS:DTSID="{84266E6C-7437-426D-8EF2-7F5A81A23BDD}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fjern esisterende data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7712857C-0EE4-4F8B-95F9-45910F515BC4}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ods].[RD_PDS_Lokofører_STOG]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Gem summer for periode"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FA72D355-6D88-49C5-B855-83D59900F4B7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Gem summer for periode"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7712857C-0EE4-4F8B-95F9-45910F515BC4}"
+          SQLTask:SqlStatementSource="exec etl.Grl_DataLoadCheck_Log 78, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_Periode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::v_Timer"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="5"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Hent Data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BE6685D7-E937-409B-A487-87DB6A0CF78F}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Hent Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Hent Data\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Hent Data\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hent Data\Data Conversion.Inputs[Data Conversion Input].Columns[P_BRUGERID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="P_BRUGERID"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_BRUGERID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Hent Data\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Output].Columns[P_BRUGERID_conv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Output].Columns[P_BRUGERID_conv]"
+                      name="P_BRUGERID_conv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_BRUGERID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Hent Data\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="okostyr dot v_DM_PDS_Stog_WRK_work_done"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [E_EXPORT_CODE]
+      ,[E_DAY_DATE]
+      ,[E_DATE_TIME_REGISTERED]
+      ,[P_DAY_TYPE_DESCRIPTION]
+      ,[P_DATE_TIME_REGISTERED]
+      ,[P_BRUGERID]
+      ,[P_NICKNAME]
+      ,[P_PERSON_PB_DESCRIPTION]
+      ,[P_ROSTER_COMPANY_ID]
+      ,[P_ROSTER_WEEK]
+      ,[P_ROSTER_PB_DESCRIPTION]
+      ,[D_DUTY_SERVER_ID]
+      ,[D_VERSION_SET_ID]
+      ,[D_DUTY_COMPANY_ID]
+      ,[D_DURATION]
+      ,[D_DUTY_PB_DESCRIPTION]
+      ,[D_START_DATE_TIME]
+      ,[D_END_DATE_TIME]
+      ,[D_START_STATION_DESCRIPTION]
+      ,[D_END_STATION_DESCRIPTION]
+      ,[D_FIXED_START_DATE_TIME]
+      ,[D_FIXED_END_DATE_TIME]
+      ,[T_TASK_TYPE_DESCRIPTION]
+      ,[T_START_DATE_TIME]
+      ,[T_END_DATE_TIME]
+      ,[T_SERIAL_NUMBER]
+      ,[T_START_STATION_DESCRIPTION]
+      ,[T_END_STATION_DESCRIPTION]
+      ,[T_DURATION]
+      ,[T_ACTIVITY_DESCRIPTION]
+  FROM okostyr.v_DM_PDS_Stog_WRK_work_done
+  WHERE PDS_SYSTEM = 'Stog'
+  AND PHASE = 'workdone'
+  AND E_DAY_DATE BETWEEN DATEADD(day, -1, ? ) AND DATEADD(month, 1, ?)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"0",{0600248C-AC94-467F-B947-6574A0F2FADC};"1",{0600248C-AC94-467F-B947-6574A0F2FADC};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Connections[OleDbConnection]"
+                  connectionManagerID="{06FBEFBA-F58C-48E7-9EE4-114B287B66CD}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PDSDWMART]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_EXPORT_CODE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_EXPORT_CODE]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_EXPORT_CODE]"
+                      name="E_EXPORT_CODE"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DAY_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DAY_DATE]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DAY_DATE]"
+                      name="E_DAY_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DATE_TIME_REGISTERED]"
+                      name="E_DATE_TIME_REGISTERED"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                      name="P_DAY_TYPE_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DATE_TIME_REGISTERED]"
+                      name="P_DATE_TIME_REGISTERED"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_BRUGERID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_BRUGERID]"
+                      length="50"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_BRUGERID]"
+                      name="P_BRUGERID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_NICKNAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_NICKNAME]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_NICKNAME]"
+                      name="P_NICKNAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                      name="P_PERSON_PB_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_COMPANY_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_COMPANY_ID]"
+                      name="P_ROSTER_COMPANY_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_WEEK]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_WEEK]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_WEEK]"
+                      name="P_ROSTER_WEEK"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                      name="P_ROSTER_PB_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_SERVER_ID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_SERVER_ID]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_SERVER_ID]"
+                      name="D_DUTY_SERVER_ID"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_VERSION_SET_ID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_VERSION_SET_ID]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_VERSION_SET_ID]"
+                      name="D_VERSION_SET_ID"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_COMPANY_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_COMPANY_ID]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_COMPANY_ID]"
+                      name="D_DUTY_COMPANY_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DURATION]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DURATION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DURATION]"
+                      name="D_DURATION"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                      name="D_DUTY_PB_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_DATE_TIME]"
+                      name="D_START_DATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_DATE_TIME]"
+                      name="D_END_DATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_STATION_DESCRIPTION]"
+                      name="D_START_STATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_STATION_DESCRIPTION]"
+                      name="D_END_STATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_START_DATE_TIME]"
+                      name="D_FIXED_START_DATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_END_DATE_TIME]"
+                      name="D_FIXED_END_DATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                      name="T_TASK_TYPE_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_DATE_TIME]"
+                      name="T_START_DATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_DATE_TIME]"
+                      name="T_END_DATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_SERIAL_NUMBER]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_SERIAL_NUMBER]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_SERIAL_NUMBER]"
+                      name="T_SERIAL_NUMBER"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_STATION_DESCRIPTION]"
+                      name="T_START_STATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_STATION_DESCRIPTION]"
+                      name="T_END_STATION_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_DURATION]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_DURATION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_DURATION]"
+                      name="T_DURATION"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                      length="60"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                      name="T_ACTIVITY_DESCRIPTION"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_EXPORT_CODE]"
+                      dataType="numeric"
+                      name="E_EXPORT_CODE"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DAY_DATE]"
+                      dataType="dbTimeStamp"
+                      name="E_DAY_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      name="E_DATE_TIME_REGISTERED" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_DAY_TYPE_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      name="P_DATE_TIME_REGISTERED" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_BRUGERID]"
+                      dataType="wstr"
+                      length="50"
+                      name="P_BRUGERID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_NICKNAME]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_NICKNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_PERSON_PB_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_ROSTER_COMPANY_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_WEEK]"
+                      dataType="numeric"
+                      name="P_ROSTER_WEEK"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_ROSTER_PB_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_SERVER_ID]"
+                      dataType="numeric"
+                      name="D_DUTY_SERVER_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_VERSION_SET_ID]"
+                      dataType="numeric"
+                      name="D_VERSION_SET_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_COMPANY_ID]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_DUTY_COMPANY_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DURATION]"
+                      dataType="numeric"
+                      name="D_DURATION"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_DUTY_PB_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_START_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_END_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_START_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_END_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_FIXED_START_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_FIXED_END_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="T_TASK_TYPE_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="T_START_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="T_END_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_SERIAL_NUMBER]"
+                      dataType="numeric"
+                      name="T_SERIAL_NUMBER"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="T_START_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="T_END_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_DURATION]"
+                      dataType="numeric"
+                      name="T_DURATION"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                      dataType="wstr"
+                      length="60"
+                      name="T_ACTIVITY_DESCRIPTION" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_EXPORT_CODE]"
+                      dataType="numeric"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_EXPORT_CODE]"
+                      name="E_EXPORT_CODE"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DAY_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DAY_DATE]"
+                      name="E_DAY_DATE" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[E_DATE_TIME_REGISTERED]"
+                      name="E_DATE_TIME_REGISTERED" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DAY_TYPE_DESCRIPTION]"
+                      name="P_DAY_TYPE_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_DATE_TIME_REGISTERED]"
+                      name="P_DATE_TIME_REGISTERED" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_BRUGERID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_BRUGERID]"
+                      name="P_BRUGERID" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_NICKNAME]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_NICKNAME]"
+                      name="P_NICKNAME" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_PERSON_PB_DESCRIPTION]"
+                      name="P_PERSON_PB_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_COMPANY_ID]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_COMPANY_ID]"
+                      name="P_ROSTER_COMPANY_ID" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_WEEK]"
+                      dataType="numeric"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_WEEK]"
+                      name="P_ROSTER_WEEK"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[P_ROSTER_PB_DESCRIPTION]"
+                      name="P_ROSTER_PB_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_SERVER_ID]"
+                      dataType="numeric"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_SERVER_ID]"
+                      name="D_DUTY_SERVER_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_VERSION_SET_ID]"
+                      dataType="numeric"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_VERSION_SET_ID]"
+                      name="D_VERSION_SET_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_COMPANY_ID]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_COMPANY_ID]"
+                      name="D_DUTY_COMPANY_ID" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DURATION]"
+                      dataType="numeric"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DURATION]"
+                      name="D_DURATION"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_DUTY_PB_DESCRIPTION]"
+                      name="D_DUTY_PB_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_DATE_TIME]"
+                      name="D_START_DATE_TIME" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_DATE_TIME]"
+                      name="D_END_DATE_TIME" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_START_STATION_DESCRIPTION]"
+                      name="D_START_STATION_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_END_STATION_DESCRIPTION]"
+                      name="D_END_STATION_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_START_DATE_TIME]"
+                      name="D_FIXED_START_DATE_TIME" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[D_FIXED_END_DATE_TIME]"
+                      name="D_FIXED_END_DATE_TIME" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_TASK_TYPE_DESCRIPTION]"
+                      name="T_TASK_TYPE_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_DATE_TIME]"
+                      name="T_START_DATE_TIME" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_DATE_TIME]"
+                      name="T_END_DATE_TIME" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_SERIAL_NUMBER]"
+                      dataType="numeric"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_SERIAL_NUMBER]"
+                      name="T_SERIAL_NUMBER"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_START_STATION_DESCRIPTION]"
+                      name="T_START_STATION_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_END_STATION_DESCRIPTION]"
+                      name="T_END_STATION_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_DURATION]"
+                      dataType="numeric"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_DURATION]"
+                      name="T_DURATION"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[T_ACTIVITY_DESCRIPTION]"
+                      name="T_ACTIVITY_DESCRIPTION" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Hent Data\RD_PDS_Lokofører_STOG"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="RD_PDS_Lokofører_STOG"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[RD_PDS_Lokofører_STOG]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Connections[OleDbConnection]"
+                  connectionManagerID="{7712857C-0EE4-4F8B-95F9-45910F515BC4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[E_EXPORT_CODE]"
+                      cachedDataType="numeric"
+                      cachedName="E_EXPORT_CODE"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[E_EXPORT_CODE]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_EXPORT_CODE]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[E_DAY_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="E_DAY_DATE"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[E_DAY_DATE]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DAY_DATE]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[E_DATE_TIME_REGISTERED]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="E_DATE_TIME_REGISTERED"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[E_DATE_TIME_REGISTERED]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_DAY_TYPE_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="P_DAY_TYPE_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DAY_TYPE_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_DATE_TIME_REGISTERED]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="P_DATE_TIME_REGISTERED"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_DATE_TIME_REGISTERED]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_NICKNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="P_NICKNAME"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_NICKNAME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_NICKNAME]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_PERSON_PB_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="P_PERSON_PB_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_PERSON_PB_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_ROSTER_COMPANY_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="P_ROSTER_COMPANY_ID"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_COMPANY_ID]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_ROSTER_WEEK]"
+                      cachedDataType="numeric"
+                      cachedName="P_ROSTER_WEEK"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_WEEK]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_WEEK]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_ROSTER_PB_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="P_ROSTER_PB_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[P_ROSTER_PB_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_DUTY_SERVER_ID]"
+                      cachedDataType="numeric"
+                      cachedName="D_DUTY_SERVER_ID"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_SERVER_ID]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_SERVER_ID]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_VERSION_SET_ID]"
+                      cachedDataType="numeric"
+                      cachedName="D_VERSION_SET_ID"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_VERSION_SET_ID]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_VERSION_SET_ID]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_DUTY_COMPANY_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="D_DUTY_COMPANY_ID"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_COMPANY_ID]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_COMPANY_ID]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_DURATION]"
+                      cachedDataType="numeric"
+                      cachedName="D_DURATION"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DURATION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DURATION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_DUTY_PB_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="D_DUTY_PB_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_DUTY_PB_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_START_DATE_TIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D_START_DATE_TIME"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_START_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_DATE_TIME]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_END_DATE_TIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D_END_DATE_TIME"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_END_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_DATE_TIME]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_START_STATION_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="D_START_STATION_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_START_STATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_END_STATION_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="D_END_STATION_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_END_STATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_FIXED_START_DATE_TIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D_FIXED_START_DATE_TIME"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_START_DATE_TIME]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[D_FIXED_END_DATE_TIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D_FIXED_END_DATE_TIME"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[D_FIXED_END_DATE_TIME]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_TASK_TYPE_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="T_TASK_TYPE_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_TASK_TYPE_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_START_DATE_TIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="T_START_DATE_TIME"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_START_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_DATE_TIME]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_END_DATE_TIME]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="T_END_DATE_TIME"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_END_DATE_TIME]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_DATE_TIME]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_SERIAL_NUMBER]"
+                      cachedDataType="numeric"
+                      cachedName="T_SERIAL_NUMBER"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_SERIAL_NUMBER]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_SERIAL_NUMBER]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_START_STATION_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="T_START_STATION_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_START_STATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_END_STATION_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="T_END_STATION_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_END_STATION_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_DURATION]"
+                      cachedDataType="numeric"
+                      cachedName="T_DURATION"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_DURATION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_DURATION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[T_ACTIVITY_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="T_ACTIVITY_DESCRIPTION"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                      lineageId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output].Columns[T_ACTIVITY_DESCRIPTION]" />
+                    <inputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].Columns[P_BRUGERID_conv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="P_BRUGERID_conv"
+                      externalMetadataColumnId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_BRUGERID]"
+                      lineageId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Output].Columns[P_BRUGERID_conv]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[E_EXPORT_CODE]"
+                      dataType="numeric"
+                      name="E_EXPORT_CODE"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[E_DAY_DATE]"
+                      dataType="dbTimeStamp"
+                      name="E_DAY_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[E_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      name="E_DATE_TIME_REGISTERED" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_DAY_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_DAY_TYPE_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_DATE_TIME_REGISTERED]"
+                      dataType="dbTimeStamp"
+                      name="P_DATE_TIME_REGISTERED" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_BRUGERID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="P_BRUGERID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_NICKNAME]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_NICKNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_PERSON_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_PERSON_PB_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_COMPANY_ID]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_ROSTER_COMPANY_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_WEEK]"
+                      dataType="numeric"
+                      name="P_ROSTER_WEEK"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[P_ROSTER_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="P_ROSTER_PB_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_SERVER_ID]"
+                      dataType="numeric"
+                      name="D_DUTY_SERVER_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_VERSION_SET_ID]"
+                      dataType="numeric"
+                      name="D_VERSION_SET_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_COMPANY_ID]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_DUTY_COMPANY_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DURATION]"
+                      dataType="numeric"
+                      name="D_DURATION"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_DUTY_PB_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_DUTY_PB_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_START_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_END_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_START_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="D_END_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_FIXED_START_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[D_FIXED_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="D_FIXED_END_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_TASK_TYPE_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="T_TASK_TYPE_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_START_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="T_START_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_END_DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="T_END_DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_SERIAL_NUMBER]"
+                      dataType="numeric"
+                      name="T_SERIAL_NUMBER"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_START_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="T_START_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_END_STATION_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      name="T_END_STATION_DESCRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_DURATION]"
+                      dataType="numeric"
+                      name="T_DURATION"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input].ExternalColumns[T_ACTIVITY_DESCRIPTION]"
+                      dataType="wstr"
+                      length="60"
+                      name="T_ACTIVITY_DESCRIPTION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Hent Data\RD_PDS_Lokofører_STOG.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Hent Data\RD_PDS_Lokofører_STOG.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Hent Data\RD_PDS_Lokofører_STOG.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Hent Data.Paths[Data Conversion Output]"
+              endId="Package\Hent Data\RD_PDS_Lokofører_STOG.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Hent Data\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Hent Data.Paths[OLE DB Source Output]"
+              endId="Package\Hent Data\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E8F9C714-236F-4ED9-8828-5C4EF7F03BC5}"
+      DTS:From="Package\Fjern esisterende data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Hent Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C3319781-497B-43F0-9E8F-824111A5C2CB}"
+      DTS:From="Package\Hent Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Find data summer for periode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C986A228-2696-4B95-AF54-18436B6660D1}"
+      DTS:From="Package\Find data summer for periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Gem summer for periode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{B1EB97D1-0B08-436B-AB34-5341BF37D5C4}"
+      DTS:From="Package\Find periode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Fjern esisterende data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="258,44"
+          Id="Package\Find data summer for periode"
+          TopLeft="5.5,308.103773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Find periode"
+          TopLeft="66.2924528301887,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Fjern esisterende data"
+          TopLeft="66.8584905660377,97.9150943396226" />
+        <NodeLayout
+          Size="204,44"
+          Id="Package\Gem summer for periode"
+          TopLeft="33.4622641509434,402.971698113208" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Hent Data"
+          TopLeft="66.8962264150943,196.783018867925" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="134.745283018868,141.839622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.0377358490566166,54.9433962264151"
+              Start="0,0"
+              End="0.0377358490566166,47.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.4716981132076" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,27.4716981132076" />
+                  <mssgle:LineSegment
+                    End="0.0377358490566166,47.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="134.783018867925,240.707547169811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.490566037735846,67.3962264150943"
+              Start="0,0"
+              End="-0.490566037735846,59.8962264150943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.6981132075472" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,33.6981132075472" />
+                  <mssgle:LineSegment
+                    End="-0.490566037735846,59.8962264150943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="134.292452830189,352.028301886792">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.01886792452828,50.9433962264151"
+              Start="0,0"
+              End="1.01886792452828,43.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.4716981132075" />
+                  <mssgle:LineSegment
+                    End="1.01886792452828,25.4716981132075" />
+                  <mssgle:LineSegment
+                    End="1.01886792452828,43.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="134.179245283019,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.566037735849051,48.4905660377358"
+              Start="0,0"
+              End="0.566037735849051,40.9905660377358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.2264150943396" />
+                  <mssgle:LineSegment
+                    End="0.566037735849051,24.2264150943396" />
+                  <mssgle:LineSegment
+                    End="0.566037735849051,40.9905660377358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Hent Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="243,44"
+          Id="Package\Hent Data\RD_PDS_Lokofører_STOG"
+          TopLeft="5.5,175.235849056604" />
+        <NodeLayout
+          Size="295,44"
+          Id="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done"
+          TopLeft="14.4811320754717,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Hent Data\Data Conversion"
+          TopLeft="64.4056603773585,94.8584905660377" />
+        <EdgeLayout
+          Id="Package\Hent Data.Paths[OLE DB Source Output]"
+          TopLeft="161.72641509434,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-29.4339622641509,45.4339622641509"
+              Start="0,0"
+              End="-29.4339622641509,37.9339622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7169811320755" />
+                  <mssgle:LineSegment
+                    End="-29.4339622641509,22.7169811320755" />
+                  <mssgle:LineSegment
+                    End="-29.4339622641509,37.9339622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Hent Data.Paths[Data Conversion Output]"
+          TopLeft="132.292452830189,138.783018867925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-5.50943396226415,36.4528301886793"
+              Start="0,0"
+              End="-5.50943396226415,28.9528301886793">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-5.50943396226415,18.2264150943396" />
+                  <mssgle:LineSegment
+                    End="-5.50943396226415,28.9528301886793" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Hent Data\okostyr dot v_DM_PDS_Stog_WRK_work_done">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

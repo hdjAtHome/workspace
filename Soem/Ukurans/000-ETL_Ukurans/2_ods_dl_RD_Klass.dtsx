@@ -1,0 +1,734 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/4/2013 9:14:51 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB079104"
+  DTS:CreatorName="DSB\pama2610"
+  DTS:DTSID="{68FDD0E9-D647-4639-B85F-FD125FBB29FF}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="ods_dl_RD_Klass"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{E38584BD-A6E3-480C-B9D7-F9273B9D747C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel - Klass1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{8AC2C905-285F-4918-9CCA-D84D8201AAEB}"
+      DTS:ObjectName="Excel - Klass1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\12_Ukurans\10_Data\01_SAP_Input\Aktuel_periode\Klass1.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{43DB9216-E0DE-425F-A3F0-E03A91B9040B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATABASE">
+      <DTS:VariableValue
+        DTS:DataType="8">Ukurans</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2440B6B6-5E19-4EB1-BE83-8B5E600FA936}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SERVER">
+      <DTS:VariableValue
+        DTS:DataType="8">mssqlp01\alpha</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Indlæs Klassifikations data"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3B235BCC-161A-4D96-966B-3A2BE67A13E2}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Indlæs Klassifikations data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel-Klassifikations data1"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Ark1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel - Klass1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel - Klass1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[Objekt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].ExternalColumns[Objekt]"
+                      length="255"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[Objekt]"
+                      name="Objekt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[KTegnsværdi]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].ExternalColumns[KTegnsværdi]"
+                      length="255"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[KTegnsværdi]"
+                      name="KTegnsværdi"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].ExternalColumns[Objekt]"
+                      dataType="wstr"
+                      length="255"
+                      name="Objekt" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].ExternalColumns[KTegnsværdi]"
+                      dataType="wstr"
+                      length="255"
+                      name="KTegnsværdi" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[Objekt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[Objekt]"
+                      name="Objekt" />
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[KTegnsværdi]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[KTegnsværdi]"
+                      name="KTegnsværdi" />
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Konverter fra Unicode1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Inputs[Data Conversion Input].Columns[Objekt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Objekt"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[Objekt]" />
+                    <inputColumn
+                      refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Inputs[Data Conversion Input].Columns[KTegnsværdi]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="KTegnsværdi"
+                      lineageId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[KTegnsværdi]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[Objekt_str]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="18"
+                      lineageId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[Objekt_str]"
+                      name="Objekt_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[Objekt]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[KTegnsværdi_str]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="25"
+                      lineageId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[KTegnsværdi_str]"
+                      name="KTegnsværdi_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output].Columns[KTegnsværdi]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ods RD_SAP_MatKlass"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[RD_SAP_MatKlass]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Connections[OleDbConnection]"
+                  connectionManagerID="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Ukurans]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input].Columns[Objekt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Objekt"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input].ExternalColumns[Materiale]"
+                      lineageId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output].Columns[Objekt]" />
+                    <inputColumn
+                      refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input].Columns[KTegnsværdi]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="KTegnsværdi"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input].ExternalColumns[Klassificering]"
+                      lineageId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output].Columns[KTegnsværdi]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input].ExternalColumns[Materiale]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="Materiale" />
+                    <externalMetadataColumn
+                      refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input].ExternalColumns[Klassificering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Klassificering" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Indlæs Klassifikations data\Sort1"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts data."
+              name="Sort1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Indlæs Klassifikations data\Sort1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Indlæs Klassifikations data\Sort1.Inputs[Sort Input].Columns[Objekt_str]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Objekt_str"
+                      lineageId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[Objekt_str]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Indlæs Klassifikations data\Sort1.Inputs[Sort Input].Columns[KTegnsværdi_str]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="KTegnsværdi_str"
+                      lineageId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[KTegnsværdi_str]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output].Columns[Objekt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output].Columns[Objekt]"
+                      name="Objekt"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[Objekt_str]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output].Columns[KTegnsværdi]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output].Columns[KTegnsværdi]"
+                      name="KTegnsværdi"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output].Columns[KTegnsværdi_str]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Indlæs Klassifikations data.Paths[Data Conversion Output]"
+              endId="Package\Indlæs Klassifikations data\Sort1.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Indlæs Klassifikations data.Paths[Excel Source Output]"
+              endId="Package\Indlæs Klassifikations data\Konverter fra Unicode1.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Indlæs Klassifikations data\Excel-Klassifikations data1.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Indlæs Klassifikations data.Paths[Sort Output]"
+              endId="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Indlæs Klassifikations data\Sort1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tømmer tabel ods RD_SAP_MatKlass"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{569163CD-C2E4-4506-AF15-7C19D21EF929}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tømmer tabel ods RD_SAP_MatKlass"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F2A94D2E-B5B5-4BEA-825C-265DA8BF970D}"
+          SQLTask:SqlStatementSource="truncate table ods.RD_SAP_MatKlass" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{537894D1-CF9D-4ECE-83A6-0CE09535C604}"
+      DTS:From="Package\Tømmer tabel ods RD_SAP_MatKlass"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Indlæs Klassifikations data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="389,55"
+          Id="Package\Indlæs Klassifikations data"
+          TopLeft="5.5,85.3867924528302" />
+        <NodeLayout
+          Size="387,44"
+          Id="Package\Tømmer tabel ods RD_SAP_MatKlass"
+          TopLeft="9.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="201.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.8867924528302"
+              Start="0,0"
+              End="0,28.3867924528302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.3867924528302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Indlæs Klassifikations data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="168,44"
+          Id="Package\Indlæs Klassifikations data\Sort1"
+          TopLeft="144.504716981132,217.367924528302" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass"
+          TopLeft="130.504716981132,323.028301886792" />
+        <NodeLayout
+          Size="194,44"
+          Id="Package\Indlæs Klassifikations data\Excel-Klassifikations data1"
+          TopLeft="131.504716981132,8.5" />
+        <NodeLayout
+          Size="164,44"
+          Id="Package\Indlæs Klassifikations data\Konverter fra Unicode1"
+          TopLeft="146.504716981132,105.330188679245" />
+        <EdgeLayout
+          Id="Package\Indlæs Klassifikations data.Paths[Sort Output]"
+          TopLeft="226.004716981132,261.367924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.6603773584906"
+              Start="0,0"
+              End="0,54.1603773584906">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.1603773584906" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs Klassifikations data.Paths[Excel Source Output]"
+          TopLeft="228.504716981132,52.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.8301886792453"
+              Start="0,0"
+              End="0,45.3301886792453">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.3301886792453" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Indlæs Klassifikations data.Paths[Data Conversion Output]"
+          TopLeft="228.504716981132,149.330188679245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.0377358490566"
+              Start="0,0"
+              End="0,60.5377358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5377358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Indlæs Klassifikations data\ods RD_SAP_MatKlass">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

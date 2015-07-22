@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[MD_STYRING_Konsolidering] (
+    [Delmodel]  NVARCHAR (1)  NOT NULL,
+    [TabelType] NVARCHAR (64) NOT NULL,
+    [Prefix]    NVARCHAR (64) NOT NULL,
+    CONSTRAINT [PK_MAN_STYR_KONSOLIDERING] PRIMARY KEY CLUSTERED ([Delmodel] ASC, [TabelType] ASC, [Prefix] ASC) WITH (FILLFACTOR = 90)
+);
+

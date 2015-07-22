@@ -1,0 +1,960 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/26/2013 11:28:13 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DSB075360"
+  DTS:CreatorName="DSB\hebr2802"
+  DTS:DTSID="{AF268077-FAAC-405A-B2D9-88F962E89BA7}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="40_ODS_TR3_load Stog straekninger"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{79A0CBAD-6372-431C-9225-28ECD3E88BCE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{65A019D0-F5DD-4ABD-AB10-219A2A4B6CE1}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">"\\\\"+ @[$Project::MDWSERVER]+"\\files\\"+ @[$Project::MDWDATABASE]+"\\Togproduktion_STOG\\Manuelle_data\\STog\\Stamdata station og straekning.xls"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\oesmsqlt01\soem\files\mdw_udv4\Togproduktion_STOG\Manuelle_data\STog\Stamdata station og straekning.xls;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{910F3D1C-A299-453C-AD66-ECE005E0BA96}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="v_PackageLogId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC End package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C118AA75-E069-4FAF-96CE-2A0B69ED3783}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC End package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+          SQLTask:SqlStatementSource="EXEC etl.grl_EndPackageLog ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Initiate package log"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B39A02C9-DF1B-4CCE-ACB1-5536741196BA}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Initiate package log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+          SQLTask:SqlStatementSource="etl.grl_InitPackageLog ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::v_PackageLogId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load STog Strækninger"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6A86C6E6-0254-47E7-ACEC-A672F838C816}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load STog Strækninger"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion fra unicode til codepage 1252"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input].Columns[NAVN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NAVN"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[NAVN]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input].Columns[ID]"
+                      cachedDataType="r8"
+                      cachedName="ID"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input].Columns[SEKVENS_NR]"
+                      cachedDataType="r8"
+                      cachedName="SEKVENS_NR"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[SEKVENS_NR]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input].Columns[FRA_STAT_NR]"
+                      cachedDataType="r8"
+                      cachedName="FRA_STAT_NR"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[FRA_STAT_NR]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input].Columns[TIL_STAT_NR]"
+                      cachedDataType="r8"
+                      cachedName="TIL_STAT_NR"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[TIL_STAT_NR]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input].Columns[PublikumsBetjentMindsteSnit]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PublikumsBetjentMindsteSnit"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[PublikumsBetjentMindsteSnit]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[NAVN_CON]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[NAVN_CON]"
+                      name="NAVN_CON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[NAVN]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[ID_CON]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[ID_CON]"
+                      name="ID_CON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[SEKVENS_NR_CON]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[SEKVENS_NR_CON]"
+                      name="SEKVENS_NR_CON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[SEKVENS_NR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[FRA_STAT_NR_CON]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[FRA_STAT_NR_CON]"
+                      name="FRA_STAT_NR_CON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[FRA_STAT_NR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[TIL_STAT_NR_CON]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[TIL_STAT_NR_CON]"
+                      name="TIL_STAT_NR_CON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[TIL_STAT_NR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[Copy of PublikumsBetjentMindsteSnit_CON]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[Copy of PublikumsBetjentMindsteSnit_CON]"
+                      name="Copy of PublikumsBetjentMindsteSnit_CON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[PublikumsBetjentMindsteSnit]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load ods rd_stog_Straekninger"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ods].[rd_stog_Straekninger]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Connections[OleDbConnection]"
+                  connectionManagerID="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[MDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].Columns[KM]"
+                      cachedDataType="r8"
+                      cachedName="KM"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[KM]"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[KM]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].Columns[ID_CON]"
+                      cachedDataType="i4"
+                      cachedName="ID_CON"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[ID_CON]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].Columns[NAVN_CON]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NAVN_CON"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[NAVN]"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[NAVN_CON]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].Columns[SEKVENS_NR_CON]"
+                      cachedDataType="i4"
+                      cachedName="SEKVENS_NR_CON"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[SEKVENS_NR]"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[SEKVENS_NR_CON]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].Columns[FRA_STAT_NR_CON]"
+                      cachedDataType="i4"
+                      cachedName="FRA_STAT_NR_CON"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[FRA_STAT_NR]"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[FRA_STAT_NR_CON]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].Columns[TIL_STAT_NR_CON]"
+                      cachedDataType="i4"
+                      cachedName="TIL_STAT_NR_CON"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[TIL_STAT_NR]"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[TIL_STAT_NR_CON]" />
+                    <inputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].Columns[Copy of PublikumsBetjentMindsteSnit_CON]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of PublikumsBetjentMindsteSnit_CON"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[PublikumsBetjentMindsteSnit]"
+                      lineageId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output].Columns[Copy of PublikumsBetjentMindsteSnit_CON]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[NAVN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NAVN" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[SEKVENS_NR]"
+                      dataType="i4"
+                      name="SEKVENS_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[FRA_STAT_NR]"
+                      dataType="r8"
+                      name="FRA_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[TIL_STAT_NR]"
+                      dataType="r8"
+                      name="TIL_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[KM]"
+                      dataType="r8"
+                      name="KM" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input].ExternalColumns[PublikumsBetjentMindsteSnit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PublikumsBetjentMindsteSnit" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load STog Strækninger\Stamdata station og straekning xls"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Stamdata station og straekning xls"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">DSBINFRM_STRAEKNINGER$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[ID]"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[NAVN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[NAVN]"
+                      length="255"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[NAVN]"
+                      name="NAVN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[SEKVENS_NR]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[SEKVENS_NR]"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[SEKVENS_NR]"
+                      name="SEKVENS_NR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[FRA_STAT_NR]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[FRA_STAT_NR]"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[FRA_STAT_NR]"
+                      name="FRA_STAT_NR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[TIL_STAT_NR]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[TIL_STAT_NR]"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[TIL_STAT_NR]"
+                      name="TIL_STAT_NR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[KM]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[KM]"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[KM]"
+                      name="KM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[PublikumsBetjentMindsteSnit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[PublikumsBetjentMindsteSnit]"
+                      length="255"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].Columns[PublikumsBetjentMindsteSnit]"
+                      name="PublikumsBetjentMindsteSnit"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[TID]"
+                      dataType="date"
+                      name="TID" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[ID]"
+                      dataType="r8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[NAVN]"
+                      dataType="wstr"
+                      length="255"
+                      name="NAVN" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[SEKVENS_NR]"
+                      dataType="r8"
+                      name="SEKVENS_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[FRA_STAT_NR]"
+                      dataType="r8"
+                      name="FRA_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[TIL_STAT_NR]"
+                      dataType="r8"
+                      name="TIL_STAT_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[KM]"
+                      dataType="r8"
+                      name="KM" />
+                    <externalMetadataColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output].ExternalColumns[PublikumsBetjentMindsteSnit]"
+                      dataType="wstr"
+                      length="255"
+                      name="PublikumsBetjentMindsteSnit" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[ID]"
+                      dataType="r8"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[NAVN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[NAVN]"
+                      name="NAVN" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[SEKVENS_NR]"
+                      dataType="r8"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[SEKVENS_NR]"
+                      name="SEKVENS_NR" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[FRA_STAT_NR]"
+                      dataType="r8"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[FRA_STAT_NR]"
+                      name="FRA_STAT_NR" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[TIL_STAT_NR]"
+                      dataType="r8"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[TIL_STAT_NR]"
+                      name="TIL_STAT_NR" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[KM]"
+                      dataType="r8"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[KM]"
+                      name="KM" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[PublikumsBetjentMindsteSnit]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[PublikumsBetjentMindsteSnit]"
+                      name="PublikumsBetjentMindsteSnit" />
+                    <outputColumn
+                      refId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load STog Strækninger.Paths[Data Conversion Output]"
+              endId="Package\Load STog Strækninger\Load ods rd_stog_Straekninger.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load STog Strækninger.Paths[Excel Source Output]"
+              endId="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Load STog Strækninger\Stamdata station og straekning xls.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate ods md stog stationer"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3A0FAD81-3149-43A7-9C61-3B97CC06942A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate ods md stog stationer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AE3C70AB-35B5-4B7A-BA45-FF78656F5294}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ods.rd_stog_Straekninger" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{74B52179-3108-4FDB-8372-1AB814560CB1}"
+      DTS:From="Package\Truncate ods md stog stationer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load STog Strækninger" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{2C0BA4DD-A339-4471-8CDF-08528CF66118}"
+      DTS:From="Package\EXEC Initiate package log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncate ods md stog stationer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{077B1161-7165-46CF-9C9D-B3A68654DE69}"
+      DTS:From="Package\Load STog Strækninger"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\EXEC End package log" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="245,44"
+          Id="Package\EXEC End package log"
+          TopLeft="5.5,335.990566037736" />
+        <NodeLayout
+          Size="245,44"
+          Id="Package\EXEC Initiate package log"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="245,44"
+          Id="Package\Load STog Strækninger"
+          TopLeft="5.5,225.801886792453" />
+        <NodeLayout
+          Size="245,44"
+          Id="Package\Truncate ods md stog stationer"
+          TopLeft="5.5,115.650943396226" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="127.801886792453,159.575471698113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.2264150943396"
+              Start="0,0"
+              End="0,58.7264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.7264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="127.801886792453,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.2264150943396"
+              Start="0,0"
+              End="0,58.7264150943396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.7264150943396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="127.801886792453,269.72641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.2641509433963"
+              Start="0,0"
+              End="0,58.7641509433963">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.7641509433963" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load STog Strækninger">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,44"
+          Id="Package\Load STog Strækninger\Load ods rd_stog_Straekninger"
+          TopLeft="15.9528301886792,214.632075471698" />
+        <NodeLayout
+          Size="175,44"
+          Id="Package\Load STog Strækninger\Data Conversion fra unicode til codepage 1252"
+          TopLeft="5.5,96.3301886792453" />
+        <NodeLayout
+          Size="174,44"
+          Id="Package\Load STog Strækninger\Stamdata station og straekning xls"
+          TopLeft="5.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load STog Strækninger.Paths[Excel Source Output]"
+          TopLeft="92.3301886792453,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0.528301886792462,46.9056603773585"
+              Start="0,0"
+              End="0.528301886792462,39.4056603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4339622641509" />
+                  <mssgle:LineSegment
+                    End="0.528301886792462,23.4339622641509" />
+                  <mssgle:LineSegment
+                    End="0.528301886792462,39.4056603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load STog Strækninger.Paths[Data Conversion Output]"
+          TopLeft="92.8584905660377,140.254716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-0.0377358490566024,74.3773584905661"
+              Start="0,0"
+              End="-0.0377358490566024,66.8773584905661">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.1698113207547" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566024,37.1698113207547" />
+                  <mssgle:LineSegment
+                    End="-0.0377358490566024,66.8773584905661" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load STog Strækninger\Stamdata station og straekning xls">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
